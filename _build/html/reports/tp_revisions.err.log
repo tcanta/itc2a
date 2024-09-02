@@ -18,16 +18,21 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-print(appartient(3, [1, 5, 3, 4, 1]))
-print(appartient(3, [1, 5, 4, 2]))
+def dfs(G, s):
+    # définir une liste de booléens pour savoir si un sommet a été visité
+    def aux(u): # fonction récursive
+        # si u n'a pas été visité :
+            # afficher u
+            # marquer u comme visité
+            # pour chaque voisin v de u
+                # appeler aux(v)
+    aux(s)
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m [38;5;28mprint[39m([43mappartient[49m([38;5;241m3[39m, [[38;5;241m1[39m, [38;5;241m5[39m, [38;5;241m3[39m, [38;5;241m4[39m, [38;5;241m1[39m]))
-[1;32m      2[0m [38;5;28mprint[39m(appartient([38;5;241m3[39m, [[38;5;241m1[39m, [38;5;241m5[39m, [38;5;241m4[39m, [38;5;241m2[39m]))
+[0;36m  Cell [0;32mIn[22], line 9[0;36m[0m
+[0;31m    aux(s)[0m
+[0m    ^[0m
+[0;31mIndentationError[0m[0;31m:[0m expected an indented block after function definition on line 3
 
-[0;31mNameError[0m: name 'appartient' is not defined
 
