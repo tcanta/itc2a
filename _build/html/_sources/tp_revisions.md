@@ -468,6 +468,7 @@ def dfs(G, s):
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
+#Simple affichage des sommets
 def dfs(G, s):
     visited = [False]*len(G)
     def aux(u):
@@ -477,6 +478,19 @@ def dfs(G, s):
             for v in G[u]:
                 aux(v)
     aux(s)
+
+# Avec un return de la liste demandée :
+def dfs(G, s):
+    result = []
+    visited = [False] * len(G)
+    def aux(u, result): # fonction récursive
+        if not visited[u]:
+            result.append(u)
+            visited[u]=True
+            for x in G[u]:
+                aux(x, result)
+    aux(s,result)
+    return(result)
 ```
 
 ```{code-cell} ipython3
