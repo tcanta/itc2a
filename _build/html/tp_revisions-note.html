@@ -59,11 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tp_revisions';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tp_revisions-note';</script>
     <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Informatique de Tronc Commun spé" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,6 +125,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -181,8 +182,8 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">TP : Révisions de 1ère année</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tp_revisions.html">TP : Révisions de 1ère année</a></li>
 </ul>
 
     </div>
@@ -254,7 +255,7 @@
       
       
       
-      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Ftp_revisions.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Ftp_revisions-note.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +285,7 @@
       
       
       
-      <li><a href="_sources/tp_revisions.md" target="_blank"
+      <li><a href="_sources/tp_revisions-note.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +295,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -401,7 +402,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tp-revisions-de-1ere-annee">
 <h1>TP : Révisions de 1ère année<a class="headerlink" href="#tp-revisions-de-1ere-annee" title="Link to this heading">#</a></h1>
-<p>Pour programmer, vous pouvez soit utiliser Pyzo, soit <a class="reference external" href="https://notebook.basthon.fr">Basthon</a>.</p>
+<p>Pour programmer, vous pouvez soit utiliser Pyzo, soit <a class="reference external" href="https://notebook.basthon.fr">Basthon</a> en cliquant sur la “fusée” en haut à droite de chaque TP.</p>
 <p>Commandes Basthon :</p>
 <ul class="simple">
 <li><p>Ctrl + Entrée : exécuter la cellule</p></li>
@@ -417,19 +418,9 @@ document.write(`
 </ul>
 <section id="bases-de-python">
 <h2>Bases de Python<a class="headerlink" href="#bases-de-python" title="Link to this heading">#</a></h2>
-<div class="note admonition">
-<p class="admonition-title">Exercice</p>
-<p>Calculer <span class="math notranslate nohighlight">\(u_{10}\)</span>, où <span class="math notranslate nohighlight">\(u_n\)</span> est définie par <span class="math notranslate nohighlight">\(u_0 = 42\)</span> et <span class="math notranslate nohighlight">\(u_{n+1} = \sqrt{u_n} + 3u_n\)</span>.<br />
+<p><strong>Exercice</strong> : Calculer <span class="math notranslate nohighlight">\(u_{10}\)</span>, où <span class="math notranslate nohighlight">\(u_n\)</span> est définie par <span class="math notranslate nohighlight">\(u_0 = 42\)</span> et <span class="math notranslate nohighlight">\(u_{n+1} = \sqrt{u_n} + 3u_n\)</span>.<br />
 Il faut trouver 2787204.895558157.</p>
-</div>
-<hr class="docutils" />
-<p><strong>Solution</strong></p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
+<div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="mi">42</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -443,19 +434,9 @@ Il faut trouver 2787204.895558157.</p>
 </pre></div>
 </div>
 </div>
-</details>
 </div>
-<div class="note admonition">
-<p class="admonition-title">Exercice</p>
-<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">appartient</span></code> telle que <code class="docutils literal notranslate"><span class="pre">appartient(x,</span> <span class="pre">L)</span></code> renvoie <code class="docutils literal notranslate"><span class="pre">True</span></code> si <code class="docutils literal notranslate"><span class="pre">x</span></code> appartient à la liste <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon.</p>
-</div>
-<p><strong>Solution</strong></p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
+<p><strong>Exercice</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">appartient</span></code> telle que <code class="docutils literal notranslate"><span class="pre">appartient(x,</span> <span class="pre">L)</span></code> renvoie <code class="docutils literal notranslate"><span class="pre">True</span></code> si <code class="docutils literal notranslate"><span class="pre">x</span></code> appartient à la liste <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> sinon.</p>
+<div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
@@ -465,7 +446,6 @@ Il faut trouver 2787204.895558157.</p>
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -481,18 +461,8 @@ False
 </div>
 </div>
 </div>
-<hr class="docutils" />
-<div class="note admonition">
-<p class="admonition-title">Exercice</p>
-<p>Écrire une fonction pour déterminer si une liste est triée par ordre croissant.</p>
-</div>
-<p><strong>Solution</strong></p>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
+<p><strong>Exercice</strong> : Écrire une fonction pour déterminer si une liste est triée par ordre croissant.</p>
+<div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">croissant</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
@@ -502,7 +472,6 @@ False
 </pre></div>
 </div>
 </div>
-</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -519,7 +488,6 @@ False
 </div>
 </div>
 </section>
-<hr class="docutils" />
 <section id="dichotomie">
 <h2>Dichotomie<a class="headerlink" href="#dichotomie" title="Link to this heading">#</a></h2>
 <p>La méthode par dichotomie consiste à divise à chaque étape la taille du problème par 2.<br />
@@ -872,10 +840,25 @@ On pourra compléter le code ci-dessous. Ne regarder le cours que si cela est vr
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+6
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span><span class="p">(</span><span class="n">G_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+1
+3
+4
+5
 </pre></div>
 </div>
 </div>
@@ -918,6 +901,8 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 </section>
 <section id="parcours-en-largeur">
@@ -937,6 +922,8 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+</div>
 </div>
 <p><strong>Exercice</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">bfs(G,</span> <span class="pre">s)</span></code> affichant les sommets du graphe <code class="docutils literal notranslate"><span class="pre">G</span></code> lors d’un parcours en largeur depuis le sommet <code class="docutils literal notranslate"><span class="pre">s</span></code>. Vérifier sur le graphe <code class="docutils literal notranslate"><span class="pre">G_list</span></code> précédent.</p>
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center><div class="cell docutils container">
@@ -952,7 +939,7 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
             <span class="c1"># afficher u</span>
             <span class="c1"># mettre True dans visited[u]</span>
             <span class="c1"># pour chaque voisin v de u</span>
-                <span class="c1"># ajouter v au début de q</span>
+                <span class="c1"># ajouter v au début de q </span>
 </pre></div>
 </div>
 </div>
@@ -979,6 +966,15 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bfs</span><span class="p">(</span><span class="n">G_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+1
+4
+5
+3
 </pre></div>
 </div>
 </div>
@@ -1009,6 +1005,8 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distances</span><span class="p">(</span><span class="n">G_list</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 </section>
@@ -1045,15 +1043,6 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Informatique de Tronc Commun spé</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
