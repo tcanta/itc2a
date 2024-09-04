@@ -515,7 +515,10 @@ Vérifier sur `G_list` (non connexe) et sur un graphe connexe de votre choix.
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-# deux solutions
+# trois solutions
+
+def connexe(G):
+    return(len(dfs(G,0))==len(G))
 
 def connexe(G):
     visited = [False]*len(G)
@@ -551,7 +554,7 @@ connexe(G_list)
 
 +++
 
-On rappelle l'utilisation d'une file en Python, avec la classe `deque` :
+On rappelle l'utilisation d'une file (FIFO) en Python, avec la classe `deque` :
 
 ```{code-cell} ipython3
 from collections import deque

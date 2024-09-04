@@ -1030,7 +1030,10 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># deux solutions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># trois solutions</span>
+
+<span class="k">def</span> <span class="nf">connexe</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="k">return</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">connexe</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
     <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -1075,7 +1078,7 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 <section id="parcours-en-largeur">
 <h3>Parcours en largeur<a class="headerlink" href="#parcours-en-largeur" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://cpge-itc.github.io/itc1/5_graph/3_traversal/bfs/bfs">Revoir ce cours si besoin</a></p>
-<p>On rappelle l’utilisation d’une file en Python, avec la classe <code class="docutils literal notranslate"><span class="pre">deque</span></code> :</p>
+<p>On rappelle l’utilisation d’une file (FIFO) en Python, avec la classe <code class="docutils literal notranslate"><span class="pre">deque</span></code> :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
