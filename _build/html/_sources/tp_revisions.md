@@ -13,7 +13,7 @@ kernelspec:
 
 # TP : Révisions de 1ère année
 
-Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr?href=tcanta.github.io/eleve/tp_revisions-eleve.ipynb).
+Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_revisions-eleves.ipynb).
 
 Commandes Basthon :
 
@@ -589,7 +589,6 @@ def bfs(G, s):
                 # afficher v
                 # mettre True dans visited[v]
                 # ajouter v au début de q
-
 ```
 
 :::
