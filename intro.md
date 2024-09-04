@@ -2,11 +2,11 @@
 
 Ce site est la ressource principale que nous utiliserons en informatique de tronc commun pour les différerntes classes de spéciales.
 
-Ci-dessous, vous trouverez la table de navigation de ce site.
 
 ```{tableofcontents}
 ```
-Informatique commune aux concours
+---
+## Informatique commune aux concours
 
 Concours | Durée | Coefficient (% écrit) | Autres
 :---: | :---: | :---: | :---:
