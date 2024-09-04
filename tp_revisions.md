@@ -191,12 +191,12 @@ def dichotomie(e, L):
     i, j = 0, len(L) - 1
     while i <= j:
         m = (i+j)//2
-        if L[m] == e:
-            return True
-        elif L[m] < e:
+        if e < L[m]:
+            j = m - 1
+        elif e > L[m]:
             i = m + 1
         else:
-            j = m - 1
+            return True
     return False
 ```
 ```{code-cell} ipython3
