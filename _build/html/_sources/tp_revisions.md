@@ -562,6 +562,7 @@ from collections import deque
 q = deque() # file vide
 q.appendleft(4) # ajoute 4 au début
 q.appendleft(7)
+len(q) # renvoie la longeur de la file (2)
 q.pop() # supprime et renvoie le dernier élément (4)
 q.appendleft(-5)
 q.pop() # supprime et renvoie le dernier élément (7)
