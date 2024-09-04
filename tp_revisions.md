@@ -13,7 +13,7 @@ kernelspec:
 
 # TP : Révisions de 1ère année
 
-Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr).
+Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr?href=tcanta.github.io/eleve/tp_revisions-eleve.ipynb).
 
 Commandes Basthon :
 
