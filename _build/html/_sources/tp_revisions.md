@@ -135,7 +135,7 @@ $$
     [-2, 1, 2, 4, 6, 7, 8, {9}, \boxed{11, 12, 14, \underline{\textbf{15}}, 18, 22, 54}]
 $$
 
-Comme $e < 15$, on peut cette fois se restreinte à la partie gauche. On cherche donc maintenant $e$ dans la zone suivante :
+Comme $e < 15$, on peut cette fois se restreindre à la partie gauche. On cherche donc maintenant $e$ dans la zone suivante :
 
 $$
     [-2, 1, 2, 4, 6, 7, 8, {9}, \boxed{11, {12}, 14}, {15}, 18, 22, 54]
@@ -229,7 +229,7 @@ Définir une fonction `make_matrix` telle que `make_matrix(n, p)` renvoie une ma
 
 :::
 
-
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -267,7 +267,7 @@ make_matrix(3, 4)
 
 :::
 
-
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -294,7 +294,7 @@ transposee([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 
 :::
 
-
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -327,7 +327,7 @@ Définir dans une variable `G` la matrice d'adjacence du graphe suivant (on pour
 
 :::
 
-
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -338,6 +338,8 @@ for i, j in [(0, 6), (1, 2), (1, 3), (1, 4), (2, 4), (2, 5), (3, 4), (4, 5)]:
 G
 ```
 
+---
+
 :::{admonition} Exercice 9
 :class: note
 
@@ -346,7 +348,7 @@ Vérifier que les voisins du sommet $2$ dans le graphe ci-dessus sont les sommet
 
 :::
 
-
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -362,8 +364,16 @@ def voisins(G, v):
 voisins(G, 2)
 ```
 
-**Exercice** : En déduire une fonction `deg` telle que `deg(G, v)` renvoie le degré du sommet `v`.
+---
 
+:::{admonition} Exercice 10
+:class: note
+
+En déduire une fonction `deg` telle que `deg(G, v)` renvoie le degré du sommet `v`.
+
+:::
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -375,8 +385,16 @@ def deg(G, v):
 deg(G, 2)
 ```
 
-**Exercice** : Écrire une fonction `n_aretes` pour calculer le nombre d'arêtes d'un graphe donné par matrice d'adjacence. Tester avec le graphe `G` précédent. On pourra soit réutiliser `deg`, soit deux boucles `for` pour parcourir les éléments de la matrice.
+---
 
+:::{admonition} Exercice 11
+:class: note
+
+Écrire une fonction `n_aretes` pour calculer le nombre d'arêtes d'un graphe donné par matrice d'adjacence. Tester avec le graphe `G` précédent. On pourra soit réutiliser `deg`, soit deux boucles `for` pour parcourir les éléments de la matrice.
+
+:::
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -395,10 +413,16 @@ n_aretes(G)
 
 +++
 
-**Exercice** : Écrire une fonction `mat_to_list` telle que `mat_to_list(G)` renvoie la liste d'adjacence du graphe `G` donné par matrice d'adjacence. Calculer la représentation par liste d'adjacence `G_list` du graphe `G` précédent.
+:::{admonition} Exercice 12
+:class: note
+
+Écrire une fonction `mat_to_list` telle que `mat_to_list(G)` renvoie la liste d'adjacence du graphe `G` donné par matrice d'adjacence. Calculer la représentation par liste d'adjacence `G_list` du graphe `G` précédent.
 
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
+:::
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -420,10 +444,13 @@ G_list
 
 +++
 
-**Exercice** : Écrire une fonction `dfs(G, s)` renvoyant la liste des sommets de `G` (défini par liste d'adjacence) suivant un parcours en profondeur depuis le sommet `s`. Vérifier sur le graphe `G_list` précédent.  
+:::{admonition} Exercice 13
+:class: note
+
+Écrire une fonction `dfs(G, s)` renvoyant la liste des sommets de `G` (défini par liste d'adjacence) suivant un parcours en profondeur depuis le sommet `s`. Vérifier sur le graphe `G_list` précédent.  
 On pourra compléter le code ci-dessous. Ne regarder le cours que si cela est vraiment nécessaire.
 
-```{code-cell} ipython3
+```python
 def dfs(G, s):
     # définir une liste de booléens pour savoir si un sommet a été visité
     def aux(u): # fonction récursive
@@ -434,7 +461,10 @@ def dfs(G, s):
                 # appeler aux(v)
     aux(s)
 ```
+:::
 
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -457,9 +487,17 @@ dfs(G_list, 0)
 dfs(G_list, 2)
 ```
 
-**Exercice** : En utilisant un parcours en profondeur, écrire une fonction `connexe(G)` qui renvoie `True` si le graphe `G` est connexe, `False` sinon.  
+---
+
+:::{admonition} Exercice 14
+:class: note
+
+En utilisant un parcours en profondeur, écrire une fonction `connexe(G)` qui renvoie `True` si le graphe `G` est connexe, `False` sinon.  
 Vérifier sur `G_list` (non connexe) et sur un graphe connexe de votre choix.
 
+:::
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -512,11 +550,14 @@ q.appendleft(-5)
 q.pop() # supprime et renvoie le dernier élément (7)
 ```
 
-**Exercice** : Écrire une fonction `bfs(G, s)` affichant les sommets du graphe `G` lors d'un parcours en largeur depuis le sommet `s`. Vérifier sur le graphe `G_list` précédent.  
+:::{admonition} Exercice 15
+:class: note
+
+Écrire une fonction `bfs(G, s)` affichant les sommets du graphe `G` lors d'un parcours en largeur depuis le sommet `s`. Vérifier sur le graphe `G_list` précédent.  
 
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
-```{code-cell} ipython3
+```python
 from collections import deque
 
 def bfs(G, s):
@@ -531,6 +572,10 @@ def bfs(G, s):
                 # ajouter v au début de q
 ```
 
+:::
+
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
@@ -553,10 +598,17 @@ def bfs(G, s):
 bfs(G_list, 2)
 ```
 
-**Exercice** : Écrire une fonction `distances(G, s)` qui renvoie une liste `dist` telle que `dist[v]` soit la distance (en nombre d'arêtes) du sommet `s` au sommet `v`. Vérifier sur le graphe `G_list` précédent.  
+
+:::{admonition} Exercice 16
+:class: note
+
+Écrire une fonction `distances(G, s)` qui renvoie une liste `dist` telle que `dist[v]` soit la distance (en nombre d'arêtes) du sommet `s` au sommet `v`. Vérifier sur le graphe `G_list` précédent.  
 
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
+:::
+
+**Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
