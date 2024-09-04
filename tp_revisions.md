@@ -157,7 +157,10 @@ On a trouvé $e$ !
 
 +++
 
-**Exercice** : Compléter le code suivant permettant de rechercher un élément dans une liste triée, par dichotomie.
+:::{admonition} Exercice 4
+:class: note
+
+Compléter le code suivant permettant de rechercher un élément dans une liste triée, par dichotomie.
 ```python
 def dichotomie(e, L):
     i, j = 0, len(L) - 1  # i et j sont les indices de L entre lesquels on cherche e
@@ -178,9 +181,11 @@ assert (dichotomie(0, L1) and not dichotomie(1, L1))
 assert (dichotomie(5, L2) and not dichotomie(7, L2))
 assert (dichotomie(14, L3) and not dichotomie(-4, L3))
 ```
+:::
 
+**Solution** :
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def dichotomie(e, L):
     i, j = 0, len(L) - 1
@@ -193,23 +198,42 @@ def dichotomie(e, L):
         else:
             j = m - 1
     return False
-
+```
+```{code-cell} ipython3
 L1, L2, L3 = [0, 2], [0, 2, 5], [-2, 1, 2, 4, 6, 7, 8, 9, 11, 12, 14, 15, 18, 22, 54]
 assert (dichotomie(0, L1) and not dichotomie(1, L1))
 assert (dichotomie(5, L2) and not dichotomie(7, L2))
 assert (dichotomie(14, L3) and not dichotomie(-4, L3))
 ```
 
+Le comportement en cas d'erreur est le suivant :
+```python
+assert (dichotomie(42, L1))
+```
+```python
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+Cell In[8], line 1
+----> 1 assert (dichotomie(42, L1))
+
+AssertionError:
+```
+
 ## Matrices
 
 +++
+:::{admonition} Exercice 5
+:class: note
 
-**Exercice** : Définir une fonction `make_matrix` telle que `make_matrix(n, p)` renvoie une matrice $n\times p$ remplie de $0$, sous forme de liste de listes.
+Définir une fonction `make_matrix` telle que `make_matrix(n, p)` renvoie une matrice $n\times p$ remplie de $0$, sous forme de liste de listes.
+
+:::
+
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
-# on propose plusieurs possibilités
+# On propose plusieurs possibilités
 
 def make_matrix(n, p):
     return [[0]*p for _ in range(n)]
@@ -234,10 +258,18 @@ def make_matrix3(n, p):
 make_matrix(3, 4)
 ```
 
-**Question** : Écrire une fonction `transposee(M)` qui renvoie la transposée de la matrice `M`.
+---
+
+:::{admonition} Exercice 6
+:class: note
+
+Écrire une fonction `transposee(M)` qui renvoie la transposée de la matrice `M`.
+
+:::
+
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def transposee(M):
     n = len(M)
@@ -253,10 +285,18 @@ def transposee(M):
 transposee([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 ```
 
-**Question** : Écrire une fonction `symetrique(M)` qui renvoie `True` si la matrice `M` est symétrique, `False` sinon.
+---
+
+:::{admonition} Exercice 7
+:class: note
+
+Écrire une fonction `symetrique(M)` qui renvoie `True` si la matrice `M` est symétrique, `False` sinon.
+
+:::
+
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def symetrique(M):
     for i in range(len(M)):
@@ -279,11 +319,17 @@ print(symetrique([[1, 2, 3], [2, 4, 7], [3, 5, 6]])) # False
 
 +++
 
-**Exercice** : Définir dans une variable `G` la matrice d'adjacence du graphe suivant (on pourra éventuellement utiliser les fonctions précédentes) :
+:::{admonition} Exercice 8
+:class: note
+
+Définir dans une variable `G` la matrice d'adjacence du graphe suivant (on pourra éventuellement utiliser les fonctions précédentes) :
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
+:::
+
+
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 G = make_matrix(7, 7)
 # façon rapide de remplir la matrice
@@ -292,11 +338,17 @@ for i, j in [(0, 6), (1, 2), (1, 3), (1, 4), (2, 4), (2, 5), (3, 4), (4, 5)]:
 G
 ```
 
-**Exercice** : Définir une fonction `voisins` telle que `voisins(G, v)` renvoie la liste des voisins du sommet `v`.  
+:::{admonition} Exercice 9
+:class: note
+
+Définir une fonction `voisins` telle que `voisins(G, v)` renvoie la liste des voisins du sommet `v`.  
 Vérifier que les voisins du sommet $2$ dans le graphe ci-dessus sont les sommets $1$, $4$, $5$.
 
+:::
+
+
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def voisins(G, v):
     L = []
@@ -313,7 +365,7 @@ voisins(G, 2)
 **Exercice** : En déduire une fonction `deg` telle que `deg(G, v)` renvoie le degré du sommet `v`.
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def deg(G, v):
     return len(voisins(G, v))
@@ -326,7 +378,7 @@ deg(G, 2)
 **Exercice** : Écrire une fonction `n_aretes` pour calculer le nombre d'arêtes d'un graphe donné par matrice d'adjacence. Tester avec le graphe `G` précédent. On pourra soit réutiliser `deg`, soit deux boucles `for` pour parcourir les éléments de la matrice.
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def n_aretes(G):
     s = 0
@@ -348,7 +400,7 @@ n_aretes(G)
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def mat_to_list(G):
     L = []
@@ -384,7 +436,7 @@ def dfs(G, s):
 ```
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def dfs(G, s):
     visited = [False]*len(G)
@@ -409,7 +461,7 @@ dfs(G_list, 2)
 Vérifier sur `G_list` (non connexe) et sur un graphe connexe de votre choix.
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 # deux solutions
 
@@ -480,7 +532,7 @@ def bfs(G, s):
 ```
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 from collections import deque
 
@@ -506,7 +558,7 @@ bfs(G_list, 2)
 <center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=200></center>
 
 ```{code-cell} ipython3
-:tags: [cor]
+:tags: ["hide-cell"]
 
 def distances(G, s):
     q = deque()

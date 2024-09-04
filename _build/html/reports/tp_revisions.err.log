@@ -30,7 +30,7 @@ def dfs(G, s):
 ------------------
 
 
-[0;36m  Cell [0;32mIn[22], line 9[0;36m[0m
+[0;36m  Cell [0;32mIn[23], line 9[0;36m[0m
 [0;31m    aux(s)[0m
 [0m    ^[0m
 [0;31mIndentationError[0m[0;31m:[0m expected an indented block after function definition on line 3
