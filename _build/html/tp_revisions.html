@@ -1108,13 +1108,15 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 <span class="k">def</span> <span class="nf">bfs</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
     <span class="c1"># définir une file q contenant s</span>
     <span class="c1"># définir une liste visited contenant n False, où n est le nombre de sommets</span>
+    <span class="c1"># mettre True dans visited[s]</span>
     <span class="c1"># tant que q est non vide</span>
         <span class="c1"># extraire le dernier élément de q dans une variable u</span>
-        <span class="c1"># si u n&#39;a pas été visité:</span>
-            <span class="c1"># afficher u</span>
-            <span class="c1"># mettre True dans visited[u]</span>
-            <span class="c1"># pour chaque voisin v de u</span>
+        <span class="c1"># pour chaque voisin v de u</span>
+            <span class="c1"># si v n&#39;a pas été visité:</span>
+                <span class="c1"># afficher v</span>
+                <span class="c1"># mettre True dans visited[v]</span>
                 <span class="c1"># ajouter v au début de q</span>
+
 </pre></div>
 </div>
 </div>
@@ -1132,13 +1134,17 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
     <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
     <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">parents</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-            <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">parents</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
                 <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1151,11 +1157,11 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
 4
 5
 3
+[None, 2, None, 1, 2, 2, None]
 </pre></div>
 </div>
 </div>
@@ -1174,18 +1180,22 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distances</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
     <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
     <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-    <span class="n">dist</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-    <span class="n">dist</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+    <span class="n">visited</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">parents</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="n">visited</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">parents</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
                 <span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">parents</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">dist</span>
 </pre></div>
 </div>
@@ -1199,7 +1209,13 @@ Vérifier sur <code class="docutils literal notranslate"><span class="pre">G_lis
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[inf, 1, 0, 3, 2, 3, inf]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+4
+5
+3
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[inf, 1, 0, 2, 1, 1, inf]
 </pre></div>
 </div>
 </div>

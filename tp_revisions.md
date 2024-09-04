@@ -581,13 +581,15 @@ from collections import deque
 def bfs(G, s):
     # définir une file q contenant s
     # définir une liste visited contenant n False, où n est le nombre de sommets
+    # mettre True dans visited[s]
     # tant que q est non vide
         # extraire le dernier élément de q dans une variable u
-        # si u n'a pas été visité:
-            # afficher u
-            # mettre True dans visited[u]
-            # pour chaque voisin v de u
+        # pour chaque voisin v de u
+            # si v n'a pas été visité:
+                # afficher v
+                # mettre True dans visited[v]
                 # ajouter v au début de q
+
 ```
 
 :::
@@ -603,13 +605,17 @@ def bfs(G, s):
     q = deque()
     q.appendleft(s)
     visited = [False]*len(G)
-    while q:
+    visited[s] = True
+    parents = [None]*len(G)
+    while len(q) > 0:
         u = q.pop()
-        if not visited[u]:
-            print(u)
-            visited[u] = True
-            for v in G[u]:
+        for v in G[u]:
+            if not visited[v]:
+                print(v)
+                visited[v] = True
+                parents[v] = u
                 q.appendleft(v)
+    print(parents)
 ```
 
 ```{code-cell} ipython3
@@ -631,18 +637,22 @@ bfs(G_list, 2)
 :tags: ["hide-cell"]
 
 def distances(G, s):
+    dist = [float('inf')]*len(G)
+    dist[s]=0
     q = deque()
     q.appendleft(s)
     visited = [False]*len(G)
-    dist = [float("inf")]*len(G)
-    dist[s] = 0
-    while q:
+    visited[s] = True
+    parents = [None]*len(G)
+    while len(q) > 0:
         u = q.pop()
-        visited[u] = True
         for v in G[u]:
             if not visited[v]:
+                print(v)
+                visited[v] = True
+                parents[v] = u
                 q.appendleft(v)
-                dist[v] = dist[u] + 1
+                dist[v] = dist[parents[v]] + 1
     return dist
 ```
 
