@@ -34,7 +34,7 @@ Les commandes suivantes sont valables uniquement hors du mode édition :
 
 +++
 
-:::{admonition} Exercice
+:::{admonition} Exercice 1
 :class: note
 
 Calculer $u_{10}$, où $u_n$ est définie par $u_0 = 42$ et $u_{n+1} = \sqrt{u_n} + 3u_n$.  
@@ -42,7 +42,6 @@ Il faut trouver 2787204.895558157.
 
 :::
 
----
 
 **Solution**
 
@@ -55,9 +54,9 @@ u
 
 ```
 
+---
 
-
-:::{admonition} Exercice
+:::{admonition} Exercice 2
 :class: note
 
 Écrire une fonction `appartient` telle que `appartient(x, L)` renvoie `True` si `x` appartient à la liste `L`, `False` sinon.
@@ -84,7 +83,7 @@ print(appartient(3, [1, 5, 4, 2]))
 
 ---
 
-:::{admonition} Exercice
+:::{admonition} Exercice 3
 :class: note
 
 Écrire une fonction pour déterminer si une liste est triée par ordre croissant.
