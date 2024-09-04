@@ -515,8 +515,11 @@ Vérifier sur `G_list` (non connexe) et sur un graphe connexe de votre choix.
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-# deux solutions
+# trois solutions
 
+def connexe(G):
+    return(len(dfs(G,0))==len(G))
+    
 def connexe(G):
     visited = [False]*len(G)
     def aux(u):
