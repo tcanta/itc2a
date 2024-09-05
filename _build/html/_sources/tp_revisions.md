@@ -186,7 +186,7 @@ assert (dichotomie(14, L3) and not dichotomie(-4, L3))
 **Solution** :
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-
+# Algorithme itératif
 def dichotomie(e, L):
     i, j = 0, len(L) - 1
     while i <= j:
@@ -198,6 +198,18 @@ def dichotomie(e, L):
         else:
             return True
     return False
+
+# Algorithme récursif
+def dichotomie(e, L):
+    if len(L)==1:
+        return L[0]==e
+    m = len(L)//2
+    if e < L[m]:
+        return dichotomie(e,L[:m])
+    elif e > L[m]:
+        return dichotomie(e,L[m+1:])
+    else:
+        return True
 ```
 ```{code-cell} ipython3
 L1, L2, L3 = [0, 2], [0, 2, 5], [-2, 1, 2, 4, 6, 7, 8, 9, 11, 12, 14, 15, 18, 22, 54]
