@@ -670,3 +670,94 @@ def distances(G, s):
 ```{code-cell} ipython3
 distances(G_list, 2)
 ```
+
+### Algorithme de Dijkstra
+
+On rappelle qu'une file de priorité (min) est une structure de donnée permettant de récupérer efficacement l'élément de plus petite priorité.
+On définit le type suivant de file de priorité :
+
+```{code-cell} ipython3
+class PriorityQueue:
+    def __init__(self) -> None:
+        self.d = dict()
+
+    def update(self, element, priority):
+        self.d[element] = priority
+
+    def add(self, element, priority):
+        self.d[element] = priority
+
+    def take_min(self):
+        k_min = None
+        for k in self.d:
+            if k_min is None or self.d[k] < self.d[k_min]:
+                k_min = k
+        self.d.pop(k_min)
+        return k_min
+
+    def is_empty(self):
+        return len(self.d) == 0
+
+    def __contains__(self, element):
+        return element in self.d
+```
+
+Il n'est pas nécessaire de comprendre ce code, juste de savoir l'utiliser :
+
+```{code-cell} ipython3
+q = PriorityQueue() # file de priorité vide
+q.add(0, 6) # ajoute l'élément 0 avec une priorité de 6
+q.add(1, 3)
+q.add(2, 5)
+q.take_min() # défile l'élément de priorité minimum et le renvoie (ici 1)
+q.update(0, 2) # met à jour la priorité de l'élément 0 à 2
+q.take_min()
+q.add(3, 7)
+q.take_min()
+```
+
+**Exercice** : Rappeler à quoi sert l'algorithme de Dijkstra et quelle condition le graphe doit vérifier pour que l'algorithme fonctionne.
+
+Reponse:
+L'algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet de départ et tous les autres sommets d'un graphe pondéré. Il faut que les poids des arêtes soient positifs.
+
+
+**Exercice** : Compléter la fonction suivante pour implémenter l'algorithme de Dijkstra permettant de trouver les distances de $s$ aux autres sommets de $G$. $G$ est représenté par une matrice d'adjacence pondérée (`G[i][j]` est le poids de l'arête entre $i$ et $j$, `float('inf')` s'il n'y a pas d'arête).  
+Tester sur le graphe suivant :
+<center><img src=https://github.com/cpge-itc/itc1/raw/4be1ee8d9679ffae521c506ad54acb9e6099c614/files/5_graph/tp/tp2/g.png width=400></center>
+
+
+
+```python
+def dijkstra(G, s):
+    n = ... # nombre de sommets de G
+    dist = ... # créer une liste de taille n remplie de float("inf")
+    dist[s] = 0
+    q = PriorityQueue()
+    # ajouter chaque sommet v de G à q, avec comme priorité dist[v]
+    while ...: # tant que q n'est pas vide
+        u = ... # extraire de q le sommet de priorité minimum
+        for v in range(n): # pour chaque voisin de u
+            d = dist[u] + G[u][v]
+            if v in q and ...: # si d < dist[v]
+                ... # mettre à jour dist[v] et la priorité de v
+    return dist
+```
+Reponse:
+```{code-cell} ipython3
+def dijkstra(G, s):
+    n = len(G)
+    dist = [float("inf")]*n
+    dist[s] = 0
+    q = PriorityQueue()
+    for v in range(n):
+        q.add(v, dist[v])
+    while not q.is_empty():
+        u = q.take_min()
+        for v in range(n):
+            d = dist[u] + G[u][v]
+            if v in q and d < dist[v]:
+                q.update(v, d)
+                dist[v] = d
+    return dist
+```
