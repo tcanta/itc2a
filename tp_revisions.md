@@ -724,7 +724,7 @@ L'algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet 
 
 **Exercice** : Compléter la fonction suivante pour implémenter l'algorithme de Dijkstra permettant de trouver les distances de $s$ aux autres sommets de $G$. $G$ est représenté par une matrice d'adjacence pondérée (`G[i][j]` est le poids de l'arête entre $i$ et $j$, `float('inf')` s'il n'y a pas d'arête).  
 Tester sur le graphe suivant :
-<center><img src=https://github.com/cpge-itc/itc1/blob/b5052bcb34ccc7a96306818a83bebe6fb8984de9/files/5_graph/tp/tp2/gdir.png width=400></center>
+<center><img src=https://github.com/tcanta/itc2a/blob/3404f6eb3cfd695febafc1aac63a7bd3a119301a/img/weighed-graph.png width=400></center>
 
 
 
