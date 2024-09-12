@@ -4,14 +4,11 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Cours
-    chapters:
-      - file: cours/cours_structures
-
-  - caption: TD
-    chapters:
-      - file: td/td_dict
-
-  - caption: TP
+  - caption: Révisions
     chapters:
       - file: tp/tp_revisions
+
+  - caption: Structures de Données
+    chapters:
+      - file: cours/cours_structures
+      - file: td/dict_polynome
