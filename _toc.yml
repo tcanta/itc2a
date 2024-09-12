@@ -3,5 +3,15 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: tp_revisions
+parts:
+  - caption: Cours
+    chapters:
+      - file: cours/cours_structures
+
+  - caption: TD
+    chapters:
+      - file: td/td_dict
+
+  - caption: TP
+    chapters:
+      - file: tp/tp_revisions

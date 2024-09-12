@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# TP : Révisions de 1ère année
+# Révisions de 1ère année
 
 Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_revisions-eleves.ipynb).
 
