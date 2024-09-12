@@ -13,4 +13,16 @@ kernelspec:
 
 # Cours: Dictionnaires et ensembles
 
+````{tab-set}
+```{tab-item} Cours
+
 <iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/cours_structures.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
+
+```
+
+```{tab-item} Exemples
+
+<iframe src="https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/exemples_dict.ipynb" height=600 width=100% allowfullscreen></iframe>
+
+```
+````
