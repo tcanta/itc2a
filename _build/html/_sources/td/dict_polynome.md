@@ -11,6 +11,6 @@ kernelspec:
   name: python3
 ---
 
-# TD: Représentation d'un polynome par dictionnaire
+# TD: Polynôme et dictionnaire
 
 <iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/td/dict_polynome.pdf#zoom=page-fit&pagemode=none height=1000 width=100% allowfullscreen></iframe>
