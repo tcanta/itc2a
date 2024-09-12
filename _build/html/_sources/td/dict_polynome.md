@@ -13,4 +13,16 @@ kernelspec:
 
 # TD: Polynôme et dictionnaire
 
-<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/td/dict_polynome.pdf#zoom=page-fit&pagemode=none height=1000 width=100% allowfullscreen></iframe>
+````{tab-set}
+```{tab-item} Sujet
+
+<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/td/dict_polynome.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
+
+```
+
+```{tab-item} Correction
+
+<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/td/dict_polynome_cor.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
+
+```
+````
