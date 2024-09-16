@@ -714,12 +714,14 @@ q.take_min()
 q.add(3, 7)
 q.take_min()
 ```
-
-**Exercice** : Rappeler à quoi sert l'algorithme de Dijkstra et quelle condition le graphe doit vérifier pour que l'algorithme fonctionne.
-
-Reponse:
+````{tab-set}
+```{tab-item} Exercice
+Rappeler à quoi sert l'algorithme de Dijkstra et quelle condition le graphe doit vérifier pour que l'algorithme fonctionne.
+```
+```{tab-item} Solution
 L'algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet de départ et tous les autres sommets d'un graphe pondéré. Il faut que les poids des arêtes soient positifs.
-
+```
+````
 
 **Exercice** : Compléter la fonction suivante pour implémenter l'algorithme de Dijkstra permettant de trouver les distances de $s$ aux autres sommets de $G$. $G$ est représenté par une matrice d'adjacence pondérée (`G[i][j]` est le poids de l'arête entre $i$ et $j$, `float('inf')` s'il n'y a pas d'arête).  
 Tester sur le graphe suivant :

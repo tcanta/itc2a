@@ -1295,9 +1295,18 @@ On définit le type suivant de file de priorité :</p>
 </div>
 </div>
 </div>
-<p><strong>Exercice</strong> : Rappeler à quoi sert l’algorithme de Dijkstra et quelle condition le graphe doit vérifier pour que l’algorithme fonctionne.</p>
-<p>Reponse:
-L’algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet de départ et tous les autres sommets d’un graphe pondéré. Il faut que les poids des arêtes soient positifs.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Exercice</label><div class="sd-tab-content docutils">
+<p>Rappeler à quoi sert l’algorithme de Dijkstra et quelle condition le graphe doit vérifier pour que l’algorithme fonctionne.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Solution</label><div class="sd-tab-content docutils">
+<p>L’algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet de départ et tous les autres sommets d’un graphe pondéré. Il faut que les poids des arêtes soient positifs.</p>
+</div>
+</div>
 <p><strong>Exercice</strong> : Compléter la fonction suivante pour implémenter l’algorithme de Dijkstra permettant de trouver les distances de <span class="math notranslate nohighlight">\(s\)</span> aux autres sommets de <span class="math notranslate nohighlight">\(G\)</span>. <span class="math notranslate nohighlight">\(G\)</span> est représenté par une matrice d’adjacence pondérée (<code class="docutils literal notranslate"><span class="pre">G[i][j]</span></code> est le poids de l’arête entre <span class="math notranslate nohighlight">\(i\)</span> et <span class="math notranslate nohighlight">\(j\)</span>, <code class="docutils literal notranslate"><span class="pre">float('inf')</span></code> s’il n’y a pas d’arête).<br />
 Tester sur le graphe suivant :</p>
 <center><img src=https://raw.githubusercontent.com/tcanta/itc2a/3404f6eb3cfd695febafc1aac63a7bd3a119301a/img/weighed-graph.png width=400></center>
