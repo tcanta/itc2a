@@ -722,6 +722,13 @@ Rappeler à quoi sert l'algorithme de Dijkstra et quelle condition le graphe doi
 L'algorithme de Dijkstra permet de trouver le plus court chemin entre un sommet de départ et tous les autres sommets d'un graphe pondéré. Il faut que les poids des arêtes soient positifs.
 ```
 ````
+Si vous sentez le besoin de vous raffraichir la mémoire, je vous invite à regarder l'excellente vidéo de François Schwarzentruber sur le sujet.
+
+<center>
+<iframe width="780" height="580"
+src="https://www.youtube.com/embed/7dwE7PguBT8">
+</iframe>
+</center>
 
 **Exercice** : Compléter la fonction suivante pour implémenter l'algorithme de Dijkstra permettant de trouver les distances de $s$ aux autres sommets de $G$. $G$ est représenté par une matrice d'adjacence pondérée (`G[i][j]` est le poids de l'arête entre $i$ et $j$, `float('inf')` s'il n'y a pas d'arête).  
 Tester sur le graphe suivant :
