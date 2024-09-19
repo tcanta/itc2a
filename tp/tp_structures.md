@@ -500,7 +500,7 @@ rdm_str(10) # exemple
 ```
 :::{admonition} Exercice 14
 :class: note
-Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 8`, `n = 100000`, `p = 10`.
+Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 9`, `n = 100000`, `p = 10`.
 :::
 
 ```{code-cell} ipython3
@@ -512,7 +512,7 @@ def find_collision(n, p, k):
         s = rdm_str(p)
         h = md5(s)[:k]
         if h in seen and s != seen[h]:
-            print(f"{seen[h]} {s}")
+            print(f"{seen[h]} {s} ont le hash " + h)
         seen[h] = s
 
 find_collision(1000000, 10, 9)

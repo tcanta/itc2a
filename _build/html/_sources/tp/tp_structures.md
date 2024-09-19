@@ -512,7 +512,7 @@ def find_collision(n, p, k):
         s = rdm_str(p)
         h = md5(s)[:k]
         if h in seen and s != seen[h]:
-            print(f"{seen[h]} {s}")
+            print(f"{seen[h]} {s} ont le hash " + h)
         seen[h] = s
 
 find_collision(1000000, 10, 9)
