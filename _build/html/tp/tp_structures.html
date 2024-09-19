@@ -393,6 +393,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trie">Trie</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -886,6 +891,241 @@ True
 </div>
 </section>
 </section>
+<hr class="docutils" />
+<section id="fonctions-de-hachage">
+<h2>Fonctions de hachage<a class="headerlink" href="#fonctions-de-hachage" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>De manière informelle, on dit qu’une fonction <span class="math notranslate nohighlight">\(h : X \longrightarrow Y\)</span> est une <strong>fonction de hachage</strong> si <span class="math notranslate nohighlight">\(X\)</span> est un ensemble de grande taille (généralement infini) et <span class="math notranslate nohighlight">\(Y\)</span> est un ensemble fini (souvent un ensemble d’entiers).<br />
+L’intérêt d’une fonction de hachage est de transformer un élément “complexe” <span class="math notranslate nohighlight">\(x \in X\)</span> (par exemple, une image, un film…) en une empreinte <span class="math notranslate nohighlight">\(h(x)\)</span> qui soit plus simple à manipuler et qui utilise moins d’espace mémoire.</p>
+<p>Quelques propriétés souhaitables, selon le contexte, sur une fonction de hachage :</p>
+<ul class="simple">
+<li><p>Facilement calculable : pouvoir calculer <span class="math notranslate nohighlight">\(h(x)\)</span> en O(1), par exemple.</p></li>
+<li><p>Difficile à inverser : étant donné un <span class="math notranslate nohighlight">\(y\)</span>, il doit être impossible en pratique (c’est-à-dire prendre un temps extrêment long - typiquement une complexité exponentielle) de trouver un <span class="math notranslate nohighlight">\(x\)</span> tel que <span class="math notranslate nohighlight">\(h(x) = y\)</span>.</p></li>
+<li><p>Résistance aux collisions : il doit être impossible en pratique de trouver <span class="math notranslate nohighlight">\(x, x' \in X\)</span> tels que <span class="math notranslate nohighlight">\(h(x) = h(x')\)</span>.</p></li>
+</ul>
+<p>Voici quelques applications possibles des fonctions de hachage :</p>
+<ul class="simple">
+<li><p>Table de hachage : c’est une implémentation possible de dictionnaire (voir cours).</p></li>
+<li><p>Stockage de mot de passe : au lieu de mémoriser un mot de passe en clair sur un ordinateur ou une base de donnée (qui peut être compromis), on conserve son empreinte par une fonction de hachage.</p></li>
+<li><p>Signature numérique : ajout d’une empreinte à un email permettant de garantir l’identité de son expéditeur.</p></li>
+<li><p>Checksum : vérifier qu’un fichier a été téléchargé sans erreur, en comparant son empreinte à l’empreinte originale.</p></li>
+</ul>
+<section id="checksum">
+<h3>Checksum<a class="headerlink" href="#checksum" title="Link to this heading">#</a></h3>
+<p>Une des applications des fonctions de hachage consiste à vérifier l’intégrité d’un fichier après l’avoir téléchargé (pour détecter d’éventuelles erreurs de transmission). Pour cela, on calcule une empreinte (<em>checksum</em>) du fichier téléchargé que l’on compare avec l’empreinte du fichier original.</p>
+<p>Dans la suite, nous implémentons un algorithme de checksum très simple (mot de parité) sur une chaîne de caractères.</p>
+<p>Dans la suite, on utilisera <code class="docutils literal notranslate"><span class="pre">ord(c)</span></code> qui renvoie le code Unicode d’un caractère <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 10</p>
+<p>Quel est le code Unicode de <code class="docutils literal notranslate"><span class="pre">a</span></code> ? de <code class="docutils literal notranslate"><span class="pre">z</span></code> ?</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c1"># 97</span>
+<span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="c1"># 122</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>122
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 11</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">code(s)</span></code> renvoyant une liste <code class="docutils literal notranslate"><span class="pre">L</span></code> telle que <code class="docutils literal notranslate"><span class="pre">L[i]</span></code> soit le code Unicode de <code class="docutils literal notranslate"><span class="pre">s[i]</span></code>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">code</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[108, 97, 109, 97, 114, 116, 105, 110]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si <span class="math notranslate nohighlight">\(a\)</span> est un entier, on note <span class="math notranslate nohighlight">\(a_i\)</span> le <span class="math notranslate nohighlight">\(i\)</span>ème bit de <span class="math notranslate nohighlight">\(a\)</span> en base <span class="math notranslate nohighlight">\(2\)</span>. Le XOR de deux entiers <span class="math notranslate nohighlight">\(x\)</span> et <span class="math notranslate nohighlight">\(y\)</span> est un entier <span class="math notranslate nohighlight">\(z\)</span> tel que <span class="math notranslate nohighlight">\(z_i = 1\)</span> si et seulement si <span class="math notranslate nohighlight">\(x_i = 1\)</span> ou <span class="math notranslate nohighlight">\(y_i = 1\)</span>, mais pas les deux. Par exemple, le XOR de <span class="math notranslate nohighlight">\(9 = 1001_2\)</span> et <span class="math notranslate nohighlight">\(5 = 0101_2\)</span> est <span class="math notranslate nohighlight">\(12 = 1100_2\)</span>.<br />
+En Python, le XOR est obtenu par <code class="docutils literal notranslate"><span class="pre">x^y</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 11</p>
+<p>Sans ordinateur, convertir <span class="math notranslate nohighlight">\(11\)</span> et <span class="math notranslate nohighlight">\(6\)</span> en base <span class="math notranslate nohighlight">\(2\)</span> puis calculer leur XOR. Vérifier ensuite avec Python.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">checksum</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+
+<span class="c1"># Est-ce le code le plus clair ? Pas quand on utilise pas les lambda expressions régulièrement...</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checksum</span><span class="p">(</span><span class="s2">&quot;martin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="recherche-de-collisions">
+<h3>Recherche de collisions<a class="headerlink" href="#recherche-de-collisions" title="Link to this heading">#</a></h3>
+<p>Une des propriétés désirable sur une fonction de hachage est d’être résistante aux collisions : il doit être très difficile en pratique de trouver <span class="math notranslate nohighlight">\(x, x' \in X\)</span> tels que <span class="math notranslate nohighlight">\(h(x) = h(x')\)</span>. Sinon, il serait possible pour un attaquant d’envoyer un message en lui attribuant une signature d’une autre personne, par exemple.<br />
+MD5 est une fonction de hachage célèbre qui n’est plus considérée comme sûre : des collisions MD5 ont notamment été utilisées <a class="reference external" href="https://en.wikipedia.org/wiki/Flame_(malware)">par un malware qui a touché l’Iran</a>.<br />
+Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
+<p>Voici un exemple d’utilisation de MD5 :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="k">def</span> <span class="nf">md5</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">md5</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;5ebc974e52539b92106e584ea2a32365&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>La valeur renvoyée par <code class="docutils literal notranslate"><span class="pre">md5</span></code> est ici une chaîne de caractères qui doit être interprétée en base 16 (hexadécimal) : par exemple, <span class="math notranslate nohighlight">\(a\)</span> correspond à <span class="math notranslate nohighlight">\(10\)</span>, <span class="math notranslate nohighlight">\(b\)</span> à <span class="math notranslate nohighlight">\(11\)</span>…</p>
+<p>MD5 est une <strong>fonction de hachage cryptographique</strong>, ce qui signifie que le nombre de bits d’une empreinte est une constante, indépendant de l’entrée (la taille de <span class="math notranslate nohighlight">\(h(x)\)</span> est constante, indépendante de <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p><strong>Question</strong> : Combien y a t-il de bits dans un caractère en hexadécimal ?</p>
+<p>Sur <span class="math notranslate nohighlight">\(k\)</span> bits on peut stocker <span class="math notranslate nohighlight">\(2^k\)</span> valeurs différentes. Donc il faut <span class="math notranslate nohighlight">\(4\)</span> bits pour avoir <span class="math notranslate nohighlight">\(2^4 = 16\)</span> valeurs différentes.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 12</p>
+<p>Combien de bits sont utilisés pour une empreinte MD5 ?</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">))</span><span class="o">*</span><span class="mi">4</span> <span class="c1"># on trouve 128 bits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>128
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<hr class="docutils" />
+<p>Pour trouver une collision, on pourra générer des chaînes de caractères aléatoires <code class="docutils literal notranslate"><span class="pre">s</span></code> en stockant dans un dictionnaire la clé <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> avec la valeur <code class="docutils literal notranslate"><span class="pre">s</span></code>. Si l’empreinte existe déjà dans le dictionnaire, c’est qu’on a trouvé une collision.</p>
+<p>On utilisera la fonction suivante génère une chaîne de caractères aléatoire de longueur <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rdm_str</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">string</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">rdm_str</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># exemple</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;vjswefjejy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Exercice 13</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">find_collision(n,</span> <span class="pre">p,</span> <span class="pre">k)</span></code> qui cherche une collision en générant <code class="docutils literal notranslate"><span class="pre">n</span></code> chaînes de caractères aléatoires de tailles <code class="docutils literal notranslate"><span class="pre">p</span></code>. Pour que la recherche ne prenne pas trop de temps, seuls les <code class="docutils literal notranslate"><span class="pre">k</span></code> premiers caractères de <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> seront considérés (avec <code class="docutils literal notranslate"><span class="pre">md5(s)[:k]</span></code>). On pourra prendre <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">100000</span></code>, <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">10</span></code>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_collision</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">rdm_str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="n">s</span><span class="p">)[:</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+
+<span class="n">find_collision</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hkflhywite ebslnydovl
+yptcpmitvv nsrdrgqocz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fcgyzckerc rmnripxydv
+iimermqkzr iskoyelajk
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pptbtxhkap jphnandaed
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qdcoubazqu rejvczyfnn
+gaulbhdczr ielikcktle
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>wkkytsrtib lstospsgry
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -949,6 +1189,11 @@ True
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trie-arbre-prefixe">Trie (arbre préfixe)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arbres-enracines">Arbres enracinés</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trie">Trie</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
 </ul>
 </li>
 </ul>

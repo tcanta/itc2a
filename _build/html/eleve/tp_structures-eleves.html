@@ -59,7 +59,7 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'eleve/tp_structures-reponses';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'eleve/tp_structures-eleves';</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -262,7 +262,7 @@
       
       
       
-      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Feleve/tp_structures-reponses.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Feleve/tp_structures-eleves.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +292,7 @@
       
       
       
-      <li><a href="../_sources/eleve/tp_structures-reponses.ipynb" target="_blank"
+      <li><a href="../_sources/eleve/tp_structures-eleves.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -418,19 +418,13 @@ document.write(`
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1.</span>
-<span class="n">fr_to_en</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lundi&quot;</span><span class="p">:</span> <span class="s2">&quot;Monday&quot;</span><span class="p">,</span> <span class="s2">&quot;mardi&quot;</span><span class="p">:</span> <span class="s2">&quot;Tuesday&quot;</span><span class="p">,</span> <span class="s2">&quot;mercredi&quot;</span><span class="p">:</span> <span class="s2">&quot;Wednesday&quot;</span><span class="p">,</span> <span class="s2">&quot;jeudi&quot;</span><span class="p">:</span> <span class="s2">&quot;Thursday&quot;</span><span class="p">,</span> <span class="s2">&quot;vendredi&quot;</span><span class="p">:</span> <span class="s2">&quot;Friday&quot;</span><span class="p">,</span> <span class="s2">&quot;samedi&quot;</span><span class="p">:</span> <span class="s2">&quot;Saturday&quot;</span><span class="p">,</span> <span class="s2">&quot;dimanche&quot;</span><span class="p">:</span> <span class="s2">&quot;Sunday&quot;</span><span class="p">}</span>
+<span class="c1">#to_do</span>
 
 <span class="c1"># 2.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fr_to_en</span><span class="p">[</span><span class="s2">&quot;lundi&quot;</span><span class="p">])</span>
+<span class="c1">#to_do</span>
 
 <span class="c1"># 3. On peut utiliser une boucle for pour simplifier</span>
-<span class="k">for</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;janvier&quot;</span><span class="p">,</span> <span class="s2">&quot;January&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;février&quot;</span><span class="p">,</span> <span class="s2">&quot;February&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mars&quot;</span><span class="p">,</span> <span class="s2">&quot;March&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;avril&quot;</span><span class="p">,</span> <span class="s2">&quot;April&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;mai&quot;</span><span class="p">,</span> <span class="s2">&quot;May&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;juin&quot;</span><span class="p">,</span> <span class="s2">&quot;June&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;juillet&quot;</span><span class="p">,</span> <span class="s2">&quot;July&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;août&quot;</span><span class="p">,</span> <span class="s2">&quot;August&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;septembre&quot;</span><span class="p">,</span> <span class="s2">&quot;September&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;octobre&quot;</span><span class="p">,</span> <span class="s2">&quot;October&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;novembre&quot;</span><span class="p">,</span> <span class="s2">&quot;November&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;décembre&quot;</span><span class="p">,</span> <span class="s2">&quot;December&quot;</span><span class="p">)]:</span>
-    <span class="n">fr_to_en</span><span class="p">[</span><span class="n">m1</span><span class="p">]</span> <span class="o">=</span> <span class="n">m2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Monday
+<span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>
@@ -442,7 +436,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;January&#39;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">fr_to_en</span><span class="p">[</span><span class="s2">&quot;janvier&quot;</span><span class="p">]</span>
+
+<span class="ne">NameError</span>: name &#39;fr_to_en&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -453,27 +452,7 @@ document.write(`
 <p><strong>Exercice</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">majoritaire(L)</span></code> renvoyant l’élément apparaissant le plus souvent dans la liste <code class="docutils literal notranslate"><span class="pre">L</span></code>, sans utiliser de dictionnaire. Quelle est sa complexité ?</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># en utilisant count :</span>
-<span class="k">def</span> <span class="nf">majoritaire</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># va contenir l&#39;élément majoritaire</span>
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">return</span> <span class="n">m</span>
-
-<span class="c1"># sans utiliser count :</span>
-<span class="k">def</span> <span class="nf">majoritaire</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span> <span class="c1"># va contenir l&#39;élément majoritaire et son nombre d&#39;occurences</span>
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">return</span> <span class="n">m</span>
-
-<span class="c1"># dans les deux cas, la complexité est O(n^2), où n est la longueur de la liste L</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>
@@ -495,18 +474,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fonction écrite en cours. La complexité est O(n), où n est la longueur de la liste L.</span>
 
-<span class="k">def</span> <span class="nf">majoritaire2</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
-            <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">m</span><span class="p">]:</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">return</span> <span class="n">m</span>
+<span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>
@@ -537,44 +505,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l
-a
-m
-a
-r
-t
-i
-n
-l
-a
-m
-a
-r
-t
-i
-n
-</pre></div>
-</div>
-</div>
 </div>
 <p><strong>Exercice</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">anagramme(m1,</span> <span class="pre">m2)</span></code> qui teste si deux mots (des chaînes de caractères) sont des anagrammes, c’est-à-dire s’ils contiennent les mêmes lettres (avec le même nombre d’occurence de chaque lettre).<br />
 Cette fonction doit être en O(<span class="math notranslate nohighlight">\(n_1 + n_2\)</span>), où <span class="math notranslate nohighlight">\(n_1\)</span>, <span class="math notranslate nohighlight">\(n_2\)</span> sont les tailles de <code class="docutils literal notranslate"><span class="pre">m1</span></code>, <code class="docutils literal notranslate"><span class="pre">m2</span></code>.</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">anagramme</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">):</span>
-    <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m1</span><span class="p">:</span> <span class="c1"># O(n1)</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d1</span><span class="p">:</span>
-            <span class="n">d1</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">d1</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m2</span><span class="p">:</span> <span class="c1"># O(n1)</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d2</span><span class="p">:</span>
-            <span class="n">d2</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">d2</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">d1</span> <span class="o">==</span> <span class="n">d2</span> <span class="c1"># O(n1)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>
@@ -649,21 +585,7 @@ Par exemple, l’arbre suivant contient les mots cap, copie, copier, copies, cor
 </ol>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>
@@ -675,20 +597,6 @@ Par exemple, l’arbre suivant contient les mots cap, copie, copier, copies, cor
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># compte le nombre de $</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
         <span class="o">...</span>
-    <span class="k">return</span> <span class="n">n</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_cor docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_size</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
-            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">n</span> <span class="o">+=</span> <span class="n">trie_size</span><span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">n</span>
 </pre></div>
 </div>
@@ -715,18 +623,6 @@ Par exemple, l’arbre suivant contient les mots cap, copie, copier, copies, cor
             <span class="o">...</span> <span class="c1"># créer une nouvelle association (c, dictionnaire vide)</span>
         <span class="n">trie</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="c1"># descendre dans l&#39;arbre suivant la lettre c</span>
     <span class="o">...</span> <span class="c1"># ajouter un &#39;$&#39; à la fin</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_cor docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_add</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
-            <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="n">trie</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
-    <span class="n">trie</span><span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -758,20 +654,6 @@ On pourra utiliser une fonction auxiliaire récursive <code class="docutils lite
 </div>
 </div>
 </div>
-<div class="cell tag_cor docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_print</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">aux</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">m</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">aux</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie_print</span><span class="p">(</span><span class="n">trie_ex</span><span class="p">)</span>
@@ -790,14 +672,7 @@ ok
 <p><strong>Exercice</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">trie_has(trie,</span> <span class="pre">m)</span></code> pour tester si <code class="docutils literal notranslate"><span class="pre">m</span></code> appartient à un trie.</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_has</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">mot</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="c1"># t est le sous-arbre, m est le mot recherché, i est l&#39;indice de la lettre courante</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-            <span class="k">return</span> <span class="s1">&#39;$&#39;</span> <span class="ow">in</span> <span class="n">t</span>
-        <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">m</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">mot</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to_do</span>
 </pre></div>
 </div>
 </div>

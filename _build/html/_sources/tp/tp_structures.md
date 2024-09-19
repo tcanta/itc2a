@@ -370,3 +370,148 @@ def trie_has(trie, mot):
 print(trie_has(trie_ex, "carte"))
 print(trie_has(trie_ex, "car"))
 ```
+---
++++
+## Fonctions de hachage
++++
+---
+
+De manière informelle, on dit qu'une fonction $h : X \longrightarrow Y$ est une **fonction de hachage** si $X$ est un ensemble de grande taille (généralement infini) et $Y$ est un ensemble fini (souvent un ensemble d'entiers).  
+L'intérêt d'une fonction de hachage est de transformer un élément "complexe" $x \in X$ (par exemple, une image, un film...) en une empreinte $h(x)$ qui soit plus simple à manipuler et qui utilise moins d'espace mémoire.
+
+Quelques propriétés souhaitables, selon le contexte, sur une fonction de hachage :  
+- Facilement calculable : pouvoir calculer $h(x)$ en O(1), par exemple.  
+- Difficile à inverser : étant donné un $y$, il doit être impossible en pratique (c'est-à-dire prendre un temps extrêment long - typiquement une complexité exponentielle) de trouver un $x$ tel que $h(x) = y$.  
+- Résistance aux collisions : il doit être impossible en pratique de trouver $x, x' \in X$ tels que $h(x) = h(x')$.
+
+Voici quelques applications possibles des fonctions de hachage :  
+- Table de hachage : c'est une implémentation possible de dictionnaire (voir cours).  
+- Stockage de mot de passe : au lieu de mémoriser un mot de passe en clair sur un ordinateur ou une base de donnée (qui peut être compromis), on conserve son empreinte par une fonction de hachage.  
+- Signature numérique : ajout d'une empreinte à un email permettant de garantir l'identité de son expéditeur.  
+- Checksum : vérifier qu'un fichier a été téléchargé sans erreur, en comparant son empreinte à l'empreinte originale.
+
+
+### Checksum
+
+Une des applications des fonctions de hachage consiste à vérifier l'intégrité d'un fichier après l'avoir téléchargé (pour détecter d'éventuelles erreurs de transmission). Pour cela, on calcule une empreinte (*checksum*) du fichier téléchargé que l'on compare avec l'empreinte du fichier original.
+
+Dans la suite, nous implémentons un algorithme de checksum très simple (mot de parité) sur une chaîne de caractères.
+
+Dans la suite, on utilisera `ord(c)` qui renvoie le code Unicode d'un caractère `c`.
+
+:::{admonition} Exercice 10
+:class: note
+Quel est le code Unicode de `a` ? de `z` ?
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+ord('a') # 97
+ord('z') # 122
+```
+
+---
+
+:::{admonition} Exercice 11
+:class: note
+Écrire une fonction `code(s)` renvoyant une liste `L` telle que `L[i]` soit le code Unicode de `s[i]`.
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def code(s):
+    L = []
+    for c in s:
+        L.append(ord(c))
+    return L
+```
+```{code-cell} ipython3
+code("lamartin")
+```
+
+Si $a$ est un entier, on note $a_i$ le $i$ème bit de $a$ en base $2$. Le XOR de deux entiers $x$ et $y$ est un entier $z$ tel que $z_i = 1$ si et seulement si $x_i = 1$ ou $y_i = 1$, mais pas les deux. Par exemple, le XOR de $9 = 1001_2$ et $5 = 0101_2$ est $12 = 1100_2$.  
+En Python, le XOR est obtenu par `x^y`.
+
+:::{admonition} Exercice 11
+:class: note
+Sans ordinateur, convertir $11$ et $6$ en base $2$ puis calculer leur XOR. Vérifier ensuite avec Python.
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def checksum(s):
+    from functools import reduce
+    return reduce(lambda x, y: x^y, map(ord, s))
+
+# Est-ce le code le plus clair ? Pas quand on utilise pas les lambda expressions régulièrement...
+```
+```{code-cell} ipython3
+checksum("martin")
+```
+---
+### Recherche de collisions
+
+Une des propriétés désirable sur une fonction de hachage est d'être résistante aux collisions : il doit être très difficile en pratique de trouver $x, x' \in X$ tels que $h(x) = h(x')$. Sinon, il serait possible pour un attaquant d'envoyer un message en lui attribuant une signature d'une autre personne, par exemple.  
+MD5 est une fonction de hachage célèbre qui n'est plus considérée comme sûre : des collisions MD5 ont notamment été utilisées [par un malware qui a touché l'Iran](https://en.wikipedia.org/wiki/Flame_(malware)).  
+Dans la suite, nous cherchons des collisions partielles pour MD5.
+
+Voici un exemple d'utilisation de MD5 :
+
+```{code-cell} ipython3
+import hashlib
+
+def md5(s):
+    return hashlib.md5(s.encode("utf-8")).hexdigest()
+
+md5("lamartin")
+```
+La valeur renvoyée par `md5` est ici une chaîne de caractères qui doit être interprétée en base 16 (hexadécimal) : par exemple, $a$ correspond à $10$, $b$ à $11$...
+
+MD5 est une **fonction de hachage cryptographique**, ce qui signifie que le nombre de bits d'une empreinte est une constante, indépendant de l'entrée (la taille de $h(x)$ est constante, indépendante de $x$).
+
+**Question** : Combien y a t-il de bits dans un caractère en hexadécimal ?
+
+Sur $k$ bits on peut stocker $2^k$ valeurs différentes. Donc il faut $4$ bits pour avoir $2^4 = 16$ valeurs différentes.
+
+:::{admonition} Exercice 12
+:class: note
+Combien de bits sont utilisés pour une empreinte MD5 ?
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+len(md5("lamartin"))*4 # on trouve 128 bits
+```
+---
+
+Pour trouver une collision, on pourra générer des chaînes de caractères aléatoires `s` en stockant dans un dictionnaire la clé `md5(s)` avec la valeur `s`. Si l'empreinte existe déjà dans le dictionnaire, c'est qu'on a trouvé une collision.
+
+On utilisera la fonction suivante génère une chaîne de caractères aléatoire de longueur `n`.
+
+```{code-cell} ipython3
+def rdm_str(n):
+    import string
+    import random
+    return ''.join(random.choice(string.ascii_lowercase) for i in range(n))
+
+rdm_str(10) # exemple
+```
+:::{admonition} Exercice 13
+:class: note
+Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 8`, `n = 100000`, `p = 10`.
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
+def find_collision(n, p, k):
+    seen = {}
+    for n in range(n):
+        s = rdm_str(p)
+        h = md5(s)[:k]
+        if h in seen and s != seen[h]:
+            print(f"{seen[h]} {s}")
+        seen[h] = s
+
+find_collision(1000000, 10, 9)
+```
