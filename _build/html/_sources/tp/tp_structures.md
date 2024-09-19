@@ -371,12 +371,9 @@ print(trie_has(trie_ex, "carte"))
 print(trie_has(trie_ex, "car"))
 ```
 ---
----
 
 **Compléments :**
 ## Fonctions de hachage
-
----
 
 De manière informelle, on dit qu'une fonction $h : X \longrightarrow Y$ est une **fonction de hachage** si $X$ est un ensemble de grande taille (généralement infini) et $Y$ est un ensemble fini (souvent un ensemble d'entiers).  
 L'intérêt d'une fonction de hachage est de transformer un élément "complexe" $x \in X$ (par exemple, une image, un film...) en une empreinte $h(x)$ qui soit plus simple à manipuler et qui utilise moins d'espace mémoire.
@@ -526,9 +523,6 @@ Il vous propose deux archives censées contenir toutes les deux la même version
 https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz
 https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz
 
-Lien vers le site officiel de python :
-https://www.python.org/downloads/release/python-3130rc2/
-
 
 :::{admonition} Exercice 15
 :class: note
@@ -539,3 +533,6 @@ ad7f44153649e27ec385e7633e853e03
 :::
 
 Cette vérification est aujourd'hui insuffisante pour garantir l'intégrité du fichier à cause des problèmes de collision vus plus haut !
+
+Lien vers la page de la release python utilisée:
+https://www.python.org/downloads/release/python-3130rc2/
