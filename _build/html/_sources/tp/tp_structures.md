@@ -432,7 +432,7 @@ code("lamartin")
 Si $a$ est un entier, on note $a_i$ le $i$ème bit de $a$ en base $2$. Le XOR de deux entiers $x$ et $y$ est un entier $z$ tel que $z_i = 1$ si et seulement si $x_i = 1$ ou $y_i = 1$, mais pas les deux. Par exemple, le XOR de $9 = 1001_2$ et $5 = 0101_2$ est $12 = 1100_2$.  
 En Python, le XOR est obtenu par `x^y`.
 
-:::{admonition} Exercice 11
+:::{admonition} Exercice 12
 :class: note
 Sans ordinateur, convertir $11$ et $6$ en base $2$ puis calculer leur XOR. Vérifier ensuite avec Python.
 :::
@@ -473,7 +473,7 @@ MD5 est une **fonction de hachage cryptographique**, ce qui signifie que le nomb
 
 Sur $k$ bits on peut stocker $2^k$ valeurs différentes. Donc il faut $4$ bits pour avoir $2^4 = 16$ valeurs différentes.
 
-:::{admonition} Exercice 12
+:::{admonition} Exercice 13
 :class: note
 Combien de bits sont utilisés pour une empreinte MD5 ?
 :::
@@ -496,7 +496,7 @@ def rdm_str(n):
 
 rdm_str(10) # exemple
 ```
-:::{admonition} Exercice 13
+:::{admonition} Exercice 14
 :class: note
 Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 8`, `n = 100000`, `p = 10`.
 :::
