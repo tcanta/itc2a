@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>curses.ascii — Utilities for ASCII characters &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/curses.ascii';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/curses.ascii.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/curses.ascii.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>curses.ascii — Utilities for ASCII characters</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NUL"><code class="docutils literal notranslate"><span class="pre">NUL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SOH"><code class="docutils literal notranslate"><span class="pre">SOH</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.STX"><code class="docutils literal notranslate"><span class="pre">STX</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ETX"><code class="docutils literal notranslate"><span class="pre">ETX</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.EOT"><code class="docutils literal notranslate"><span class="pre">EOT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ENQ"><code class="docutils literal notranslate"><span class="pre">ENQ</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ACK"><code class="docutils literal notranslate"><span class="pre">ACK</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.BEL"><code class="docutils literal notranslate"><span class="pre">BEL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.BS"><code class="docutils literal notranslate"><span class="pre">BS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.TAB"><code class="docutils literal notranslate"><span class="pre">TAB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.HT"><code class="docutils literal notranslate"><span class="pre">HT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.LF"><code class="docutils literal notranslate"><span class="pre">LF</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NL"><code class="docutils literal notranslate"><span class="pre">NL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.VT"><code class="docutils literal notranslate"><span class="pre">VT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.FF"><code class="docutils literal notranslate"><span class="pre">FF</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.CR"><code class="docutils literal notranslate"><span class="pre">CR</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SO"><code class="docutils literal notranslate"><span class="pre">SO</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SI"><code class="docutils literal notranslate"><span class="pre">SI</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DLE"><code class="docutils literal notranslate"><span class="pre">DLE</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC1"><code class="docutils literal notranslate"><span class="pre">DC1</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC2"><code class="docutils literal notranslate"><span class="pre">DC2</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC3"><code class="docutils literal notranslate"><span class="pre">DC3</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC4"><code class="docutils literal notranslate"><span class="pre">DC4</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NAK"><code class="docutils literal notranslate"><span class="pre">NAK</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SYN"><code class="docutils literal notranslate"><span class="pre">SYN</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ETB"><code class="docutils literal notranslate"><span class="pre">ETB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.CAN"><code class="docutils literal notranslate"><span class="pre">CAN</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.EM"><code class="docutils literal notranslate"><span class="pre">EM</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SUB"><code class="docutils literal notranslate"><span class="pre">SUB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ESC"><code class="docutils literal notranslate"><span class="pre">ESC</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.FS"><code class="docutils literal notranslate"><span class="pre">FS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.GS"><code class="docutils literal notranslate"><span class="pre">GS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.RS"><code class="docutils literal notranslate"><span class="pre">RS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.US"><code class="docutils literal notranslate"><span class="pre">US</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SP"><code class="docutils literal notranslate"><span class="pre">SP</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DEL"><code class="docutils literal notranslate"><span class="pre">DEL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isalnum"><code class="docutils literal notranslate"><span class="pre">isalnum()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isalpha"><code class="docutils literal notranslate"><span class="pre">isalpha()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isascii"><code class="docutils literal notranslate"><span class="pre">isascii()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isblank"><code class="docutils literal notranslate"><span class="pre">isblank()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.iscntrl"><code class="docutils literal notranslate"><span class="pre">iscntrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isdigit"><code class="docutils literal notranslate"><span class="pre">isdigit()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isgraph"><code class="docutils literal notranslate"><span class="pre">isgraph()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.islower"><code class="docutils literal notranslate"><span class="pre">islower()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isprint"><code class="docutils literal notranslate"><span class="pre">isprint()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ispunct"><code class="docutils literal notranslate"><span class="pre">ispunct()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isspace"><code class="docutils literal notranslate"><span class="pre">isspace()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isupper"><code class="docutils literal notranslate"><span class="pre">isupper()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isxdigit"><code class="docutils literal notranslate"><span class="pre">isxdigit()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isctrl"><code class="docutils literal notranslate"><span class="pre">isctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ismeta"><code class="docutils literal notranslate"><span class="pre">ismeta()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ascii"><code class="docutils literal notranslate"><span class="pre">ascii()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ctrl"><code class="docutils literal notranslate"><span class="pre">ctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.alt"><code class="docutils literal notranslate"><span class="pre">alt()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.unctrl"><code class="docutils literal notranslate"><span class="pre">unctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.controlnames"><code class="docutils literal notranslate"><span class="pre">controlnames</span></code></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-curses.ascii">
+<span id="curses-ascii-utilities-for-ascii-characters"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.ascii</span></code> — Utilities for ASCII characters<a class="headerlink" href="#module-curses.ascii" title="Link to this heading">#</a></h1>
+<p><strong>Source code:</strong> <a href="#id1"><span class="problematic" id="id2">:source:`Lib/curses/ascii.py`</span></a></p>
+<hr class="docutils" />
+<p>The <a class="reference internal" href="#module-curses.ascii" title="curses.ascii: Constants and set-membership functions for ASCII characters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">curses.ascii</span></code></a> module supplies name constants for ASCII characters and
+functions to test membership in various ASCII character classes.  The constants
+supplied are names for control characters as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.NUL">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">NUL</span></span><a class="headerlink" href="#curses.ascii.NUL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SOH">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SOH</span></span><a class="headerlink" href="#curses.ascii.SOH" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Start of heading, console interrupt</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.STX">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">STX</span></span><a class="headerlink" href="#curses.ascii.STX" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Start of text</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.ETX">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ETX</span></span><a class="headerlink" href="#curses.ascii.ETX" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>End of text</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.EOT">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">EOT</span></span><a class="headerlink" href="#curses.ascii.EOT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>End of transmission</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.ENQ">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ENQ</span></span><a class="headerlink" href="#curses.ascii.ENQ" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Enquiry, goes with <a class="reference internal" href="#curses.ascii.ACK" title="curses.ascii.ACK"><code class="xref py py-const docutils literal notranslate"><span class="pre">ACK</span></code></a> flow control</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.ACK">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ACK</span></span><a class="headerlink" href="#curses.ascii.ACK" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Acknowledgement</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.BEL">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">BEL</span></span><a class="headerlink" href="#curses.ascii.BEL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Bell</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.BS">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">BS</span></span><a class="headerlink" href="#curses.ascii.BS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Backspace</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.TAB">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">TAB</span></span><a class="headerlink" href="#curses.ascii.TAB" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Tab</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.HT">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">HT</span></span><a class="headerlink" href="#curses.ascii.HT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Alias for <a class="reference internal" href="#curses.ascii.TAB" title="curses.ascii.TAB"><code class="xref py py-const docutils literal notranslate"><span class="pre">TAB</span></code></a>: “Horizontal tab”</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.LF">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">LF</span></span><a class="headerlink" href="#curses.ascii.LF" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Line feed</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.NL">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">NL</span></span><a class="headerlink" href="#curses.ascii.NL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Alias for <a class="reference internal" href="#curses.ascii.LF" title="curses.ascii.LF"><code class="xref py py-const docutils literal notranslate"><span class="pre">LF</span></code></a>: “New line”</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.VT">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">VT</span></span><a class="headerlink" href="#curses.ascii.VT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Vertical tab</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.FF">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">FF</span></span><a class="headerlink" href="#curses.ascii.FF" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Form feed</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.CR">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">CR</span></span><a class="headerlink" href="#curses.ascii.CR" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Carriage return</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SO">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SO</span></span><a class="headerlink" href="#curses.ascii.SO" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Shift-out, begin alternate character set</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SI">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SI</span></span><a class="headerlink" href="#curses.ascii.SI" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Shift-in, resume default character set</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DLE">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DLE</span></span><a class="headerlink" href="#curses.ascii.DLE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Data-link escape</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DC1">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DC1</span></span><a class="headerlink" href="#curses.ascii.DC1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>XON, for flow control</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DC2">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DC2</span></span><a class="headerlink" href="#curses.ascii.DC2" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Device control 2, block-mode flow control</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DC3">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DC3</span></span><a class="headerlink" href="#curses.ascii.DC3" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>XOFF, for flow control</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DC4">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DC4</span></span><a class="headerlink" href="#curses.ascii.DC4" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Device control 4</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.NAK">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">NAK</span></span><a class="headerlink" href="#curses.ascii.NAK" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Negative acknowledgement</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SYN">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SYN</span></span><a class="headerlink" href="#curses.ascii.SYN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Synchronous idle</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.ETB">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ETB</span></span><a class="headerlink" href="#curses.ascii.ETB" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>End transmission block</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.CAN">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">CAN</span></span><a class="headerlink" href="#curses.ascii.CAN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Cancel</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.EM">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">EM</span></span><a class="headerlink" href="#curses.ascii.EM" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>End of medium</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SUB">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SUB</span></span><a class="headerlink" href="#curses.ascii.SUB" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Substitute</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.ESC">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ESC</span></span><a class="headerlink" href="#curses.ascii.ESC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Escape</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.FS">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">FS</span></span><a class="headerlink" href="#curses.ascii.FS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>File separator</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.GS">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">GS</span></span><a class="headerlink" href="#curses.ascii.GS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Group separator</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.RS">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">RS</span></span><a class="headerlink" href="#curses.ascii.RS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Record separator, block-mode terminator</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.US">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">US</span></span><a class="headerlink" href="#curses.ascii.US" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Unit separator</p></td>
+</tr>
+<tr class="row-even"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.SP">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">SP</span></span><a class="headerlink" href="#curses.ascii.SP" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Space</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.DEL">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">DEL</span></span><a class="headerlink" href="#curses.ascii.DEL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Delete</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that many of these have little practical significance in modern usage.  The
+mnemonics derive from teleprinter conventions that predate digital computers.</p>
+<p>The module supplies the following functions, patterned on those in the standard
+C library:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isalnum">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isalnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isalnum" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII alphanumeric character; it is equivalent to <code class="docutils literal notranslate"><span class="pre">isalpha(c)</span> <span class="pre">or</span>
+<span class="pre">isdigit(c)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isalpha">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isalpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isalpha" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII alphabetic character; it is equivalent to <code class="docutils literal notranslate"><span class="pre">isupper(c)</span> <span class="pre">or</span>
+<span class="pre">islower(c)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isascii">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isascii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isascii" title="Link to this definition">#</a></dt>
+<dd><p>Checks for a character value that fits in the 7-bit ASCII set.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isblank">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isblank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isblank" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII whitespace character; space or horizontal tab.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.iscntrl">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">iscntrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.iscntrl" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII control character (in the range 0x00 to 0x1f or 0x7f).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isdigit">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isdigit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isdigit" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII decimal digit, <code class="docutils literal notranslate"><span class="pre">'0'</span></code> through <code class="docutils literal notranslate"><span class="pre">'9'</span></code>.  This is equivalent
+to <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">in</span> <span class="pre">string.digits</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isgraph">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isgraph" title="Link to this definition">#</a></dt>
+<dd><p>Checks for ASCII any printable character except space.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.islower">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">islower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.islower" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII lower-case character.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isprint">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isprint" title="Link to this definition">#</a></dt>
+<dd><p>Checks for any ASCII printable character including space.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.ispunct">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ispunct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.ispunct" title="Link to this definition">#</a></dt>
+<dd><p>Checks for any printable ASCII character which is not a space or an alphanumeric
+character.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isspace">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isspace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isspace" title="Link to this definition">#</a></dt>
+<dd><p>Checks for ASCII white-space characters; space, line feed, carriage return, form
+feed, horizontal tab, vertical tab.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isupper">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isupper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isupper" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII uppercase letter.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isxdigit">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isxdigit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isxdigit" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII hexadecimal digit.  This is equivalent to <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">in</span>
+<span class="pre">string.hexdigits</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.isctrl">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">isctrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.isctrl" title="Link to this definition">#</a></dt>
+<dd><p>Checks for an ASCII control character (ordinal values 0 to 31).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.ismeta">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ismeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.ismeta" title="Link to this definition">#</a></dt>
+<dd><p>Checks for a non-ASCII character (ordinal values 0x80 and above).</p>
+</dd></dl>
+
+<p>These functions accept either integers or single-character strings; when the argument is a
+string, it is first converted using the built-in function <a class="reference internal" href="functions.html#ord" title="ord"><code class="xref py py-func docutils literal notranslate"><span class="pre">ord()</span></code></a>.</p>
+<p>Note that all these functions check ordinal bit values derived from the
+character of the string you pass in; they do not actually know anything about
+the host machine’s character encoding.</p>
+<p>The following two functions take either a single-character string or integer
+byte value; they return a value of the same type.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.ascii">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ascii</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.ascii" title="Link to this definition">#</a></dt>
+<dd><p>Return the ASCII value corresponding to the low 7 bits of <em>c</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.ctrl">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">ctrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.ctrl" title="Link to this definition">#</a></dt>
+<dd><p>Return the control character corresponding to the given character (the character
+bit value is bitwise-anded with 0x1f).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curses.ascii.alt">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">alt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.alt" title="Link to this definition">#</a></dt>
+<dd><p>Return the 8-bit character corresponding to the given ASCII character (the
+character bit value is bitwise-ored with 0x80).</p>
+</dd></dl>
+
+<p>The following function takes either a single-character string or integer value;
+it returns a string.</p>
+<dl class="py function" id="index-0">
+<dt class="sig sig-object py" id="curses.ascii.unctrl">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">unctrl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curses.ascii.unctrl" title="Link to this definition">#</a></dt>
+<dd><p>Return a string representation of the ASCII character <em>c</em>.  If <em>c</em> is printable,
+this string is the character itself.  If the character is a control character
+(0x00–0x1f) the string consists of a caret (<code class="docutils literal notranslate"><span class="pre">'^'</span></code>) followed by the
+corresponding uppercase letter. If the character is an ASCII delete (0x7f) the
+string is <code class="docutils literal notranslate"><span class="pre">'^?'</span></code>.  If the character has its meta bit (0x80) set, the meta bit
+is stripped, the preceding rules applied, and <code class="docutils literal notranslate"><span class="pre">'!'</span></code> prepended to the result.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="curses.ascii.controlnames">
+<span class="sig-prename descclassname"><span class="pre">curses.ascii.</span></span><span class="sig-name descname"><span class="pre">controlnames</span></span><a class="headerlink" href="#curses.ascii.controlnames" title="Link to this definition">#</a></dt>
+<dd><p>A 33-element string array that contains the ASCII mnemonics for the thirty-two
+ASCII control characters from 0 (NUL) to 0x1f (US), in order, plus the mnemonic
+<code class="docutils literal notranslate"><span class="pre">SP</span></code> for the space character.</p>
+</dd></dl>
+
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NUL"><code class="docutils literal notranslate"><span class="pre">NUL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SOH"><code class="docutils literal notranslate"><span class="pre">SOH</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.STX"><code class="docutils literal notranslate"><span class="pre">STX</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ETX"><code class="docutils literal notranslate"><span class="pre">ETX</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.EOT"><code class="docutils literal notranslate"><span class="pre">EOT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ENQ"><code class="docutils literal notranslate"><span class="pre">ENQ</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ACK"><code class="docutils literal notranslate"><span class="pre">ACK</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.BEL"><code class="docutils literal notranslate"><span class="pre">BEL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.BS"><code class="docutils literal notranslate"><span class="pre">BS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.TAB"><code class="docutils literal notranslate"><span class="pre">TAB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.HT"><code class="docutils literal notranslate"><span class="pre">HT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.LF"><code class="docutils literal notranslate"><span class="pre">LF</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NL"><code class="docutils literal notranslate"><span class="pre">NL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.VT"><code class="docutils literal notranslate"><span class="pre">VT</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.FF"><code class="docutils literal notranslate"><span class="pre">FF</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.CR"><code class="docutils literal notranslate"><span class="pre">CR</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SO"><code class="docutils literal notranslate"><span class="pre">SO</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SI"><code class="docutils literal notranslate"><span class="pre">SI</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DLE"><code class="docutils literal notranslate"><span class="pre">DLE</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC1"><code class="docutils literal notranslate"><span class="pre">DC1</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC2"><code class="docutils literal notranslate"><span class="pre">DC2</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC3"><code class="docutils literal notranslate"><span class="pre">DC3</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DC4"><code class="docutils literal notranslate"><span class="pre">DC4</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.NAK"><code class="docutils literal notranslate"><span class="pre">NAK</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SYN"><code class="docutils literal notranslate"><span class="pre">SYN</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ETB"><code class="docutils literal notranslate"><span class="pre">ETB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.CAN"><code class="docutils literal notranslate"><span class="pre">CAN</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.EM"><code class="docutils literal notranslate"><span class="pre">EM</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SUB"><code class="docutils literal notranslate"><span class="pre">SUB</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ESC"><code class="docutils literal notranslate"><span class="pre">ESC</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.FS"><code class="docutils literal notranslate"><span class="pre">FS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.GS"><code class="docutils literal notranslate"><span class="pre">GS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.RS"><code class="docutils literal notranslate"><span class="pre">RS</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.US"><code class="docutils literal notranslate"><span class="pre">US</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.SP"><code class="docutils literal notranslate"><span class="pre">SP</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.DEL"><code class="docutils literal notranslate"><span class="pre">DEL</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isalnum"><code class="docutils literal notranslate"><span class="pre">isalnum()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isalpha"><code class="docutils literal notranslate"><span class="pre">isalpha()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isascii"><code class="docutils literal notranslate"><span class="pre">isascii()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isblank"><code class="docutils literal notranslate"><span class="pre">isblank()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.iscntrl"><code class="docutils literal notranslate"><span class="pre">iscntrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isdigit"><code class="docutils literal notranslate"><span class="pre">isdigit()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isgraph"><code class="docutils literal notranslate"><span class="pre">isgraph()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.islower"><code class="docutils literal notranslate"><span class="pre">islower()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isprint"><code class="docutils literal notranslate"><span class="pre">isprint()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ispunct"><code class="docutils literal notranslate"><span class="pre">ispunct()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isspace"><code class="docutils literal notranslate"><span class="pre">isspace()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isupper"><code class="docutils literal notranslate"><span class="pre">isupper()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isxdigit"><code class="docutils literal notranslate"><span class="pre">isxdigit()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.isctrl"><code class="docutils literal notranslate"><span class="pre">isctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ismeta"><code class="docutils literal notranslate"><span class="pre">ismeta()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ascii"><code class="docutils literal notranslate"><span class="pre">ascii()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.ctrl"><code class="docutils literal notranslate"><span class="pre">ctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.alt"><code class="docutils literal notranslate"><span class="pre">alt()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.unctrl"><code class="docutils literal notranslate"><span class="pre">unctrl()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curses.ascii.controlnames"><code class="docutils literal notranslate"><span class="pre">controlnames</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

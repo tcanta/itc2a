@@ -500,7 +500,7 @@ rdm_str(10) # exemple
 ```
 :::{admonition} Exercice 14
 :class: note
-Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 8`, `n = 100000`, `p = 10`.
+Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 9`, `n = 100000`, `p = 10`.
 :::
 
 ```{code-cell} ipython3
@@ -517,3 +517,19 @@ def find_collision(n, p, k):
 
 find_collision(1000000, 10, 9)
 ```
+---
+### Verification de l'intégrité d'un fichier
+
+Un ami vous propose d'installer la toute dernière version de python qu'il héberge gentillement sur son serveur. Malheureusement vous n'êtes pas certain que cette version soit bien celle d'origine...
+Il vous propose deux archives censées contenir toutes les deux la même version de python.
+
+https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz
+https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz
+
+Lien vers le site officiel de python :
+https://www.python.org/downloads/release/python-3130rc2/
+
+:::{admonition} Exercice 15
+:class: note
+Vérifiez l'intégrité de ces fichiers.
+:::

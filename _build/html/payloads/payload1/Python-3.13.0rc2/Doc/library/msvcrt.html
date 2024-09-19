@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>msvcrt — Useful routines from the MS VC++ runtime &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/msvcrt';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/msvcrt.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/msvcrt.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>msvcrt — Useful routines from the MS VC++ runtime</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operations">File Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.locking"><code class="docutils literal notranslate"><span class="pre">locking()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_LOCK"><code class="docutils literal notranslate"><span class="pre">LK_LOCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_RLCK"><code class="docutils literal notranslate"><span class="pre">LK_RLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_NBLCK"><code class="docutils literal notranslate"><span class="pre">LK_NBLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_NBRLCK"><code class="docutils literal notranslate"><span class="pre">LK_NBRLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_UNLCK"><code class="docutils literal notranslate"><span class="pre">LK_UNLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.setmode"><code class="docutils literal notranslate"><span class="pre">setmode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.open_osfhandle"><code class="docutils literal notranslate"><span class="pre">open_osfhandle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.get_osfhandle"><code class="docutils literal notranslate"><span class="pre">get_osfhandle()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#console-i-o">Console I/O</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.kbhit"><code class="docutils literal notranslate"><span class="pre">kbhit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getch"><code class="docutils literal notranslate"><span class="pre">getch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getwch"><code class="docutils literal notranslate"><span class="pre">getwch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getche"><code class="docutils literal notranslate"><span class="pre">getche()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getwche"><code class="docutils literal notranslate"><span class="pre">getwche()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.putch"><code class="docutils literal notranslate"><span class="pre">putch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.putwch"><code class="docutils literal notranslate"><span class="pre">putwch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.ungetch"><code class="docutils literal notranslate"><span class="pre">ungetch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.ungetwch"><code class="docutils literal notranslate"><span class="pre">ungetwch()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">Other Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.heapmin"><code class="docutils literal notranslate"><span class="pre">heapmin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.set_error_mode"><code class="docutils literal notranslate"><span class="pre">set_error_mode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_DEFAULT"><code class="docutils literal notranslate"><span class="pre">OUT_TO_DEFAULT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_STDERR"><code class="docutils literal notranslate"><span class="pre">OUT_TO_STDERR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_MSGBOX"><code class="docutils literal notranslate"><span class="pre">OUT_TO_MSGBOX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.REPORT_ERRMODE"><code class="docutils literal notranslate"><span class="pre">REPORT_ERRMODE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CrtSetReportMode"><code class="docutils literal notranslate"><span class="pre">CrtSetReportMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CrtSetReportFile"><code class="docutils literal notranslate"><span class="pre">CrtSetReportFile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_WARN"><code class="docutils literal notranslate"><span class="pre">CRT_WARN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ERROR"><code class="docutils literal notranslate"><span class="pre">CRT_ERROR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ASSERT"><code class="docutils literal notranslate"><span class="pre">CRT_ASSERT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_DEBUG"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_DEBUG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_FILE"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_FILE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_WNDW"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_WNDW</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_REPORT_MODE"><code class="docutils literal notranslate"><span class="pre">CRTDBG_REPORT_MODE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ASSEMBLY_VERSION"><code class="docutils literal notranslate"><span class="pre">CRT_ASSEMBLY_VERSION</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.VC_ASSEMBLY_PUBLICKEYTOKEN"><code class="docutils literal notranslate"><span class="pre">VC_ASSEMBLY_PUBLICKEYTOKEN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LIBRARIES_ASSEMBLY_NAME_PREFIX"><code class="docutils literal notranslate"><span class="pre">LIBRARIES_ASSEMBLY_NAME_PREFIX</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-msvcrt">
+<span id="msvcrt-useful-routines-from-the-ms-vc-runtime"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">msvcrt</span></code> — Useful routines from the MS VC++ runtime<a class="headerlink" href="#module-msvcrt" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>These functions provide access to some useful capabilities on Windows platforms.
+Some higher-level modules use these functions to build the Windows
+implementations of their services. For example, the <a class="reference internal" href="getpass.html#module-getpass" title="getpass: Portable reading of passwords and retrieval of the userid."><code class="xref py py-mod docutils literal notranslate"><span class="pre">getpass</span></code></a> module uses
+this in the implementation of the <a class="reference internal" href="getpass.html#module-getpass" title="getpass: Portable reading of passwords and retrieval of the userid."><code class="xref py py-func docutils literal notranslate"><span class="pre">getpass()</span></code></a> function.</p>
+<p>Further documentation on these functions can be found in the Platform API
+documentation.</p>
+<p>The module implements both the normal and wide char variants of the console I/O
+api. The normal API deals only with ASCII characters and is of limited use
+for internationalized applications. The wide char API should be used where
+ever possible.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.3: </span>Operations in this module now raise <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> where <a class="reference internal" href="exceptions.html#IOError" title="IOError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">IOError</span></code></a>
+was raised.</p>
+</div>
+<section id="file-operations">
+<span id="msvcrt-files"></span><h2>File Operations<a class="headerlink" href="#file-operations" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.locking">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">locking</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbytes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.locking" title="Link to this definition">#</a></dt>
+<dd><p>Lock part of a file based on file descriptor <em>fd</em> from the C runtime. Raises
+<a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> on failure. The locked region of the file extends from the
+current file position for <em>nbytes</em> bytes, and may continue beyond the end of the
+file. <em>mode</em> must be one of the <code class="xref py py-const docutils literal notranslate"><span class="pre">LK_*</span></code> constants listed below. Multiple
+regions in a file may be locked at the same time, but may not overlap. Adjacent
+regions are not merged; they must be unlocked individually.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.LK_LOCK">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LK_LOCK</span></span><a class="headerlink" href="#msvcrt.LK_LOCK" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="msvcrt.LK_RLCK">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LK_RLCK</span></span><a class="headerlink" href="#msvcrt.LK_RLCK" title="Link to this definition">#</a></dt>
+<dd><p>Locks the specified bytes. If the bytes cannot be locked, the program
+immediately tries again after 1 second. If, after 10 attempts, the bytes cannot
+be locked, <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> is raised.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.LK_NBLCK">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LK_NBLCK</span></span><a class="headerlink" href="#msvcrt.LK_NBLCK" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="msvcrt.LK_NBRLCK">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LK_NBRLCK</span></span><a class="headerlink" href="#msvcrt.LK_NBRLCK" title="Link to this definition">#</a></dt>
+<dd><p>Locks the specified bytes. If the bytes cannot be locked, <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> is
+raised.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.LK_UNLCK">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LK_UNLCK</span></span><a class="headerlink" href="#msvcrt.LK_UNLCK" title="Link to this definition">#</a></dt>
+<dd><p>Unlocks the specified bytes, which must have been previously locked.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.setmode">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">setmode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.setmode" title="Link to this definition">#</a></dt>
+<dd><p>Set the line-end translation mode for the file descriptor <em>fd</em>. To set it to
+text mode, <em>flags</em> should be <a class="reference internal" href="os.html#os.O_TEXT" title="os.O_TEXT"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_TEXT</span></code></a>; for binary, it should be
+<a class="reference internal" href="os.html#os.O_BINARY" title="os.O_BINARY"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_BINARY</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.open_osfhandle">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">open_osfhandle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.open_osfhandle" title="Link to this definition">#</a></dt>
+<dd><p>Create a C runtime file descriptor from the file handle <em>handle</em>. The <em>flags</em>
+parameter should be a bitwise OR of <a class="reference internal" href="os.html#os.O_APPEND" title="os.O_APPEND"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_APPEND</span></code></a>,
+<a class="reference internal" href="os.html#os.O_RDONLY" title="os.O_RDONLY"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_RDONLY</span></code></a>, <a class="reference internal" href="os.html#os.O_TEXT" title="os.O_TEXT"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_TEXT</span></code></a> and <a class="reference internal" href="os.html#os.O_NOINHERIT" title="os.O_NOINHERIT"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_NOINHERIT</span></code></a>.
+The returned file descriptor may be used as a parameter
+to <a class="reference internal" href="os.html#os.fdopen" title="os.fdopen"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.fdopen()</span></code></a> to create a file object.</p>
+<p>The file descriptor is inheritable by default. Pass <a class="reference internal" href="os.html#os.O_NOINHERIT" title="os.O_NOINHERIT"><code class="xref py py-const docutils literal notranslate"><span class="pre">os.O_NOINHERIT</span></code></a>
+flag to make it non inheritable.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.get_osfhandle">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">get_osfhandle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.get_osfhandle" title="Link to this definition">#</a></dt>
+<dd><p>Return the file handle for the file descriptor <em>fd</em>. Raises <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a> if
+<em>fd</em> is not recognized.</p>
+</dd></dl>
+
+</section>
+<section id="console-i-o">
+<span id="msvcrt-console"></span><h2>Console I/O<a class="headerlink" href="#console-i-o" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.kbhit">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">kbhit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.kbhit" title="Link to this definition">#</a></dt>
+<dd><p>Returns a nonzero value if a keypress is waiting to be read. Otherwise,
+return 0.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.getch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">getch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.getch" title="Link to this definition">#</a></dt>
+<dd><p>Read a keypress and return the resulting character as a byte string.
+Nothing is echoed to the console. This call will block if a keypress
+is not already available, but will not wait for <kbd class="kbd docutils literal notranslate">Enter</kbd> to be
+pressed. If the pressed key was a special function key, this will
+return <code class="docutils literal notranslate"><span class="pre">'\000'</span></code> or <code class="docutils literal notranslate"><span class="pre">'\xe0'</span></code>; the next call will return the keycode.
+The <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd> keypress cannot be read with this function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.getwch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">getwch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.getwch" title="Link to this definition">#</a></dt>
+<dd><p>Wide char variant of <a class="reference internal" href="#msvcrt.getch" title="msvcrt.getch"><code class="xref py py-func docutils literal notranslate"><span class="pre">getch()</span></code></a>, returning a Unicode value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.getche">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">getche</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.getche" title="Link to this definition">#</a></dt>
+<dd><p>Similar to <a class="reference internal" href="#msvcrt.getch" title="msvcrt.getch"><code class="xref py py-func docutils literal notranslate"><span class="pre">getch()</span></code></a>, but the keypress will be echoed if it represents a
+printable character.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.getwche">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">getwche</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.getwche" title="Link to this definition">#</a></dt>
+<dd><p>Wide char variant of <a class="reference internal" href="#msvcrt.getche" title="msvcrt.getche"><code class="xref py py-func docutils literal notranslate"><span class="pre">getche()</span></code></a>, returning a Unicode value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.putch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">putch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.putch" title="Link to this definition">#</a></dt>
+<dd><p>Print the byte string <em>char</em> to the console without buffering.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.putwch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">putwch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode_char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.putwch" title="Link to this definition">#</a></dt>
+<dd><p>Wide char variant of <a class="reference internal" href="#msvcrt.putch" title="msvcrt.putch"><code class="xref py py-func docutils literal notranslate"><span class="pre">putch()</span></code></a>, accepting a Unicode value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.ungetch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">ungetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.ungetch" title="Link to this definition">#</a></dt>
+<dd><p>Cause the byte string <em>char</em> to be “pushed back” into the console buffer;
+it will be the next character read by <a class="reference internal" href="#msvcrt.getch" title="msvcrt.getch"><code class="xref py py-func docutils literal notranslate"><span class="pre">getch()</span></code></a> or <a class="reference internal" href="#msvcrt.getche" title="msvcrt.getche"><code class="xref py py-func docutils literal notranslate"><span class="pre">getche()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.ungetwch">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">ungetwch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode_char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.ungetwch" title="Link to this definition">#</a></dt>
+<dd><p>Wide char variant of <a class="reference internal" href="#msvcrt.ungetch" title="msvcrt.ungetch"><code class="xref py py-func docutils literal notranslate"><span class="pre">ungetch()</span></code></a>, accepting a Unicode value.</p>
+</dd></dl>
+
+</section>
+<section id="other-functions">
+<span id="msvcrt-other"></span><h2>Other Functions<a class="headerlink" href="#other-functions" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.heapmin">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">heapmin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.heapmin" title="Link to this definition">#</a></dt>
+<dd><p>Force the <code class="xref c c-func docutils literal notranslate"><span class="pre">malloc()</span></code> heap to clean itself up and return unused blocks to
+the operating system. On failure, this raises <a class="reference internal" href="exceptions.html#OSError" title="OSError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">OSError</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.set_error_mode">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">set_error_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.set_error_mode" title="Link to this definition">#</a></dt>
+<dd><p>Changes the location where the C runtime writes an error message for an error
+that might end the program. <em>mode</em> must be one of the <code class="xref py py-const docutils literal notranslate"><span class="pre">OUT_*</span></code>
+constants listed below  or <a class="reference internal" href="#msvcrt.REPORT_ERRMODE" title="msvcrt.REPORT_ERRMODE"><code class="xref py py-const docutils literal notranslate"><span class="pre">REPORT_ERRMODE</span></code></a>. Returns the old setting
+or -1 if an error occurs. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.OUT_TO_DEFAULT">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">OUT_TO_DEFAULT</span></span><a class="headerlink" href="#msvcrt.OUT_TO_DEFAULT" title="Link to this definition">#</a></dt>
+<dd><p>Error sink is determined by the app’s type. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.OUT_TO_STDERR">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">OUT_TO_STDERR</span></span><a class="headerlink" href="#msvcrt.OUT_TO_STDERR" title="Link to this definition">#</a></dt>
+<dd><p>Error sink is a standard error. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.OUT_TO_MSGBOX">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">OUT_TO_MSGBOX</span></span><a class="headerlink" href="#msvcrt.OUT_TO_MSGBOX" title="Link to this definition">#</a></dt>
+<dd><p>Error sink is a message box. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.REPORT_ERRMODE">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">REPORT_ERRMODE</span></span><a class="headerlink" href="#msvcrt.REPORT_ERRMODE" title="Link to this definition">#</a></dt>
+<dd><p>Report the current error mode value. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.CrtSetReportMode">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CrtSetReportMode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.CrtSetReportMode" title="Link to this definition">#</a></dt>
+<dd><p>Specifies the destination or destinations for a specific report type
+generated by <code class="xref c c-func docutils literal notranslate"><span class="pre">_CrtDbgReport()</span></code> in the MS VC++ runtime. <em>type</em> must be
+one of the <code class="xref py py-const docutils literal notranslate"><span class="pre">CRT_*</span></code> constants listed below. <em>mode</em> must be one of the
+<code class="xref py py-const docutils literal notranslate"><span class="pre">CRTDBG_*</span></code> constants listed below. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="msvcrt.CrtSetReportFile">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CrtSetReportFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#msvcrt.CrtSetReportFile" title="Link to this definition">#</a></dt>
+<dd><p>After you use <a class="reference internal" href="#msvcrt.CrtSetReportMode" title="msvcrt.CrtSetReportMode"><code class="xref py py-func docutils literal notranslate"><span class="pre">CrtSetReportMode()</span></code></a> to specify <a class="reference internal" href="#msvcrt.CRTDBG_MODE_FILE" title="msvcrt.CRTDBG_MODE_FILE"><code class="xref py py-const docutils literal notranslate"><span class="pre">CRTDBG_MODE_FILE</span></code></a>,
+you can specify the file handle to receive the message text. <em>type</em> must be
+one of the <code class="xref py py-const docutils literal notranslate"><span class="pre">CRT_*</span></code> constants listed below. <em>file</em> should be the file
+handle your want specified. Only available in
+<a class="reference internal" href="../using/configure.html#debug-build"><span class="std std-ref">debug build of Python</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRT_WARN">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRT_WARN</span></span><a class="headerlink" href="#msvcrt.CRT_WARN" title="Link to this definition">#</a></dt>
+<dd><p>Warnings, messages, and information that doesn’t need immediate attention.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRT_ERROR">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRT_ERROR</span></span><a class="headerlink" href="#msvcrt.CRT_ERROR" title="Link to this definition">#</a></dt>
+<dd><p>Errors, unrecoverable problems, and issues that require immediate attention.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRT_ASSERT">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRT_ASSERT</span></span><a class="headerlink" href="#msvcrt.CRT_ASSERT" title="Link to this definition">#</a></dt>
+<dd><p>Assertion failures.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRTDBG_MODE_DEBUG">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRTDBG_MODE_DEBUG</span></span><a class="headerlink" href="#msvcrt.CRTDBG_MODE_DEBUG" title="Link to this definition">#</a></dt>
+<dd><p>Writes the message to the debugger’s output window.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRTDBG_MODE_FILE">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRTDBG_MODE_FILE</span></span><a class="headerlink" href="#msvcrt.CRTDBG_MODE_FILE" title="Link to this definition">#</a></dt>
+<dd><p>Writes the message to a user-supplied file handle. <a class="reference internal" href="#msvcrt.CrtSetReportFile" title="msvcrt.CrtSetReportFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">CrtSetReportFile()</span></code></a>
+should be called to define the specific file or stream to use as
+the destination.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRTDBG_MODE_WNDW">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRTDBG_MODE_WNDW</span></span><a class="headerlink" href="#msvcrt.CRTDBG_MODE_WNDW" title="Link to this definition">#</a></dt>
+<dd><p>Creates a message box to display the message along with the <code class="docutils literal notranslate"><span class="pre">Abort</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Retry</span></code>, and <code class="docutils literal notranslate"><span class="pre">Ignore</span></code> buttons.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRTDBG_REPORT_MODE">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRTDBG_REPORT_MODE</span></span><a class="headerlink" href="#msvcrt.CRTDBG_REPORT_MODE" title="Link to this definition">#</a></dt>
+<dd><p>Returns current <em>mode</em> for the specified <em>type</em>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.CRT_ASSEMBLY_VERSION">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">CRT_ASSEMBLY_VERSION</span></span><a class="headerlink" href="#msvcrt.CRT_ASSEMBLY_VERSION" title="Link to this definition">#</a></dt>
+<dd><p>The CRT Assembly version, from the <code class="file docutils literal notranslate"><span class="pre">crtassem.h</span></code> header file.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.VC_ASSEMBLY_PUBLICKEYTOKEN">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">VC_ASSEMBLY_PUBLICKEYTOKEN</span></span><a class="headerlink" href="#msvcrt.VC_ASSEMBLY_PUBLICKEYTOKEN" title="Link to this definition">#</a></dt>
+<dd><p>The VC Assembly public key token, from the <code class="file docutils literal notranslate"><span class="pre">crtassem.h</span></code> header file.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="msvcrt.LIBRARIES_ASSEMBLY_NAME_PREFIX">
+<span class="sig-prename descclassname"><span class="pre">msvcrt.</span></span><span class="sig-name descname"><span class="pre">LIBRARIES_ASSEMBLY_NAME_PREFIX</span></span><a class="headerlink" href="#msvcrt.LIBRARIES_ASSEMBLY_NAME_PREFIX" title="Link to this definition">#</a></dt>
+<dd><p>The Libraries Assembly name prefix, from the <code class="file docutils literal notranslate"><span class="pre">crtassem.h</span></code> header file.</p>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-operations">File Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.locking"><code class="docutils literal notranslate"><span class="pre">locking()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_LOCK"><code class="docutils literal notranslate"><span class="pre">LK_LOCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_RLCK"><code class="docutils literal notranslate"><span class="pre">LK_RLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_NBLCK"><code class="docutils literal notranslate"><span class="pre">LK_NBLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_NBRLCK"><code class="docutils literal notranslate"><span class="pre">LK_NBRLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LK_UNLCK"><code class="docutils literal notranslate"><span class="pre">LK_UNLCK</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.setmode"><code class="docutils literal notranslate"><span class="pre">setmode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.open_osfhandle"><code class="docutils literal notranslate"><span class="pre">open_osfhandle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.get_osfhandle"><code class="docutils literal notranslate"><span class="pre">get_osfhandle()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#console-i-o">Console I/O</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.kbhit"><code class="docutils literal notranslate"><span class="pre">kbhit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getch"><code class="docutils literal notranslate"><span class="pre">getch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getwch"><code class="docutils literal notranslate"><span class="pre">getwch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getche"><code class="docutils literal notranslate"><span class="pre">getche()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.getwche"><code class="docutils literal notranslate"><span class="pre">getwche()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.putch"><code class="docutils literal notranslate"><span class="pre">putch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.putwch"><code class="docutils literal notranslate"><span class="pre">putwch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.ungetch"><code class="docutils literal notranslate"><span class="pre">ungetch()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.ungetwch"><code class="docutils literal notranslate"><span class="pre">ungetwch()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">Other Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.heapmin"><code class="docutils literal notranslate"><span class="pre">heapmin()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.set_error_mode"><code class="docutils literal notranslate"><span class="pre">set_error_mode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_DEFAULT"><code class="docutils literal notranslate"><span class="pre">OUT_TO_DEFAULT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_STDERR"><code class="docutils literal notranslate"><span class="pre">OUT_TO_STDERR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.OUT_TO_MSGBOX"><code class="docutils literal notranslate"><span class="pre">OUT_TO_MSGBOX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.REPORT_ERRMODE"><code class="docutils literal notranslate"><span class="pre">REPORT_ERRMODE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CrtSetReportMode"><code class="docutils literal notranslate"><span class="pre">CrtSetReportMode()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CrtSetReportFile"><code class="docutils literal notranslate"><span class="pre">CrtSetReportFile()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_WARN"><code class="docutils literal notranslate"><span class="pre">CRT_WARN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ERROR"><code class="docutils literal notranslate"><span class="pre">CRT_ERROR</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ASSERT"><code class="docutils literal notranslate"><span class="pre">CRT_ASSERT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_DEBUG"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_DEBUG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_FILE"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_FILE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_MODE_WNDW"><code class="docutils literal notranslate"><span class="pre">CRTDBG_MODE_WNDW</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRTDBG_REPORT_MODE"><code class="docutils literal notranslate"><span class="pre">CRTDBG_REPORT_MODE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.CRT_ASSEMBLY_VERSION"><code class="docutils literal notranslate"><span class="pre">CRT_ASSEMBLY_VERSION</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.VC_ASSEMBLY_PUBLICKEYTOKEN"><code class="docutils literal notranslate"><span class="pre">VC_ASSEMBLY_PUBLICKEYTOKEN</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#msvcrt.LIBRARIES_ASSEMBLY_NAME_PREFIX"><code class="docutils literal notranslate"><span class="pre">LIBRARIES_ASSEMBLY_NAME_PREFIX</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

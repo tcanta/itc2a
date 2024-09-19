@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The Python Language Reference &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/reference/index';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/reference/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/reference/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Python Language Reference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="the-python-language-reference">
+<span id="reference-index"></span><h1>The Python Language Reference<a class="headerlink" href="#the-python-language-reference" title="Link to this heading">#</a></h1>
+<p>This reference manual describes the syntax and “core semantics” of the
+language. It is terse, but attempts to be exact and complete. The semantics of
+non-essential built-in object types and of the built-in functions and modules
+are described in <a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">The Python Standard Library</span></a>. For an informal introduction to the
+language, see <a class="reference internal" href="../tutorial/index.html#tutorial-index"><span class="std std-ref">The Python Tutorial</span></a>. For C or C++ programmers, two additional
+manuals exist: <a class="reference internal" href="../extending/index.html#extending-index"><span class="std std-ref">Extending and Embedding the Python Interpreter</span></a> describes the high-level picture of how to
+write a Python extension module, and the <a class="reference internal" href="../c-api/index.html#c-api-index"><span class="std std-ref">Python/C API Reference Manual</span></a> describes the
+interfaces available to C/C++ programmers in detail.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">7. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#alternate-implementations">7.1. Alternate Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#notation">7.2. Notation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lexical_analysis.html">8. Lexical analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#line-structure">8.1. Line structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#other-tokens">8.2. Other tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#identifiers">8.3. Identifiers and keywords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#literals">8.4. Literals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#operators">8.5. Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lexical_analysis.html#delimiters">8.6. Delimiters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datamodel.html">9. Data model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datamodel.html#objects-values-and-types">9.1. Objects, values and types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datamodel.html#the-standard-type-hierarchy">9.2. The standard type hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datamodel.html#special-method-names">9.3. Special method names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datamodel.html#coroutines">9.4. Coroutines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="executionmodel.html">10. Execution model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="executionmodel.html#structure-of-a-program">10.1. Structure of a program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="executionmodel.html#naming-and-binding">10.2. Naming and binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="executionmodel.html#exceptions">10.3. Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="import.html">11. The import system</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="import.html#importlib">11.1. <code class="xref py py-mod docutils literal notranslate"><span class="pre">importlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#packages">11.2. Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#searching">11.3. Searching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#loading">11.4. Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#the-path-based-finder">11.5. The Path Based Finder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#replacing-the-standard-import-system">11.6. Replacing the standard import system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#package-relative-imports">11.7. Package Relative Imports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#special-considerations-for-main">11.8. Special considerations for __main__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import.html#references">11.9. References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">12. Expressions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#arithmetic-conversions">12.1. Arithmetic conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#atoms">12.2. Atoms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#primaries">12.3. Primaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#await-expression">12.4. Await expression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#the-power-operator">12.5. The power operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#unary-arithmetic-and-bitwise-operations">12.6. Unary arithmetic and bitwise operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#binary-arithmetic-operations">12.7. Binary arithmetic operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#shifting-operations">12.8. Shifting operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#binary-bitwise-operations">12.9. Binary bitwise operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#comparisons">12.10. Comparisons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#boolean-operations">12.11. Boolean operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#assignment-expressions">12.12. Assignment expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#conditional-expressions">12.13. Conditional expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#lambda">12.14. Lambdas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#expression-lists">12.15. Expression lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#evaluation-order">12.16. Evaluation order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html#operator-precedence">12.17. Operator precedence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simple_stmts.html">13. Simple statements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#expression-statements">13.1. Expression statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#assignment-statements">13.2. Assignment statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-assert-statement">13.3. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">assert</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-pass-statement">13.4. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">pass</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-del-statement">13.5. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">del</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-return-statement">13.6. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-yield-statement">13.7. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">yield</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-raise-statement">13.8. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-break-statement">13.9. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">break</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-continue-statement">13.10. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">continue</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-import-statement">13.11. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-global-statement">13.12. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-nonlocal-statement">13.13. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple_stmts.html#the-type-statement">13.14. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">type</span></code> statement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compound_stmts.html">14. Compound statements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-if-statement">14.1. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">if</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-while-statement">14.2. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">while</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-for-statement">14.3. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">for</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-try-statement">14.4. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-with-statement">14.5. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#the-match-statement">14.6. The <code class="xref std std-keyword docutils literal notranslate"><span class="pre">match</span></code> statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#function-definitions">14.7. Function definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#class-definitions">14.8. Class definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#coroutines">14.9. Coroutines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compound_stmts.html#type-parameter-lists">14.10. Type parameter lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toplevel_components.html">15. Top-level components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toplevel_components.html#complete-python-programs">15.1. Complete Python programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toplevel_components.html#file-input">15.2. File input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toplevel_components.html#interactive-input">15.3. Interactive input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toplevel_components.html#expression-input">15.4. Expression input</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grammar.html">16. Full Grammar specification</a></li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/reference"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

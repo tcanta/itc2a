@@ -1,0 +1,620 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python VM State &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Python/vm-state';</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Python/vm-state.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/payloads/payload1/Python-3.13.0rc2/Python/vm-state.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python VM State</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python VM State</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-tiers">Definition of Tiers</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-state">Frame state</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-locals-and-evaluation-stack">Fast locals and evaluation stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-pointer">Instruction pointer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tier-2">Tier 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unwinding">Unwinding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumps-in-bytecode">Jumps in bytecode</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-state-and-interpreter-state">Thread state and interpreter state</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tier-2-ir-format">Tier 2 IR format</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-vm-state">
+<h1>Python VM State<a class="headerlink" href="#python-vm-state" title="Link to this heading">#</a></h1>
+<section id="definition-of-tiers">
+<h2>Definition of Tiers<a class="headerlink" href="#definition-of-tiers" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Tier 1</strong> is the classic Python bytecode interpreter.
+This includes the specializing adaptive interpreter described in <a class="reference external" href="https://peps.python.org/pep-0659/">PEP 659</a> and introduced in Python 3.11.</p></li>
+<li><p><strong>Tier 2</strong>, also known as the micro-instruction (“uop”) interpreter, is a new interpreter with a different instruction format.
+It will be introduced in Python 3.13, and also forms the basis for a JIT using copy-and-patch technology that is likely to be introduced at the same time (but, unlike the Tier 2 interpreter, hasn’t landed in the main branch yet).</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="frame-state">
+<h1>Frame state<a class="headerlink" href="#frame-state" title="Link to this heading">#</a></h1>
+<p>Almost all interpreter state is nominally stored in the frame structure.
+A pointer to the current frame is held in <code class="docutils literal notranslate"><span class="pre">frame</span></code>. It contains:</p>
+<ul class="simple">
+<li><p><strong>local variables</strong> (a.k.a. “fast locals”)</p></li>
+<li><p><strong>evaluation stack</strong> (tacked onto the end of the locals)</p></li>
+<li><p><strong>stack top</strong> (an integer giving the top of the evaluation stack)</p></li>
+<li><p><strong>instruction pointer</strong></p></li>
+<li><p><strong>code object</strong>, which holds things like the array of instructions, lists of constants and names referenced by certain instructions, the exception handling table, and the table that translates instruction offsets to line numbers</p></li>
+<li><p><strong>return offset</strong>, only relevant during calls, telling the interpreter where to return</p></li>
+</ul>
+<p>There are some other fields in the frame structure of less importance; notably frames are linked together in a singly-linked list via the <code class="docutils literal notranslate"><span class="pre">previous</span></code> pointer, pointing from callee to caller.
+The frame also holds a pointer to the current function, globals, builtins, and the locals converted to dict (used to support the <code class="docutils literal notranslate"><span class="pre">locals()</span></code> built-in).</p>
+<section id="fast-locals-and-evaluation-stack">
+<h2>Fast locals and evaluation stack<a class="headerlink" href="#fast-locals-and-evaluation-stack" title="Link to this heading">#</a></h2>
+<p>The frame contains a single array of object pointers, <code class="docutils literal notranslate"><span class="pre">localsplus</span></code>, which contains both the fast locals and the stack.
+The top of the stack, including the locals, is indicated by <code class="docutils literal notranslate"><span class="pre">stacktop</span></code>.
+For example, in a function with three locals, if the stack contains one value, <code class="docutils literal notranslate"><span class="pre">frame-&gt;stacktop</span> <span class="pre">==</span> <span class="pre">4</span></code>.</p>
+<p>The interpreters share an implementation which uses the same memory but caches the depth (as a pointer) in a C local, <code class="docutils literal notranslate"><span class="pre">stack_pointer</span></code>.
+We aren’t sure yet exactly how the JIT will implement the stack; likely some of the values near the top of the stack will be held in registers.</p>
+</section>
+<section id="instruction-pointer">
+<h2>Instruction pointer<a class="headerlink" href="#instruction-pointer" title="Link to this heading">#</a></h2>
+<p>The canonical, in-memory, representation of the instruction pointer is <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code>.
+It always points to an instruction in the bytecode array of the frame’s code object.
+Dispatching on <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code> would be very inefficient, so in Tier 1 we cache the upcoming value of <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code> in the C local <code class="docutils literal notranslate"><span class="pre">next_instr</span></code>.</p>
+</section>
+<section id="tier-2">
+<h2>Tier 2<a class="headerlink" href="#tier-2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stack_pointer</span></code> is the same as in Tier 1 (but may be different in the JIT).</p></li>
+<li><p>At runtime we do not need a cache representation of <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code>, as all stores to <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code> are explicit.</p></li>
+<li><p>During optimization we track the value of <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code>, emitting <code class="docutils literal notranslate"><span class="pre">_SET_IP</span></code> whenever <code class="docutils literal notranslate"><span class="pre">frame-&gt;instr_ptr</span></code> would have been updated.</p></li>
+</ul>
+<p>The Tier 2 instruction pointer is strictly internal to the Tier 2 interpreter, so isn’t visible to any other part of the code.</p>
+</section>
+<section id="unwinding">
+<h2>Unwinding<a class="headerlink" href="#unwinding" title="Link to this heading">#</a></h2>
+<p>Unwinding uses exception tables to find the next point at which normal execution can occur, or fail if there are no exception handlers.
+During unwinding both the stack and the instruction pointer should be in their canonical, in-memory representation.</p>
+</section>
+<section id="jumps-in-bytecode">
+<h2>Jumps in bytecode<a class="headerlink" href="#jumps-in-bytecode" title="Link to this heading">#</a></h2>
+<p>The implementation of jumps within a single Tier 2 superblock/trace is just that, an implementation.
+The implementation in the JIT and in the Tier 2 interpreter will necessarily be different.
+What is in common is that representation in the Tier 2 optimizer.</p>
+<p>We need the following types of jumps:</p>
+<ul class="simple">
+<li><p>Conditional branches within the superblock. These must only go forwards and be within the superblock.</p></li>
+<li><p>Terminal exits. These go back to the Tier 1 interpreter and cannot be modified.</p></li>
+<li><p>Loop end jumps. These go backwards, must be within the superblock, cannot be modified, and can only go to the start of the superblock.</p></li>
+<li><p>Patchable exits. These initially exit to code that tracks whether the exit is hot (presumably with a counter) and can be patched.</p></li>
+</ul>
+<p>Currently, we don’t have patchable exits.
+Patching exits should be fairly straightforward in the interpreter.
+It will be more complex in the JIT.</p>
+<p>(We might also consider deoptimizations as a separate jump type.)</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="thread-state-and-interpreter-state">
+<h1>Thread state and interpreter state<a class="headerlink" href="#thread-state-and-interpreter-state" title="Link to this heading">#</a></h1>
+<p>Another important piece of VM state is the <strong>thread state</strong>, held in <code class="docutils literal notranslate"><span class="pre">tstate</span></code>.
+The current frame pointer, <code class="docutils literal notranslate"><span class="pre">frame</span></code>, is always equal to <code class="docutils literal notranslate"><span class="pre">tstate-&gt;current_frame</span></code>.
+The thread state also holds the exception state (<code class="docutils literal notranslate"><span class="pre">tstate-&gt;exc_info</span></code>) and the recursion counters (<code class="docutils literal notranslate"><span class="pre">tstate-&gt;c_recursion_remaining</span></code> and <code class="docutils literal notranslate"><span class="pre">tstate-&gt;py_recursion_remaining</span></code>).</p>
+<p>The thread state is also used to access the <strong>interpreter state</strong> (<code class="docutils literal notranslate"><span class="pre">tstate-&gt;interp</span></code>), which is important since the “eval breaker” flags are stored there (<code class="docutils literal notranslate"><span class="pre">tstate-&gt;interp-&gt;ceval.eval_breaker</span></code>, an “atomic” variable), as well as the “PEP 523 function” (<code class="docutils literal notranslate"><span class="pre">tstate-&gt;interp-&gt;eval_frame</span></code>).
+The interpreter state also holds the optimizer state (<code class="docutils literal notranslate"><span class="pre">optimizer</span></code> and some counters).
+Note that the eval breaker may be moved to the thread state soon as part of the multicore (PEP 703) work.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tier-2-ir-format">
+<h1>Tier 2 IR format<a class="headerlink" href="#tier-2-ir-format" title="Link to this heading">#</a></h1>
+<p>The tier 2 IR (Internal Representation) format is also the basis for the Tier 2 interpreter (though the two formats may eventually differ). This format is also used as the input to the machine code generator (the JIT compiler).</p>
+<p>Tier 2 IR entries are all the same size; there is no equivalent to <code class="docutils literal notranslate"><span class="pre">EXTENDED_ARG</span></code> or trailing inline cache entries. Each instruction is a struct with the following fields (all integers of varying sizes):</p>
+<ul class="simple">
+<li><p><strong>opcode</strong>: Sometimes the same as a Tier 1 opcode, sometimes a separate micro opcode. Tier 2 opcodes are 9 bits (as opposed to Tier 1 opcodes, which fit in 8 bits). By convention, Tier 2 opcode names start with <code class="docutils literal notranslate"><span class="pre">_</span></code>.</p></li>
+<li><p><strong>oparg</strong>: The argument. Usually the same as the Tier 1 oparg after expansion of <code class="docutils literal notranslate"><span class="pre">EXTENDED_ARG</span></code> prefixes. Up to 32 bits.</p></li>
+<li><p><strong>operand</strong>: An aditional argument, Typically the value of <em>one</em> cache item from the Tier 1 inline cache, up to 64 bits.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Python"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python VM State</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-tiers">Definition of Tiers</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-state">Frame state</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-locals-and-evaluation-stack">Fast locals and evaluation stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instruction-pointer">Instruction pointer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tier-2">Tier 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unwinding">Unwinding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumps-in-bytecode">Jumps in bytecode</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thread-state-and-interpreter-state">Thread state and interpreter state</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tier-2-ir-format">Tier 2 IR format</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

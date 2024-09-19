@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Text Processing Services &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/text';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/text.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/text.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Text Processing Services</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="text-processing-services">
+<span id="textservices"></span><span id="stringservices"></span><h1>Text Processing Services<a class="headerlink" href="#text-processing-services" title="Link to this heading">#</a></h1>
+<p>The modules described in this chapter provide a wide range of string
+manipulation operations and other text processing services.</p>
+<p>The <a class="reference internal" href="codecs.html#module-codecs" title="codecs: Encode and decode data and streams."><code class="xref py py-mod docutils literal notranslate"><span class="pre">codecs</span></code></a> module described under <a class="reference internal" href="binary.html#binaryservices"><span class="std std-ref">Binary Data Services</span></a> is also
+highly relevant to text processing. In addition, see the documentation for
+Python’s built-in string type in <a class="reference internal" href="stdtypes.html#textseq"><span class="std std-ref">Text Sequence Type — str</span></a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="string.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">string</span></code> — Common string operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="string.html#string-constants">String constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.ascii_letters"><code class="docutils literal notranslate"><span class="pre">ascii_letters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.ascii_lowercase"><code class="docutils literal notranslate"><span class="pre">ascii_lowercase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.ascii_uppercase"><code class="docutils literal notranslate"><span class="pre">ascii_uppercase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.digits"><code class="docutils literal notranslate"><span class="pre">digits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.hexdigits"><code class="docutils literal notranslate"><span class="pre">hexdigits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.octdigits"><code class="docutils literal notranslate"><span class="pre">octdigits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.punctuation"><code class="docutils literal notranslate"><span class="pre">punctuation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.printable"><code class="docutils literal notranslate"><span class="pre">printable</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.whitespace"><code class="docutils literal notranslate"><span class="pre">whitespace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string.html#custom-string-formatting">Custom String Formatting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.Formatter"><code class="docutils literal notranslate"><span class="pre">Formatter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.format"><code class="docutils literal notranslate"><span class="pre">Formatter.format()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.vformat"><code class="docutils literal notranslate"><span class="pre">Formatter.vformat()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.parse"><code class="docutils literal notranslate"><span class="pre">Formatter.parse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.get_field"><code class="docutils literal notranslate"><span class="pre">Formatter.get_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.get_value"><code class="docutils literal notranslate"><span class="pre">Formatter.get_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.check_unused_args"><code class="docutils literal notranslate"><span class="pre">Formatter.check_unused_args()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.format_field"><code class="docutils literal notranslate"><span class="pre">Formatter.format_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Formatter.convert_field"><code class="docutils literal notranslate"><span class="pre">Formatter.convert_field()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string.html#format-string-syntax">Format String Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string.html#format-specification-mini-language">Format Specification Mini-Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="string.html#format-examples">Format examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string.html#template-strings">Template strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.Template"><code class="docutils literal notranslate"><span class="pre">Template</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Template.substitute"><code class="docutils literal notranslate"><span class="pre">Template.substitute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Template.safe_substitute"><code class="docutils literal notranslate"><span class="pre">Template.safe_substitute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Template.is_valid"><code class="docutils literal notranslate"><span class="pre">Template.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Template.get_identifiers"><code class="docutils literal notranslate"><span class="pre">Template.get_identifiers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="string.html#string.Template.template"><code class="docutils literal notranslate"><span class="pre">Template.template</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="string.html#helper-functions">Helper functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="string.html#string.capwords"><code class="docutils literal notranslate"><span class="pre">capwords()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="re.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">re</span></code> — Regular expression operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="re.html#regular-expression-syntax">Regular Expression Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="re.html#module-contents">Module Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="re.html#flags">Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.RegexFlag"><code class="docutils literal notranslate"><span class="pre">RegexFlag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.A"><code class="docutils literal notranslate"><span class="pre">A</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.ASCII"><code class="docutils literal notranslate"><span class="pre">ASCII</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.DEBUG"><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.I"><code class="docutils literal notranslate"><span class="pre">I</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.IGNORECASE"><code class="docutils literal notranslate"><span class="pre">IGNORECASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.L"><code class="docutils literal notranslate"><span class="pre">L</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.LOCALE"><code class="docutils literal notranslate"><span class="pre">LOCALE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.M"><code class="docutils literal notranslate"><span class="pre">M</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.MULTILINE"><code class="docutils literal notranslate"><span class="pre">MULTILINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.NOFLAG"><code class="docutils literal notranslate"><span class="pre">NOFLAG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.S"><code class="docutils literal notranslate"><span class="pre">S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.DOTALL"><code class="docutils literal notranslate"><span class="pre">DOTALL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.U"><code class="docutils literal notranslate"><span class="pre">U</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.UNICODE"><code class="docutils literal notranslate"><span class="pre">UNICODE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.VERBOSE"><code class="docutils literal notranslate"><span class="pre">VERBOSE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.compile"><code class="docutils literal notranslate"><span class="pre">compile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.match"><code class="docutils literal notranslate"><span class="pre">match()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.fullmatch"><code class="docutils literal notranslate"><span class="pre">fullmatch()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.findall"><code class="docutils literal notranslate"><span class="pre">findall()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.finditer"><code class="docutils literal notranslate"><span class="pre">finditer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.sub"><code class="docutils literal notranslate"><span class="pre">sub()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.subn"><code class="docutils literal notranslate"><span class="pre">subn()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.escape"><code class="docutils literal notranslate"><span class="pre">escape()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.purge"><code class="docutils literal notranslate"><span class="pre">purge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#exceptions">Exceptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="re.html#re.PatternError"><code class="docutils literal notranslate"><span class="pre">PatternError</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="re.html#re.PatternError.msg"><code class="docutils literal notranslate"><span class="pre">PatternError.msg</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="re.html#re.PatternError.pattern"><code class="docutils literal notranslate"><span class="pre">PatternError.pattern</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="re.html#re.PatternError.pos"><code class="docutils literal notranslate"><span class="pre">PatternError.pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="re.html#re.PatternError.lineno"><code class="docutils literal notranslate"><span class="pre">PatternError.lineno</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="re.html#re.PatternError.colno"><code class="docutils literal notranslate"><span class="pre">PatternError.colno</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="re.html#regular-expression-objects">Regular Expression Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.search"><code class="docutils literal notranslate"><span class="pre">Pattern.search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.match"><code class="docutils literal notranslate"><span class="pre">Pattern.match()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.fullmatch"><code class="docutils literal notranslate"><span class="pre">Pattern.fullmatch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.split"><code class="docutils literal notranslate"><span class="pre">Pattern.split()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.findall"><code class="docutils literal notranslate"><span class="pre">Pattern.findall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.finditer"><code class="docutils literal notranslate"><span class="pre">Pattern.finditer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.sub"><code class="docutils literal notranslate"><span class="pre">Pattern.sub()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.subn"><code class="docutils literal notranslate"><span class="pre">Pattern.subn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.flags"><code class="docutils literal notranslate"><span class="pre">Pattern.flags</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.groups"><code class="docutils literal notranslate"><span class="pre">Pattern.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.groupindex"><code class="docutils literal notranslate"><span class="pre">Pattern.groupindex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Pattern.pattern"><code class="docutils literal notranslate"><span class="pre">Pattern.pattern</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="re.html#match-objects">Match Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match"><code class="docutils literal notranslate"><span class="pre">Match</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.expand"><code class="docutils literal notranslate"><span class="pre">Match.expand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.group"><code class="docutils literal notranslate"><span class="pre">Match.group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.__getitem__"><code class="docutils literal notranslate"><span class="pre">Match.__getitem__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.groups"><code class="docutils literal notranslate"><span class="pre">Match.groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.groupdict"><code class="docutils literal notranslate"><span class="pre">Match.groupdict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.start"><code class="docutils literal notranslate"><span class="pre">Match.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.end"><code class="docutils literal notranslate"><span class="pre">Match.end()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.span"><code class="docutils literal notranslate"><span class="pre">Match.span()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.pos"><code class="docutils literal notranslate"><span class="pre">Match.pos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.endpos"><code class="docutils literal notranslate"><span class="pre">Match.endpos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.lastindex"><code class="docutils literal notranslate"><span class="pre">Match.lastindex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.lastgroup"><code class="docutils literal notranslate"><span class="pre">Match.lastgroup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.re"><code class="docutils literal notranslate"><span class="pre">Match.re</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#re.Match.string"><code class="docutils literal notranslate"><span class="pre">Match.string</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="re.html#regular-expression-examples">Regular Expression Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="re.html#checking-for-a-pair">Checking for a Pair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#simulating-scanf">Simulating scanf()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#search-vs-match">search() vs. match()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#making-a-phonebook">Making a Phonebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#text-munging">Text Munging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#finding-all-adverbs">Finding all Adverbs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#finding-all-adverbs-and-their-positions">Finding all Adverbs and their Positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#raw-string-notation">Raw String Notation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="re.html#writing-a-tokenizer">Writing a Tokenizer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="difflib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">difflib</span></code> — Helpers for computing deltas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.Differ"><code class="docutils literal notranslate"><span class="pre">Differ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.HtmlDiff"><code class="docutils literal notranslate"><span class="pre">HtmlDiff</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="difflib.html#difflib.HtmlDiff.__init__"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="difflib.html#difflib.HtmlDiff.make_file"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="difflib.html#difflib.HtmlDiff.make_table"><code class="docutils literal notranslate"><span class="pre">HtmlDiff.make_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.context_diff"><code class="docutils literal notranslate"><span class="pre">context_diff()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.get_close_matches"><code class="docutils literal notranslate"><span class="pre">get_close_matches()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.ndiff"><code class="docutils literal notranslate"><span class="pre">ndiff()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.restore"><code class="docutils literal notranslate"><span class="pre">restore()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.unified_diff"><code class="docutils literal notranslate"><span class="pre">unified_diff()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.diff_bytes"><code class="docutils literal notranslate"><span class="pre">diff_bytes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.IS_LINE_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_LINE_JUNK()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#difflib.IS_CHARACTER_JUNK"><code class="docutils literal notranslate"><span class="pre">IS_CHARACTER_JUNK()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#sequencematcher-objects">SequenceMatcher Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.set_seqs"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seqs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.set_seq1"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.set_seq2"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.set_seq2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.find_longest_match"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.find_longest_match()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.get_matching_blocks"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_matching_blocks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.get_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_opcodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.get_grouped_opcodes"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.get_grouped_opcodes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.quick_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="difflib.html#difflib.SequenceMatcher.real_quick_ratio"><code class="docutils literal notranslate"><span class="pre">SequenceMatcher.real_quick_ratio()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#sequencematcher-examples">SequenceMatcher Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#differ-objects">Differ Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="difflib.html#difflib.Differ.compare"><code class="docutils literal notranslate"><span class="pre">Differ.compare()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#differ-example">Differ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#a-command-line-interface-to-difflib">A command-line interface to difflib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="difflib.html#ndiff-example">ndiff example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="textwrap.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">textwrap</span></code> — Text wrapping and filling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.wrap"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.fill"><code class="docutils literal notranslate"><span class="pre">fill()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.shorten"><code class="docutils literal notranslate"><span class="pre">shorten()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.dedent"><code class="docutils literal notranslate"><span class="pre">dedent()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.indent"><code class="docutils literal notranslate"><span class="pre">indent()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper"><code class="docutils literal notranslate"><span class="pre">TextWrapper</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.width"><code class="docutils literal notranslate"><span class="pre">TextWrapper.width</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.expand_tabs"><code class="docutils literal notranslate"><span class="pre">TextWrapper.expand_tabs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.tabsize"><code class="docutils literal notranslate"><span class="pre">TextWrapper.tabsize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.replace_whitespace"><code class="docutils literal notranslate"><span class="pre">TextWrapper.replace_whitespace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.drop_whitespace"><code class="docutils literal notranslate"><span class="pre">TextWrapper.drop_whitespace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.initial_indent"><code class="docutils literal notranslate"><span class="pre">TextWrapper.initial_indent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.subsequent_indent"><code class="docutils literal notranslate"><span class="pre">TextWrapper.subsequent_indent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.fix_sentence_endings"><code class="docutils literal notranslate"><span class="pre">TextWrapper.fix_sentence_endings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.break_long_words"><code class="docutils literal notranslate"><span class="pre">TextWrapper.break_long_words</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.break_on_hyphens"><code class="docutils literal notranslate"><span class="pre">TextWrapper.break_on_hyphens</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.max_lines"><code class="docutils literal notranslate"><span class="pre">TextWrapper.max_lines</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.placeholder"><code class="docutils literal notranslate"><span class="pre">TextWrapper.placeholder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.wrap"><code class="docutils literal notranslate"><span class="pre">TextWrapper.wrap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="textwrap.html#textwrap.TextWrapper.fill"><code class="docutils literal notranslate"><span class="pre">TextWrapper.fill()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unicodedata.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">unicodedata</span></code> — Unicode Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.lookup"><code class="docutils literal notranslate"><span class="pre">lookup()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.name"><code class="docutils literal notranslate"><span class="pre">name()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.decimal"><code class="docutils literal notranslate"><span class="pre">decimal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.digit"><code class="docutils literal notranslate"><span class="pre">digit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.numeric"><code class="docutils literal notranslate"><span class="pre">numeric()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.category"><code class="docutils literal notranslate"><span class="pre">category()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.bidirectional"><code class="docutils literal notranslate"><span class="pre">bidirectional()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.combining"><code class="docutils literal notranslate"><span class="pre">combining()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.east_asian_width"><code class="docutils literal notranslate"><span class="pre">east_asian_width()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.mirrored"><code class="docutils literal notranslate"><span class="pre">mirrored()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.decomposition"><code class="docutils literal notranslate"><span class="pre">decomposition()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.is_normalized"><code class="docutils literal notranslate"><span class="pre">is_normalized()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.unidata_version"><code class="docutils literal notranslate"><span class="pre">unidata_version</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="unicodedata.html#unicodedata.ucd_3_2_0"><code class="docutils literal notranslate"><span class="pre">ucd_3_2_0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stringprep.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stringprep</span></code> — Internet String Preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_a1"><code class="docutils literal notranslate"><span class="pre">in_table_a1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_b1"><code class="docutils literal notranslate"><span class="pre">in_table_b1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.map_table_b2"><code class="docutils literal notranslate"><span class="pre">map_table_b2()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.map_table_b3"><code class="docutils literal notranslate"><span class="pre">map_table_b3()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c11"><code class="docutils literal notranslate"><span class="pre">in_table_c11()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c12"><code class="docutils literal notranslate"><span class="pre">in_table_c12()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c11_c12"><code class="docutils literal notranslate"><span class="pre">in_table_c11_c12()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c21"><code class="docutils literal notranslate"><span class="pre">in_table_c21()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c22"><code class="docutils literal notranslate"><span class="pre">in_table_c22()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c21_c22"><code class="docutils literal notranslate"><span class="pre">in_table_c21_c22()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c3"><code class="docutils literal notranslate"><span class="pre">in_table_c3()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c4"><code class="docutils literal notranslate"><span class="pre">in_table_c4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c5"><code class="docutils literal notranslate"><span class="pre">in_table_c5()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c6"><code class="docutils literal notranslate"><span class="pre">in_table_c6()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c7"><code class="docutils literal notranslate"><span class="pre">in_table_c7()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c8"><code class="docutils literal notranslate"><span class="pre">in_table_c8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_c9"><code class="docutils literal notranslate"><span class="pre">in_table_c9()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_d1"><code class="docutils literal notranslate"><span class="pre">in_table_d1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="stringprep.html#stringprep.in_table_d2"><code class="docutils literal notranslate"><span class="pre">in_table_d2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="readline.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">readline</span></code> — GNU readline interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#readline.backend"><code class="docutils literal notranslate"><span class="pre">backend</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#init-file">Init file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.parse_and_bind"><code class="docutils literal notranslate"><span class="pre">parse_and_bind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.read_init_file"><code class="docutils literal notranslate"><span class="pre">read_init_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#line-buffer">Line buffer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_line_buffer"><code class="docutils literal notranslate"><span class="pre">get_line_buffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.insert_text"><code class="docutils literal notranslate"><span class="pre">insert_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.redisplay"><code class="docutils literal notranslate"><span class="pre">redisplay()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#history-file">History file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.read_history_file"><code class="docutils literal notranslate"><span class="pre">read_history_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.write_history_file"><code class="docutils literal notranslate"><span class="pre">write_history_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.append_history_file"><code class="docutils literal notranslate"><span class="pre">append_history_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_history_length"><code class="docutils literal notranslate"><span class="pre">get_history_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_history_length"><code class="docutils literal notranslate"><span class="pre">set_history_length()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#history-list">History list</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.clear_history"><code class="docutils literal notranslate"><span class="pre">clear_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_current_history_length"><code class="docutils literal notranslate"><span class="pre">get_current_history_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_history_item"><code class="docutils literal notranslate"><span class="pre">get_history_item()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.remove_history_item"><code class="docutils literal notranslate"><span class="pre">remove_history_item()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.replace_history_item"><code class="docutils literal notranslate"><span class="pre">replace_history_item()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.add_history"><code class="docutils literal notranslate"><span class="pre">add_history()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_auto_history"><code class="docutils literal notranslate"><span class="pre">set_auto_history()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#startup-hooks">Startup hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_startup_hook"><code class="docutils literal notranslate"><span class="pre">set_startup_hook()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_pre_input_hook"><code class="docutils literal notranslate"><span class="pre">set_pre_input_hook()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#completion">Completion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_completer"><code class="docutils literal notranslate"><span class="pre">set_completer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_completer"><code class="docutils literal notranslate"><span class="pre">get_completer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_completion_type"><code class="docutils literal notranslate"><span class="pre">get_completion_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_begidx"><code class="docutils literal notranslate"><span class="pre">get_begidx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_endidx"><code class="docutils literal notranslate"><span class="pre">get_endidx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_completer_delims"><code class="docutils literal notranslate"><span class="pre">set_completer_delims()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.get_completer_delims"><code class="docutils literal notranslate"><span class="pre">get_completer_delims()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="readline.html#readline.set_completion_display_matches_hook"><code class="docutils literal notranslate"><span class="pre">set_completion_display_matches_hook()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readline.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rlcompleter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">rlcompleter</span></code> — Completion function for GNU readline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rlcompleter.html#rlcompleter.Completer"><code class="docutils literal notranslate"><span class="pre">Completer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rlcompleter.html#rlcompleter.Completer.complete"><code class="docutils literal notranslate"><span class="pre">Completer.complete()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

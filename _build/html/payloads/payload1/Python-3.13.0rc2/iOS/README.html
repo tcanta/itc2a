@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python on iOS README &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/iOS/README';</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/iOS/README.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../_sources/payloads/payload1/Python-3.13.0rc2/iOS/README.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python on iOS README</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-for-building-on-ios">Compilers for building on iOS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ios-specific-arguments-to-configure">iOS specific arguments to configure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-python-on-ios">Building Python on iOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abis-and-architectures">ABIs and Architectures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-single-architecture-framework">Building a single-architecture framework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-thin-frameworks-into-fat-frameworks">Merge thin frameworks into fat frameworks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-frameworks-into-an-xcframework">Merge frameworks into an XCframework</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-python-on-ios">Testing Python on iOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-test-failures">Debugging test failures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-on-an-ios-device">Testing on an iOS device</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#running-specific-tests">Running specific tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-automated-breakpoints">Disabling automated breakpoints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-on-ios-readme">
+<h1>Python on iOS README<a class="headerlink" href="#python-on-ios-readme" title="Link to this heading">#</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Russell Keith-Magee (2023-11)</p>
+</dd>
+</dl>
+<p>This document provides a quick overview of some iOS specific features in the
+Python distribution.</p>
+<p>These instructions are only needed if you’re planning to compile Python for iOS
+yourself. Most users should <em>not</em> need to do this. If you’re looking to
+experiment with writing an iOS app in Python, tools such as <a class="reference external" href="https://briefcase.readthedocs.io">BeeWare’s Briefcase</a> and <a class="reference external" href="https://buildozer.readthedocs.io">Kivy’s Buildozer</a> will provide a much more approachable
+user experience.</p>
+<section id="compilers-for-building-on-ios">
+<h2>Compilers for building on iOS<a class="headerlink" href="#compilers-for-building-on-ios" title="Link to this heading">#</a></h2>
+<p>Building for iOS requires the use of Apple’s Xcode tooling. It is strongly
+recommended that you use the most recent stable release of Xcode. This will
+require the use of the most (or second-most) recently released macOS version,
+as Apple does not maintain Xcode for older macOS versions. The Xcode Command
+Line Tools are not sufficient for iOS development; you need a <em>full</em> Xcode
+install.</p>
+<p>If you want to run your code on the iOS simulator, you’ll also need to install
+an iOS Simulator Platform. You should be prompted to select an iOS Simulator
+Platform when you first run Xcode. Alternatively, you can add an iOS Simulator
+Platform by selecting an open the Platforms tab of the Xcode Settings panel.</p>
+</section>
+<section id="ios-specific-arguments-to-configure">
+<h2>iOS specific arguments to configure<a class="headerlink" href="#ios-specific-arguments-to-configure" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--enable-framework[=DIR]</span></code></p>
+<p>This argument specifies the location where the Python.framework will be
+installed. If <code class="docutils literal notranslate"><span class="pre">DIR</span></code> is not specified, the framework will be installed into
+a subdirectory of the <code class="docutils literal notranslate"><span class="pre">iOS/Frameworks</span></code> folder.</p>
+<p>This argument <em>must</em> be provided when configuring iOS builds. iOS does not
+support non-framework builds.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--with-framework-name=NAME</span></code></p>
+<p>Specify the name for the Python framework; defaults to <code class="docutils literal notranslate"><span class="pre">Python</span></code>.</p>
+<div class="admonition-use-this-option-with-care admonition">
+<p class="admonition-title">Use this option with care!</p>
+<p>Unless you know what you’re doing, changing the name of the Python
+framework on iOS is not advised. If you use this option, you won’t be able
+to run the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">testios</span></code> target without making significant manual
+alterations, and you won’t be able to use any binary packages unless you
+compile them yourself using your own framework name.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="building-python-on-ios">
+<h2>Building Python on iOS<a class="headerlink" href="#building-python-on-ios" title="Link to this heading">#</a></h2>
+<section id="abis-and-architectures">
+<h3>ABIs and Architectures<a class="headerlink" href="#abis-and-architectures" title="Link to this heading">#</a></h3>
+<p>iOS apps can be deployed on physical devices, and on the iOS simulator. Although
+the API used on these devices is identical, the ABI is different - you need to
+link against different libraries for an iOS device build (<code class="docutils literal notranslate"><span class="pre">iphoneos</span></code>) or an
+iOS simulator build (<code class="docutils literal notranslate"><span class="pre">iphonesimulator</span></code>).</p>
+<p>Apple uses the <code class="docutils literal notranslate"><span class="pre">XCframework</span></code> format to allow specifying a single dependency
+that supports multiple ABIs. An <code class="docutils literal notranslate"><span class="pre">XCframework</span></code> is a wrapper around multiple
+ABI-specific frameworks that share a common API.</p>
+<p>iOS can also support different CPU architectures within each ABI. At present,
+there is only a single supported architecture on physical devices - ARM64.
+However, the <em>simulator</em> supports 2 architectures - ARM64 (for running on Apple
+Silicon machines), and x86_64 (for running on older Intel-based machines).</p>
+<p>To support multiple CPU architectures on a single platform, Apple uses a “fat
+binary” format - a single physical file that contains support for multiple
+architectures. It is possible to compile and use a “thin” single architecture
+version of a binary for testing purposes; however, the “thin” binary will not be
+portable to machines using other architectures.</p>
+</section>
+<section id="building-a-single-architecture-framework">
+<h3>Building a single-architecture framework<a class="headerlink" href="#building-a-single-architecture-framework" title="Link to this heading">#</a></h3>
+<p>The Python build system will create a <code class="docutils literal notranslate"><span class="pre">Python.framework</span></code> that supports a
+<em>single</em> ABI with a <em>single</em> architecture. Unlike macOS, iOS does not allow a
+framework to contain non-library content, so the iOS build will produce a
+<code class="docutils literal notranslate"><span class="pre">bin</span></code> and <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder in the same output folder as <code class="docutils literal notranslate"><span class="pre">Python.framework</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder will be needed at runtime to support the Python library.</p>
+<p>If you want to use Python in a real iOS project, you need to produce multiple
+<code class="docutils literal notranslate"><span class="pre">Python.framework</span></code> builds, one for each ABI and architecture. iOS builds of
+Python <em>must</em> be constructed as framework builds. To support this, you must
+provide the <code class="docutils literal notranslate"><span class="pre">--enable-framework</span></code> flag when configuring the build. The build
+also requires the use of cross-compilation. The minimal commands for building
+Python for the ARM64 iOS simulator will look something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PATH=&quot;$(pwd)/iOS/Resources/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin&quot;
+$ ./configure \
+      --enable-framework \
+      --host=arm64-apple-ios-simulator \
+      --build=arm64-apple-darwin \
+      --with-build-python=/path/to/python.exe
+$ make
+$ make install
+</pre></div>
+</div>
+<p>In this invocation:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">iOS/Resources/bin</span></code> has been added to the path, providing some shims for the
+compilers and linkers needed by the build. Xcode requires the use of <code class="docutils literal notranslate"><span class="pre">xcrun</span></code>
+to invoke compiler tooling. However, if <code class="docutils literal notranslate"><span class="pre">xcrun</span></code> is pre-evaluated and the
+result passed to <code class="docutils literal notranslate"><span class="pre">configure</span></code>, these results can embed user- and
+version-specific paths into the sysconfig data, which limits the portability
+of the compiled Python. Alternatively, if <code class="docutils literal notranslate"><span class="pre">xcrun</span></code> is used <em>as</em> the compiler,
+it requires that compiler variables like <code class="docutils literal notranslate"><span class="pre">CC</span></code> include spaces, which can
+cause significant problems with many C configuration systems which assume that
+<code class="docutils literal notranslate"><span class="pre">CC</span></code> will be a single executable.</p>
+<p>To work around this problem, the <code class="docutils literal notranslate"><span class="pre">iOS/Resources/bin</span></code> folder contains some
+wrapper scripts that present as simple compilers and linkers, but wrap
+underlying calls to <code class="docutils literal notranslate"><span class="pre">xcrun</span></code>. This allows configure to use a <code class="docutils literal notranslate"><span class="pre">CC</span></code>
+definition without spaces, and without user- or version-specific paths, while
+retaining the ability to adapt to the local Xcode install. These scripts are
+included in the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory of an iOS install.</p>
+<p>These scripts will, by default, use the currently active Xcode installation.
+If you want to use a different Xcode installation, you can use
+<code class="docutils literal notranslate"><span class="pre">xcode-select</span></code> to set a new default Xcode globally, or you can use the
+<code class="docutils literal notranslate"><span class="pre">DEVELOPER_DIR</span></code> environment variable to specify an Xcode install. The
+scripts will use the default <code class="docutils literal notranslate"><span class="pre">iphoneos</span></code>/<code class="docutils literal notranslate"><span class="pre">iphonesimulator</span></code> SDK version for
+the select Xcode install; if you want to use a different SDK, you can set the
+<code class="docutils literal notranslate"><span class="pre">IOS_SDK_VERSION</span></code> environment variable. (e.g, setting
+<code class="docutils literal notranslate"><span class="pre">IOS_SDK_VERSION=17.1</span></code> would cause the scripts to use the <code class="docutils literal notranslate"><span class="pre">iphoneos17.1</span></code>
+and <code class="docutils literal notranslate"><span class="pre">iphonesimulator17.1</span></code> SDKs, regardless of the Xcode default.)</p>
+<p>The path has also been cleared of any user customizations. A common source of
+bugs is for tools like Homebrew to accidentally leak macOS binaries into an iOS
+build. Resetting the path to a known “bare bones” value is the easiest way to
+avoid these problems.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--host</span></code> is the architecture and ABI that you want to build, in GNU compiler
+triple format. This will be one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arm64-apple-ios</span></code> for ARM64 iOS devices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arm64-apple-ios-simulator</span></code> for the iOS simulator running on Apple
+Silicon devices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64-apple-ios-simulator</span></code> for the iOS simulator running on Intel
+devices.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--build</span></code> is the GNU compiler triple for the machine that will be running
+the compiler. This is one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arm64-apple-darwin</span></code> for Apple Silicon devices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x86_64-apple-darwin</span></code> for Intel devices.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/path/to/python.exe</span></code> is the path to a Python binary on the machine that
+will be running the compiler. This is needed because the Python compilation
+process involves running some Python code. On a normal desktop build of
+Python, you can compile a python interpreter and then use that interpreter to
+run Python code. However, the binaries produced for iOS won’t run on macOS, so
+you need to provide an external Python interpreter. This interpreter must be
+the same version as the Python that is being compiled. To be completely safe,
+this should be the <em>exact</em> same commit hash. However, the longer a Python
+release has been stable, the more likely it is that this constraint can be
+relaxed - the same micro version will often be sufficient.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">install</span></code> target for iOS builds is slightly different to other
+platforms. On most platforms, <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> will install the build into
+the final runtime location. This won’t be the case for iOS, as the final
+runtime location will be on a physical device.</p>
+<p>However, you still need to run the <code class="docutils literal notranslate"><span class="pre">install</span></code> target for iOS builds, as it
+performs some final framework assembly steps. The location specified with
+<code class="docutils literal notranslate"><span class="pre">--enable-framework</span></code> will be the location where <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> will
+assemble the complete iOS framework. This completed framework can then
+be copied and relocated as required.</p>
+</li>
+</ul>
+<p>For a full CPython build, you also need to specify the paths to iOS builds of
+the binary libraries that CPython depends on (XZ, BZip2, LibFFI and OpenSSL).
+This can be done by defining the <code class="docutils literal notranslate"><span class="pre">LIBLZMA_CFLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">LIBLZMA_LIBS</span></code>,
+<code class="docutils literal notranslate"><span class="pre">BZIP2_CFLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">BZIP2_LIBS</span></code>, <code class="docutils literal notranslate"><span class="pre">LIBFFI_CFLAGS</span></code>, and <code class="docutils literal notranslate"><span class="pre">LIBFFI_LIBS</span></code>
+environment variables, and the <code class="docutils literal notranslate"><span class="pre">--with-openssl</span></code> configure option. Versions of
+these libraries pre-compiled for iOS can be found in <a class="reference external" href="https://github.com/beeware/cpython-apple-source-deps/releases">this repository</a>. LibFFI is
+especially important, as many parts of the standard library (including the
+<code class="docutils literal notranslate"><span class="pre">platform</span></code>, <code class="docutils literal notranslate"><span class="pre">sysconfig</span></code> and <code class="docutils literal notranslate"><span class="pre">webbrowser</span></code> modules) require the use of the
+<code class="docutils literal notranslate"><span class="pre">ctypes</span></code> module at runtime.</p>
+<p>By default, Python will be compiled with an iOS deployment target (i.e., the
+minimum supported iOS version) of 13.0. To specify a different deployment
+target, provide the version number as part of the <code class="docutils literal notranslate"><span class="pre">--host</span></code> argument - for
+example, <code class="docutils literal notranslate"><span class="pre">--host=arm64-apple-ios15.4-simulator</span></code> would compile an ARM64
+simulator build with a deployment target of 15.4.</p>
+</section>
+<section id="merge-thin-frameworks-into-fat-frameworks">
+<h3>Merge thin frameworks into fat frameworks<a class="headerlink" href="#merge-thin-frameworks-into-fat-frameworks" title="Link to this heading">#</a></h3>
+<p>Once you’ve built a <code class="docutils literal notranslate"><span class="pre">Python.framework</span></code> for each ABI and and architecture, you
+must produce a “fat” framework for each ABI that contains all the architectures
+for that ABI.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">iphoneos</span></code> build only needs to support a single architecture, so it can be
+used without modification.</p>
+<p>If you only want to support a single simulator architecture, (e.g., only support
+ARM64 simulators), you can use a single architecture <code class="docutils literal notranslate"><span class="pre">Python.framework</span></code> build.
+However, if you want to create <code class="docutils literal notranslate"><span class="pre">Python.xcframework</span></code> that supports <em>all</em>
+architectures, you’ll need to merge the <code class="docutils literal notranslate"><span class="pre">iphonesimulator</span></code> builds for ARM64 and
+x86_64 into a single “fat” framework.</p>
+<p>The “fat” framework can be constructed by performing a directory merge of the
+content of the two “thin” <code class="docutils literal notranslate"><span class="pre">Python.framework</span></code> directories, plus the <code class="docutils literal notranslate"><span class="pre">bin</span></code> and
+<code class="docutils literal notranslate"><span class="pre">lib</span></code> folders for each thin framework. When performing this merge:</p>
+<ul>
+<li><p>The pure Python standard library content is identical for each architecture,
+except for a handful of platform-specific files (such as the <code class="docutils literal notranslate"><span class="pre">sysconfig</span></code>
+module). Ensure that the “fat” framework has the union of all standard library
+files.</p></li>
+<li><p>Any binary files in the standard library, plus the main
+<code class="docutils literal notranslate"><span class="pre">libPython3.X.dylib</span></code>, can be merged using the <code class="docutils literal notranslate"><span class="pre">lipo</span></code> tool, provide by
+Xcode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lipo -create -output module.dylib path/to/x86_64/module.dylib path/to/arm64/module.dylib
+</pre></div>
+</div>
+</li>
+<li><p>The header files will be identical on both architectures, except for
+<code class="docutils literal notranslate"><span class="pre">pyconfig.h</span></code>. Copy all the headers from one platform (say, arm64), rename
+<code class="docutils literal notranslate"><span class="pre">pyconfig.h</span></code> to <code class="docutils literal notranslate"><span class="pre">pyconfig-arm64.h</span></code>, and copy the <code class="docutils literal notranslate"><span class="pre">pyconfig.h</span></code> for the
+other architecture into the merged header folder as <code class="docutils literal notranslate"><span class="pre">pyconfig-x86_64.h</span></code>.
+Then copy the <code class="docutils literal notranslate"><span class="pre">iOS/Resources/pyconfig.h</span></code> file from the CPython sources into
+the merged headers folder. This will allow the two Python architectures to
+share a common <code class="docutils literal notranslate"><span class="pre">pyconfig.h</span></code> header file.</p></li>
+</ul>
+<p>At this point, you should have 2 Python.framework folders - one for <code class="docutils literal notranslate"><span class="pre">iphoneos</span></code>,
+and one for <code class="docutils literal notranslate"><span class="pre">iphonesimulator</span></code> that is a merge of x86+64 and ARM64 content.</p>
+</section>
+<section id="merge-frameworks-into-an-xcframework">
+<h3>Merge frameworks into an XCframework<a class="headerlink" href="#merge-frameworks-into-an-xcframework" title="Link to this heading">#</a></h3>
+<p>Now that we have 2 (potentially fat) ABI-specific frameworks, we can merge those
+frameworks into a single <code class="docutils literal notranslate"><span class="pre">XCframework</span></code>.</p>
+<p>The initial skeleton of an <code class="docutils literal notranslate"><span class="pre">XCframework</span></code> is built using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xcodebuild</span> <span class="o">-</span><span class="n">create</span><span class="o">-</span><span class="n">xcframework</span> <span class="o">-</span><span class="n">output</span> <span class="n">Python</span><span class="o">.</span><span class="n">xcframework</span> <span class="o">-</span><span class="n">framework</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphoneos</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span> <span class="o">-</span><span class="n">framework</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphonesimulator</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span>
+</pre></div>
+</div>
+<p>Then, copy the <code class="docutils literal notranslate"><span class="pre">bin</span></code> and <code class="docutils literal notranslate"><span class="pre">lib</span></code> folders into the architecture-specific slices of
+the XCframework:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphoneos</span><span class="o">/</span><span class="nb">bin</span> <span class="n">Python</span><span class="o">.</span><span class="n">xcframework</span><span class="o">/</span><span class="n">ios</span><span class="o">-</span><span class="n">arm64</span>
+<span class="n">cp</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphoneos</span><span class="o">/</span><span class="n">lib</span> <span class="n">Python</span><span class="o">.</span><span class="n">xcframework</span><span class="o">/</span><span class="n">ios</span><span class="o">-</span><span class="n">arm64</span>
+
+<span class="n">cp</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphonesimulator</span><span class="o">/</span><span class="nb">bin</span> <span class="n">Python</span><span class="o">.</span><span class="n">xcframework</span><span class="o">/</span><span class="n">ios</span><span class="o">-</span><span class="n">arm64_x86_64</span><span class="o">-</span><span class="n">simulator</span>
+<span class="n">cp</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">iphonesimulator</span><span class="o">/</span><span class="n">lib</span> <span class="n">Python</span><span class="o">.</span><span class="n">xcframework</span><span class="o">/</span><span class="n">ios</span><span class="o">-</span><span class="n">arm64_x86_64</span><span class="o">-</span><span class="n">simulator</span>
+</pre></div>
+</div>
+<p>Note that the name of the architecture-specific slice for the simulator will
+depend on the CPU architecture(s) that you build.</p>
+<p>You now have a Python.xcframework that can be used in a project.</p>
+</section>
+</section>
+<section id="testing-python-on-ios">
+<h2>Testing Python on iOS<a class="headerlink" href="#testing-python-on-ios" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">iOS/testbed</span></code> folder that contains an Xcode project that is able to run
+the iOS test suite. This project converts the Python test suite into a single
+test case in Xcode’s XCTest framework. The single XCTest passes if the test
+suite passes.</p>
+<p>To run the test suite, configure a Python build for an iOS simulator (i.e.,
+<code class="docutils literal notranslate"><span class="pre">--host=arm64-apple-ios-simulator</span></code> or <code class="docutils literal notranslate"><span class="pre">--host=x86_64-apple-ios-simulator</span></code>
+), specifying a framework build (i.e. <code class="docutils literal notranslate"><span class="pre">--enable-framework</span></code>). Ensure that your
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code> has been configured to include the <code class="docutils literal notranslate"><span class="pre">iOS/Resources/bin</span></code> folder and
+exclude any non-iOS tools, then run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make all
+$ make install
+$ make testios
+</pre></div>
+</div>
+<p>This will:</p>
+<ul class="simple">
+<li><p>Build an iOS framework for your chosen architecture;</p></li>
+<li><p>Finalize the single-platform framework;</p></li>
+<li><p>Make a clean copy of the testbed project;</p></li>
+<li><p>Install the Python iOS framework into the copy of the testbed project; and</p></li>
+<li><p>Run the test suite on an “iPhone SE (3rd generation)” simulator.</p></li>
+</ul>
+<p>While the test suite is running, Xcode does not display any console output.
+After showing some Xcode build commands, the console output will print <code class="docutils literal notranslate"><span class="pre">Testing</span>
+<span class="pre">started</span></code>, and then appear to stop. It will remain in this state until the test
+suite completes. On a 2022 M1 MacBook Pro, the test suite takes approximately 12
+minutes to run; a couple of extra minutes is required to boot and prepare the
+iOS simulator.</p>
+<p>On success, the test suite will exit and report successful completion of the
+test suite. No output of the Python test suite will be displayed.</p>
+<p>On failure, the output of the Python test suite <em>will</em> be displayed. This will
+show the details of the tests that failed.</p>
+<section id="debugging-test-failures">
+<h3>Debugging test failures<a class="headerlink" href="#debugging-test-failures" title="Link to this heading">#</a></h3>
+<p>The easiest way to diagnose a single test failure is to open the testbed project
+in Xcode and run the tests from there using the “Product &gt; Test” menu item.</p>
+<p>To test in Xcode, you must ensure the testbed project has a copy of a compiled
+framework. If you’ve configured your build with the default install location of
+<code class="docutils literal notranslate"><span class="pre">iOS/Frameworks</span></code>, you can copy from that location into the test project. To
+test on an ARM64 simulator, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -rf iOS/testbed/Python.xcframework/ios-arm64_x86_64-simulator/*
+$ cp -r iOS/Frameworks/arm64-iphonesimulator/* iOS/testbed/Python.xcframework/ios-arm64_x86_64-simulator
+</pre></div>
+</div>
+<p>To test on an x86-64 simulator, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -rf iOS/testbed/Python.xcframework/ios-arm64_x86_64-simulator/*
+$ cp -r iOS/Frameworks/x86_64-iphonesimulator/* iOS/testbed/Python.xcframework/ios-arm64_x86_64-simulator
+</pre></div>
+</div>
+<p>To test on a physical device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm -rf iOS/testbed/Python.xcframework/ios-arm64/*
+$ cp -r iOS/Frameworks/arm64-iphoneos/* iOS/testbed/Python.xcframework/ios-arm64
+</pre></div>
+</div>
+<p>Alternatively, you can configure your build to install directly into the
+testbed project. For a simulator, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--enable-framework=$(pwd)/iOS/testbed/Python.xcframework/ios-arm64_x86_64-simulator
+</pre></div>
+</div>
+<p>For a physical device, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--enable-framework=$(pwd)/iOS/testbed/Python.xcframework/ios-arm64
+</pre></div>
+</div>
+<section id="testing-on-an-ios-device">
+<h4>Testing on an iOS device<a class="headerlink" href="#testing-on-an-ios-device" title="Link to this heading">#</a></h4>
+<p>To test on an iOS device, the app needs to be signed with known developer
+credentials. To obtain these credentials, you must have an iOS Developer
+account, and your Xcode install will need to be logged into your account (see
+the Accounts tab of the Preferences dialog).</p>
+<p>Once the project is open, and you’re signed into your Apple Developer account,
+select the root node of the project tree (labeled “iOSTestbed”), then the
+“Signing &amp; Capabilities” tab in the details page. Select a development team
+(this will likely be your own name), and plug in a physical device to your
+macOS machine with a USB cable. You should then be able to select your physical
+device from the list of targets in the pulldown in the Xcode titlebar.</p>
+</section>
+<section id="running-specific-tests">
+<h4>Running specific tests<a class="headerlink" href="#running-specific-tests" title="Link to this heading">#</a></h4>
+<p>As the test suite is being executed on an iOS simulator, it is not possible to
+pass in command line arguments to configure test suite operation. To work around
+this limitation, the arguments that would normally be passed as command line
+arguments are configured as a static string at the start of the XCTest method
+<code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">(void)testPython</span></code> in <code class="docutils literal notranslate"><span class="pre">iOSTestbedTests.m</span></code>. To pass an argument to the test
+suite, add a a string to the <code class="docutils literal notranslate"><span class="pre">argv</span></code> definition. These arguments will be passed
+to the test suite as if they had been passed to <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">test</span></code> at the
+command line.</p>
+</section>
+<section id="disabling-automated-breakpoints">
+<h4>Disabling automated breakpoints<a class="headerlink" href="#disabling-automated-breakpoints" title="Link to this heading">#</a></h4>
+<p>By default, Xcode will inserts an automatic breakpoint whenever a signal is
+raised. The Python test suite raises many of these signals as part of normal
+operation; unless you are trying to diagnose an issue with signals, the
+automatic breakpoints can be inconvenient. However, they can be disabled by
+creating a symbolic breakpoint that is triggered at the start of the test run.</p>
+<p>Select “Debug &gt; Breakpoints &gt; Create Symbolic Breakpoint” from the Xcode menu, and
+populate the new brewpoint with the following details:</p>
+<ul class="simple">
+<li><p><strong>Name</strong>: IgnoreSignals</p></li>
+<li><p><strong>Symbol</strong>: UIApplicationMain</p></li>
+<li><p><strong>Action</strong>: Add debugger commands for:
+- <code class="docutils literal notranslate"><span class="pre">process</span> <span class="pre">handle</span> <span class="pre">SIGINT</span> <span class="pre">-n</span> <span class="pre">true</span> <span class="pre">-p</span> <span class="pre">true</span> <span class="pre">-s</span> <span class="pre">false</span></code>
+- <code class="docutils literal notranslate"><span class="pre">process</span> <span class="pre">handle</span> <span class="pre">SIGUSR1</span> <span class="pre">-n</span> <span class="pre">true</span> <span class="pre">-p</span> <span class="pre">true</span> <span class="pre">-s</span> <span class="pre">false</span></code>
+- <code class="docutils literal notranslate"><span class="pre">process</span> <span class="pre">handle</span> <span class="pre">SIGUSR2</span> <span class="pre">-n</span> <span class="pre">true</span> <span class="pre">-p</span> <span class="pre">true</span> <span class="pre">-s</span> <span class="pre">false</span></code>
+- <code class="docutils literal notranslate"><span class="pre">process</span> <span class="pre">handle</span> <span class="pre">SIGXFSZ</span> <span class="pre">-n</span> <span class="pre">true</span> <span class="pre">-p</span> <span class="pre">true</span> <span class="pre">-s</span> <span class="pre">false</span></code></p></li>
+<li><p>Check the “Automatically continue after evaluating” box.</p></li>
+</ul>
+<p>All other details can be left blank. When the process executes the
+<code class="docutils literal notranslate"><span class="pre">UIApplicationMain</span></code> entry point, the breakpoint will trigger, run the debugger
+commands to disable the automatic breakpoints, and automatically resume.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/iOS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compilers-for-building-on-ios">Compilers for building on iOS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ios-specific-arguments-to-configure">iOS specific arguments to configure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-python-on-ios">Building Python on iOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#abis-and-architectures">ABIs and Architectures</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-single-architecture-framework">Building a single-architecture framework</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-thin-frameworks-into-fat-frameworks">Merge thin frameworks into fat frameworks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-frameworks-into-an-xcframework">Merge frameworks into an XCframework</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-python-on-ios">Testing Python on iOS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-test-failures">Debugging test failures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-on-an-ios-device">Testing on an iOS device</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#running-specific-tests">Running specific tests</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-automated-breakpoints">Disabling automated breakpoints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

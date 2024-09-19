@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python Setup and Usage &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/using/index';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/using/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/using/index.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Setup and Usage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="python-setup-and-usage">
+<span id="using-index"></span><h1>Python Setup and Usage<a class="headerlink" href="#python-setup-and-usage" title="Link to this heading">#</a></h1>
+<p>This part of the documentation is devoted to general information on the setup
+of the Python environment on different platforms, the invocation of the
+interpreter and things that make working with Python easier.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cmdline.html">33. Command line and environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#command-line">33.1. Command line</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#interface-options">33.1.1. Interface options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#generic-options">33.1.2. Generic options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#miscellaneous-options">33.1.3. Miscellaneous options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#controlling-color">33.1.4. Controlling color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#options-you-shouldn-t-use">33.1.5. Options you shouldn’t use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#environment-variables">33.2. Environment variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cmdline.html#debug-mode-variables">33.2.1. Debug-mode variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unix.html">34. Using Python on Unix platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unix.html#getting-and-installing-the-latest-version-of-python">34.1. Getting and installing the latest version of Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unix.html#on-linux">34.1.1. On Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unix.html#on-freebsd-and-openbsd">34.1.2. On FreeBSD and OpenBSD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unix.html#building-python">34.2. Building Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unix.html#python-related-paths-and-files">34.3. Python-related paths and files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unix.html#miscellaneous">34.4. Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unix.html#custom-openssl">34.5. Custom OpenSSL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configure.html">35. Configure Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#build-requirements">35.1. Build Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#generated-files">35.2. Generated files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#configure-script">35.2.1. configure script</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#configure-options">35.3. Configure Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#general-options">35.3.1. General Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#c-compiler-options">35.3.2. C compiler options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#linker-options">35.3.3. Linker options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#options-for-third-party-dependencies">35.3.4. Options for third-party dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#webassembly-options">35.3.5. WebAssembly Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#install-options">35.3.6. Install Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#performance-options">35.3.7. Performance options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#python-debug-build">35.3.8. Python Debug Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#debug-options">35.3.9. Debug options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#id2">35.3.10. Linker options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#libraries-options">35.3.11. Libraries options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#security-options">35.3.12. Security Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#macos-options">35.3.13. macOS Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#ios-options">35.3.14. iOS Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#cross-compiling-options">35.3.15. Cross Compiling Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#python-build-system">35.4. Python Build System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#main-files-of-the-build-system">35.4.1. Main files of the build system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#main-build-steps">35.4.2. Main build steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#main-makefile-targets">35.4.3. Main Makefile targets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make">35.4.3.1. make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-platform">35.4.3.2. make platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-profile-opt">35.4.3.3. make profile-opt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-clean">35.4.3.4. make clean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-distclean">35.4.3.5. make distclean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-install">35.4.3.6. make install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-test">35.4.3.7. make test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-buildbottest">35.4.3.8. make buildbottest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configure.html#make-regen-all">35.4.3.9. make regen-all</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#c-extensions">35.4.4. C extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configure.html#compiler-and-linker-flags">35.5. Compiler and linker flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#preprocessor-flags">35.5.1. Preprocessor flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#compiler-flags">35.5.2. Compiler flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html#linker-flags">35.5.3. Linker flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">36. Using Python on Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#the-full-installer">36.1. The full installer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#installation-steps">36.1.1. Installation steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#removing-the-max-path-limitation">36.1.2. Removing the MAX_PATH Limitation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#installing-without-ui">36.1.3. Installing Without UI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#installing-without-downloading">36.1.4. Installing Without Downloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#modifying-an-install">36.1.5. Modifying an install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#installing-free-threaded-binaries">36.1.6. Installing Free-threaded Binaries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#the-microsoft-store-package">36.2. The Microsoft Store package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#known-issues">36.2.1. Known issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#redirection-of-local-data-registry-and-temporary-paths">36.2.1.1. Redirection of local data, registry, and temporary paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#the-nuget-org-packages">36.3. The nuget.org packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#free-threaded-packages">36.3.1. Free-threaded packages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#the-embeddable-package">36.4. The embeddable package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#python-application">36.4.1. Python Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#embedding-python">36.4.2. Embedding Python</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#alternative-bundles">36.5. Alternative bundles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#configuring-python">36.6. Configuring Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#excursus-setting-environment-variables">36.6.1. Excursus: Setting environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#finding-the-python-executable">36.6.2. Finding the Python executable</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#utf-8-mode">36.7. UTF-8 mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#python-launcher-for-windows">36.8. Python Launcher for Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#getting-started">36.8.1. Getting started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#from-the-command-line">36.8.1.1. From the command-line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#virtual-environments">36.8.1.2. Virtual environments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#from-a-script">36.8.1.3. From a script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#from-file-associations">36.8.1.4. From file associations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#shebang-lines">36.8.2. Shebang Lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#arguments-in-shebang-lines">36.8.3. Arguments in shebang lines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#customization">36.8.4. Customization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#customization-via-ini-files">36.8.4.1. Customization via INI files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="windows.html#customizing-default-python-versions">36.8.4.2. Customizing default Python versions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#diagnostics">36.8.5. Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#dry-run">36.8.6. Dry Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#install-on-demand">36.8.7. Install on demand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#return-codes">36.8.8. Return codes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#finding-modules">36.9. Finding modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#additional-modules">36.10. Additional modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#pywin32">36.10.1. PyWin32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="windows.html#cx-freeze">36.10.2. cx_Freeze</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#compiling-python-on-windows">36.11. Compiling Python on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#other-platforms">36.12. Other Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mac.html">37. Using Python on a Mac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#getting-and-installing-python">37.1. Getting and Installing Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mac.html#how-to-run-a-python-script">37.1.1. How to run a Python script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mac.html#running-scripts-with-a-gui">37.1.2. Running scripts with a GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mac.html#configuration">37.1.3. Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#the-ide">37.2. The IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#installing-additional-python-packages">37.3. Installing Additional Python Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#gui-programming">37.4. GUI Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#distributing-python-applications">37.5. Distributing Python Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mac.html#app-store-compliance">37.5.1. App Store Compliance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mac.html#other-resources">37.6. Other Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ios.html">38. Using Python on iOS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ios.html#python-at-runtime-on-ios">38.1. Python at runtime on iOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#ios-version-compatibility">38.1.1. iOS version compatibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#platform-identification">38.1.2. Platform identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#standard-library-availability">38.1.3. Standard library availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#binary-extension-modules">38.1.4. Binary extension modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#compiler-stub-binaries">38.1.5. Compiler stub binaries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ios.html#installing-python-on-ios">38.2. Installing Python on iOS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#tools-for-building-ios-apps">38.2.1. Tools for building iOS apps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ios.html#adding-python-to-an-ios-project">38.2.2. Adding Python to an iOS project</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ios.html#app-store-compliance">38.3. App Store Compliance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="editors.html">39. Editors and IDEs</a></li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/using"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

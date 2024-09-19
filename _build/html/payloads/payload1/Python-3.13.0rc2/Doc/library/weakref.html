@@ -1,0 +1,1115 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>weakref — Weak references &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/weakref';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/weakref.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/weakref.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>weakref — Weak references</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ref"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ref.__callback__"><code class="docutils literal notranslate"><span class="pre">ref.__callback__</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.proxy"><code class="docutils literal notranslate"><span class="pre">proxy()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.getweakrefcount"><code class="docutils literal notranslate"><span class="pre">getweakrefcount()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.getweakrefs"><code class="docutils literal notranslate"><span class="pre">getweakrefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakKeyDictionary"><code class="docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakKeyDictionary.keyrefs"><code class="docutils literal notranslate"><span class="pre">WeakKeyDictionary.keyrefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakValueDictionary"><code class="docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakValueDictionary.valuerefs"><code class="docutils literal notranslate"><span class="pre">WeakValueDictionary.valuerefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakSet"><code class="docutils literal notranslate"><span class="pre">WeakSet</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakMethod"><code class="docutils literal notranslate"><span class="pre">WeakMethod</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.__call__"><code class="docutils literal notranslate"><span class="pre">finalize.__call__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.detach"><code class="docutils literal notranslate"><span class="pre">finalize.detach()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.peek"><code class="docutils literal notranslate"><span class="pre">finalize.peek()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.alive"><code class="docutils literal notranslate"><span class="pre">finalize.alive</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.atexit"><code class="docutils literal notranslate"><span class="pre">finalize.atexit</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ReferenceType"><code class="docutils literal notranslate"><span class="pre">ReferenceType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ProxyType"><code class="docutils literal notranslate"><span class="pre">ProxyType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.CallableProxyType"><code class="docutils literal notranslate"><span class="pre">CallableProxyType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ProxyTypes"><code class="docutils literal notranslate"><span class="pre">ProxyTypes</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-reference-objects">Weak Reference Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finalizer-objects">Finalizer Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-finalizers-with-del-methods">Comparing finalizers with <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-weakref">
+<span id="weakref-weak-references"></span><span id="mod-weakref"></span><h1><a class="reference internal" href="#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a> — Weak references<a class="headerlink" href="#module-weakref" title="Link to this heading">#</a></h1>
+<p><strong>Source code:</strong> <a href="#id1"><span class="problematic" id="id2">:source:`Lib/weakref.py`</span></a></p>
+<hr class="docutils" />
+<p>The <a class="reference internal" href="#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a> module allows the Python programmer to create <em class="dfn">weak
+references</em> to objects.</p>
+<p>In the following, the term <em class="dfn">referent</em> means the object which is referred to
+by a weak reference.</p>
+<p>A weak reference to an object is not enough to keep the object alive: when the
+only remaining references to a referent are weak references,
+<a class="reference internal" href="../glossary.html#term-garbage-collection"><span class="xref std std-term">garbage collection</span></a> is free to destroy the referent and reuse its memory
+for something else.  However, until the object is actually destroyed the weak
+reference may return the object even if there are no strong references to it.</p>
+<p>A primary use for weak references is to implement caches or
+mappings holding large objects, where it’s desired that a large object not be
+kept alive solely because it appears in a cache or mapping.</p>
+<p>For example, if you have a number of large binary image objects, you may wish to
+associate a name with each.  If you used a Python dictionary to map names to
+images, or images to names, the image objects would remain alive just because
+they appeared as values or keys in the dictionaries.  The
+<a class="reference internal" href="#weakref.WeakKeyDictionary" title="weakref.WeakKeyDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a> and <a class="reference internal" href="#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a> classes supplied by
+the <a class="reference internal" href="#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a> module are an alternative, using weak references to construct
+mappings that don’t keep objects alive solely because they appear in the mapping
+objects.  If, for example, an image object is a value in a
+<a class="reference internal" href="#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a>, then when the last remaining references to that
+image object are the weak references held by weak mappings, garbage collection
+can reclaim the object, and its corresponding entries in weak mappings are
+simply deleted.</p>
+<p><a class="reference internal" href="#weakref.WeakKeyDictionary" title="weakref.WeakKeyDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a> and <a class="reference internal" href="#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a> use weak references
+in their implementation, setting up callback functions on the weak references
+that notify the weak dictionaries when a key or value has been reclaimed by
+garbage collection.  <a class="reference internal" href="#weakref.WeakSet" title="weakref.WeakSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakSet</span></code></a> implements the <a class="reference internal" href="stdtypes.html#set" title="set"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a> interface,
+but keeps weak references to its elements, just like a
+<a class="reference internal" href="#weakref.WeakKeyDictionary" title="weakref.WeakKeyDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a> does.</p>
+<p><a class="reference internal" href="#weakref.finalize" title="weakref.finalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">finalize</span></code></a> provides a straight forward way to register a
+cleanup function to be called when an object is garbage collected.
+This is simpler to use than setting up a callback function on a raw
+weak reference, since the module automatically ensures that the finalizer
+remains alive until the object is collected.</p>
+<p>Most programs should find that using one of these weak container types
+or <a class="reference internal" href="#weakref.finalize" title="weakref.finalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">finalize</span></code></a> is all they need – it’s not usually necessary to
+create your own weak references directly.  The low-level machinery is
+exposed by the <a class="reference internal" href="#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a> module for the benefit of advanced uses.</p>
+<p>Not all objects can be weakly referenced. Objects which support weak references
+include class instances, functions written in Python (but not in C), instance methods,
+sets, frozensets, some <a class="reference internal" href="../glossary.html#term-file-object"><span class="xref std std-term">file objects</span></a>, <a class="reference internal" href="../glossary.html#term-generator"><span class="xref std std-term">generators</span></a>,
+type objects, sockets, arrays, deques, regular expression pattern objects, and code
+objects.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.2: </span>Added support for thread.lock, threading.Lock, and code objects.</p>
+</div>
+<p>Several built-in types such as <a class="reference internal" href="stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a> and <a class="reference internal" href="stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> do not directly
+support weak references but can add support through subclassing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">obj</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">red</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">green</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">blue</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>   <span class="c1"># this object is weak referenceable</span>
+</pre></div>
+</div>
+<p>Extension types can easily be made to support weak references; see
+<a class="reference internal" href="../extending/newtypes.html#weakref-support"><span class="std std-ref">Weak Reference Support</span></a>.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">__slots__</span></code> are defined for a given type, weak reference support is
+disabled unless a <code class="docutils literal notranslate"><span class="pre">'__weakref__'</span></code> string is also present in the sequence of
+strings in the <code class="docutils literal notranslate"><span class="pre">__slots__</span></code> declaration.
+See <a class="reference internal" href="../reference/datamodel.html#slots"><span class="std std-ref">__slots__ documentation</span></a> for details.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.ref">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.ref" title="Link to this definition">#</a></dt>
+<dd><p>Return a weak reference to <em>object</em>.  The original object can be retrieved by
+calling the reference object if the referent is still alive; if the referent is
+no longer alive, calling the reference object will cause <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> to be
+returned.  If <em>callback</em> is provided and not <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>, and the returned
+weakref object is still alive, the callback will be called when the object is
+about to be finalized; the weak reference object will be passed as the only
+parameter to the callback; the referent will no longer be available.</p>
+<p>It is allowable for many weak references to be constructed for the same object.
+Callbacks registered for each weak reference will be called from the most
+recently registered callback to the oldest registered callback.</p>
+<p>Exceptions raised by the callback will be noted on the standard error output,
+but cannot be propagated; they are handled in exactly the same way as exceptions
+raised from an object’s <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> method.</p>
+<p>Weak references are <a class="reference internal" href="../glossary.html#term-hashable"><span class="xref std std-term">hashable</span></a> if the <em>object</em> is hashable.  They will
+maintain their hash value even after the <em>object</em> was deleted.  If
+<a class="reference internal" href="functions.html#hash" title="hash"><code class="xref py py-func docutils literal notranslate"><span class="pre">hash()</span></code></a> is called the first time only after the <em>object</em> was deleted,
+the call will raise <a class="reference internal" href="exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>.</p>
+<p>Weak references support tests for equality, but not ordering.  If the referents
+are still alive, two references have the same equality relationship as their
+referents (regardless of the <em>callback</em>).  If either referent has been deleted,
+the references are equal only if the reference objects are the same object.</p>
+<p>This is a subclassable type rather than a factory function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="weakref.ref.__callback__">
+<span class="sig-name descname"><span class="pre">__callback__</span></span><a class="headerlink" href="#weakref.ref.__callback__" title="Link to this definition">#</a></dt>
+<dd><p>This read-only attribute returns the callback currently associated to the
+weakref.  If there is no callback or if the referent of the weakref is
+no longer alive then this attribute will have value <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>Added the <a class="reference internal" href="#weakref.ref.__callback__" title="weakref.ref.__callback__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__callback__</span></code></a> attribute.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="weakref.proxy">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">proxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.proxy" title="Link to this definition">#</a></dt>
+<dd><p>Return a proxy to <em>object</em> which uses a weak reference.  This supports use of
+the proxy in most contexts instead of requiring the explicit dereferencing used
+with weak reference objects.  The returned object will have a type of either
+<code class="docutils literal notranslate"><span class="pre">ProxyType</span></code> or <code class="docutils literal notranslate"><span class="pre">CallableProxyType</span></code>, depending on whether <em>object</em> is
+callable.  Proxy objects are not <a class="reference internal" href="../glossary.html#term-hashable"><span class="xref std std-term">hashable</span></a> regardless of the referent; this
+avoids a number of problems related to their fundamentally mutable nature, and
+prevents their use as dictionary keys.  <em>callback</em> is the same as the parameter
+of the same name to the <a class="reference internal" href="#weakref.ref" title="weakref.ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">ref()</span></code></a> function.</p>
+<p>Accessing an attribute of the proxy object after the referent is
+garbage collected raises <a class="reference internal" href="exceptions.html#ReferenceError" title="ReferenceError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ReferenceError</span></code></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.8: </span>Extended the operator support on proxy objects to include the matrix
+multiplication operators <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;=</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="weakref.getweakrefcount">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">getweakrefcount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#weakref.getweakrefcount" title="Link to this definition">#</a></dt>
+<dd><p>Return the number of weak references and proxies which refer to <em>object</em>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="weakref.getweakrefs">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">getweakrefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#weakref.getweakrefs" title="Link to this definition">#</a></dt>
+<dd><p>Return a list of all weak reference and proxy objects which refer to <em>object</em>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.WeakKeyDictionary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">WeakKeyDictionary</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakKeyDictionary" title="Link to this definition">#</a></dt>
+<dd><p>Mapping class that references keys weakly.  Entries in the dictionary will be
+discarded when there is no longer a strong reference to the key.  This can be
+used to associate additional data with an object owned by other parts of an
+application without adding attributes to those objects.  This can be especially
+useful with objects that override attribute accesses.</p>
+<p>Note that when a key with equal value to an existing key (but not equal identity)
+is inserted into the dictionary, it replaces the value but does not replace the
+existing key. Due to this, when the reference to the original key is deleted, it
+also deletes the entry in the dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">T</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">T</span><span class="p">(),</span> <span class="n">T</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="n">k1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># d = {k1: 1}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="n">k2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># d = {k1: 2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">k1</span>      <span class="c1"># d = {}</span>
+</pre></div>
+</div>
+<p>A workaround would be to remove the key prior to reassignment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">T</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">T</span><span class="p">(),</span> <span class="n">T</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="n">k1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># d = {k1: 1}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">d</span><span class="p">[</span><span class="n">k1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="p">[</span><span class="n">k2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>   <span class="c1"># d = {k2: 2}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">k1</span>      <span class="c1"># d = {k2: 2}</span>
+</pre></div>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.9: </span>Added support for <code class="docutils literal notranslate"><span class="pre">|</span></code> and <code class="docutils literal notranslate"><span class="pre">|=</span></code> operators, as specified in <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0584/"><strong>PEP 584</strong></a>.</p>
+</div>
+</dd></dl>
+
+<p><a class="reference internal" href="#weakref.WeakKeyDictionary" title="weakref.WeakKeyDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a> objects have an additional method that
+exposes the internal references directly.  The references are not guaranteed to
+be “live” at the time they are used, so the result of calling the references
+needs to be checked before being used.  This can be used to avoid creating
+references that will cause the garbage collector to keep the keys around longer
+than needed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="weakref.WeakKeyDictionary.keyrefs">
+<span class="sig-prename descclassname"><span class="pre">WeakKeyDictionary.</span></span><span class="sig-name descname"><span class="pre">keyrefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakKeyDictionary.keyrefs" title="Link to this definition">#</a></dt>
+<dd><p>Return an iterable of the weak references to the keys.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.WeakValueDictionary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">WeakValueDictionary</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">dict</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakValueDictionary" title="Link to this definition">#</a></dt>
+<dd><p>Mapping class that references values weakly.  Entries in the dictionary will be
+discarded when no strong reference to the value exists any more.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.9: </span>Added support for <code class="docutils literal notranslate"><span class="pre">|</span></code> and <code class="docutils literal notranslate"><span class="pre">|=</span></code> operators, as specified in <span class="target" id="index-1"></span><a class="pep reference external" href="https://peps.python.org/pep-0584/"><strong>PEP 584</strong></a>.</p>
+</div>
+</dd></dl>
+
+<p><a class="reference internal" href="#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a> objects have an additional method that has the
+same issues as the <a class="reference internal" href="#weakref.WeakKeyDictionary.keyrefs" title="weakref.WeakKeyDictionary.keyrefs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">WeakKeyDictionary.keyrefs()</span></code></a> method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="weakref.WeakValueDictionary.valuerefs">
+<span class="sig-prename descclassname"><span class="pre">WeakValueDictionary.</span></span><span class="sig-name descname"><span class="pre">valuerefs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakValueDictionary.valuerefs" title="Link to this definition">#</a></dt>
+<dd><p>Return an iterable of the weak references to the values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.WeakSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">WeakSet</span></span><span class="sig-paren">(</span><span class="optional">[</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakSet" title="Link to this definition">#</a></dt>
+<dd><p>Set class that keeps weak references to its elements.  An element will be
+discarded when no strong reference to it exists any more.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.WeakMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">WeakMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.WeakMethod" title="Link to this definition">#</a></dt>
+<dd><p>A custom <a class="reference internal" href="#weakref.ref" title="weakref.ref"><code class="xref py py-class docutils literal notranslate"><span class="pre">ref</span></code></a> subclass which simulates a weak reference to a bound
+method (i.e., a method defined on a class and looked up on an instance).
+Since a bound method is ephemeral, a standard weak reference cannot keep
+hold of it.  <a class="reference internal" href="#weakref.WeakMethod" title="weakref.WeakMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakMethod</span></code></a> has special code to recreate the bound
+method until either the object or the original function dies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;method called!&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakMethod</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">()</span>
+<span class="go">&lt;bound method C.method of &lt;__main__.C object at 0x7fc859830220&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">()()</span>
+<span class="go">method called!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">c</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p><em>callback</em> is the same as the parameter of the same name to the <a class="reference internal" href="#weakref.ref" title="weakref.ref"><code class="xref py py-func docutils literal notranslate"><span class="pre">ref()</span></code></a> function.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="weakref.finalize">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">finalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#weakref.finalize" title="Link to this definition">#</a></dt>
+<dd><p>Return a callable finalizer object which will be called when <em>obj</em>
+is garbage collected. Unlike an ordinary weak reference, a finalizer
+will always survive until the reference object is collected, greatly
+simplifying lifecycle management.</p>
+<p>A finalizer is considered <em>alive</em> until it is called (either explicitly
+or at garbage collection), and after that it is <em>dead</em>.  Calling a live
+finalizer returns the result of evaluating <code class="docutils literal notranslate"><span class="pre">func(*arg,</span> <span class="pre">**kwargs)</span></code>,
+whereas calling a dead finalizer returns <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
+<p>Exceptions raised by finalizer callbacks during garbage collection
+will be shown on the standard error output, but cannot be
+propagated.  They are handled in the same way as exceptions raised
+from an object’s <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> method or a weak reference’s
+callback.</p>
+<p>When the program exits, each remaining live finalizer is called
+unless its <a class="reference internal" href="atexit.html#module-atexit" title="atexit: Register and execute cleanup functions."><code class="xref py py-attr docutils literal notranslate"><span class="pre">atexit</span></code></a> attribute has been set to false.  They
+are called in reverse order of creation.</p>
+<p>A finalizer will never invoke its callback during the later part of
+the <a class="reference internal" href="../glossary.html#term-interpreter-shutdown"><span class="xref std std-term">interpreter shutdown</span></a> when module globals are liable to have
+been replaced by <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="weakref.finalize.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.finalize.__call__" title="Link to this definition">#</a></dt>
+<dd><p>If <em>self</em> is alive then mark it as dead and return the result of
+calling <code class="docutils literal notranslate"><span class="pre">func(*args,</span> <span class="pre">**kwargs)</span></code>.  If <em>self</em> is dead then return
+<a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="weakref.finalize.detach">
+<span class="sig-name descname"><span class="pre">detach</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.finalize.detach" title="Link to this definition">#</a></dt>
+<dd><p>If <em>self</em> is alive then mark it as dead and return the tuple
+<code class="docutils literal notranslate"><span class="pre">(obj,</span> <span class="pre">func,</span> <span class="pre">args,</span> <span class="pre">kwargs)</span></code>.  If <em>self</em> is dead then return
+<a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="weakref.finalize.peek">
+<span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#weakref.finalize.peek" title="Link to this definition">#</a></dt>
+<dd><p>If <em>self</em> is alive then return the tuple <code class="docutils literal notranslate"><span class="pre">(obj,</span> <span class="pre">func,</span> <span class="pre">args,</span>
+<span class="pre">kwargs)</span></code>.  If <em>self</em> is dead then return <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="weakref.finalize.alive">
+<span class="sig-name descname"><span class="pre">alive</span></span><a class="headerlink" href="#weakref.finalize.alive" title="Link to this definition">#</a></dt>
+<dd><p>Property which is true if the finalizer is alive, false otherwise.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="weakref.finalize.atexit">
+<span class="sig-name descname"><span class="pre">atexit</span></span><a class="headerlink" href="#weakref.finalize.atexit" title="Link to this definition">#</a></dt>
+<dd><p>A writable boolean property which by default is true.  When the
+program exits, it calls all remaining live finalizers for which
+<a class="reference internal" href="#weakref.finalize.atexit" title="weakref.finalize.atexit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">atexit</span></code></a> is true.  They are called in reverse order of
+creation.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to ensure that <em>func</em>, <em>args</em> and <em>kwargs</em> do
+not own any references to <em>obj</em>, either directly or indirectly,
+since otherwise <em>obj</em> will never be garbage collected.  In
+particular, <em>func</em> should not be a bound method of <em>obj</em>.</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="weakref.ReferenceType">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">ReferenceType</span></span><a class="headerlink" href="#weakref.ReferenceType" title="Link to this definition">#</a></dt>
+<dd><p>The type object for weak references objects.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="weakref.ProxyType">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">ProxyType</span></span><a class="headerlink" href="#weakref.ProxyType" title="Link to this definition">#</a></dt>
+<dd><p>The type object for proxies of objects which are not callable.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="weakref.CallableProxyType">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">CallableProxyType</span></span><a class="headerlink" href="#weakref.CallableProxyType" title="Link to this definition">#</a></dt>
+<dd><p>The type object for proxies of callable objects.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="weakref.ProxyTypes">
+<span class="sig-prename descclassname"><span class="pre">weakref.</span></span><span class="sig-name descname"><span class="pre">ProxyTypes</span></span><a class="headerlink" href="#weakref.ProxyTypes" title="Link to this definition">#</a></dt>
+<dd><p>Sequence containing all the type objects for proxies.  This can make it simpler
+to test if an object is a proxy without being dependent on naming both proxy
+types.</p>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><span class="target" id="index-2"></span><a class="pep reference external" href="https://peps.python.org/pep-0205/"><strong>PEP 205</strong></a> - Weak References</dt><dd><p>The proposal and rationale for this feature, including links to earlier
+implementations and information about similar features in other languages.</p>
+</dd>
+</dl>
+</div>
+<section id="weak-reference-objects">
+<span id="weakref-objects"></span><h2>Weak Reference Objects<a class="headerlink" href="#weak-reference-objects" title="Link to this heading">#</a></h2>
+<p>Weak reference objects have no methods and no attributes besides
+<a class="reference internal" href="#weakref.ref.__callback__" title="weakref.ref.__callback__"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ref.__callback__</span></code></a>. A weak reference object allows the referent to be
+obtained, if it still exists, by calling it:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">weakref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Object</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="o">=</span> <span class="n">Object</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o2</span> <span class="o">=</span> <span class="n">r</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="ow">is</span> <span class="n">o2</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>If the referent no longer exists, calling the reference object returns
+<a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">o</span><span class="p">,</span> <span class="n">o2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">())</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p>Testing that a weak reference object is still live should be done using the
+expression <code class="docutils literal notranslate"><span class="pre">ref()</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code>.  Normally, application code that needs to use
+a reference object should follow this pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># r is a weak reference object</span>
+<span class="n">o</span> <span class="o">=</span> <span class="n">r</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">o</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># referent has been garbage collected</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object has been deallocated; can&#39;t frobnicate.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Object is still live!&quot;</span><span class="p">)</span>
+    <span class="n">o</span><span class="o">.</span><span class="n">do_something_useful</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Using a separate test for “liveness” creates race conditions in threaded
+applications; another thread can cause a weak reference to become invalidated
+before the weak reference is called; the idiom shown above is safe in threaded
+applications as well as single-threaded applications.</p>
+<p>Specialized versions of <a class="reference internal" href="#weakref.ref" title="weakref.ref"><code class="xref py py-class docutils literal notranslate"><span class="pre">ref</span></code></a> objects can be created through subclassing.
+This is used in the implementation of the <a class="reference internal" href="#weakref.WeakValueDictionary" title="weakref.WeakValueDictionary"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a> to reduce
+the memory overhead for each entry in the mapping.  This may be most useful to
+associate additional information with a reference, but could also be used to
+insert additional processing on calls to retrieve the referent.</p>
+<p>This example shows how a subclass of <a class="reference internal" href="#weakref.ref" title="weakref.ref"><code class="xref py py-class docutils literal notranslate"><span class="pre">ref</span></code></a> can be used to store
+additional information about an object and affect the value that’s returned when
+the referent is accessed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weakref</span>
+
+<span class="k">class</span> <span class="nc">ExtendedRef</span><span class="p">(</span><span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ob</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">**</span><span class="n">annotations</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">ob</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">annotations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a pair containing the referent and the number of</span>
+<span class="sd">        times the reference has been called.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ob</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ob</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">ob</span> <span class="o">=</span> <span class="p">(</span><span class="n">ob</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__counter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ob</span>
+</pre></div>
+</div>
+</section>
+<section id="example">
+<span id="weakref-example"></span><h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>This simple example shows how an application can use object IDs to retrieve
+objects that it has seen before.  The IDs of the objects can then be used in
+other data structures without forcing the objects to remain alive, but the
+objects can still be retrieved by ID if they do.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weakref</span>
+
+<span class="n">_id2obj_dict</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakValueDictionary</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">remember</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="n">oid</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="n">_id2obj_dict</span><span class="p">[</span><span class="n">oid</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj</span>
+    <span class="k">return</span> <span class="n">oid</span>
+
+<span class="k">def</span> <span class="nf">id2obj</span><span class="p">(</span><span class="n">oid</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_id2obj_dict</span><span class="p">[</span><span class="n">oid</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="finalizer-objects">
+<span id="finalize-examples"></span><h2>Finalizer Objects<a class="headerlink" href="#finalizer-objects" title="Link to this heading">#</a></h2>
+<p>The main benefit of using <a class="reference internal" href="#weakref.finalize" title="weakref.finalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">finalize</span></code></a> is that it makes it simple
+to register a callback without needing to preserve the returned finalizer
+object.  For instance</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">weakref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Object</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kenny</span> <span class="o">=</span> <span class="n">Object</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">kenny</span><span class="p">,</span> <span class="nb">print</span><span class="p">,</span> <span class="s2">&quot;You killed Kenny!&quot;</span><span class="p">)</span>  
+<span class="go">&lt;finalize object at ...; for &#39;Object&#39; at ...&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">kenny</span>
+<span class="go">You killed Kenny!</span>
+</pre></div>
+</div>
+<p>The finalizer can be called directly as well.  However the finalizer
+will invoke the callback at most once.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CALLBACK&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">Object</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">f</span><span class="o">.</span><span class="n">alive</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">f</span><span class="p">()</span> <span class="o">==</span> <span class="mi">6</span>
+<span class="go">CALLBACK</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">alive</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">()</span>                     <span class="c1"># callback not called because finalizer dead</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">obj</span>                 <span class="c1"># callback not called because finalizer dead</span>
+</pre></div>
+</div>
+<p>You can unregister a finalizer using its <a class="reference internal" href="#weakref.finalize.detach" title="weakref.finalize.detach"><code class="xref py py-meth docutils literal notranslate"><span class="pre">detach()</span></code></a>
+method.  This kills the finalizer and returns the arguments passed to
+the constructor when it was created.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">Object</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>                                           
+<span class="go">(&lt;...Object object ...&gt;, &lt;function callback ...&gt;, (1, 2), {&#39;z&#39;: 3})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newobj</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">_</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">alive</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">newobj</span> <span class="ow">is</span> <span class="n">obj</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">6</span>
+<span class="go">CALLBACK</span>
+</pre></div>
+</div>
+<p>Unless you set the <a class="reference internal" href="#weakref.finalize.atexit" title="weakref.finalize.atexit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">atexit</span></code></a> attribute to
+<a class="reference internal" href="constants.html#False" title="False"><code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code></a>, a finalizer will be called when the program exits if it
+is still alive.  For instance</p>
+</section>
+<section id="comparing-finalizers-with-del-methods">
+<h2>Comparing finalizers with <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> methods<a class="headerlink" href="#comparing-finalizers-with-del-methods" title="Link to this heading">#</a></h2>
+<p>Suppose we want to create a class whose instances represent temporary
+directories.  The directories should be deleted with their contents
+when the first of the following events occurs:</p>
+<ul class="simple">
+<li><p>the object is garbage collected,</p></li>
+<li><p>the object’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code> method is called, or</p></li>
+<li><p>the program exits.</p></li>
+</ul>
+<p>We might try to implement the class using a <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> method as
+follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TempDir</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">removed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Starting with Python 3.4, <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> methods no longer prevent
+reference cycles from being garbage collected, and module globals are
+no longer forced to <a class="reference internal" href="constants.html#None" title="None"><code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code></a> during <a class="reference internal" href="../glossary.html#term-interpreter-shutdown"><span class="xref std std-term">interpreter shutdown</span></a>.
+So this code should work without any issues on CPython.</p>
+<p>However, handling of <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> methods is notoriously implementation
+specific, since it depends on internal details of the interpreter’s garbage
+collector implementation.</p>
+<p>A more robust alternative can be to define a finalizer which only references
+the specific functions and objects that it needs, rather than having access
+to the full state of the object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TempDir</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_finalizer</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_finalizer</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">removed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_finalizer</span><span class="o">.</span><span class="n">alive</span>
+</pre></div>
+</div>
+<p>Defined like this, our finalizer only receives a reference to the details
+it needs to clean up the directory appropriately. If the object never gets
+garbage collected the finalizer will still be called at exit.</p>
+<p>The other advantage of weakref based finalizers is that they can be used to
+register finalizers for classes where the definition is controlled by a
+third party, such as running code when a module is unloaded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">weakref</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="k">def</span> <span class="nf">unloading_module</span><span class="p">():</span>
+    <span class="c1"># implicit reference to the module globals from the function body</span>
+<span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">unloading_module</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you create a finalizer object in a daemonic thread just as the program
+exits then there is the possibility that the finalizer
+does not get called at exit.  However, in a daemonic thread
+<a class="reference internal" href="atexit.html#atexit.register" title="atexit.register"><code class="xref py py-func docutils literal notranslate"><span class="pre">atexit.register()</span></code></a>, <code class="docutils literal notranslate"><span class="pre">try:</span> <span class="pre">...</span> <span class="pre">finally:</span> <span class="pre">...</span></code> and <code class="docutils literal notranslate"><span class="pre">with:</span> <span class="pre">...</span></code>
+do not guarantee that cleanup occurs either.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ref"><code class="docutils literal notranslate"><span class="pre">ref</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ref.__callback__"><code class="docutils literal notranslate"><span class="pre">ref.__callback__</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.proxy"><code class="docutils literal notranslate"><span class="pre">proxy()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.getweakrefcount"><code class="docutils literal notranslate"><span class="pre">getweakrefcount()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.getweakrefs"><code class="docutils literal notranslate"><span class="pre">getweakrefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakKeyDictionary"><code class="docutils literal notranslate"><span class="pre">WeakKeyDictionary</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakKeyDictionary.keyrefs"><code class="docutils literal notranslate"><span class="pre">WeakKeyDictionary.keyrefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakValueDictionary"><code class="docutils literal notranslate"><span class="pre">WeakValueDictionary</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakValueDictionary.valuerefs"><code class="docutils literal notranslate"><span class="pre">WeakValueDictionary.valuerefs()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakSet"><code class="docutils literal notranslate"><span class="pre">WeakSet</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.WeakMethod"><code class="docutils literal notranslate"><span class="pre">WeakMethod</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize"><code class="docutils literal notranslate"><span class="pre">finalize</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.__call__"><code class="docutils literal notranslate"><span class="pre">finalize.__call__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.detach"><code class="docutils literal notranslate"><span class="pre">finalize.detach()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.peek"><code class="docutils literal notranslate"><span class="pre">finalize.peek()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.alive"><code class="docutils literal notranslate"><span class="pre">finalize.alive</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.finalize.atexit"><code class="docutils literal notranslate"><span class="pre">finalize.atexit</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ReferenceType"><code class="docutils literal notranslate"><span class="pre">ReferenceType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ProxyType"><code class="docutils literal notranslate"><span class="pre">ProxyType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.CallableProxyType"><code class="docutils literal notranslate"><span class="pre">CallableProxyType</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weakref.ProxyTypes"><code class="docutils literal notranslate"><span class="pre">ProxyTypes</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weak-reference-objects">Weak Reference Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finalizer-objects">Finalizer Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-finalizers-with-del-methods">Comparing finalizers with <code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code> methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

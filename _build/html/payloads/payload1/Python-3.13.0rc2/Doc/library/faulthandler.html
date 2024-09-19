@@ -1,0 +1,728 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>faulthandler — Dump the Python traceback &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/faulthandler';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/faulthandler.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/faulthandler.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>faulthandler — Dump the Python traceback</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-traceback">Dumping the traceback</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.dump_traceback"><code class="docutils literal notranslate"><span class="pre">dump_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fault-handler-state">Fault handler state</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.enable"><code class="docutils literal notranslate"><span class="pre">enable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.disable"><code class="docutils literal notranslate"><span class="pre">disable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.is_enabled"><code class="docutils literal notranslate"><span class="pre">is_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-tracebacks-after-a-timeout">Dumping the tracebacks after a timeout</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.dump_traceback_later"><code class="docutils literal notranslate"><span class="pre">dump_traceback_later()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.cancel_dump_traceback_later"><code class="docutils literal notranslate"><span class="pre">cancel_dump_traceback_later()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-traceback-on-a-user-signal">Dumping the traceback on a user signal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.unregister"><code class="docutils literal notranslate"><span class="pre">unregister()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-file-descriptors">Issue with file descriptors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-faulthandler">
+<span id="faulthandler-dump-the-python-traceback"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">faulthandler</span></code> — Dump the Python traceback<a class="headerlink" href="#module-faulthandler" title="Link to this heading">#</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.3.</span></p>
+</div>
+<hr class="docutils" />
+<p>This module contains functions to dump Python tracebacks explicitly, on a fault,
+after a timeout, or on a user signal. Call <a class="reference internal" href="#faulthandler.enable" title="faulthandler.enable"><code class="xref py py-func docutils literal notranslate"><span class="pre">faulthandler.enable()</span></code></a> to
+install fault handlers for the <a class="reference internal" href="signal.html#signal.SIGSEGV" title="signal.SIGSEGV"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGSEGV</span></code></a>,
+<a class="reference internal" href="signal.html#signal.SIGFPE" title="signal.SIGFPE"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGFPE</span></code></a>, <a class="reference internal" href="signal.html#signal.SIGABRT" title="signal.SIGABRT"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGABRT</span></code></a>, <a class="reference internal" href="signal.html#signal.SIGBUS" title="signal.SIGBUS"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGBUS</span></code></a>, and
+<a class="reference internal" href="signal.html#signal.SIGILL" title="signal.SIGILL"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGILL</span></code></a> signals. You can also
+enable them at startup by setting the <span class="target" id="index-0"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONFAULTHANDLER"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONFAULTHANDLER</span></code></a> environment
+variable or by using the <a class="reference internal" href="../using/cmdline.html#cmdoption-X"><code class="xref std std-option docutils literal notranslate"><span class="pre">-X</span></code></a> <code class="docutils literal notranslate"><span class="pre">faulthandler</span></code> command line option.</p>
+<p>The fault handler is compatible with system fault handlers like Apport or the
+Windows fault handler. The module uses an alternative stack for signal handlers
+if the <code class="xref c c-func docutils literal notranslate"><span class="pre">sigaltstack()</span></code> function is available. This allows it to dump the
+traceback even on a stack overflow.</p>
+<p>The fault handler is called on catastrophic cases and therefore can only use
+signal-safe functions (e.g. it cannot allocate memory on the heap). Because of
+this limitation traceback dumping is minimal compared to normal Python
+tracebacks:</p>
+<ul class="simple">
+<li><p>Only ASCII is supported. The <code class="docutils literal notranslate"><span class="pre">backslashreplace</span></code> error handler is used on
+encoding.</p></li>
+<li><p>Each string is limited to 500 characters.</p></li>
+<li><p>Only the filename, the function name and the line number are
+displayed. (no source code)</p></li>
+<li><p>It is limited to 100 frames and 100 threads.</p></li>
+<li><p>The order is reversed: the most recent call is shown first.</p></li>
+</ul>
+<p>By default, the Python traceback is written to <a class="reference internal" href="sys.html#sys.stderr" title="sys.stderr"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>. To see
+tracebacks, applications must be run in the terminal. A log file can
+alternatively be passed to <a class="reference internal" href="#faulthandler.enable" title="faulthandler.enable"><code class="xref py py-func docutils literal notranslate"><span class="pre">faulthandler.enable()</span></code></a>.</p>
+<p>The module is implemented in C, so tracebacks can be dumped on a crash or when
+Python is deadlocked.</p>
+<p>The <a class="reference internal" href="devmode.html#devmode"><span class="std std-ref">Python Development Mode</span></a> calls <a class="reference internal" href="#faulthandler.enable" title="faulthandler.enable"><code class="xref py py-func docutils literal notranslate"><span class="pre">faulthandler.enable()</span></code></a>
+at Python startup.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt>Module <a class="reference internal" href="pdb.html#module-pdb" title="pdb: The Python debugger for interactive interpreters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">pdb</span></code></a></dt><dd><p>Interactive source code debugger for Python programs.</p>
+</dd>
+<dt>Module <a class="reference internal" href="traceback.html#module-traceback" title="traceback: Print or retrieve a stack traceback."><code class="xref py py-mod docutils literal notranslate"><span class="pre">traceback</span></code></a></dt><dd><p>Standard interface to extract, format and print stack traces of Python programs.</p>
+</dd>
+</dl>
+</div>
+<section id="dumping-the-traceback">
+<h2>Dumping the traceback<a class="headerlink" href="#dumping-the-traceback" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.dump_traceback">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">dump_traceback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.dump_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Dump the tracebacks of all threads into <em>file</em>. If <em>all_threads</em> is
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, dump only the current thread.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="traceback.html#traceback.print_tb" title="traceback.print_tb"><code class="xref py py-func docutils literal notranslate"><span class="pre">traceback.print_tb()</span></code></a>, which can be used to print a traceback object.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Added support for passing file descriptor to this function.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="fault-handler-state">
+<h2>Fault handler state<a class="headerlink" href="#fault-handler-state" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.enable">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.enable" title="Link to this definition">#</a></dt>
+<dd><p>Enable the fault handler: install handlers for the <a class="reference internal" href="signal.html#signal.SIGSEGV" title="signal.SIGSEGV"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGSEGV</span></code></a>,
+<a class="reference internal" href="signal.html#signal.SIGFPE" title="signal.SIGFPE"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGFPE</span></code></a>, <a class="reference internal" href="signal.html#signal.SIGABRT" title="signal.SIGABRT"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGABRT</span></code></a>, <a class="reference internal" href="signal.html#signal.SIGBUS" title="signal.SIGBUS"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGBUS</span></code></a>
+and <a class="reference internal" href="signal.html#signal.SIGILL" title="signal.SIGILL"><code class="xref py py-const docutils literal notranslate"><span class="pre">SIGILL</span></code></a>
+signals to dump the Python traceback. If <em>all_threads</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+produce tracebacks for every running thread. Otherwise, dump only the current
+thread.</p>
+<p>The <em>file</em> must be kept open until the fault handler is disabled: see
+<a class="reference internal" href="#faulthandler-fd"><span class="std std-ref">issue with file descriptors</span></a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Added support for passing file descriptor to this function.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.6: </span>On Windows, a handler for Windows exception is also installed.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.10: </span>The dump now mentions if a garbage collector collection is running
+if <em>all_threads</em> is true.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.disable">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.disable" title="Link to this definition">#</a></dt>
+<dd><p>Disable the fault handler: uninstall the signal handlers installed by
+<a class="reference internal" href="#faulthandler.enable" title="faulthandler.enable"><code class="xref py py-func docutils literal notranslate"><span class="pre">enable()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.is_enabled">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">is_enabled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.is_enabled" title="Link to this definition">#</a></dt>
+<dd><p>Check if the fault handler is enabled.</p>
+</dd></dl>
+
+</section>
+<section id="dumping-the-tracebacks-after-a-timeout">
+<h2>Dumping the tracebacks after a timeout<a class="headerlink" href="#dumping-the-tracebacks-after-a-timeout" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.dump_traceback_later">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">dump_traceback_later</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.dump_traceback_later" title="Link to this definition">#</a></dt>
+<dd><p>Dump the tracebacks of all threads, after a timeout of <em>timeout</em> seconds, or
+every <em>timeout</em> seconds if <em>repeat</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.  If <em>exit</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, call
+<code class="xref c c-func docutils literal notranslate"><span class="pre">_exit()</span></code> with status=1 after dumping the tracebacks.  (Note
+<code class="xref c c-func docutils literal notranslate"><span class="pre">_exit()</span></code> exits the process immediately, which means it doesn’t do any
+cleanup like flushing file buffers.) If the function is called twice, the new
+call replaces previous parameters and resets the timeout. The timer has a
+sub-second resolution.</p>
+<p>The <em>file</em> must be kept open until the traceback is dumped or
+<a class="reference internal" href="#faulthandler.cancel_dump_traceback_later" title="faulthandler.cancel_dump_traceback_later"><code class="xref py py-func docutils literal notranslate"><span class="pre">cancel_dump_traceback_later()</span></code></a> is called: see <a class="reference internal" href="#faulthandler-fd"><span class="std std-ref">issue with file
+descriptors</span></a>.</p>
+<p>This function is implemented using a watchdog thread.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Added support for passing file descriptor to this function.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>This function is now always available.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.cancel_dump_traceback_later">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">cancel_dump_traceback_later</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.cancel_dump_traceback_later" title="Link to this definition">#</a></dt>
+<dd><p>Cancel the last call to <a class="reference internal" href="#faulthandler.dump_traceback_later" title="faulthandler.dump_traceback_later"><code class="xref py py-func docutils literal notranslate"><span class="pre">dump_traceback_later()</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="dumping-the-traceback-on-a-user-signal">
+<h2>Dumping the traceback on a user signal<a class="headerlink" href="#dumping-the-traceback-on-a-user-signal" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.register">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">sys.stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.register" title="Link to this definition">#</a></dt>
+<dd><p>Register a user signal: install a handler for the <em>signum</em> signal to dump
+the traceback of all threads, or of the current thread if <em>all_threads</em> is
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, into <em>file</em>. Call the previous handler if chain is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>The <em>file</em> must be kept open until the signal is unregistered by
+<a class="reference internal" href="#faulthandler.unregister" title="faulthandler.unregister"><code class="xref py py-func docutils literal notranslate"><span class="pre">unregister()</span></code></a>: see <a class="reference internal" href="#faulthandler-fd"><span class="std std-ref">issue with file descriptors</span></a>.</p>
+<p>Not available on Windows.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.5: </span>Added support for passing file descriptor to this function.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="faulthandler.unregister">
+<span class="sig-prename descclassname"><span class="pre">faulthandler.</span></span><span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#faulthandler.unregister" title="Link to this definition">#</a></dt>
+<dd><p>Unregister a user signal: uninstall the handler of the <em>signum</em> signal
+installed by <a class="reference internal" href="#faulthandler.register" title="faulthandler.register"><code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code></a>. Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the signal was registered,
+<code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p>Not available on Windows.</p>
+</dd></dl>
+
+</section>
+<section id="issue-with-file-descriptors">
+<span id="faulthandler-fd"></span><h2>Issue with file descriptors<a class="headerlink" href="#issue-with-file-descriptors" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#faulthandler.enable" title="faulthandler.enable"><code class="xref py py-func docutils literal notranslate"><span class="pre">enable()</span></code></a>, <a class="reference internal" href="#faulthandler.dump_traceback_later" title="faulthandler.dump_traceback_later"><code class="xref py py-func docutils literal notranslate"><span class="pre">dump_traceback_later()</span></code></a> and <a class="reference internal" href="#faulthandler.register" title="faulthandler.register"><code class="xref py py-func docutils literal notranslate"><span class="pre">register()</span></code></a> keep the
+file descriptor of their <em>file</em> argument. If the file is closed and its file
+descriptor is reused by a new file, or if <a class="reference internal" href="os.html#os.dup2" title="os.dup2"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.dup2()</span></code></a> is used to replace
+the file descriptor, the traceback will be written into a different file. Call
+these functions again each time that the file is replaced.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>Example of a segmentation fault on Linux with and without enabling the fault
+handler:</p>
+<div class="highlight-shell-session notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import ctypes; ctypes.string_at(0)&quot;</span>
+<span class="go">Segmentation fault</span>
+
+<span class="gp">$ </span>python<span class="w"> </span>-q<span class="w"> </span>-X<span class="w"> </span>faulthandler
+<span class="go">&gt;&gt;&gt; import ctypes</span>
+<span class="go">&gt;&gt;&gt; ctypes.string_at(0)</span>
+<span class="go">Fatal Python error: Segmentation fault</span>
+
+<span class="go">Current thread 0x00007fb899f39700 (most recent call first):</span>
+<span class="go">  File &quot;/home/python/cpython/Lib/ctypes/__init__.py&quot;, line 486 in string_at</span>
+<span class="go">  File &quot;&lt;stdin&gt;&quot;, line 1 in &lt;module&gt;</span>
+<span class="go">Segmentation fault</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-traceback">Dumping the traceback</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.dump_traceback"><code class="docutils literal notranslate"><span class="pre">dump_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fault-handler-state">Fault handler state</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.enable"><code class="docutils literal notranslate"><span class="pre">enable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.disable"><code class="docutils literal notranslate"><span class="pre">disable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.is_enabled"><code class="docutils literal notranslate"><span class="pre">is_enabled()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-tracebacks-after-a-timeout">Dumping the tracebacks after a timeout</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.dump_traceback_later"><code class="docutils literal notranslate"><span class="pre">dump_traceback_later()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.cancel_dump_traceback_later"><code class="docutils literal notranslate"><span class="pre">cancel_dump_traceback_later()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dumping-the-traceback-on-a-user-signal">Dumping the traceback on a user signal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faulthandler.unregister"><code class="docutils literal notranslate"><span class="pre">unregister()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-with-file-descriptors">Issue with file descriptors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

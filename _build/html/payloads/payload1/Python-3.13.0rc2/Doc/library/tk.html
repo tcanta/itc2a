@@ -1,0 +1,879 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Graphical User Interfaces with Tk &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/tk';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/tk.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/tk.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Graphical User Interfaces with Tk</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="graphical-user-interfaces-with-tk">
+<span id="tkinter"></span><h1>Graphical User Interfaces with Tk<a class="headerlink" href="#graphical-user-interfaces-with-tk" title="Link to this heading">#</a></h1>
+<p id="index-0">Tk/Tcl has long been an integral part of Python.  It provides a robust and
+platform independent windowing toolkit, that is available to Python programmers
+using the <a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> package, and its extension, the <a class="reference internal" href="tkinter.ttk.html#module-tkinter.ttk" title="tkinter.ttk: Tk themed widget set"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.ttk</span></code></a> module.</p>
+<p>The <a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> package is a thin object-oriented layer on top of Tcl/Tk. To
+use <a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a>, you don’t need to write Tcl code, but you will need to
+consult the Tk documentation, and occasionally the Tcl documentation.
+<a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> is a set of wrappers that implement the Tk widgets as Python
+classes.</p>
+<p><a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a>’s chief virtues are that it is fast, and that it usually comes
+bundled with Python. Although its standard documentation is weak, good
+material is available, which includes: references, tutorials, a book and
+others. <a class="reference internal" href="tkinter.html#module-tkinter" title="tkinter: Interface to Tcl/Tk for graphical user interfaces"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code></a> is also famous for having an outdated look and feel,
+which has been vastly improved in Tk 8.5. Nevertheless, there are many other
+GUI libraries that you could be interested in. The Python wiki lists several
+alternative <a class="reference external" href="https://wiki.python.org/moin/GuiProgramming">GUI frameworks and tools</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter</span></code> — Python interface to Tcl/Tk</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#tkinter-modules">Tkinter Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.Tk"><code class="docutils literal notranslate"><span class="pre">Tk</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.html#tkinter.Tk.tk"><code class="docutils literal notranslate"><span class="pre">Tk.tk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.html#tkinter.Tk.master"><code class="docutils literal notranslate"><span class="pre">Tk.master</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.html#tkinter.Tk.children"><code class="docutils literal notranslate"><span class="pre">Tk.children</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.Tcl"><code class="docutils literal notranslate"><span class="pre">Tcl()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#tkinter-life-preserver">Tkinter Life Preserver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#a-hello-world-program">A Hello World Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#important-tk-concepts">Important Tk Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#understanding-how-tkinter-wraps-tcl-tk">Understanding How Tkinter Wraps Tcl/Tk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#how-do-i-what-option-does">How do I…? What option does…?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#navigating-the-tcl-tk-reference-manual">Navigating the Tcl/Tk Reference Manual</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#threading-model">Threading model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#handy-reference">Handy Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#setting-options">Setting Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#the-packer">The Packer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#packer-options">Packer Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#coupling-widget-variables">Coupling Widget Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#the-window-manager">The Window Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tk-option-data-types">Tk Option Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#bindings-and-events">Bindings and Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#the-index-parameter">The index Parameter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#images">Images</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.html#file-handlers">File Handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.Widget.tk.createfilehandler"><code class="docutils literal notranslate"><span class="pre">Widget.tk.createfilehandler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.Widget.tk.deletefilehandler"><code class="docutils literal notranslate"><span class="pre">Widget.tk.deletefilehandler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.READABLE"><code class="docutils literal notranslate"><span class="pre">READABLE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.WRITABLE"><code class="docutils literal notranslate"><span class="pre">WRITABLE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.html#tkinter.EXCEPTION"><code class="docutils literal notranslate"><span class="pre">EXCEPTION</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.colorchooser.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.colorchooser</span></code> — Color choosing dialog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.colorchooser.html#tkinter.colorchooser.Chooser"><code class="docutils literal notranslate"><span class="pre">Chooser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.colorchooser.html#tkinter.colorchooser.askcolor"><code class="docutils literal notranslate"><span class="pre">askcolor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.font.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.font</span></code> — Tkinter font wrapper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.NORMAL"><code class="docutils literal notranslate"><span class="pre">NORMAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.BOLD"><code class="docutils literal notranslate"><span class="pre">BOLD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.ITALIC"><code class="docutils literal notranslate"><span class="pre">ITALIC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.ROMAN"><code class="docutils literal notranslate"><span class="pre">ROMAN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font"><code class="docutils literal notranslate"><span class="pre">Font</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.actual"><code class="docutils literal notranslate"><span class="pre">Font.actual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.cget"><code class="docutils literal notranslate"><span class="pre">Font.cget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.config"><code class="docutils literal notranslate"><span class="pre">Font.config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.copy"><code class="docutils literal notranslate"><span class="pre">Font.copy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.measure"><code class="docutils literal notranslate"><span class="pre">Font.measure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.font.html#tkinter.font.Font.metrics"><code class="docutils literal notranslate"><span class="pre">Font.metrics()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.families"><code class="docutils literal notranslate"><span class="pre">families()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.names"><code class="docutils literal notranslate"><span class="pre">names()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.font.html#tkinter.font.nametofont"><code class="docutils literal notranslate"><span class="pre">nametofont()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialog.html">Tkinter Dialogs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialog.html#module-tkinter.simpledialog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.simpledialog</span></code> — Standard Tkinter input dialogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#tkinter.simpledialog.askfloat"><code class="docutils literal notranslate"><span class="pre">askfloat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#tkinter.simpledialog.askinteger"><code class="docutils literal notranslate"><span class="pre">askinteger()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#tkinter.simpledialog.askstring"><code class="docutils literal notranslate"><span class="pre">askstring()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#tkinter.simpledialog.Dialog"><code class="docutils literal notranslate"><span class="pre">Dialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.simpledialog.Dialog.body"><code class="docutils literal notranslate"><span class="pre">Dialog.body()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.simpledialog.Dialog.buttonbox"><code class="docutils literal notranslate"><span class="pre">Dialog.buttonbox()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialog.html#module-tkinter.filedialog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.filedialog</span></code> — File selection dialogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#native-load-save-dialogs">Native Load/Save Dialogs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.askopenfile"><code class="docutils literal notranslate"><span class="pre">askopenfile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.askopenfiles"><code class="docutils literal notranslate"><span class="pre">askopenfiles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.asksaveasfile"><code class="docutils literal notranslate"><span class="pre">asksaveasfile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.askopenfilename"><code class="docutils literal notranslate"><span class="pre">askopenfilename()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.askopenfilenames"><code class="docutils literal notranslate"><span class="pre">askopenfilenames()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.asksaveasfilename"><code class="docutils literal notranslate"><span class="pre">asksaveasfilename()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.askdirectory"><code class="docutils literal notranslate"><span class="pre">askdirectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.Open"><code class="docutils literal notranslate"><span class="pre">Open</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.SaveAs"><code class="docutils literal notranslate"><span class="pre">SaveAs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.Directory"><code class="docutils literal notranslate"><span class="pre">Directory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog"><code class="docutils literal notranslate"><span class="pre">FileDialog</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.cancel_command"><code class="docutils literal notranslate"><span class="pre">FileDialog.cancel_command()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.dirs_double_event"><code class="docutils literal notranslate"><span class="pre">FileDialog.dirs_double_event()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.dirs_select_event"><code class="docutils literal notranslate"><span class="pre">FileDialog.dirs_select_event()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.files_double_event"><code class="docutils literal notranslate"><span class="pre">FileDialog.files_double_event()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.files_select_event"><code class="docutils literal notranslate"><span class="pre">FileDialog.files_select_event()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.filter_command"><code class="docutils literal notranslate"><span class="pre">FileDialog.filter_command()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.get_filter"><code class="docutils literal notranslate"><span class="pre">FileDialog.get_filter()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.get_selection"><code class="docutils literal notranslate"><span class="pre">FileDialog.get_selection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.go"><code class="docutils literal notranslate"><span class="pre">FileDialog.go()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.ok_event"><code class="docutils literal notranslate"><span class="pre">FileDialog.ok_event()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.quit"><code class="docutils literal notranslate"><span class="pre">FileDialog.quit()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.set_filter"><code class="docutils literal notranslate"><span class="pre">FileDialog.set_filter()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.FileDialog.set_selection"><code class="docutils literal notranslate"><span class="pre">FileDialog.set_selection()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.LoadFileDialog"><code class="docutils literal notranslate"><span class="pre">LoadFileDialog</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.LoadFileDialog.ok_command"><code class="docutils literal notranslate"><span class="pre">LoadFileDialog.ok_command()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.filedialog.SaveFileDialog"><code class="docutils literal notranslate"><span class="pre">SaveFileDialog</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="dialog.html#tkinter.filedialog.SaveFileDialog.ok_command"><code class="docutils literal notranslate"><span class="pre">SaveFileDialog.ok_command()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialog.html#module-tkinter.commondialog"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.commondialog</span></code> — Dialog window templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialog.html#tkinter.commondialog.Dialog"><code class="docutils literal notranslate"><span class="pre">Dialog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dialog.html#tkinter.commondialog.Dialog.show"><code class="docutils literal notranslate"><span class="pre">Dialog.show()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.messagebox.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.messagebox</span></code> — Tkinter message prompts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.Message"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.Message.show"><code class="docutils literal notranslate"><span class="pre">Message.show()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.showinfo"><code class="docutils literal notranslate"><span class="pre">showinfo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.showwarning"><code class="docutils literal notranslate"><span class="pre">showwarning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.showerror"><code class="docutils literal notranslate"><span class="pre">showerror()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.askquestion"><code class="docutils literal notranslate"><span class="pre">askquestion()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.askokcancel"><code class="docutils literal notranslate"><span class="pre">askokcancel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.askretrycancel"><code class="docutils literal notranslate"><span class="pre">askretrycancel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.askyesno"><code class="docutils literal notranslate"><span class="pre">askyesno()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.askyesnocancel"><code class="docutils literal notranslate"><span class="pre">askyesnocancel()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.ABORT"><code class="docutils literal notranslate"><span class="pre">ABORT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.RETRY"><code class="docutils literal notranslate"><span class="pre">RETRY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.IGNORE"><code class="docutils literal notranslate"><span class="pre">IGNORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.OK"><code class="docutils literal notranslate"><span class="pre">OK</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.CANCEL"><code class="docutils literal notranslate"><span class="pre">CANCEL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.YES"><code class="docutils literal notranslate"><span class="pre">YES</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.NO"><code class="docutils literal notranslate"><span class="pre">NO</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.ABORTRETRYIGNORE"><code class="docutils literal notranslate"><span class="pre">ABORTRETRYIGNORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.OKCANCEL"><code class="docutils literal notranslate"><span class="pre">OKCANCEL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.RETRYCANCEL"><code class="docutils literal notranslate"><span class="pre">RETRYCANCEL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.YESNO"><code class="docutils literal notranslate"><span class="pre">YESNO</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.YESNOCANCEL"><code class="docutils literal notranslate"><span class="pre">YESNOCANCEL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.ERROR"><code class="docutils literal notranslate"><span class="pre">ERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.INFO"><code class="docutils literal notranslate"><span class="pre">INFO</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.QUESTION"><code class="docutils literal notranslate"><span class="pre">QUESTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.messagebox.html#tkinter.messagebox.WARNING"><code class="docutils literal notranslate"><span class="pre">WARNING</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.scrolledtext.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.scrolledtext</span></code> — Scrolled Text Widget</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.scrolledtext.html#tkinter.scrolledtext.ScrolledText"><code class="docutils literal notranslate"><span class="pre">ScrolledText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.scrolledtext.html#tkinter.scrolledtext.ScrolledText.frame"><code class="docutils literal notranslate"><span class="pre">ScrolledText.frame</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.scrolledtext.html#tkinter.scrolledtext.ScrolledText.vbar"><code class="docutils literal notranslate"><span class="pre">ScrolledText.vbar</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.dnd.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.dnd</span></code> — Drag and drop support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.DndHandler"><code class="docutils literal notranslate"><span class="pre">DndHandler</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.DndHandler.cancel"><code class="docutils literal notranslate"><span class="pre">DndHandler.cancel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.DndHandler.finish"><code class="docutils literal notranslate"><span class="pre">DndHandler.finish()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.DndHandler.on_motion"><code class="docutils literal notranslate"><span class="pre">DndHandler.on_motion()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.DndHandler.on_release"><code class="docutils literal notranslate"><span class="pre">DndHandler.on_release()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.dnd.html#tkinter.dnd.dnd_start"><code class="docutils literal notranslate"><span class="pre">dnd_start()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tkinter.ttk.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tkinter.ttk</span></code> — Tk themed widgets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#using-ttk">Using Ttk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#ttk-widgets">Ttk Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#widget">Widget</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#standard-options">Standard Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#scrollable-widget-options">Scrollable Widget Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#label-options">Label Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#compatibility-options">Compatibility Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#widget-states">Widget States</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-widget">ttk.Widget</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Widget"><code class="docutils literal notranslate"><span class="pre">Widget</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Widget.identify"><code class="docutils literal notranslate"><span class="pre">Widget.identify()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Widget.instate"><code class="docutils literal notranslate"><span class="pre">Widget.instate()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Widget.state"><code class="docutils literal notranslate"><span class="pre">Widget.state()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#combobox">Combobox</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#virtual-events">Virtual events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-combobox">ttk.Combobox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Combobox"><code class="docutils literal notranslate"><span class="pre">Combobox</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Combobox.current"><code class="docutils literal notranslate"><span class="pre">Combobox.current()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Combobox.get"><code class="docutils literal notranslate"><span class="pre">Combobox.get()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Combobox.set"><code class="docutils literal notranslate"><span class="pre">Combobox.set()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#spinbox">Spinbox</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id3">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id4">Virtual events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-spinbox">ttk.Spinbox</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Spinbox"><code class="docutils literal notranslate"><span class="pre">Spinbox</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Spinbox.get"><code class="docutils literal notranslate"><span class="pre">Spinbox.get()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Spinbox.set"><code class="docutils literal notranslate"><span class="pre">Spinbox.set()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#notebook">Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id5">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#tab-options">Tab Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#tab-identifiers">Tab Identifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id6">Virtual Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-notebook">ttk.Notebook</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook"><code class="docutils literal notranslate"><span class="pre">Notebook</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.add"><code class="docutils literal notranslate"><span class="pre">Notebook.add()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.forget"><code class="docutils literal notranslate"><span class="pre">Notebook.forget()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.hide"><code class="docutils literal notranslate"><span class="pre">Notebook.hide()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.identify"><code class="docutils literal notranslate"><span class="pre">Notebook.identify()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.index"><code class="docutils literal notranslate"><span class="pre">Notebook.index()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.insert"><code class="docutils literal notranslate"><span class="pre">Notebook.insert()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.select"><code class="docutils literal notranslate"><span class="pre">Notebook.select()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.tab"><code class="docutils literal notranslate"><span class="pre">Notebook.tab()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.tabs"><code class="docutils literal notranslate"><span class="pre">Notebook.tabs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Notebook.enable_traversal"><code class="docutils literal notranslate"><span class="pre">Notebook.enable_traversal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#progressbar">Progressbar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id7">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-progressbar">ttk.Progressbar</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Progressbar"><code class="docutils literal notranslate"><span class="pre">Progressbar</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Progressbar.start"><code class="docutils literal notranslate"><span class="pre">Progressbar.start()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Progressbar.step"><code class="docutils literal notranslate"><span class="pre">Progressbar.step()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Progressbar.stop"><code class="docutils literal notranslate"><span class="pre">Progressbar.stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#separator">Separator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id8">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#sizegrip">Sizegrip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#platform-specific-notes">Platform-specific notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#bugs">Bugs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#treeview">Treeview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id9">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#item-options">Item Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#tag-options">Tag Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#column-identifiers">Column Identifiers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#id10">Virtual Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#ttk-treeview">ttk.Treeview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview"><code class="docutils literal notranslate"><span class="pre">Treeview</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.bbox"><code class="docutils literal notranslate"><span class="pre">Treeview.bbox()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.get_children"><code class="docutils literal notranslate"><span class="pre">Treeview.get_children()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.set_children"><code class="docutils literal notranslate"><span class="pre">Treeview.set_children()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.column"><code class="docutils literal notranslate"><span class="pre">Treeview.column()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.delete"><code class="docutils literal notranslate"><span class="pre">Treeview.delete()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.detach"><code class="docutils literal notranslate"><span class="pre">Treeview.detach()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.exists"><code class="docutils literal notranslate"><span class="pre">Treeview.exists()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.focus"><code class="docutils literal notranslate"><span class="pre">Treeview.focus()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.heading"><code class="docutils literal notranslate"><span class="pre">Treeview.heading()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.identify"><code class="docutils literal notranslate"><span class="pre">Treeview.identify()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.identify_row"><code class="docutils literal notranslate"><span class="pre">Treeview.identify_row()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.identify_column"><code class="docutils literal notranslate"><span class="pre">Treeview.identify_column()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.identify_region"><code class="docutils literal notranslate"><span class="pre">Treeview.identify_region()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.identify_element"><code class="docutils literal notranslate"><span class="pre">Treeview.identify_element()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.index"><code class="docutils literal notranslate"><span class="pre">Treeview.index()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.insert"><code class="docutils literal notranslate"><span class="pre">Treeview.insert()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.item"><code class="docutils literal notranslate"><span class="pre">Treeview.item()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.move"><code class="docutils literal notranslate"><span class="pre">Treeview.move()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.next"><code class="docutils literal notranslate"><span class="pre">Treeview.next()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.parent"><code class="docutils literal notranslate"><span class="pre">Treeview.parent()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.prev"><code class="docutils literal notranslate"><span class="pre">Treeview.prev()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.reattach"><code class="docutils literal notranslate"><span class="pre">Treeview.reattach()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.see"><code class="docutils literal notranslate"><span class="pre">Treeview.see()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.selection"><code class="docutils literal notranslate"><span class="pre">Treeview.selection()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.selection_set"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.selection_add"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_add()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.selection_remove"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_remove()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.selection_toggle"><code class="docutils literal notranslate"><span class="pre">Treeview.selection_toggle()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.set"><code class="docutils literal notranslate"><span class="pre">Treeview.set()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.tag_bind"><code class="docutils literal notranslate"><span class="pre">Treeview.tag_bind()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.tag_configure"><code class="docutils literal notranslate"><span class="pre">Treeview.tag_configure()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.tag_has"><code class="docutils literal notranslate"><span class="pre">Treeview.tag_has()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.xview"><code class="docutils literal notranslate"><span class="pre">Treeview.xview()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Treeview.yview"><code class="docutils literal notranslate"><span class="pre">Treeview.yview()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tkinter.ttk.html#ttk-styling">Ttk Styling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style"><code class="docutils literal notranslate"><span class="pre">Style</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.configure"><code class="docutils literal notranslate"><span class="pre">Style.configure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.map"><code class="docutils literal notranslate"><span class="pre">Style.map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.lookup"><code class="docutils literal notranslate"><span class="pre">Style.lookup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.layout"><code class="docutils literal notranslate"><span class="pre">Style.layout()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.element_create"><code class="docutils literal notranslate"><span class="pre">Style.element_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.element_names"><code class="docutils literal notranslate"><span class="pre">Style.element_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.element_options"><code class="docutils literal notranslate"><span class="pre">Style.element_options()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.theme_create"><code class="docutils literal notranslate"><span class="pre">Style.theme_create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.theme_settings"><code class="docutils literal notranslate"><span class="pre">Style.theme_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.theme_names"><code class="docutils literal notranslate"><span class="pre">Style.theme_names()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tkinter.ttk.html#tkinter.ttk.Style.theme_use"><code class="docutils literal notranslate"><span class="pre">Style.theme_use()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tkinter.ttk.html#layouts">Layouts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="idle.html">IDLE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="idle.html#menus">Menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#file-menu-shell-and-editor">File menu (Shell and Editor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#edit-menu-shell-and-editor">Edit menu (Shell and Editor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#format-menu-editor-window-only">Format menu (Editor window only)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#run-menu-editor-window-only">Run menu (Editor window only)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#shell-menu-shell-window-only">Shell menu (Shell window only)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#debug-menu-shell-window-only">Debug menu (Shell window only)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#options-menu-shell-and-editor">Options menu (Shell and Editor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#window-menu-shell-and-editor">Window menu (Shell and Editor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#help-menu-shell-and-editor">Help menu (Shell and Editor)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#context-menus">Context menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idle.html#editing-and-navigation">Editing and Navigation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#editor-windows">Editor windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#key-bindings">Key bindings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#automatic-indentation">Automatic indentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#search-and-replace">Search and Replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#completions">Completions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#calltips">Calltips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#code-context">Code Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#shell-window">Shell window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#text-colors">Text colors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idle.html#startup-and-code-execution">Startup and Code Execution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#command-line-usage">Command line usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#startup-failure">Startup failure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#running-user-code">Running user code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#user-output-in-shell">User output in Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#developing-tkinter-applications">Developing tkinter applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#running-without-a-subprocess">Running without a subprocess</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idle.html#help-and-preferences">Help and Preferences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#help-sources">Help sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#setting-preferences">Setting preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#idle-on-macos">IDLE on macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="idle.html#extensions">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="idle.html#module-idlelib">idlelib</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

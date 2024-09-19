@@ -1,0 +1,1249 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>dis — Disassembler for Python bytecode &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/dis';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/dis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/dis.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>dis — Disassembler for Python bytecode</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command-line interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bytecode-analysis">Bytecode analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode"><code class="docutils literal notranslate"><span class="pre">Bytecode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.from_traceback"><code class="docutils literal notranslate"><span class="pre">Bytecode.from_traceback()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.codeobj"><code class="docutils literal notranslate"><span class="pre">Bytecode.codeobj</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.first_line"><code class="docutils literal notranslate"><span class="pre">Bytecode.first_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.dis"><code class="docutils literal notranslate"><span class="pre">Bytecode.dis()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.info"><code class="docutils literal notranslate"><span class="pre">Bytecode.info()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-functions">Analysis functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.code_info"><code class="docutils literal notranslate"><span class="pre">code_info()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.show_code"><code class="docutils literal notranslate"><span class="pre">show_code()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.dis"><code class="docutils literal notranslate"><span class="pre">dis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.disassemble"><code class="docutils literal notranslate"><span class="pre">disassemble()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.get_instructions"><code class="docutils literal notranslate"><span class="pre">get_instructions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.findlinestarts"><code class="docutils literal notranslate"><span class="pre">findlinestarts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.findlabels"><code class="docutils literal notranslate"><span class="pre">findlabels()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.stack_effect"><code class="docutils literal notranslate"><span class="pre">stack_effect()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-bytecode-instructions">Python Bytecode Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction"><code class="docutils literal notranslate"><span class="pre">Instruction</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.opcode"><code class="docutils literal notranslate"><span class="pre">Instruction.opcode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.opname"><code class="docutils literal notranslate"><span class="pre">Instruction.opname</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.baseopcode"><code class="docutils literal notranslate"><span class="pre">Instruction.baseopcode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.baseopname"><code class="docutils literal notranslate"><span class="pre">Instruction.baseopname</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.arg"><code class="docutils literal notranslate"><span class="pre">Instruction.arg</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.oparg"><code class="docutils literal notranslate"><span class="pre">Instruction.oparg</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.argval"><code class="docutils literal notranslate"><span class="pre">Instruction.argval</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.argrepr"><code class="docutils literal notranslate"><span class="pre">Instruction.argrepr</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.offset"><code class="docutils literal notranslate"><span class="pre">Instruction.offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.start_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.start_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.cache_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.cache_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.end_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.end_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.starts_line"><code class="docutils literal notranslate"><span class="pre">Instruction.starts_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.line_number"><code class="docutils literal notranslate"><span class="pre">Instruction.line_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.is_jump_target"><code class="docutils literal notranslate"><span class="pre">Instruction.is_jump_target</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.jump_target"><code class="docutils literal notranslate"><span class="pre">Instruction.jump_target</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.positions"><code class="docutils literal notranslate"><span class="pre">Instruction.positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions"><code class="docutils literal notranslate"><span class="pre">Positions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.lineno"><code class="docutils literal notranslate"><span class="pre">Positions.lineno</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.end_lineno"><code class="docutils literal notranslate"><span class="pre">Positions.end_lineno</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.col_offset"><code class="docutils literal notranslate"><span class="pre">Positions.col_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.end_col_offset"><code class="docutils literal notranslate"><span class="pre">Positions.end_col_offset</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcode-collections">Opcode collections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.opname"><code class="docutils literal notranslate"><span class="pre">opname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.opmap"><code class="docutils literal notranslate"><span class="pre">opmap</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.cmp_op"><code class="docutils literal notranslate"><span class="pre">cmp_op</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasarg"><code class="docutils literal notranslate"><span class="pre">hasarg</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasconst"><code class="docutils literal notranslate"><span class="pre">hasconst</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasfree"><code class="docutils literal notranslate"><span class="pre">hasfree</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasname"><code class="docutils literal notranslate"><span class="pre">hasname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjump"><code class="docutils literal notranslate"><span class="pre">hasjump</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.haslocal"><code class="docutils literal notranslate"><span class="pre">haslocal</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hascompare"><code class="docutils literal notranslate"><span class="pre">hascompare</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasexc"><code class="docutils literal notranslate"><span class="pre">hasexc</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjrel"><code class="docutils literal notranslate"><span class="pre">hasjrel</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjabs"><code class="docutils literal notranslate"><span class="pre">hasjabs</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-dis">
+<span id="dis-disassembler-for-python-bytecode"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code> — Disassembler for Python bytecode<a class="headerlink" href="#module-dis" title="Link to this heading">#</a></h1>
+<p><strong>Source code:</strong> <a href="#id1"><span class="problematic" id="id2">:source:`Lib/dis.py`</span></a></p>
+<hr class="docutils" />
+<p>The <a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> module supports the analysis of CPython <a class="reference internal" href="../glossary.html#term-bytecode"><span class="xref std std-term">bytecode</span></a> by
+disassembling it. The CPython bytecode which this module takes as an input is
+defined in the file <code class="file docutils literal notranslate"><span class="pre">Include/opcode.h</span></code> and used by the compiler and the
+interpreter.</p>
+<p>Example: Given the function <code class="xref py py-func docutils literal notranslate"><span class="pre">myfunc()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myfunc</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the following command can be used to display the disassembly of
+<code class="xref py py-func docutils literal notranslate"><span class="pre">myfunc()</span></code>:</p>
+<p>(The “2” is a line number).</p>
+<section id="command-line-interface">
+<span id="dis-cli"></span><h2>Command-line interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> module can be invoked as a script from the command line:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>dis<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-C<span class="o">]</span><span class="w"> </span><span class="o">[</span>-O<span class="o">]</span><span class="w"> </span><span class="o">[</span>infile<span class="o">]</span>
+</pre></div>
+</div>
+<p>The following options are accepted:</p>
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-dis-h">
+<span id="cmdoption-dis-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dis-h" title="Link to this definition">#</a></dt>
+<dd><p>Display usage and exit.</p>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-dis-C">
+<span id="cmdoption-dis-show-caches"></span><span class="sig-name descname"><span class="pre">-C</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--show-caches</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dis-C" title="Link to this definition">#</a></dt>
+<dd><p>Show inline caches.</p>
+</dd></dl>
+
+<dl class="std cmdoption">
+<dt class="sig sig-object std" id="cmdoption-dis-O">
+<span id="cmdoption-dis-show-offsets"></span><span class="sig-name descname"><span class="pre">-O</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--show-offsets</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dis-O" title="Link to this definition">#</a></dt>
+<dd><p>Show offsets of instructions.</p>
+</dd></dl>
+
+<p>If <code class="file docutils literal notranslate"><span class="pre">infile</span></code> is specified, its disassembled code will be written to stdout.
+Otherwise, disassembly is performed on compiled source code received from stdin.</p>
+</section>
+<section id="bytecode-analysis">
+<h2>Bytecode analysis<a class="headerlink" href="#bytecode-analysis" title="Link to this heading">#</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+<p>The bytecode analysis API allows pieces of Python code to be wrapped in a
+<a class="reference internal" href="#dis.Bytecode" title="dis.Bytecode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bytecode</span></code></a> object that provides easy access to details of the compiled
+code.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dis.Bytecode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">Bytecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_caches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_offsets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.Bytecode" title="Link to this definition">#</a></dt>
+<dd><p>Analyse the bytecode corresponding to a function, generator, asynchronous
+generator, coroutine, method, string of source code, or a code object (as
+returned by <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a>).</p>
+<p>This is a convenience wrapper around many of the functions listed below, most
+notably <a class="reference internal" href="#dis.get_instructions" title="dis.get_instructions"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_instructions()</span></code></a>, as iterating over a <a class="reference internal" href="#dis.Bytecode" title="dis.Bytecode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bytecode</span></code></a>
+instance yields the bytecode operations as <a class="reference internal" href="#dis.Instruction" title="dis.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> instances.</p>
+<p>If <em>first_line</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it indicates the line number that should be
+reported for the first source line in the disassembled code.  Otherwise, the
+source line information (if any) is taken directly from the disassembled code
+object.</p>
+<p>If <em>current_offset</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it refers to an instruction offset in the
+disassembled code. Setting this means <a class="reference internal" href="#dis.Bytecode.dis" title="dis.Bytecode.dis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dis()</span></code></a> will display a “current
+instruction” marker against the specified opcode.</p>
+<p>If <em>show_caches</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#dis.Bytecode.dis" title="dis.Bytecode.dis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dis()</span></code></a> will display inline cache
+entries used by the interpreter to specialize the bytecode.</p>
+<p>If <em>adaptive</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#dis.Bytecode.dis" title="dis.Bytecode.dis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dis()</span></code></a> will display specialized bytecode
+that may be different from the original bytecode.</p>
+<p>If <em>show_offsets</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#dis.Bytecode.dis" title="dis.Bytecode.dis"><code class="xref py py-meth docutils literal notranslate"><span class="pre">dis()</span></code></a> will include instruction
+offsets in the output.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dis.Bytecode.from_traceback">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_traceback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tb</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_caches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.Bytecode.from_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Construct a <a class="reference internal" href="#dis.Bytecode" title="dis.Bytecode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bytecode</span></code></a> instance from the given traceback, setting
+<em>current_offset</em> to the instruction responsible for the exception.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Bytecode.codeobj">
+<span class="sig-name descname"><span class="pre">codeobj</span></span><a class="headerlink" href="#dis.Bytecode.codeobj" title="Link to this definition">#</a></dt>
+<dd><p>The compiled code object.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Bytecode.first_line">
+<span class="sig-name descname"><span class="pre">first_line</span></span><a class="headerlink" href="#dis.Bytecode.first_line" title="Link to this definition">#</a></dt>
+<dd><p>The first source line of the code object (if available)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dis.Bytecode.dis">
+<span class="sig-name descname"><span class="pre">dis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dis.Bytecode.dis" title="Link to this definition">#</a></dt>
+<dd><p>Return a formatted view of the bytecode operations (the same as printed by
+<a class="reference internal" href="#dis.dis" title="dis.dis"><code class="xref py py-func docutils literal notranslate"><span class="pre">dis.dis()</span></code></a>, but returned as a multi-line string).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dis.Bytecode.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dis.Bytecode.info" title="Link to this definition">#</a></dt>
+<dd><p>Return a formatted multi-line string with detailed information about the
+code object, like <a class="reference internal" href="#dis.code_info" title="dis.code_info"><code class="xref py py-func docutils literal notranslate"><span class="pre">code_info()</span></code></a>.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>This can now handle coroutine and asynchronous generator objects.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Added the <em>show_caches</em> and <em>adaptive</em> parameters.</p>
+</div>
+</dd></dl>
+
+<p>Example:</p>
+</section>
+<section id="analysis-functions">
+<h2>Analysis functions<a class="headerlink" href="#analysis-functions" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-mod docutils literal notranslate"><span class="pre">dis</span></code></a> module also defines the following analysis functions that convert
+the input directly to the desired output. They can be useful if only a single
+operation is being performed, so the intermediate analysis object isn’t useful:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.code_info">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">code_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.code_info" title="Link to this definition">#</a></dt>
+<dd><p>Return a formatted multi-line string with detailed code object information
+for the supplied function, generator, asynchronous generator, coroutine,
+method, source code string or code object.</p>
+<p>Note that the exact contents of code info strings are highly implementation
+dependent and they may change arbitrarily across Python VMs or Python
+releases.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>This can now handle coroutine and asynchronous generator objects.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.show_code">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">show_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.show_code" title="Link to this definition">#</a></dt>
+<dd><p>Print detailed code object information for the supplied function, method,
+source code string or code object to <em>file</em> (or <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> if <em>file</em>
+is not specified).</p>
+<p>This is a convenient shorthand for <code class="docutils literal notranslate"><span class="pre">print(code_info(x),</span> <span class="pre">file=file)</span></code>,
+intended for interactive exploration at the interpreter prompt.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.2.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>Added <em>file</em> parameter.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.dis">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">dis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_caches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.dis" title="Link to this definition">#</a></dt>
+<dd><p>Disassemble the <em>x</em> object.  <em>x</em> can denote either a module, a class, a
+method, a function, a generator, an asynchronous generator, a coroutine,
+a code object, a string of source code or a byte sequence of raw bytecode.
+For a module, it disassembles all functions. For a class, it disassembles
+all methods (including class and static methods). For a code object or
+sequence of raw bytecode, it prints one line per bytecode instruction.
+It also recursively disassembles nested code objects. These can include
+generator expressions, nested functions, the bodies of nested classes,
+and the code objects used for <a class="reference internal" href="../reference/executionmodel.html#annotation-scopes"><span class="std std-ref">annotation scopes</span></a>.
+Strings are first compiled to code objects with the <a class="reference internal" href="functions.html#compile" title="compile"><code class="xref py py-func docutils literal notranslate"><span class="pre">compile()</span></code></a>
+built-in function before being disassembled.  If no object is provided, this
+function disassembles the last traceback.</p>
+<p>The disassembly is written as text to the supplied <em>file</em> argument if
+provided and to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> otherwise.</p>
+<p>The maximal depth of recursion is limited by <em>depth</em> unless it is <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+<code class="docutils literal notranslate"><span class="pre">depth=0</span></code> means no recursion.</p>
+<p>If <em>show_caches</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, this function will display inline cache
+entries used by the interpreter to specialize the bytecode.</p>
+<p>If <em>adaptive</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, this function will display specialized bytecode
+that may be different from the original bytecode.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>Added <em>file</em> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>Implemented recursive disassembling and added <em>depth</em> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.7: </span>This can now handle coroutine and asynchronous generator objects.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Added the <em>show_caches</em> and <em>adaptive</em> parameters.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">distb(tb=None,</span> <span class="pre">*,</span> <span class="pre">file=None,</span> <span class="pre">show_caches=False,</span> <span class="pre">adaptive=False,</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">show_offset=False)</span></span></dt>
+<dd><p>Disassemble the top-of-stack function of a traceback, using the last
+traceback if none was passed.  The instruction causing the exception is
+indicated.</p>
+<p>The disassembly is written as text to the supplied <em>file</em> argument if
+provided and to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> otherwise.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>Added <em>file</em> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Added the <em>show_caches</em> and <em>adaptive</em> parameters.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Added the <em>show_offsets</em> parameter.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.disassemble">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">disassemble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lasti</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_caches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.disassemble" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">disco(code,</span> <span class="pre">lasti=-1,</span> <span class="pre">*,</span> <span class="pre">file=None,</span> <span class="pre">show_caches=False,</span> <span class="pre">adaptive=False,</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">show_offsets=False)</span></span></dt>
+<dd><p>Disassemble a code object, indicating the last instruction if <em>lasti</em> was
+provided.  The output is divided in the following columns:</p>
+<ol class="arabic simple">
+<li><p>the line number, for the first instruction of each line</p></li>
+<li><p>the current instruction, indicated as <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code>,</p></li>
+<li><p>a labelled instruction, indicated with <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>,</p></li>
+<li><p>the address of the instruction,</p></li>
+<li><p>the operation code name,</p></li>
+<li><p>operation parameters, and</p></li>
+<li><p>interpretation of the parameters in parentheses.</p></li>
+</ol>
+<p>The parameter interpretation recognizes local and global variable names,
+constant values, branch targets, and compare operators.</p>
+<p>The disassembly is written as text to the supplied <em>file</em> argument if
+provided and to <code class="docutils literal notranslate"><span class="pre">sys.stdout</span></code> otherwise.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.4: </span>Added <em>file</em> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Added the <em>show_caches</em> and <em>adaptive</em> parameters.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Added the <em>show_offsets</em> parameter.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.get_instructions">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">get_instructions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_caches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.get_instructions" title="Link to this definition">#</a></dt>
+<dd><p>Return an iterator over the instructions in the supplied function, method,
+source code string or code object.</p>
+<p>The iterator generates a series of <a class="reference internal" href="#dis.Instruction" title="dis.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> named tuples giving
+the details of each operation in the supplied code.</p>
+<p>If <em>first_line</em> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>, it indicates the line number that should be
+reported for the first source line in the disassembled code.  Otherwise, the
+source line information (if any) is taken directly from the disassembled code
+object.</p>
+<p>The <em>adaptive</em> parameter works as it does in <a class="reference internal" href="#module-dis" title="dis: Disassembler for Python bytecode."><code class="xref py py-func docutils literal notranslate"><span class="pre">dis()</span></code></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Added the <em>show_caches</em> and <em>adaptive</em> parameters.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>The <em>show_caches</em> parameter is deprecated and has no effect. The iterator
+generates the <a class="reference internal" href="#dis.Instruction" title="dis.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> instances with the <em>cache_info</em>
+field populated (regardless of the value of <em>show_caches</em>) and it no longer
+generates separate items for the cache entries.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.findlinestarts">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">findlinestarts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.findlinestarts" title="Link to this definition">#</a></dt>
+<dd><p>This generator function uses the <a class="reference internal" href="../reference/datamodel.html#codeobject.co_lines" title="codeobject.co_lines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">co_lines()</span></code></a> method
+of the <a class="reference internal" href="../reference/datamodel.html#code-objects"><span class="std std-ref">code object</span></a> <em>code</em> to find the offsets which
+are starts of
+lines in the source code.  They are generated as <code class="docutils literal notranslate"><span class="pre">(offset,</span> <span class="pre">lineno)</span></code> pairs.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.6: </span>Line numbers can be decreasing. Before, they were always increasing.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.10: </span>The <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0626/"><strong>PEP 626</strong></a> <a class="reference internal" href="../reference/datamodel.html#codeobject.co_lines" title="codeobject.co_lines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">co_lines()</span></code></a> method is used instead of the
+<a class="reference internal" href="../reference/datamodel.html#codeobject.co_firstlineno" title="codeobject.co_firstlineno"><code class="xref py py-attr docutils literal notranslate"><span class="pre">co_firstlineno</span></code></a> and <a class="reference internal" href="../reference/datamodel.html#codeobject.co_lnotab" title="codeobject.co_lnotab"><code class="xref py py-attr docutils literal notranslate"><span class="pre">co_lnotab</span></code></a>
+attributes of the <a class="reference internal" href="../reference/datamodel.html#code-objects"><span class="std std-ref">code object</span></a>.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Line numbers can be <code class="docutils literal notranslate"><span class="pre">None</span></code> for bytecode that does not map to source lines.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.findlabels">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">findlabels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.findlabels" title="Link to this definition">#</a></dt>
+<dd><p>Detect all offsets in the raw compiled bytecode string <em>code</em> which are jump targets, and
+return a list of these offsets.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="dis.stack_effect">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">stack_effect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oparg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jump</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dis.stack_effect" title="Link to this definition">#</a></dt>
+<dd><p>Compute the stack effect of <em>opcode</em> with argument <em>oparg</em>.</p>
+<p>If the code has a jump target and <em>jump</em> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, <a class="reference internal" href="#dis.stack_effect" title="dis.stack_effect"><code class="xref py py-func docutils literal notranslate"><span class="pre">stack_effect()</span></code></a>
+will return the stack effect of jumping.  If <em>jump</em> is <code class="docutils literal notranslate"><span class="pre">False</span></code>,
+it will return the stack effect of not jumping. And if <em>jump</em> is
+<code class="docutils literal notranslate"><span class="pre">None</span></code> (default), it will return the maximal stack effect of both cases.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.8: </span>Added <em>jump</em> parameter.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>If <code class="docutils literal notranslate"><span class="pre">oparg</span></code> is omitted (or <code class="docutils literal notranslate"><span class="pre">None</span></code>), the stack effect is now returned
+for <code class="docutils literal notranslate"><span class="pre">oparg=0</span></code>. Previously this was an error for opcodes that use their
+arg. It is also no longer an error to pass an integer <code class="docutils literal notranslate"><span class="pre">oparg</span></code> when
+the <code class="docutils literal notranslate"><span class="pre">opcode</span></code> does not use it; the <code class="docutils literal notranslate"><span class="pre">oparg</span></code> in this case is ignored.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="python-bytecode-instructions">
+<span id="bytecodes"></span><h2>Python Bytecode Instructions<a class="headerlink" href="#python-bytecode-instructions" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="#dis.get_instructions" title="dis.get_instructions"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_instructions()</span></code></a> function and <a class="reference internal" href="#dis.Bytecode" title="dis.Bytecode"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bytecode</span></code></a> class provide
+details of bytecode instructions as <a class="reference internal" href="#dis.Instruction" title="dis.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> instances:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="dis.Instruction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">Instruction</span></span><a class="headerlink" href="#dis.Instruction" title="Link to this definition">#</a></dt>
+<dd><p>Details for a bytecode operation</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.opcode">
+<span class="sig-name descname"><span class="pre">opcode</span></span><a class="headerlink" href="#dis.Instruction.opcode" title="Link to this definition">#</a></dt>
+<dd><p>numeric code for operation, corresponding to the opcode values listed
+below and the bytecode values in the <a class="reference internal" href="#opcode-collections"><span class="std std-ref">Opcode collections</span></a>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.opname">
+<span class="sig-name descname"><span class="pre">opname</span></span><a class="headerlink" href="#dis.Instruction.opname" title="Link to this definition">#</a></dt>
+<dd><p>human readable name for operation</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.baseopcode">
+<span class="sig-name descname"><span class="pre">baseopcode</span></span><a class="headerlink" href="#dis.Instruction.baseopcode" title="Link to this definition">#</a></dt>
+<dd><p>numeric code for the base operation if operation is specialized;
+otherwise equal to <a class="reference internal" href="#dis.Instruction.opcode" title="dis.Instruction.opcode"><code class="xref py py-data docutils literal notranslate"><span class="pre">opcode</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.baseopname">
+<span class="sig-name descname"><span class="pre">baseopname</span></span><a class="headerlink" href="#dis.Instruction.baseopname" title="Link to this definition">#</a></dt>
+<dd><p>human readable name for the base operation if operation is specialized;
+otherwise equal to <a class="reference internal" href="#dis.opname" title="dis.opname"><code class="xref py py-data docutils literal notranslate"><span class="pre">opname</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.arg">
+<span class="sig-name descname"><span class="pre">arg</span></span><a class="headerlink" href="#dis.Instruction.arg" title="Link to this definition">#</a></dt>
+<dd><p>numeric argument to operation (if any), otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.oparg">
+<span class="sig-name descname"><span class="pre">oparg</span></span><a class="headerlink" href="#dis.Instruction.oparg" title="Link to this definition">#</a></dt>
+<dd><p>alias for <a class="reference internal" href="#dis.Instruction.arg" title="dis.Instruction.arg"><code class="xref py py-data docutils literal notranslate"><span class="pre">arg</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.argval">
+<span class="sig-name descname"><span class="pre">argval</span></span><a class="headerlink" href="#dis.Instruction.argval" title="Link to this definition">#</a></dt>
+<dd><p>resolved arg value (if any), otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.argrepr">
+<span class="sig-name descname"><span class="pre">argrepr</span></span><a class="headerlink" href="#dis.Instruction.argrepr" title="Link to this definition">#</a></dt>
+<dd><p>human readable description of operation argument (if any),
+otherwise an empty string.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><a class="headerlink" href="#dis.Instruction.offset" title="Link to this definition">#</a></dt>
+<dd><p>start index of operation within bytecode sequence</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.start_offset">
+<span class="sig-name descname"><span class="pre">start_offset</span></span><a class="headerlink" href="#dis.Instruction.start_offset" title="Link to this definition">#</a></dt>
+<dd><p>start index of operation within bytecode sequence, including prefixed
+<code class="docutils literal notranslate"><span class="pre">EXTENDED_ARG</span></code> operations if present; otherwise equal to <a class="reference internal" href="#dis.Instruction.offset" title="dis.Instruction.offset"><code class="xref py py-data docutils literal notranslate"><span class="pre">offset</span></code></a></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.cache_offset">
+<span class="sig-name descname"><span class="pre">cache_offset</span></span><a class="headerlink" href="#dis.Instruction.cache_offset" title="Link to this definition">#</a></dt>
+<dd><p>start index of the cache entries following the operation</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.end_offset">
+<span class="sig-name descname"><span class="pre">end_offset</span></span><a class="headerlink" href="#dis.Instruction.end_offset" title="Link to this definition">#</a></dt>
+<dd><p>end index of the cache entries following the operation</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.starts_line">
+<span class="sig-name descname"><span class="pre">starts_line</span></span><a class="headerlink" href="#dis.Instruction.starts_line" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if this opcode starts a source line, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.line_number">
+<span class="sig-name descname"><span class="pre">line_number</span></span><a class="headerlink" href="#dis.Instruction.line_number" title="Link to this definition">#</a></dt>
+<dd><p>source line number associated with this opcode (if any), otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.is_jump_target">
+<span class="sig-name descname"><span class="pre">is_jump_target</span></span><a class="headerlink" href="#dis.Instruction.is_jump_target" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if other code jumps to here, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.jump_target">
+<span class="sig-name descname"><span class="pre">jump_target</span></span><a class="headerlink" href="#dis.Instruction.jump_target" title="Link to this definition">#</a></dt>
+<dd><p>bytecode index of the jump target if this is a jump operation,
+otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Instruction.positions">
+<span class="sig-name descname"><span class="pre">positions</span></span><a class="headerlink" href="#dis.Instruction.positions" title="Link to this definition">#</a></dt>
+<dd><p><a class="reference internal" href="#dis.Positions" title="dis.Positions"><code class="xref py py-class docutils literal notranslate"><span class="pre">dis.Positions</span></code></a> object holding the
+start and end locations that are covered by this instruction.</p>
+</dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.4.</span></p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.11: </span>Field <code class="docutils literal notranslate"><span class="pre">positions</span></code> is added.</p>
+</div>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.13: </span>Changed field <code class="docutils literal notranslate"><span class="pre">starts_line</span></code>.</p>
+<p>Added fields <code class="docutils literal notranslate"><span class="pre">start_offset</span></code>, <code class="docutils literal notranslate"><span class="pre">cache_offset</span></code>, <code class="docutils literal notranslate"><span class="pre">end_offset</span></code>,
+<code class="docutils literal notranslate"><span class="pre">baseopname</span></code>, <code class="docutils literal notranslate"><span class="pre">baseopcode</span></code>, <code class="docutils literal notranslate"><span class="pre">jump_target</span></code>, <code class="docutils literal notranslate"><span class="pre">oparg</span></code>,
+<code class="docutils literal notranslate"><span class="pre">line_number</span></code> and <code class="docutils literal notranslate"><span class="pre">cache_info</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dis.Positions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">Positions</span></span><a class="headerlink" href="#dis.Positions" title="Link to this definition">#</a></dt>
+<dd><p>In case the information is not available, some fields might be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Positions.lineno">
+<span class="sig-name descname"><span class="pre">lineno</span></span><a class="headerlink" href="#dis.Positions.lineno" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Positions.end_lineno">
+<span class="sig-name descname"><span class="pre">end_lineno</span></span><a class="headerlink" href="#dis.Positions.end_lineno" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Positions.col_offset">
+<span class="sig-name descname"><span class="pre">col_offset</span></span><a class="headerlink" href="#dis.Positions.col_offset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.Positions.end_col_offset">
+<span class="sig-name descname"><span class="pre">end_col_offset</span></span><a class="headerlink" href="#dis.Positions.end_col_offset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.11.</span></p>
+</div>
+</dd></dl>
+
+<p>The Python compiler currently generates the following bytecode instructions.</p>
+<p><strong>General instructions</strong></p>
+<p>In the following, We will refer to the interpreter stack as <code class="docutils literal notranslate"><span class="pre">STACK</span></code> and describe
+operations on it as if it was a Python list. The top of the stack corresponds to
+<code class="docutils literal notranslate"><span class="pre">STACK[-1]</span></code> in this language.</p>
+<p><strong>Unary operations</strong></p>
+<p>Unary operations take the top of the stack, apply the operation, and push the
+result back on the stack.</p>
+<p><strong>Binary and in-place operations</strong></p>
+<p>Binary operations remove the top two items from the stack (<code class="docutils literal notranslate"><span class="pre">STACK[-1]</span></code> and
+<code class="docutils literal notranslate"><span class="pre">STACK[-2]</span></code>). They perform the operation, then put the result back on the stack.</p>
+<p>In-place operations are like binary operations, but the operation is done in-place
+when <code class="docutils literal notranslate"><span class="pre">STACK[-2]</span></code> supports it, and the resulting <code class="docutils literal notranslate"><span class="pre">STACK[-1]</span></code> may be (but does
+not have to be) the original <code class="docutils literal notranslate"><span class="pre">STACK[-2]</span></code>.</p>
+<p><strong>Coroutine opcodes</strong></p>
+<p><strong>Miscellaneous opcodes</strong></p>
+<p>For all of the <a href="#id3"><span class="problematic" id="id4">:opcode:`SET_ADD`</span></a>, <a href="#id5"><span class="problematic" id="id6">:opcode:`LIST_APPEND`</span></a> and <a href="#id7"><span class="problematic" id="id8">:opcode:`MAP_ADD`</span></a>
+instructions, while the added value or key/value pair is popped off, the
+container object remains on the stack so that it is available for further
+iterations of the loop.</p>
+<p><strong>Pseudo-instructions</strong></p>
+<p>These opcodes do not appear in Python bytecode. They are used by the compiler
+but are replaced by real opcodes or removed before bytecode is generated.</p>
+</section>
+<section id="opcode-collections">
+<span id="id9"></span><h2>Opcode collections<a class="headerlink" href="#opcode-collections" title="Link to this heading">#</a></h2>
+<p>These collections are provided for automatic introspection of bytecode
+instructions:</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.12: </span>The collections now contain pseudo instructions and instrumented
+instructions as well. These are opcodes with values <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">MIN_PSEUDO_OPCODE</span></code>
+and <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">MIN_INSTRUMENTED_OPCODE</span></code>.</p>
+</div>
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.opname">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">opname</span></span><a class="headerlink" href="#dis.opname" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of operation names, indexable using the bytecode.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.opmap">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">opmap</span></span><a class="headerlink" href="#dis.opmap" title="Link to this definition">#</a></dt>
+<dd><p>Dictionary mapping operation names to bytecodes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.cmp_op">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">cmp_op</span></span><a class="headerlink" href="#dis.cmp_op" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of all compare operation names.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasarg">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasarg</span></span><a class="headerlink" href="#dis.hasarg" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that use their argument.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.12.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasconst">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasconst</span></span><a class="headerlink" href="#dis.hasconst" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that access a constant.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasfree">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasfree</span></span><a class="headerlink" href="#dis.hasfree" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that access a free variable. ‘free’ in this
+context refers to names in the current scope that are referenced by inner
+scopes or names in outer scopes that are referenced from this scope.  It does
+<em>not</em> include references to global or builtin scopes.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasname">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasname</span></span><a class="headerlink" href="#dis.hasname" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that access an attribute by name.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasjump">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasjump</span></span><a class="headerlink" href="#dis.hasjump" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that have a jump target. All jumps
+are relative.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.13.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.haslocal">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">haslocal</span></span><a class="headerlink" href="#dis.haslocal" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that access a local variable.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hascompare">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hascompare</span></span><a class="headerlink" href="#dis.hascompare" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes of Boolean operations.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasexc">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasexc</span></span><a class="headerlink" href="#dis.hasexc" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that set an exception handler.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 3.12.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasjrel">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasjrel</span></span><a class="headerlink" href="#dis.hasjrel" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that have a relative jump target.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.13: </span>All jumps are now relative. Use <a class="reference internal" href="#dis.hasjump" title="dis.hasjump"><code class="xref py py-data docutils literal notranslate"><span class="pre">hasjump</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="dis.hasjabs">
+<span class="sig-prename descclassname"><span class="pre">dis.</span></span><span class="sig-name descname"><span class="pre">hasjabs</span></span><a class="headerlink" href="#dis.hasjabs" title="Link to this definition">#</a></dt>
+<dd><p>Sequence of bytecodes that have an absolute jump target.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 3.13: </span>All jumps are now relative. This list is empty.</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#command-line-interface">Command-line interface</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bytecode-analysis">Bytecode analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode"><code class="docutils literal notranslate"><span class="pre">Bytecode</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.from_traceback"><code class="docutils literal notranslate"><span class="pre">Bytecode.from_traceback()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.codeobj"><code class="docutils literal notranslate"><span class="pre">Bytecode.codeobj</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.first_line"><code class="docutils literal notranslate"><span class="pre">Bytecode.first_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.dis"><code class="docutils literal notranslate"><span class="pre">Bytecode.dis()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Bytecode.info"><code class="docutils literal notranslate"><span class="pre">Bytecode.info()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-functions">Analysis functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.code_info"><code class="docutils literal notranslate"><span class="pre">code_info()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.show_code"><code class="docutils literal notranslate"><span class="pre">show_code()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.dis"><code class="docutils literal notranslate"><span class="pre">dis()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.disassemble"><code class="docutils literal notranslate"><span class="pre">disassemble()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.get_instructions"><code class="docutils literal notranslate"><span class="pre">get_instructions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.findlinestarts"><code class="docutils literal notranslate"><span class="pre">findlinestarts()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.findlabels"><code class="docutils literal notranslate"><span class="pre">findlabels()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.stack_effect"><code class="docutils literal notranslate"><span class="pre">stack_effect()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-bytecode-instructions">Python Bytecode Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction"><code class="docutils literal notranslate"><span class="pre">Instruction</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.opcode"><code class="docutils literal notranslate"><span class="pre">Instruction.opcode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.opname"><code class="docutils literal notranslate"><span class="pre">Instruction.opname</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.baseopcode"><code class="docutils literal notranslate"><span class="pre">Instruction.baseopcode</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.baseopname"><code class="docutils literal notranslate"><span class="pre">Instruction.baseopname</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.arg"><code class="docutils literal notranslate"><span class="pre">Instruction.arg</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.oparg"><code class="docutils literal notranslate"><span class="pre">Instruction.oparg</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.argval"><code class="docutils literal notranslate"><span class="pre">Instruction.argval</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.argrepr"><code class="docutils literal notranslate"><span class="pre">Instruction.argrepr</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.offset"><code class="docutils literal notranslate"><span class="pre">Instruction.offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.start_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.start_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.cache_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.cache_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.end_offset"><code class="docutils literal notranslate"><span class="pre">Instruction.end_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.starts_line"><code class="docutils literal notranslate"><span class="pre">Instruction.starts_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.line_number"><code class="docutils literal notranslate"><span class="pre">Instruction.line_number</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.is_jump_target"><code class="docutils literal notranslate"><span class="pre">Instruction.is_jump_target</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.jump_target"><code class="docutils literal notranslate"><span class="pre">Instruction.jump_target</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Instruction.positions"><code class="docutils literal notranslate"><span class="pre">Instruction.positions</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions"><code class="docutils literal notranslate"><span class="pre">Positions</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.lineno"><code class="docutils literal notranslate"><span class="pre">Positions.lineno</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.end_lineno"><code class="docutils literal notranslate"><span class="pre">Positions.end_lineno</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.col_offset"><code class="docutils literal notranslate"><span class="pre">Positions.col_offset</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.Positions.end_col_offset"><code class="docutils literal notranslate"><span class="pre">Positions.end_col_offset</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcode-collections">Opcode collections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.opname"><code class="docutils literal notranslate"><span class="pre">opname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.opmap"><code class="docutils literal notranslate"><span class="pre">opmap</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.cmp_op"><code class="docutils literal notranslate"><span class="pre">cmp_op</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasarg"><code class="docutils literal notranslate"><span class="pre">hasarg</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasconst"><code class="docutils literal notranslate"><span class="pre">hasconst</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasfree"><code class="docutils literal notranslate"><span class="pre">hasfree</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasname"><code class="docutils literal notranslate"><span class="pre">hasname</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjump"><code class="docutils literal notranslate"><span class="pre">hasjump</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.haslocal"><code class="docutils literal notranslate"><span class="pre">haslocal</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hascompare"><code class="docutils literal notranslate"><span class="pre">hascompare</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasexc"><code class="docutils literal notranslate"><span class="pre">hasexc</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjrel"><code class="docutils literal notranslate"><span class="pre">hasjrel</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dis.hasjabs"><code class="docutils literal notranslate"><span class="pre">hasjabs</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

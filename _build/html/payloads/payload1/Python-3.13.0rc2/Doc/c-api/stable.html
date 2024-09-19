@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>C API Stability &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/c-api/stable';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/c-api/stable.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/c-api/stable.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>C API Stability</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unstable-c-api">Unstable C API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-application-binary-interface">Stable Application Binary Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-c-api">Limited C API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-abi">Stable ABI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-api-scope-and-performance">Limited API Scope and Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-api-caveats">Limited API Caveats</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-considerations">Platform Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents-of-limited-api">Contents of Limited API</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="c-api-stability">
+<span id="stable"></span><h1>C API Stability<a class="headerlink" href="#c-api-stability" title="Link to this heading">#</a></h1>
+<p>Unless documented otherwise, Python’s C API is covered by the Backwards
+Compatibility Policy, <span class="target" id="index-0"></span><a class="pep reference external" href="https://peps.python.org/pep-0387/"><strong>PEP 387</strong></a>.
+Most changes to it are source-compatible (typically by only adding new API).
+Changing existing API or removing API is only done after a deprecation period
+or to fix serious issues.</p>
+<p>CPython’s Application Binary Interface (ABI) is forward- and
+backwards-compatible across a minor release (if these are compiled the same
+way; see <a class="reference internal" href="#stable-abi-platform"><span class="std std-ref">Platform Considerations</span></a> below).
+So, code compiled for Python 3.10.0 will work on 3.10.8 and vice versa,
+but will need to be compiled separately for 3.9.x and 3.11.x.</p>
+<p>There are two tiers of C API with different stability expectations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#unstable-c-api"><span class="std std-ref">Unstable API</span></a>, may change in minor versions without
+a deprecation period. It is marked by the <code class="docutils literal notranslate"><span class="pre">PyUnstable</span></code> prefix in names.</p></li>
+<li><p><a class="reference internal" href="#limited-c-api"><span class="std std-ref">Limited API</span></a>, is compatible across several minor releases.
+When <a class="reference internal" href="#c.Py_LIMITED_API" title="Py_LIMITED_API"><code class="xref c c-macro docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code></a> is defined, only this subset is exposed
+from <code class="docutils literal notranslate"><span class="pre">Python.h</span></code>.</p></li>
+</ul>
+<p>These are discussed in more detail below.</p>
+<p>Names prefixed by an underscore, such as <code class="docutils literal notranslate"><span class="pre">_Py_InternalState</span></code>,
+are private API that can change without notice even in patch releases.
+If you need to use this API, consider reaching out to
+<a class="reference external" href="https://discuss.python.org/c/core-dev/c-api/30">CPython developers</a>
+to discuss adding public API for your use case.</p>
+<section id="unstable-c-api">
+<span id="id1"></span><h2>Unstable C API<a class="headerlink" href="#unstable-c-api" title="Link to this heading">#</a></h2>
+<p id="index-1">Any API named with the <code class="docutils literal notranslate"><span class="pre">PyUnstable</span></code> prefix exposes CPython implementation
+details, and may change in every minor release (e.g. from 3.9 to 3.10) without
+any deprecation warnings.
+However, it will not change in a bugfix release (e.g. from 3.10.0 to 3.10.1).</p>
+<p>It is generally intended for specialized, low-level tools like debuggers.</p>
+<p>Projects that use this API are expected to follow
+CPython development and spend extra effort adjusting to changes.</p>
+</section>
+<section id="stable-application-binary-interface">
+<h2>Stable Application Binary Interface<a class="headerlink" href="#stable-application-binary-interface" title="Link to this heading">#</a></h2>
+<p>For simplicity, this document talks about <em>extensions</em>, but the Limited API
+and Stable ABI work the same way for all uses of the API – for example,
+embedding Python.</p>
+<section id="limited-c-api">
+<span id="id2"></span><h3>Limited C API<a class="headerlink" href="#limited-c-api" title="Link to this heading">#</a></h3>
+<p>Python 3.2 introduced the <em>Limited API</em>, a subset of Python’s C API.
+Extensions that only use the Limited API can be
+compiled once and work with multiple versions of Python.
+Contents of the Limited API are <a class="reference internal" href="#limited-api-list"><span class="std std-ref">listed below</span></a>.</p>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.Py_LIMITED_API">
+<span class="sig-name descname"><span class="n"><span class="pre">Py_LIMITED_API</span></span></span><a class="headerlink" href="#c.Py_LIMITED_API" title="Link to this definition">#</a><br /></dt>
+<dd><p>Define this macro before including <code class="docutils literal notranslate"><span class="pre">Python.h</span></code> to opt in to only use
+the Limited API, and to select the Limited API version.</p>
+<p>Define <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> to the value of <a class="reference internal" href="apiabiversion.html#c.PY_VERSION_HEX" title="PY_VERSION_HEX"><code class="xref c c-macro docutils literal notranslate"><span class="pre">PY_VERSION_HEX</span></code></a>
+corresponding to the lowest Python version your extension supports.
+The extension will work without recompilation with all Python 3 releases
+from the specified one onward, and can use Limited API introduced up to that
+version.</p>
+<p>Rather than using the <code class="docutils literal notranslate"><span class="pre">PY_VERSION_HEX</span></code> macro directly, hardcode a minimum
+minor version (e.g. <code class="docutils literal notranslate"><span class="pre">0x030A0000</span></code> for Python 3.10) for stability when
+compiling with future Python versions.</p>
+<p>You can also define <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>. This works the same as
+<code class="docutils literal notranslate"><span class="pre">0x03020000</span></code> (Python 3.2, the version that introduced Limited API).</p>
+</dd></dl>
+
+</section>
+<section id="stable-abi">
+<span id="id3"></span><h3>Stable ABI<a class="headerlink" href="#stable-abi" title="Link to this heading">#</a></h3>
+<p>To enable this, Python provides a <em>Stable ABI</em>: a set of symbols that will
+remain compatible across Python 3.x versions.</p>
+<p>The Stable ABI contains symbols exposed in the <a class="reference internal" href="#limited-c-api"><span class="std std-ref">Limited API</span></a>, but also other ones – for example, functions necessary to
+support older versions of the Limited API.</p>
+<p>On Windows, extensions that use the Stable ABI should be linked against
+<code class="docutils literal notranslate"><span class="pre">python3.dll</span></code> rather than a version-specific library such as
+<code class="docutils literal notranslate"><span class="pre">python39.dll</span></code>.</p>
+<p>On some platforms, Python will look for and load shared library files named
+with the <code class="docutils literal notranslate"><span class="pre">abi3</span></code> tag (e.g. <code class="docutils literal notranslate"><span class="pre">mymodule.abi3.so</span></code>).
+It does not check if such extensions conform to a Stable ABI.
+The user (or their packaging tools) need to ensure that, for example,
+extensions built with the 3.10+ Limited API are not installed for lower
+versions of Python.</p>
+<p>All functions in the Stable ABI are present as functions in Python’s shared
+library, not solely as macros. This makes them usable from languages that don’t
+use the C preprocessor.</p>
+</section>
+<section id="limited-api-scope-and-performance">
+<h3>Limited API Scope and Performance<a class="headerlink" href="#limited-api-scope-and-performance" title="Link to this heading">#</a></h3>
+<p>The goal for the Limited API is to allow everything that is possible with the
+full C API, but possibly with a performance penalty.</p>
+<p>For example, while <a class="reference internal" href="list.html#c.PyList_GetItem" title="PyList_GetItem"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_GetItem()</span></code></a> is available, its “unsafe” macro
+variant <a class="reference internal" href="list.html#c.PyList_GET_ITEM" title="PyList_GET_ITEM"><code class="xref c c-func docutils literal notranslate"><span class="pre">PyList_GET_ITEM()</span></code></a> is not.
+The macro can be faster because it can rely on version-specific implementation
+details of the list object.</p>
+<p>Without <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> defined, some C API functions are inlined or
+replaced by macros.
+Defining <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> disables this inlining, allowing stability as
+Python’s data structures are improved, but possibly reducing performance.</p>
+<p>By leaving out the <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> definition, it is possible to compile
+a Limited API extension with a version-specific ABI. This can improve
+performance for that Python version, but will limit compatibility.
+Compiling with <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> will then yield an extension that can be
+distributed where a version-specific one is not available – for example,
+for prereleases of an upcoming Python version.</p>
+</section>
+<section id="limited-api-caveats">
+<h3>Limited API Caveats<a class="headerlink" href="#limited-api-caveats" title="Link to this heading">#</a></h3>
+<p>Note that compiling with <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> is <em>not</em> a complete guarantee that
+code conforms to the <a class="reference internal" href="#limited-c-api"><span class="std std-ref">Limited API</span></a> or the <a class="reference internal" href="#stable-abi"><span class="std std-ref">Stable ABI</span></a>. <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> only covers definitions, but an API also
+includes other issues, such as expected semantics.</p>
+<p>One issue that <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> does not guard against is calling a function
+with arguments that are invalid in a lower Python version.
+For example, consider a function that starts accepting <code class="docutils literal notranslate"><span class="pre">NULL</span></code> for an
+argument. In Python 3.9, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> now selects a default behavior, but in
+Python 3.8, the argument will be used directly, causing a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> dereference
+and crash. A similar argument works for fields of structs.</p>
+<p>Another issue is that some struct fields are currently not hidden when
+<code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> is defined, even though they’re part of the Limited API.</p>
+<p>For these reasons, we recommend testing an extension with <em>all</em> minor Python
+versions it supports, and preferably to build with the <em>lowest</em> such version.</p>
+<p>We also recommend reviewing documentation of all used API to check
+if it is explicitly part of the Limited API. Even with <code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code>
+defined, a few private declarations are exposed for technical reasons (or
+even unintentionally, as bugs).</p>
+<p>Also note that the Limited API is not necessarily stable: compiling with
+<code class="docutils literal notranslate"><span class="pre">Py_LIMITED_API</span></code> with Python 3.8 means that the extension will
+run with Python 3.12, but it will not necessarily <em>compile</em> with Python 3.12.
+In particular, parts of the Limited API may be deprecated and removed,
+provided that the Stable ABI stays stable.</p>
+</section>
+</section>
+<section id="platform-considerations">
+<span id="stable-abi-platform"></span><h2>Platform Considerations<a class="headerlink" href="#platform-considerations" title="Link to this heading">#</a></h2>
+<p>ABI stability depends not only on Python, but also on the compiler used,
+lower-level libraries and compiler options. For the purposes of
+the <a class="reference internal" href="#stable-abi"><span class="std std-ref">Stable ABI</span></a>, these details define a “platform”. They
+usually depend on the OS type and processor architecture</p>
+<p>It is the responsibility of each particular distributor of Python
+to ensure that all Python versions on a particular platform are built
+in a way that does not break the Stable ABI.
+This is the case with Windows and macOS releases from <code class="docutils literal notranslate"><span class="pre">python.org</span></code> and many
+third-party distributors.</p>
+</section>
+<section id="contents-of-limited-api">
+<span id="limited-api-list"></span><h2>Contents of Limited API<a class="headerlink" href="#contents-of-limited-api" title="Link to this heading">#</a></h2>
+<p>Currently, the <a class="reference internal" href="#limited-c-api"><span class="std std-ref">Limited API</span></a> includes the following items:</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/c-api"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unstable-c-api">Unstable C API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-application-binary-interface">Stable Application Binary Interface</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-c-api">Limited C API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stable-abi">Stable ABI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-api-scope-and-performance">Limited API Scope and Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limited-api-caveats">Limited API Caveats</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-considerations">Platform Considerations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents-of-limited-api">Contents of Limited API</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

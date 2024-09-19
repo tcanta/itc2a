@@ -396,6 +396,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-de-l-integrite-d-un-fichier">Verification de l’intégrité d’un fichier</a></li>
 </ul>
 </li>
 </ul>
@@ -1075,14 +1076,14 @@ Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;yjmrrxxtxg&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;gpyeououik&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="note admonition">
 <p class="admonition-title">Exercice 14</p>
-<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">find_collision(n,</span> <span class="pre">p,</span> <span class="pre">k)</span></code> qui cherche une collision en générant <code class="docutils literal notranslate"><span class="pre">n</span></code> chaînes de caractères aléatoires de tailles <code class="docutils literal notranslate"><span class="pre">p</span></code>. Pour que la recherche ne prenne pas trop de temps, seuls les <code class="docutils literal notranslate"><span class="pre">k</span></code> premiers caractères de <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> seront considérés (avec <code class="docutils literal notranslate"><span class="pre">md5(s)[:k]</span></code>). On pourra prendre <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">8</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">100000</span></code>, <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">10</span></code>.</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">find_collision(n,</span> <span class="pre">p,</span> <span class="pre">k)</span></code> qui cherche une collision en générant <code class="docutils literal notranslate"><span class="pre">n</span></code> chaînes de caractères aléatoires de tailles <code class="docutils literal notranslate"><span class="pre">p</span></code>. Pour que la recherche ne prenne pas trop de temps, seuls les <code class="docutils literal notranslate"><span class="pre">k</span></code> premiers caractères de <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> seront considérés (avec <code class="docutils literal notranslate"><span class="pre">md5(s)[:k]</span></code>). On pourra prendre <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">100000</span></code>, <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">10</span></code>.</p>
 </div>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
@@ -1105,21 +1106,38 @@ Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gghybwifty oqyaiudhts ont le hash 87868e20e
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rixlxblmjz qeykwxlupr ont le hash 6bf595994
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hrrilwoutb jdtbejxjpe ont le hash e926accde
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inplefjghr aamwpcvful ont le hash f81664ed1
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nhvlfqvqwe jrgbtfnebu ont le hash b25574b17
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aguoflsmiw fkblamcciu ont le hash 94cf19212
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vgysvzsjva xaeuafjxnz ont le hash 52449759e
-sbbgcvuxtk lfoaqivdmr ont le hash 6eb050444
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>phxxxmbxdm dzohyqhivu ont le hash 4e7b52ccc
+alneglsdrz mvnlbcahnp ont le hash cea64d6ad
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vrayqedqxz hzadrifmni ont le hash 206d99717
 </pre></div>
 </div>
 </div>
 </details>
+</div>
+</section>
+<hr class="docutils" />
+<section id="verification-de-l-integrite-d-un-fichier">
+<h3>Verification de l’intégrité d’un fichier<a class="headerlink" href="#verification-de-l-integrite-d-un-fichier" title="Link to this heading">#</a></h3>
+<p>Un ami vous propose d’installer la toute dernière version de python qu’il héberge gentillement sur son serveur. Malheureusement vous n’êtes pas certain que cette version soit bien celle d’origine…
+Il vous propose deux archives censées contenir toutes les deux la même version de python.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz">https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz</a>
+<a class="reference external" href="https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz">https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz</a></p>
+<p>Lien vers le site officiel de python :
+<a class="reference external" href="https://www.python.org/downloads/release/python-3130rc2/">https://www.python.org/downloads/release/python-3130rc2/</a></p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 15</p>
+<p>Vérifiez l’intégrité de ces fichiers.</p>
 </div>
 </section>
 </section>
@@ -1191,6 +1209,7 @@ sbbgcvuxtk lfoaqivdmr ont le hash 6eb050444
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-de-l-integrite-d-un-fichier">Verification de l’intégrité d’un fichier</a></li>
 </ul>
 </li>
 </ul>

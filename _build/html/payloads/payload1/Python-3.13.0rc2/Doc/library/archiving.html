@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Compression and Archiving &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'payloads/payload1/Python-3.13.0rc2/Doc/library/archiving';</script>
+    <link rel="icon" href="../../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cours/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../td/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tp/tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Fpayloads/payload1/Python-3.13.0rc2/Doc/library/archiving.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../../../_sources/payloads/payload1/Python-3.13.0rc2/Doc/library/archiving.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Compression and Archiving</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="data-compression-and-archiving">
+<span id="archiving"></span><h1>Data Compression and Archiving<a class="headerlink" href="#data-compression-and-archiving" title="Link to this heading">#</a></h1>
+<p>The modules described in this chapter support data compression with the zlib,
+gzip, bzip2 and lzma algorithms, and the creation of ZIP- and tar-format
+archives.  See also <a class="reference internal" href="shutil.html#archiving-operations"><span class="std std-ref">Archiving operations</span></a> provided by the <a class="reference internal" href="shutil.html#module-shutil" title="shutil: High-level file operations, including copying."><code class="xref py py-mod docutils literal notranslate"><span class="pre">shutil</span></code></a>
+module.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="zlib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zlib</span></code> — Compression compatible with <strong class="program">gzip</strong></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.error"><code class="docutils literal notranslate"><span class="pre">error</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.adler32"><code class="docutils literal notranslate"><span class="pre">adler32()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.compressobj"><code class="docutils literal notranslate"><span class="pre">compressobj()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.crc32"><code class="docutils literal notranslate"><span class="pre">crc32()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.decompressobj"><code class="docutils literal notranslate"><span class="pre">decompressobj()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Compress.compress"><code class="docutils literal notranslate"><span class="pre">Compress.compress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Compress.flush"><code class="docutils literal notranslate"><span class="pre">Compress.flush()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Compress.copy"><code class="docutils literal notranslate"><span class="pre">Compress.copy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.unused_data"><code class="docutils literal notranslate"><span class="pre">Decompress.unused_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.unconsumed_tail"><code class="docutils literal notranslate"><span class="pre">Decompress.unconsumed_tail</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.eof"><code class="docutils literal notranslate"><span class="pre">Decompress.eof</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.decompress"><code class="docutils literal notranslate"><span class="pre">Decompress.decompress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.flush"><code class="docutils literal notranslate"><span class="pre">Decompress.flush()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.Decompress.copy"><code class="docutils literal notranslate"><span class="pre">Decompress.copy()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.ZLIB_VERSION"><code class="docutils literal notranslate"><span class="pre">ZLIB_VERSION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zlib.html#zlib.ZLIB_RUNTIME_VERSION"><code class="docutils literal notranslate"><span class="pre">ZLIB_RUNTIME_VERSION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gzip.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gzip</span></code> — Support for <strong class="program">gzip</strong> files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#gzip.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#gzip.BadGzipFile"><code class="docutils literal notranslate"><span class="pre">BadGzipFile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#gzip.GzipFile"><code class="docutils literal notranslate"><span class="pre">GzipFile</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gzip.html#gzip.GzipFile.peek"><code class="docutils literal notranslate"><span class="pre">GzipFile.peek()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gzip.html#gzip.GzipFile.mode"><code class="docutils literal notranslate"><span class="pre">GzipFile.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gzip.html#gzip.GzipFile.mtime"><code class="docutils literal notranslate"><span class="pre">GzipFile.mtime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gzip.html#gzip.GzipFile.name"><code class="docutils literal notranslate"><span class="pre">GzipFile.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#gzip.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#gzip.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#examples-of-usage">Examples of usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gzip.html#command-line-interface">Command Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gzip.html#command-line-options">Command line options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bz2.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bz2</span></code> — Support for <strong class="program">bzip2</strong> compression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bz2.html#de-compression-of-files">(De)compression of files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.BZ2File"><code class="docutils literal notranslate"><span class="pre">BZ2File</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.peek"><code class="docutils literal notranslate"><span class="pre">BZ2File.peek()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.fileno"><code class="docutils literal notranslate"><span class="pre">BZ2File.fileno()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.readable"><code class="docutils literal notranslate"><span class="pre">BZ2File.readable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.seekable"><code class="docutils literal notranslate"><span class="pre">BZ2File.seekable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.writable"><code class="docutils literal notranslate"><span class="pre">BZ2File.writable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.read1"><code class="docutils literal notranslate"><span class="pre">BZ2File.read1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.readinto"><code class="docutils literal notranslate"><span class="pre">BZ2File.readinto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.mode"><code class="docutils literal notranslate"><span class="pre">BZ2File.mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2File.name"><code class="docutils literal notranslate"><span class="pre">BZ2File.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bz2.html#incremental-de-compression">Incremental (de)compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.BZ2Compressor"><code class="docutils literal notranslate"><span class="pre">BZ2Compressor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Compressor.compress"><code class="docutils literal notranslate"><span class="pre">BZ2Compressor.compress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Compressor.flush"><code class="docutils literal notranslate"><span class="pre">BZ2Compressor.flush()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.BZ2Decompressor"><code class="docutils literal notranslate"><span class="pre">BZ2Decompressor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Decompressor.decompress"><code class="docutils literal notranslate"><span class="pre">BZ2Decompressor.decompress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Decompressor.eof"><code class="docutils literal notranslate"><span class="pre">BZ2Decompressor.eof</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Decompressor.unused_data"><code class="docutils literal notranslate"><span class="pre">BZ2Decompressor.unused_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bz2.html#bz2.BZ2Decompressor.needs_input"><code class="docutils literal notranslate"><span class="pre">BZ2Decompressor.needs_input</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bz2.html#one-shot-de-compression">One-shot (de)compression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="bz2.html#bz2.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bz2.html#examples-of-usage">Examples of usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lzma.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lzma</span></code> — Compression using the LZMA algorithm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#lzma.LZMAError"><code class="docutils literal notranslate"><span class="pre">LZMAError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#reading-and-writing-compressed-files">Reading and writing compressed files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.LZMAFile"><code class="docutils literal notranslate"><span class="pre">LZMAFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMAFile.peek"><code class="docutils literal notranslate"><span class="pre">LZMAFile.peek()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMAFile.mode"><code class="docutils literal notranslate"><span class="pre">LZMAFile.mode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMAFile.name"><code class="docutils literal notranslate"><span class="pre">LZMAFile.name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#compressing-and-decompressing-data-in-memory">Compressing and decompressing data in memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.LZMACompressor"><code class="docutils literal notranslate"><span class="pre">LZMACompressor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMACompressor.compress"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.compress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMACompressor.flush"><code class="docutils literal notranslate"><span class="pre">LZMACompressor.flush()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor.decompress"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.decompress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor.check"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.check</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor.eof"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.eof</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor.unused_data"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.unused_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lzma.html#lzma.LZMADecompressor.needs_input"><code class="docutils literal notranslate"><span class="pre">LZMADecompressor.needs_input</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.compress"><code class="docutils literal notranslate"><span class="pre">compress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.decompress"><code class="docutils literal notranslate"><span class="pre">decompress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#miscellaneous">Miscellaneous</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lzma.html#lzma.is_check_supported"><code class="docutils literal notranslate"><span class="pre">is_check_supported()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#specifying-custom-filter-chains">Specifying custom filter chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lzma.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zipfile.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">zipfile</span></code> — Work with ZIP archives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.BadZipFile"><code class="docutils literal notranslate"><span class="pre">BadZipFile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.BadZipfile"><code class="docutils literal notranslate"><span class="pre">BadZipfile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.LargeZipFile"><code class="docutils literal notranslate"><span class="pre">LargeZipFile</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo"><code class="docutils literal notranslate"><span class="pre">ZipInfo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.is_zipfile"><code class="docutils literal notranslate"><span class="pre">is_zipfile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.ZIP_STORED"><code class="docutils literal notranslate"><span class="pre">ZIP_STORED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.ZIP_DEFLATED"><code class="docutils literal notranslate"><span class="pre">ZIP_DEFLATED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.ZIP_BZIP2"><code class="docutils literal notranslate"><span class="pre">ZIP_BZIP2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile.ZIP_LZMA"><code class="docutils literal notranslate"><span class="pre">ZIP_LZMA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipfile-objects">ZipFile Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile"><code class="docutils literal notranslate"><span class="pre">ZipFile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.close"><code class="docutils literal notranslate"><span class="pre">ZipFile.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.getinfo"><code class="docutils literal notranslate"><span class="pre">ZipFile.getinfo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.infolist"><code class="docutils literal notranslate"><span class="pre">ZipFile.infolist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.namelist"><code class="docutils literal notranslate"><span class="pre">ZipFile.namelist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.open"><code class="docutils literal notranslate"><span class="pre">ZipFile.open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.extract"><code class="docutils literal notranslate"><span class="pre">ZipFile.extract()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.extractall"><code class="docutils literal notranslate"><span class="pre">ZipFile.extractall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.printdir"><code class="docutils literal notranslate"><span class="pre">ZipFile.printdir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.setpassword"><code class="docutils literal notranslate"><span class="pre">ZipFile.setpassword()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.read"><code class="docutils literal notranslate"><span class="pre">ZipFile.read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.testzip"><code class="docutils literal notranslate"><span class="pre">ZipFile.testzip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.write"><code class="docutils literal notranslate"><span class="pre">ZipFile.write()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.writestr"><code class="docutils literal notranslate"><span class="pre">ZipFile.writestr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.mkdir"><code class="docutils literal notranslate"><span class="pre">ZipFile.mkdir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.filename"><code class="docutils literal notranslate"><span class="pre">ZipFile.filename</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.debug"><code class="docutils literal notranslate"><span class="pre">ZipFile.debug</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipFile.comment"><code class="docutils literal notranslate"><span class="pre">ZipFile.comment</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#path-objects">Path Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.name"><code class="docutils literal notranslate"><span class="pre">Path.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.open"><code class="docutils literal notranslate"><span class="pre">Path.open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.iterdir"><code class="docutils literal notranslate"><span class="pre">Path.iterdir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.is_dir"><code class="docutils literal notranslate"><span class="pre">Path.is_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.is_file"><code class="docutils literal notranslate"><span class="pre">Path.is_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.is_symlink"><code class="docutils literal notranslate"><span class="pre">Path.is_symlink()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.exists"><code class="docutils literal notranslate"><span class="pre">Path.exists()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.suffix"><code class="docutils literal notranslate"><span class="pre">Path.suffix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.stem"><code class="docutils literal notranslate"><span class="pre">Path.stem</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.suffixes"><code class="docutils literal notranslate"><span class="pre">Path.suffixes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.read_text"><code class="docutils literal notranslate"><span class="pre">Path.read_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.read_bytes"><code class="docutils literal notranslate"><span class="pre">Path.read_bytes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.Path.joinpath"><code class="docutils literal notranslate"><span class="pre">Path.joinpath()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#pyzipfile-objects">PyZipFile Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.PyZipFile"><code class="docutils literal notranslate"><span class="pre">PyZipFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="zipfile.html#zipfile.PyZipFile.writepy"><code class="docutils literal notranslate"><span class="pre">PyZipFile.writepy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#zipinfo-objects">ZipInfo Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.from_file"><code class="docutils literal notranslate"><span class="pre">ZipInfo.from_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.is_dir"><code class="docutils literal notranslate"><span class="pre">ZipInfo.is_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.filename"><code class="docutils literal notranslate"><span class="pre">ZipInfo.filename</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.date_time"><code class="docutils literal notranslate"><span class="pre">ZipInfo.date_time</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.compress_type"><code class="docutils literal notranslate"><span class="pre">ZipInfo.compress_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.comment"><code class="docutils literal notranslate"><span class="pre">ZipInfo.comment</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.extra"><code class="docutils literal notranslate"><span class="pre">ZipInfo.extra</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.create_system"><code class="docutils literal notranslate"><span class="pre">ZipInfo.create_system</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.create_version"><code class="docutils literal notranslate"><span class="pre">ZipInfo.create_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.extract_version"><code class="docutils literal notranslate"><span class="pre">ZipInfo.extract_version</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.reserved"><code class="docutils literal notranslate"><span class="pre">ZipInfo.reserved</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.flag_bits"><code class="docutils literal notranslate"><span class="pre">ZipInfo.flag_bits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.volume"><code class="docutils literal notranslate"><span class="pre">ZipInfo.volume</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.internal_attr"><code class="docutils literal notranslate"><span class="pre">ZipInfo.internal_attr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.external_attr"><code class="docutils literal notranslate"><span class="pre">ZipInfo.external_attr</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.header_offset"><code class="docutils literal notranslate"><span class="pre">ZipInfo.header_offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.CRC"><code class="docutils literal notranslate"><span class="pre">ZipInfo.CRC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.compress_size"><code class="docutils literal notranslate"><span class="pre">ZipInfo.compress_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#zipfile.ZipInfo.file_size"><code class="docutils literal notranslate"><span class="pre">ZipInfo.file_size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="zipfile.html#decompression-pitfalls">Decompression pitfalls</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#from-file-itself">From file itself</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#file-system-limitations">File System limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#resources-limitations">Resources limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#interruption">Interruption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zipfile.html#default-behaviors-of-extraction">Default behaviors of extraction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tarfile.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tarfile</span></code> — Read and write tar archive files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.open"><code class="docutils literal notranslate"><span class="pre">open()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.is_tarfile"><code class="docutils literal notranslate"><span class="pre">is_tarfile()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.TarError"><code class="docutils literal notranslate"><span class="pre">TarError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.ReadError"><code class="docutils literal notranslate"><span class="pre">ReadError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.CompressionError"><code class="docutils literal notranslate"><span class="pre">CompressionError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.StreamError"><code class="docutils literal notranslate"><span class="pre">StreamError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.ExtractError"><code class="docutils literal notranslate"><span class="pre">ExtractError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.HeaderError"><code class="docutils literal notranslate"><span class="pre">HeaderError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.FilterError"><code class="docutils literal notranslate"><span class="pre">FilterError</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.FilterError.tarinfo"><code class="docutils literal notranslate"><span class="pre">FilterError.tarinfo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.AbsolutePathError"><code class="docutils literal notranslate"><span class="pre">AbsolutePathError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.OutsideDestinationError"><code class="docutils literal notranslate"><span class="pre">OutsideDestinationError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.SpecialFileError"><code class="docutils literal notranslate"><span class="pre">SpecialFileError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.AbsoluteLinkError"><code class="docutils literal notranslate"><span class="pre">AbsoluteLinkError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.LinkOutsideDestinationError"><code class="docutils literal notranslate"><span class="pre">LinkOutsideDestinationError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.ENCODING"><code class="docutils literal notranslate"><span class="pre">ENCODING</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.REGTYPE"><code class="docutils literal notranslate"><span class="pre">REGTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.AREGTYPE"><code class="docutils literal notranslate"><span class="pre">AREGTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.LNKTYPE"><code class="docutils literal notranslate"><span class="pre">LNKTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.SYMTYPE"><code class="docutils literal notranslate"><span class="pre">SYMTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.CHRTYPE"><code class="docutils literal notranslate"><span class="pre">CHRTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.BLKTYPE"><code class="docutils literal notranslate"><span class="pre">BLKTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.DIRTYPE"><code class="docutils literal notranslate"><span class="pre">DIRTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.FIFOTYPE"><code class="docutils literal notranslate"><span class="pre">FIFOTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.CONTTYPE"><code class="docutils literal notranslate"><span class="pre">CONTTYPE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.GNUTYPE_LONGNAME"><code class="docutils literal notranslate"><span class="pre">GNUTYPE_LONGNAME</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.GNUTYPE_LONGLINK"><code class="docutils literal notranslate"><span class="pre">GNUTYPE_LONGLINK</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.GNUTYPE_SPARSE"><code class="docutils literal notranslate"><span class="pre">GNUTYPE_SPARSE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.USTAR_FORMAT"><code class="docutils literal notranslate"><span class="pre">USTAR_FORMAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.GNU_FORMAT"><code class="docutils literal notranslate"><span class="pre">GNU_FORMAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.PAX_FORMAT"><code class="docutils literal notranslate"><span class="pre">PAX_FORMAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile.DEFAULT_FORMAT"><code class="docutils literal notranslate"><span class="pre">DEFAULT_FORMAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarfile-objects">TarFile Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile"><code class="docutils literal notranslate"><span class="pre">TarFile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.open"><code class="docutils literal notranslate"><span class="pre">TarFile.open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.getmember"><code class="docutils literal notranslate"><span class="pre">TarFile.getmember()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.getmembers"><code class="docutils literal notranslate"><span class="pre">TarFile.getmembers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.getnames"><code class="docutils literal notranslate"><span class="pre">TarFile.getnames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.list"><code class="docutils literal notranslate"><span class="pre">TarFile.list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.next"><code class="docutils literal notranslate"><span class="pre">TarFile.next()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.extractall"><code class="docutils literal notranslate"><span class="pre">TarFile.extractall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.extract"><code class="docutils literal notranslate"><span class="pre">TarFile.extract()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.extractfile"><code class="docutils literal notranslate"><span class="pre">TarFile.extractfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.errorlevel"><code class="docutils literal notranslate"><span class="pre">TarFile.errorlevel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.extraction_filter"><code class="docutils literal notranslate"><span class="pre">TarFile.extraction_filter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.add"><code class="docutils literal notranslate"><span class="pre">TarFile.add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.addfile"><code class="docutils literal notranslate"><span class="pre">TarFile.addfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.gettarinfo"><code class="docutils literal notranslate"><span class="pre">TarFile.gettarinfo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.close"><code class="docutils literal notranslate"><span class="pre">TarFile.close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarFile.pax_headers"><code class="docutils literal notranslate"><span class="pre">TarFile.pax_headers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#tarinfo-objects">TarInfo Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo"><code class="docutils literal notranslate"><span class="pre">TarInfo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.frombuf"><code class="docutils literal notranslate"><span class="pre">TarInfo.frombuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.fromtarfile"><code class="docutils literal notranslate"><span class="pre">TarInfo.fromtarfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.tobuf"><code class="docutils literal notranslate"><span class="pre">TarInfo.tobuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.name"><code class="docutils literal notranslate"><span class="pre">TarInfo.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.size"><code class="docutils literal notranslate"><span class="pre">TarInfo.size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.mtime"><code class="docutils literal notranslate"><span class="pre">TarInfo.mtime</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.mode"><code class="docutils literal notranslate"><span class="pre">TarInfo.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.type"><code class="docutils literal notranslate"><span class="pre">TarInfo.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.linkname"><code class="docutils literal notranslate"><span class="pre">TarInfo.linkname</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.uid"><code class="docutils literal notranslate"><span class="pre">TarInfo.uid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.gid"><code class="docutils literal notranslate"><span class="pre">TarInfo.gid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.uname"><code class="docutils literal notranslate"><span class="pre">TarInfo.uname</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.gname"><code class="docutils literal notranslate"><span class="pre">TarInfo.gname</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.chksum"><code class="docutils literal notranslate"><span class="pre">TarInfo.chksum</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.devmajor"><code class="docutils literal notranslate"><span class="pre">TarInfo.devmajor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.devminor"><code class="docutils literal notranslate"><span class="pre">TarInfo.devminor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.offset"><code class="docutils literal notranslate"><span class="pre">TarInfo.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.offset_data"><code class="docutils literal notranslate"><span class="pre">TarInfo.offset_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.sparse"><code class="docutils literal notranslate"><span class="pre">TarInfo.sparse</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.pax_headers"><code class="docutils literal notranslate"><span class="pre">TarInfo.pax_headers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.replace"><code class="docutils literal notranslate"><span class="pre">TarInfo.replace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isfile"><code class="docutils literal notranslate"><span class="pre">TarInfo.isfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isreg"><code class="docutils literal notranslate"><span class="pre">TarInfo.isreg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isdir"><code class="docutils literal notranslate"><span class="pre">TarInfo.isdir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.issym"><code class="docutils literal notranslate"><span class="pre">TarInfo.issym()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.islnk"><code class="docutils literal notranslate"><span class="pre">TarInfo.islnk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.ischr"><code class="docutils literal notranslate"><span class="pre">TarInfo.ischr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isblk"><code class="docutils literal notranslate"><span class="pre">TarInfo.isblk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isfifo"><code class="docutils literal notranslate"><span class="pre">TarInfo.isfifo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#tarfile.TarInfo.isdev"><code class="docutils literal notranslate"><span class="pre">TarInfo.isdev()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#extraction-filters">Extraction filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#default-named-filters">Default named filters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tarfile.html#tarfile.fully_trusted_filter"><code class="docutils literal notranslate"><span class="pre">fully_trusted_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tarfile.html#tarfile.tar_filter"><code class="docutils literal notranslate"><span class="pre">tar_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tarfile.html#tarfile.data_filter"><code class="docutils literal notranslate"><span class="pre">data_filter()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#filter-errors">Filter errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#hints-for-further-verification">Hints for further verification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#supporting-older-python-versions">Supporting older Python versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#stateful-extraction-filter-example">Stateful extraction filter example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#command-line-interface">Command-Line Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tarfile.html#command-line-options">Command-line options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#supported-tar-formats">Supported tar formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tarfile.html#unicode-issues">Unicode issues</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./payloads/payload1/Python-3.13.0rc2/Doc/library"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
