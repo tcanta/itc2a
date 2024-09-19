@@ -529,9 +529,13 @@ https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3
 Lien vers le site officiel de python :
 https://www.python.org/downloads/release/python-3130rc2/
 
+
 :::{admonition} Exercice 15
 :class: note
 Vérifiez l'intégrité de ces fichiers en calculant leurs hashs MD5 respectifs et en les comparant au hash original.
+```
+ad7f44153649e27ec385e7633e853e03
+```
 :::
 
 Cette vérification est aujourd'hui insuffisante pour garantir l'intégrité du fichier à cause des problèmes de collision vus plus haut !
