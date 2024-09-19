@@ -531,5 +531,7 @@ https://www.python.org/downloads/release/python-3130rc2/
 
 :::{admonition} Exercice 15
 :class: note
-Vérifiez l'intégrité de ces fichiers.
+Vérifiez l'intégrité de ces fichiers en calculant leurs hashs MD5 respectifs et en les comparant au hash original.
 :::
+
+Cette vérification est aujourd'hui insuffisante pour garantir l'intégrité du fichier à cause des problèmes de collision vus plus haut !
