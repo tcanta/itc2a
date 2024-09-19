@@ -371,9 +371,11 @@ print(trie_has(trie_ex, "carte"))
 print(trie_has(trie_ex, "car"))
 ```
 ---
-+++
+---
+
+**Compléments :**
 ## Fonctions de hachage
-+++
+
 ---
 
 De manière informelle, on dit qu'une fonction $h : X \longrightarrow Y$ est une **fonction de hachage** si $X$ est un ensemble de grande taille (généralement infini) et $Y$ est un ensemble fini (souvent un ensemble d'entiers).  
