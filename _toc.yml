@@ -12,3 +12,4 @@ parts:
     chapters:
       - file: cours/cours_structures
       - file: td/dict_polynome
+      - file: tp/tp_structures
