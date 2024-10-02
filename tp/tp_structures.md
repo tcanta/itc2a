@@ -272,7 +272,7 @@ def trie_size(trie):
     n = 0
     for k in trie:
         if k == '$':
-            n += 1
+            return 1
         else:
             n += trie_size(trie[k])
     return n
