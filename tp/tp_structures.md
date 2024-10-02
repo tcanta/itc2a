@@ -90,12 +90,13 @@ def majoritaire(L):
 def majoritaire(L):
     m, n = None, 0 # va contenir l'élément majoritaire et son nombre d'occurences
     for e in L:
-        n = 0
+        n_e = 0 # nombre d'occurences de e
         for f in L:
             if f == e:
-                n += 1
-        if n > L.count(m):
+                n_e += 1
+        if n_e > n:
             m = e
+            n = n_e
     return m
 
 # dans les deux cas, la complexité est O(n^2), où n est la longueur de la liste L

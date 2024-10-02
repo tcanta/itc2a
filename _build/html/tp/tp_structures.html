@@ -496,12 +496,13 @@ document.write(`
 <span class="k">def</span> <span class="nf">majoritaire</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
     <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span> <span class="c1"># va contenir l&#39;élément majoritaire et son nombre d&#39;occurences</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_e</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># nombre d&#39;occurences de e</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">f</span> <span class="o">==</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">n_e</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n_e</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
             <span class="n">m</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">n_e</span>
     <span class="k">return</span> <span class="n">m</span>
 
 <span class="c1"># dans les deux cas, la complexité est O(n^2), où n est la longueur de la liste L</span>
@@ -1079,7 +1080,7 @@ Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;owsinpclsp&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;myjmmlbcvc&#39;
 </pre></div>
 </div>
 </div>
@@ -1109,23 +1110,18 @@ Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>taooxpdsac qaunrfdyiu ont le hash 1bd8a3e16
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aqgvkedltu akqpikdtiz ont le hash 91667bc62
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bgactcjlyi brykbfbbgw ont le hash eb13111f5
-uznlnzaqhy cqetceciov ont le hash 7710723d9
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mlscquszmh jynscwwtay ont le hash 2b9eb10ab
+gxcueemqpb vhtfrmneed ont le hash 1bbfea24c
+yeznqfqllz govhkewmrh ont le hash cf4e92f3c
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alkhhwwarr sfkngibguj ont le hash 588efd1ad
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yrbmfqbnpf oitlosjfya ont le hash 1a5937211
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mklrdkycso ohglcoxsqd ont le hash df4892ada
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>taomptdimm aspysdbarb ont le hash 84cc83f29
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qvprrsebly ctobrkyhdl ont le hash e4b51732c
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>texqunutib tkzfdfkhbr ont le hash 1bbbaa943
 </pre></div>
 </div>
 </div>
