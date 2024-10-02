@@ -11,9 +11,10 @@ parts:
   - caption: Structures de Données
     chapters:
       - file: cours/dict/cours_structures
-      - file: td/dict_polynome
+      - file: td/dict/dict_polynome
       - file: tp/tp_structures
 
   - caption: Paradigmes Algorithmiques
     chapters:
       - file: cours/prog_dyn/cours_prog_dyn
+      - file: td/prog_dyn/chemin

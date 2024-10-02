@@ -18,30 +18,21 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-G = [[inf, inf, 8, inf, inf, 1, inf, 2],
- [9, inf, inf, 8, inf, 8, inf, inf],
- [inf, 3, inf, inf, inf, 3, inf, inf],
- [5, inf, 1, inf, inf, inf, 8, inf],
- [4, inf, inf, inf, inf, 3, inf, 8],
- [5, inf, inf, inf, inf, inf, inf, inf],
- [7, inf, inf, inf, inf, inf, inf, inf],
- [5, 5, 7, inf, inf, inf, inf, inf]]
-dijkstra(G,0)
+def dfs(G, s):
+    # définir une liste de booléens pour savoir si un sommet a été visité
+    def aux(u): # fonction récursive
+        # si u n'a pas été visité :
+            # afficher u
+            # marquer u comme visité
+            # pour chaque voisin v de u
+                # appeler aux(v)
+    aux(s)
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[36], line 1[0m
-[0;32m----> 1[0m G [38;5;241m=[39m [[[43minf[49m, inf, [38;5;241m8[39m, inf, inf, [38;5;241m1[39m, inf, [38;5;241m2[39m],
-[1;32m      2[0m  [[38;5;241m9[39m, inf, inf, [38;5;241m8[39m, inf, [38;5;241m8[39m, inf, inf],
-[1;32m      3[0m  [inf, [38;5;241m3[39m, inf, inf, inf, [38;5;241m3[39m, inf, inf],
-[1;32m      4[0m  [[38;5;241m5[39m, inf, [38;5;241m1[39m, inf, inf, inf, [38;5;241m8[39m, inf],
-[1;32m      5[0m  [[38;5;241m4[39m, inf, inf, inf, inf, [38;5;241m3[39m, inf, [38;5;241m8[39m],
-[1;32m      6[0m  [[38;5;241m5[39m, inf, inf, inf, inf, inf, inf, inf],
-[1;32m      7[0m  [[38;5;241m7[39m, inf, inf, inf, inf, inf, inf, inf],
-[1;32m      8[0m  [[38;5;241m5[39m, [38;5;241m5[39m, [38;5;241m7[39m, inf, inf, inf, inf, inf]]
-[1;32m      9[0m dijkstra(G,[38;5;241m0[39m)
+[0;36m  Cell [0;32mIn[22], line 9[0;36m[0m
+[0;31m    aux(s)[0m
+[0m    ^[0m
+[0;31mIndentationError[0m[0;31m:[0m expected an indented block after function definition on line 3
 
-[0;31mNameError[0m: name 'inf' is not defined
 
