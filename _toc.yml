@@ -18,3 +18,4 @@ parts:
     chapters:
       - file: cours/prog_dyn/cours_prog_dyn
       - file: td/prog_dyn/chemin
+      - file: tp/prog_dyn/tp1_prog_dyn

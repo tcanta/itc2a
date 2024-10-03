@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TP 1 - Programmation Dynamique &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tp/prog_dyn/tp1_prog_dyn';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="TD: Chemin dans matrice" href="../../td/prog_dyn/chemin.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cours/dict/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../td/dict/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paradigmes Algorithmiques</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cours/prog_dyn/cours_prog_dyn.html">Cours: Paradigmes Algorithmiques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../td/prog_dyn/chemin.html">TD: Chemin dans matrice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TP 1 - Programmation Dynamique</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Ftp/prog_dyn/tp1_prog_dyn.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tp/prog_dyn/tp1_prog_dyn.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TP 1 - Programmation Dynamique</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-binomial">Coefficient binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anagramme">Anagramme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trie-arbre-prefixe">Trie (arbre préfixe)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arbres-enracines">Arbres enracinés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trie">Trie</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-de-l-integrite-d-un-fichier">Verification de l’intégrité d’un fichier</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tp-1-programmation-dynamique">
+<h1>TP 1 - Programmation Dynamique<a class="headerlink" href="#tp-1-programmation-dynamique" title="Link to this heading">#</a></h1>
+<p>Pour programmer, vous pouvez soit utiliser Pyzo, soit <a class="reference external" href="https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp1_prog_dyn-eleves.ipynb">Basthon</a>.</p>
+<p>Commandes Basthon :</p>
+<ul class="simple">
+<li><p>Ctrl + Entrée : exécuter la cellule</p></li>
+<li><p>Shift + Entrée : exécuter la cellule puis passer à la suivante</p></li>
+<li><p>Entrée : passer en mode édition</p></li>
+<li><p>Échap : sortir du mode édition</p></li>
+</ul>
+<p>Les commandes suivantes sont valables uniquement hors du mode édition :</p>
+<ul class="simple">
+<li><p>A : créer une nouvelle cellule (en haut)</p></li>
+<li><p>B : créer une nouvelle cellule (en bas)</p></li>
+<li><p>D D : supprimer la cellule</p></li>
+</ul>
+<section id="coefficient-binomial">
+<h2>Coefficient binomial<a class="headerlink" href="#coefficient-binomial" title="Link to this heading">#</a></h2>
+<p>On souhaite calculer <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> par programmation dynamique, en utilisant la formule de Pascal :</p>
+<div class="math notranslate nohighlight">
+\[\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}\]</div>
+<div class="note admonition">
+<p class="admonition-title">Exercice 1</p>
+<p>Que peut-on prendre comme cas de base ?</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="math notranslate nohighlight">
+\[\binom{0}{k} = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\binom{n}{0} = 1, \text{si } n \neq 0\]</div>
+</div>
+</details><hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 2</p>
+<p>Écrire une fonction récursive <code class="docutils literal notranslate"><span class="pre">binom_rec(n,</span> <span class="pre">k)</span></code> renvoyant <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> à partir de la formule ci-dessus. Expliquer pourquoi la complexité de cette fonction est très mauvaise.</p>
+</div>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_rec</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="c1"># voir cours</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">binom_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">binom_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom_rec</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4845
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 3</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">majoritaire2(L)</span></code> renvoyant l’élément apparaissant le plus souvent dans la liste <code class="docutils literal notranslate"><span class="pre">L</span></code>, en utilisant un dictionnaire pour avoir une meilleure complexité que la fonction précédente.</p>
+</div>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fonction écrite en cours. La complexité est O(n), où n est la longueur de la liste L.</span>
+
+<span class="k">def</span> <span class="nf">majoritaire2</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">m</span><span class="p">]:</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">majoritaire2</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="anagramme">
+<h2>Anagramme<a class="headerlink" href="#anagramme" title="Link to this heading">#</a></h2>
+<p>On rappelle qu’on peut parcourir les lettres d’une chaîne de caractères avec une boucle  for   :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;lamartin&quot;</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span> <span class="c1"># en parcourant directement les caractères</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span> <span class="c1"># en parcourant les indices</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>l
+a
+m
+a
+r
+t
+i
+n
+l
+a
+m
+a
+r
+t
+i
+n
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Exercice 4</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">anagramme(m1,</span> <span class="pre">m2)</span></code> qui teste si deux mots (des chaînes de caractères) sont des anagrammes, c’est-à-dire s’ils contiennent les mêmes lettres (avec le même nombre d’occurence de chaque lettre).<br />
+Cette fonction doit être en O(<span class="math notranslate nohighlight">\(n_1 + n_2\)</span>), où <span class="math notranslate nohighlight">\(n_1\)</span>, <span class="math notranslate nohighlight">\(n_2\)</span> sont les tailles de <code class="docutils literal notranslate"><span class="pre">m1</span></code>, <code class="docutils literal notranslate"><span class="pre">m2</span></code>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">anagramme</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">):</span>
+    <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m1</span><span class="p">:</span> <span class="c1"># O(n1)</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d1</span><span class="p">:</span>
+            <span class="n">d1</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d1</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m2</span><span class="p">:</span> <span class="c1"># O(n1)</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d2</span><span class="p">:</span>
+            <span class="n">d2</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d2</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">d1</span> <span class="o">==</span> <span class="n">d2</span> <span class="c1"># O(n1)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">anagramme</span><span class="p">(</span><span class="s2">&quot;ordre&quot;</span><span class="p">,</span> <span class="s2">&quot;dorer&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">anagramme</span><span class="p">(</span><span class="s2">&quot;ordre&quot;</span><span class="p">,</span> <span class="s2">&quot;oreo&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="trie-arbre-prefixe">
+<h2>Trie (arbre préfixe)<a class="headerlink" href="#trie-arbre-prefixe" title="Link to this heading">#</a></h2>
+<section id="arbres-enracines">
+<h3>Arbres enracinés<a class="headerlink" href="#arbres-enracines" title="Link to this heading">#</a></h3>
+<p>Un <strong>arbre</strong> est un graphe ayant deux propriétés supplémentaires :</p>
+<ul class="simple">
+<li><p><strong>Connexe</strong> : il existe un chemin entre deux sommets quelconques</p></li>
+<li><p><strong>Acyclique</strong> : il ne contient pas de cycle</p></li>
+</ul>
+<p>On considère souvent des <strong>arbres enracinés</strong>, c’est-à-dire ayant un sommet particulier appelé la <strong>racine</strong>, qu’on représente en haut de l’arbre :</p>
+<center><img src=https://raw.githubusercontent.com/fortierq/tikz-pdf/main/tree/ntree/ntree.png width=70%><br>
+Exemple d'arbre, ayant pour racine 0</center>
+<p>Chaque sommet différent de la racine possède un <strong>père</strong>, qui est le sommet juste au dessus. Sur l’exemple, 0 est le père de 1, 1 est le père de 7…</p>
+<p>Si p est le père de v, on dit aussi que v est un <strong>fils</strong> de p. Chaque sommet a au plus un père, mais peut avoir un nombre quelconque de fils.</p>
+</section>
+<hr class="docutils" />
+<section id="trie">
+<h3>Trie<a class="headerlink" href="#trie" title="Link to this heading">#</a></h3>
+<p>Un <strong>trie</strong> sert à stocker un ensemble de mots sous forme d’arbre. Chaque arête est etiquetée par une lettre et les mots appartenant au trie sont ceux obtenus le long d’un chemin de la racine à une arête étiquetée par $.<br />
+Par exemple, l’arbre suivant contient les mots cap, copie, copier, copies, cor, corde, corne, correct, correcte :</p>
+<center><img src=https://github.com/fortierq/cours/blob/main/python/dict/tp/trie.png?raw=true width=60%></center>
+<p><strong>Remarque</strong> : les tries sont utilisés pour la complétion automatique (proposition de complétion d’un mot en cours d’écriture, par exemple sur téléphone), pour la correction orthographique…</p>
+<p>Pour stocker un trie, on utilisera un dictionnaire où chaque clé est l’étiquette d’une arête sortant de la racine et la valeur est le dictionnaire correspondant au fils. Une feuille (sommet sans fils) est représentée par le dictionnaire vide.</p>
+<p>Par exemple, le trie contenant l’ensemble de mots <span class="math notranslate nohighlight">\(\{\)</span> car, cat, cd, ok <span class="math notranslate nohighlight">\(\}\)</span> est représenté par :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie_ex</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;c&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;a&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;r&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
+            <span class="s2">&quot;t&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;d&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;o&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;k&quot;</span> <span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">trie_ex</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;c&#39;: {&#39;a&#39;: {&#39;r&#39;: {&#39;$&#39;: {}}, &#39;t&#39;: {&#39;$&#39;: {}}}, &#39;d&#39;: {&#39;$&#39;: {}}},
+ &#39;o&#39;: {&#39;k&#39;: {&#39;$&#39;: {}}}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Exercice 5</p>
+<ol class="arabic simple">
+<li><p>Dessiner le trie contenant les mots art, axe, set.</p></li>
+<li><p>Définir ce trie sous forme d’un dictionnaire.</p></li>
+</ol>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;$&quot;</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 6</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">trie_size(trie)</span></code> pour afficher le nombre de mots appartenant à un trie. Pour cela, on parcourt récursivement le trie en comptant le nombre de $.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_size</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># compte le nombre de $</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
+        <span class="o">...</span>
+    <span class="k">return</span> <span class="n">n</span>
+</pre></div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_size</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="n">trie_size</span><span class="p">(</span><span class="n">trie</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie_size</span><span class="p">(</span><span class="n">trie_ex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 7</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">trie_add(trie,</span> <span class="pre">m)</span></code> pour ajouter un mot <code class="docutils literal notranslate"><span class="pre">m</span></code> dans un trie. On pourra compléter le code ci-dessous.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_add</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span> <span class="c1"># parcours des lettres c de m</span>
+        <span class="k">if</span> <span class="o">...</span><span class="p">:</span> <span class="c1"># s&#39;il n&#39;y a pas d&#39;arête sortante de trie étiquetée par c</span>
+            <span class="o">...</span> <span class="c1"># créer une nouvelle association (c, dictionnaire vide)</span>
+        <span class="n">trie</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="c1"># descendre dans l&#39;arbre suivant la lettre c</span>
+    <span class="o">...</span> <span class="c1"># ajouter un &#39;$&#39; à la fin</span>
+</pre></div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_add</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">m</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">trie</span><span class="p">:</span>
+            <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">trie</span> <span class="o">=</span> <span class="n">trie</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">trie</span><span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">trie_add</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="s2">&quot;arbre&quot;</span><span class="p">)</span>
+<span class="n">trie_add</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="s2">&quot;arete&quot;</span><span class="p">)</span>
+<span class="n">trie</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: {&#39;r&#39;: {&#39;b&#39;: {&#39;r&#39;: {&#39;e&#39;: {&#39;$&#39;: {}}}}, &#39;e&#39;: {&#39;t&#39;: {&#39;e&#39;: {&#39;$&#39;: {}}}}}}}
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 8</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">trie_print(trie)</span></code> pour afficher les mots <code class="docutils literal notranslate"><span class="pre">m</span></code> appartenant à un trie. Vérifier avec l’exemple précédent.<br />
+On pourra utiliser une fonction auxiliaire récursive <code class="docutils literal notranslate"><span class="pre">aux(t,</span> <span class="pre">m)</span></code> qui s’appelle récursivement sur chaque noeud <code class="docutils literal notranslate"><span class="pre">t</span></code> du trie, en conservant les lettres déjà parcourues dans la chaîne de caractères <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_print</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="o">...</span>
+    <span class="n">aux</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_print</span><span class="p">(</span><span class="n">trie</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;$&#39;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">aux</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">m</span> <span class="o">+</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">aux</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trie_print</span><span class="p">(</span><span class="n">trie_ex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>car
+cat
+cd
+ok
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 9</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">trie_has(trie,</span> <span class="pre">m)</span></code> pour tester si <code class="docutils literal notranslate"><span class="pre">m</span></code> appartient à un trie.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">trie_has</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">mot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="c1"># t est le sous-arbre, m est le mot recherché, i est l&#39;indice de la lettre courante</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;$&#39;</span> <span class="ow">in</span> <span class="n">t</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">m</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">trie</span><span class="p">,</span> <span class="n">mot</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">trie_has</span><span class="p">(</span><span class="n">trie_ex</span><span class="p">,</span> <span class="s2">&quot;carte&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trie_has</span><span class="p">(</span><span class="n">trie_ex</span><span class="p">,</span> <span class="s2">&quot;car&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Compléments :</strong></p>
+</section>
+</section>
+<section id="fonctions-de-hachage">
+<h2>Fonctions de hachage<a class="headerlink" href="#fonctions-de-hachage" title="Link to this heading">#</a></h2>
+<p>De manière informelle, on dit qu’une fonction <span class="math notranslate nohighlight">\(h : X \longrightarrow Y\)</span> est une <strong>fonction de hachage</strong> si <span class="math notranslate nohighlight">\(X\)</span> est un ensemble de grande taille (généralement infini) et <span class="math notranslate nohighlight">\(Y\)</span> est un ensemble fini (souvent un ensemble d’entiers).<br />
+L’intérêt d’une fonction de hachage est de transformer un élément “complexe” <span class="math notranslate nohighlight">\(x \in X\)</span> (par exemple, une image, un film…) en une empreinte <span class="math notranslate nohighlight">\(h(x)\)</span> qui soit plus simple à manipuler et qui utilise moins d’espace mémoire.</p>
+<p>Quelques propriétés souhaitables, selon le contexte, sur une fonction de hachage :</p>
+<ul class="simple">
+<li><p>Facilement calculable : pouvoir calculer <span class="math notranslate nohighlight">\(h(x)\)</span> en O(1), par exemple.</p></li>
+<li><p>Difficile à inverser : étant donné un <span class="math notranslate nohighlight">\(y\)</span>, il doit être impossible en pratique (c’est-à-dire prendre un temps extrêment long - typiquement une complexité exponentielle) de trouver un <span class="math notranslate nohighlight">\(x\)</span> tel que <span class="math notranslate nohighlight">\(h(x) = y\)</span>.</p></li>
+<li><p>Résistance aux collisions : il doit être impossible en pratique de trouver <span class="math notranslate nohighlight">\(x, x' \in X\)</span> tels que <span class="math notranslate nohighlight">\(h(x) = h(x')\)</span>.</p></li>
+</ul>
+<p>Voici quelques applications possibles des fonctions de hachage :</p>
+<ul class="simple">
+<li><p>Table de hachage : c’est une implémentation possible de dictionnaire (voir cours).</p></li>
+<li><p>Stockage de mot de passe : au lieu de mémoriser un mot de passe en clair sur un ordinateur ou une base de donnée (qui peut être compromis), on conserve son empreinte par une fonction de hachage.</p></li>
+<li><p>Signature numérique : ajout d’une empreinte à un email permettant de garantir l’identité de son expéditeur.</p></li>
+<li><p>Checksum : vérifier qu’un fichier a été téléchargé sans erreur, en comparant son empreinte à l’empreinte originale.</p></li>
+</ul>
+<section id="checksum">
+<h3>Checksum<a class="headerlink" href="#checksum" title="Link to this heading">#</a></h3>
+<p>Une des applications des fonctions de hachage consiste à vérifier l’intégrité d’un fichier après l’avoir téléchargé (pour détecter d’éventuelles erreurs de transmission). Pour cela, on calcule une empreinte (<em>checksum</em>) du fichier téléchargé que l’on compare avec l’empreinte du fichier original.</p>
+<p>Dans la suite, nous implémentons un algorithme de checksum très simple (mot de parité) sur une chaîne de caractères.</p>
+<p>Dans la suite, on utilisera <code class="docutils literal notranslate"><span class="pre">ord(c)</span></code> qui renvoie le code Unicode d’un caractère <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 10</p>
+<p>Quel est le code Unicode de <code class="docutils literal notranslate"><span class="pre">a</span></code> ? de <code class="docutils literal notranslate"><span class="pre">z</span></code> ?</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="c1"># 97</span>
+<span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span> <span class="c1"># 122</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>122
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<hr class="docutils" />
+<div class="note admonition">
+<p class="admonition-title">Exercice 11</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">code(s)</span></code> renvoyant une liste <code class="docutils literal notranslate"><span class="pre">L</span></code> telle que <code class="docutils literal notranslate"><span class="pre">L[i]</span></code> soit le code Unicode de <code class="docutils literal notranslate"><span class="pre">s[i]</span></code>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">code</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">code</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[108, 97, 109, 97, 114, 116, 105, 110]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si <span class="math notranslate nohighlight">\(a\)</span> est un entier, on note <span class="math notranslate nohighlight">\(a_i\)</span> le <span class="math notranslate nohighlight">\(i\)</span>ème bit de <span class="math notranslate nohighlight">\(a\)</span> en base <span class="math notranslate nohighlight">\(2\)</span>. Le XOR de deux entiers <span class="math notranslate nohighlight">\(x\)</span> et <span class="math notranslate nohighlight">\(y\)</span> est un entier <span class="math notranslate nohighlight">\(z\)</span> tel que <span class="math notranslate nohighlight">\(z_i = 1\)</span> si et seulement si <span class="math notranslate nohighlight">\(x_i = 1\)</span> ou <span class="math notranslate nohighlight">\(y_i = 1\)</span>, mais pas les deux. Par exemple, le XOR de <span class="math notranslate nohighlight">\(9 = 1001_2\)</span> et <span class="math notranslate nohighlight">\(5 = 0101_2\)</span> est <span class="math notranslate nohighlight">\(12 = 1100_2\)</span>.<br />
+En Python, le XOR est obtenu par <code class="docutils literal notranslate"><span class="pre">x^y</span></code>.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 12</p>
+<p>Sans ordinateur, convertir <span class="math notranslate nohighlight">\(11\)</span> et <span class="math notranslate nohighlight">\(6\)</span> en base <span class="math notranslate nohighlight">\(2\)</span> puis calculer leur XOR. Vérifier ensuite avec Python.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">checksum</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">^</span><span class="n">y</span><span class="p">,</span> <span class="nb">map</span><span class="p">(</span><span class="nb">ord</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+
+<span class="c1"># Est-ce le code le plus clair ? Pas quand on utilise pas les lambda expressions régulièrement...</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checksum</span><span class="p">(</span><span class="s2">&quot;martin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="recherche-de-collisions">
+<h3>Recherche de collisions<a class="headerlink" href="#recherche-de-collisions" title="Link to this heading">#</a></h3>
+<p>Une des propriétés désirable sur une fonction de hachage est d’être résistante aux collisions : il doit être très difficile en pratique de trouver <span class="math notranslate nohighlight">\(x, x' \in X\)</span> tels que <span class="math notranslate nohighlight">\(h(x) = h(x')\)</span>. Sinon, il serait possible pour un attaquant d’envoyer un message en lui attribuant une signature d’une autre personne, par exemple.<br />
+MD5 est une fonction de hachage célèbre qui n’est plus considérée comme sûre : des collisions MD5 ont notamment été utilisées <a class="reference external" href="https://en.wikipedia.org/wiki/Flame_(malware)">par un malware qui a touché l’Iran</a>.<br />
+Dans la suite, nous cherchons des collisions partielles pour MD5.</p>
+<p>Voici un exemple d’utilisation de MD5 :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="k">def</span> <span class="nf">md5</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">md5</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;5ebc974e52539b92106e584ea2a32365&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>La valeur renvoyée par <code class="docutils literal notranslate"><span class="pre">md5</span></code> est ici une chaîne de caractères qui doit être interprétée en base 16 (hexadécimal) : par exemple, <span class="math notranslate nohighlight">\(a\)</span> correspond à <span class="math notranslate nohighlight">\(10\)</span>, <span class="math notranslate nohighlight">\(b\)</span> à <span class="math notranslate nohighlight">\(11\)</span>…</p>
+<p>MD5 est une <strong>fonction de hachage cryptographique</strong>, ce qui signifie que le nombre de bits d’une empreinte est une constante, indépendant de l’entrée (la taille de <span class="math notranslate nohighlight">\(h(x)\)</span> est constante, indépendante de <span class="math notranslate nohighlight">\(x\)</span>).</p>
+<p><strong>Question</strong> : Combien y a t-il de bits dans un caractère en hexadécimal ?</p>
+<p>Sur <span class="math notranslate nohighlight">\(k\)</span> bits on peut stocker <span class="math notranslate nohighlight">\(2^k\)</span> valeurs différentes. Donc il faut <span class="math notranslate nohighlight">\(4\)</span> bits pour avoir <span class="math notranslate nohighlight">\(2^4 = 16\)</span> valeurs différentes.</p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 13</p>
+<p>Combien de bits sont utilisés pour une empreinte MD5 ?</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">md5</span><span class="p">(</span><span class="s2">&quot;lamartin&quot;</span><span class="p">))</span><span class="o">*</span><span class="mi">4</span> <span class="c1"># on trouve 128 bits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>128
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<hr class="docutils" />
+<p>Pour trouver une collision, on pourra générer des chaînes de caractères aléatoires <code class="docutils literal notranslate"><span class="pre">s</span></code> en stockant dans un dictionnaire la clé <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> avec la valeur <code class="docutils literal notranslate"><span class="pre">s</span></code>. Si l’empreinte existe déjà dans le dictionnaire, c’est qu’on a trouvé une collision.</p>
+<p>On utilisera la fonction suivante génère une chaîne de caractères aléatoire de longueur <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rdm_str</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">string</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">rdm_str</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># exemple</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;atemknmcnp&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Exercice 14</p>
+<p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">find_collision(n,</span> <span class="pre">p,</span> <span class="pre">k)</span></code> qui cherche une collision en générant <code class="docutils literal notranslate"><span class="pre">n</span></code> chaînes de caractères aléatoires de tailles <code class="docutils literal notranslate"><span class="pre">p</span></code>. Pour que la recherche ne prenne pas trop de temps, seuls les <code class="docutils literal notranslate"><span class="pre">k</span></code> premiers caractères de <code class="docutils literal notranslate"><span class="pre">md5(s)</span></code> seront considérés (avec <code class="docutils literal notranslate"><span class="pre">md5(s)[:k]</span></code>). On pourra prendre <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">100000</span></code>, <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">10</span></code>.</p>
+</div>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_collision</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">rdm_str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">md5</span><span class="p">(</span><span class="n">s</span><span class="p">)[:</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> ont le hash &quot;</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span>
+        <span class="n">seen</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+
+<span class="n">find_collision</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pfblwudxgl lhftqephfd ont le hash 2cdad1be6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yksrpgyrix hwhzwpkapy ont le hash c90e93b1f
+aqrkxnlxdj wcdpazkiql ont le hash 4d063ad8e
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>kakkaeisbz uzaisuqvky ont le hash d95bf478c
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cssdgdieeo gemrxclzlu ont le hash 67f0ee26b
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hrptafekpj ajybfjkxmc ont le hash 3de96b26b
+gxjtykvdly bwqxulehmg ont le hash 680239148
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dqvqhulgzc aymgutwmso ont le hash 710f39d78
+nlllbjpuue lpufbztwuh ont le hash e736b6484
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yykcxkgglk aejofsdtld ont le hash 167ac7877
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>oacrfiuyjy ssseqccspt ont le hash 4387b6098
+bneahelqhr aicojhedib ont le hash 295969b86
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<hr class="docutils" />
+<section id="verification-de-l-integrite-d-un-fichier">
+<h3>Verification de l’intégrité d’un fichier<a class="headerlink" href="#verification-de-l-integrite-d-un-fichier" title="Link to this heading">#</a></h3>
+<p>Un ami vous propose d’installer la toute dernière version de python qu’il héberge gentillement sur son serveur. Malheureusement vous n’êtes pas certain que cette version soit bien celle d’origine…
+Il vous propose deux archives censées contenir toutes les deux la même version de python.</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz">https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz</a>
+<a class="reference external" href="https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz">https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz</a></p>
+<div class="note admonition">
+<p class="admonition-title">Exercice 15</p>
+<p>Vérifiez l’intégrité de ces fichiers en calculant leurs hashs MD5 respectifs et en les comparant au hash original.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ad7f44153649e27ec385e7633e853e03</span>
+</pre></div>
+</div>
+</div>
+<p>Cette vérification est aujourd’hui insuffisante pour garantir l’intégrité du fichier à cause des problèmes de collision vus plus haut !</p>
+<p>Lien vers la page de la release python utilisée:
+<a class="reference external" href="https://www.python.org/downloads/release/python-3130rc2/">https://www.python.org/downloads/release/python-3130rc2/</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tp/prog_dyn"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../td/prog_dyn/chemin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TD: Chemin dans matrice</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-binomial">Coefficient binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anagramme">Anagramme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trie-arbre-prefixe">Trie (arbre préfixe)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arbres-enracines">Arbres enracinés</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trie">Trie</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fonctions-de-hachage">Fonctions de hachage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum">Checksum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recherche-de-collisions">Recherche de collisions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-de-l-integrite-d-un-fichier">Verification de l’intégrité d’un fichier</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TP 1 : Programmation dynamique &#8212; Informatique de Tonc Commun 2A La Martin</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tp/prog_dyn/doc/tp1_prog_dyn';</script>
+    <link rel="icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Informatique de Tronc Commun spé
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Révisions</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../tp_revisions.html">TP: Révisions de 1ère année</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structures de Données</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../cours/dict/cours_structures.html">Cours: Dictionnaires et ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../td/dict/dict_polynome.html">TD: Polynôme et dictionnaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tp_structures.html">TP: Dictionnaires</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Paradigmes Algorithmiques</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../cours/prog_dyn/cours_prog_dyn.html">Cours: Paradigmes Algorithmiques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../td/prog_dyn/chemin.html">TD: Chemin dans matrice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tp1_prog_dyn.html">TP 1 - Programmation Dynamique</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tcanta/itc2a/issues/new?title=Issue%20on%20page%20%2Ftp/prog_dyn/doc/tp1_prog_dyn.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/tp/prog_dyn/doc/tp1_prog_dyn.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TP 1 : Programmation dynamique</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-binomial">Coefficient binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendu-de-monnaie">Rendu de monnaie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plus-grand-carre-dans-une-matrice">Plus grand carré dans une matrice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode-naive">Méthode naïve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-ceux-qui-ont-fini">Pour ceux qui ont fini</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tp-1-programmation-dynamique">
+<h1>TP 1 : Programmation dynamique<a class="headerlink" href="#tp-1-programmation-dynamique" title="Link to this heading">#</a></h1>
+<section id="coefficient-binomial">
+<h2>Coefficient binomial<a class="headerlink" href="#coefficient-binomial" title="Link to this heading">#</a></h2>
+<p>On souhaite calculer <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> par programmation dynamique, en utilisant la formule de Pascal :</p>
+<div class="math notranslate nohighlight">
+\[\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}\]</div>
+<p><strong>Question</strong> : Que peut-on prendre comme cas de base ?</p>
+<div class="math notranslate nohighlight">
+\[\binom{0}{k} = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\binom{n}{0} = 1, \text{si } n \neq 0\]</div>
+<p><strong>Question</strong> : Écrire une fonction récursive <code class="docutils literal notranslate"><span class="pre">binom_rec(n,</span> <span class="pre">k)</span></code> renvoyant <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> à partir de la formule ci-dessus. Expliquer pourquoi la complexité de cette fonction est très mauvaise.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_rec</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="c1"># voir cours</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">binom_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">binom_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom_rec</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4845
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">binom_dp(n,</span> <span class="pre">k)</span></code> renvoyant <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> en utilisant la même formule, mais par programmation dynamique.<br />
+Pour cela, on pourra stocker <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> dans une matrice (ou : un dictionnaire) et la remplir par <span class="math notranslate nohighlight">\(n\)</span> croissant et par <span class="math notranslate nohighlight">\(k\)</span> croissant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># définir une matrice M de taille (n+1)x(k+1)</span>
+    <span class="c1"># M[i][j] contiendra j parmi i</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># cas de base</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># récurrence</span>
+    <span class="k">return</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_dp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># cas de base</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">M</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binom_dp</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4845
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">binom_memo(n,</span> <span class="pre">k)</span></code> renvoyant <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> en utilisant le même principe, mais avec mémoïsation plutôt que programmation dynamique.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom_memo</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1"># d[(i, j)] contiendra j parmi i</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="c1"># renvoie j parmi i</span>
+        <span class="o">...</span> <span class="c1"># cas de base</span>
+        <span class="o">...</span> <span class="c1"># dans le cas général, regarder si (i, j) est dans d : si oui, renvoyer la valeur associée, sinon la calculer et l&#39;ajouter à d</span>
+    <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">aux</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rendu-de-monnaie">
+<h2>Rendu de monnaie<a class="headerlink" href="#rendu-de-monnaie" title="Link to this heading">#</a></h2>
+<p>Étant donnée une liste <code class="docutils literal notranslate"><span class="pre">L</span></code> d’entiers <span class="math notranslate nohighlight">\(a_1,\ldots,a_k\)</span> (des pièces), on veut calculer le nombre minimum <span class="math notranslate nohighlight">\(r(n, k)\)</span> de pièces parmi <span class="math notranslate nohighlight">\(a_1, ..., a_k\)</span> dont la somme vaut <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Par exemple, si <span class="math notranslate nohighlight">\(k = 3\)</span> et <span class="math notranslate nohighlight">\(a_1 = 1, a_2 = 2, a_3 = 5\)</span> alors <span class="math notranslate nohighlight">\(r(7, 3) = 2\)</span> (car <span class="math notranslate nohighlight">\(7 = 2 + 5\)</span> et c’est la façon de rendre <span class="math notranslate nohighlight">\(7\)</span>€ qui utilise le moins de pièces).</p>
+<p>Remarques :</p>
+<ul class="simple">
+<li><p>On peut utiliser plusieurs fois la même pièce.</p></li>
+<li><p><span class="math notranslate nohighlight">\(r(0, k)\)</span> revient à rendre <span class="math notranslate nohighlight">\(0\)</span>€, ce qu’on peut faire avec <span class="math notranslate nohighlight">\(0\)</span> pièce : <span class="math notranslate nohighlight">\(r(0, k) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r(n, 0)\)</span> revient à n’utiliser aucune pièce, ce qui est impossible si <span class="math notranslate nohighlight">\(n \neq 0\)</span> : on posera <span class="math notranslate nohighlight">\(r(n, 0)\)</span> = <span class="math notranslate nohighlight">\(\infty\)</span> (<code class="docutils literal notranslate"><span class="pre">float(&quot;inf&quot;)</span></code> en Python).</p></li>
+</ul>
+<p><strong>Question</strong> : Écrire une relation de récurrence sur <span class="math notranslate nohighlight">\(r(n, k)\)</span>. On pourra distinguer deux cas pour rendre <span class="math notranslate nohighlight">\(n\)</span> euros avec les picèes <span class="math notranslate nohighlight">\(a_1\)</span>, …, <span class="math notranslate nohighlight">\(a_k\)</span> :</p>
+<ul class="simple">
+<li><p>soit <span class="math notranslate nohighlight">\(a_k\)</span> n’est pas utilisée (et on a donc <span class="math notranslate nohighlight">\(r(n, k) = r(n, k - 1)\)</span>)</p></li>
+<li><p>soit <span class="math notranslate nohighlight">\(a_k\)</span> est utilisée (et on a <span class="math notranslate nohighlight">\(r(n, k) = ...\)</span>).</p></li>
+</ul>
+<p>Comme on ne sait pas si <span class="math notranslate nohighlight">\(a_k\)</span> est utilisée ou non, on a dans le cas général : <span class="math notranslate nohighlight">\(r(n, k) = \min(..., ...)\)</span>.</p>
+<p>Si <span class="math notranslate nohighlight">\(a_k\)</span> est utilisée : il faut encore rendre <span class="math notranslate nohighlight">\(n - a_k\)</span> euros avec les pièces <span class="math notranslate nohighlight">\(a_1\)</span>, …, <span class="math notranslate nohighlight">\(a_k\)</span> (on a le droit d’utiliser plusieurs fois <span class="math notranslate nohighlight">\(a_k\)</span>), d’où <span class="math notranslate nohighlight">\(r(n, k) = r(n - a_k, k) + 1\)</span>.</p>
+<p>Dans le cas général, on considère les deux possibilités et on conserve le minimum :
+$<span class="math notranslate nohighlight">\(
+    r(n, k) = min(r(n, k - 1), r(n - a_k, k) + 1)
+\)</span>$</p>
+<p>Remarque : on ne peut utiliser <span class="math notranslate nohighlight">\(a_k\)</span> pour rendre <span class="math notranslate nohighlight">\(n\)</span> euros que si <span class="math notranslate nohighlight">\(n \geq a_k\)</span>. Si <span class="math notranslate nohighlight">\(n &lt; a_k\)</span>, on a donc <span class="math notranslate nohighlight">\(r(n, k) = r(n, k - 1)\)</span>.</p>
+<p><strong>Question</strong> : En déduire une fonction <code class="docutils literal notranslate"><span class="pre">rendu(L,</span> <span class="pre">n)</span></code> par programmation dynamique renvoyant le nombre minimum de pièces requises pour rendre <code class="docutils literal notranslate"><span class="pre">n</span></code> euros, où <code class="docutils literal notranslate"><span class="pre">L</span></code> est la liste des pièces.<br />
+On remplira une matrice <code class="docutils literal notranslate"><span class="pre">M</span></code> pour que <code class="docutils literal notranslate"><span class="pre">M[i][j]</span></code> contienne le nombre minimum de pièces pour rendre <code class="docutils literal notranslate"><span class="pre">i</span></code> euros en utilisant les <code class="docutils literal notranslate"><span class="pre">j</span></code> premières pièces de <code class="docutils literal notranslate"><span class="pre">L</span></code>.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rendu</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># nombre de pièces</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]][</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">M</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rendu</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Réécrire la fonction précédente par mémoïsation plutôt que par programmation dynamique.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rendu_memo</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">aux</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">aux</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">j</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="n">aux</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">aux</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">rendu_memo</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plus-grand-carre-dans-une-matrice">
+<h2>Plus grand carré dans une matrice<a class="headerlink" href="#plus-grand-carre-dans-une-matrice" title="Link to this heading">#</a></h2>
+<p>Étant donnée une matrice carrée remplie de 0 ou 1, on souhaite connaître la taille du plus gros carré de 1 dans cette matrice.<br />
+Par exemple, ce nombre est 2 pour la matrice <span class="math notranslate nohighlight">\(M\)</span> suivante (correspondant au carré en pointillé) :</p>
+<center><img src=https://raw.githubusercontent.com/fortierq/tikz-pdf/master/dyn_prog/matrix_square/matrix_square.png width=200></center><p>La case de coordonnés <span class="math notranslate nohighlight">\((x, y)\)</span> est celle sur la ligne <span class="math notranslate nohighlight">\(x\)</span>, colonne <span class="math notranslate nohighlight">\(y\)</span>. La case de coordonnées (0, 0) est celle en haut à gauche.<br />
+On supposera que les indices en arguments des fonctions ne dépassent pas des tableaux ou matrices correspondants.</p>
+<p><strong>Question</strong> : Définir <code class="docutils literal notranslate"><span class="pre">M</span></code> en Python.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methode-naive">
+<h2>Méthode naïve<a class="headerlink" href="#methode-naive" title="Link to this heading">#</a></h2>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">est_carre</span></code> telle que <code class="docutils literal notranslate"><span class="pre">est_carre(m,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">k)</span></code> détermine si la sous-matrice de <code class="docutils literal notranslate"><span class="pre">m</span></code> de taille <span class="math notranslate nohighlight">\(k \times k\)</span> et dont la case en haut à gauche a pour coordonnées (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>) ne possède que des 1.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">est_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">k</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">est_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">est_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">contient_carre</span></code> telle que <code class="docutils literal notranslate"><span class="pre">contient_carre(m,</span> <span class="pre">k)</span></code> renvoie <code class="docutils literal notranslate"><span class="pre">true</span></code> si <code class="docutils literal notranslate"><span class="pre">m</span></code> contient un carré de 1 de taille <span class="math notranslate nohighlight">\(k\)</span>, <code class="docutils literal notranslate"><span class="pre">false</span></code> sinon.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">contient_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">est_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="n">contient_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">contient_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">max_carre1</span></code> telle que <code class="docutils literal notranslate"><span class="pre">max_carre1(m)</span></code> renvoie la taille maximum d’un carré de 1 contenu dans <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max_carre1</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">contient_carre</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_carre1</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Quelle est la complexité de <code class="docutils literal notranslate"><span class="pre">max_carre1(m)</span></code> dans le pire cas ?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">est_carre(M,</span> <span class="pre">x,</span> <span class="pre">y,</span> <span class="pre">k)</span></code> est en <span class="math notranslate nohighlight">\(O(k^2)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contient_carre(M,</span> <span class="pre">k)</span></code> appelle O(<span class="math notranslate nohighlight">\(n\)</span>) fois <code class="docutils literal notranslate"><span class="pre">est_carre</span></code>, donc est en <span class="math notranslate nohighlight">\(O(n^2 k^2)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_carre1(M)</span></code> appelle <code class="docutils literal notranslate"><span class="pre">contient_carre</span></code> pour <span class="math notranslate nohighlight">\(k = 1, 2, ..., n\)</span>, donc est de complexité <span class="math notranslate nohighlight">\(\sum_{k=1}^n O(n^2 k^2) = O(n^3 \sum_{k=1}^n k^2)\)</span>. Comme <span class="math notranslate nohighlight">\(\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6} = O(n^3)\)</span>, la complexité totale est <span class="math notranslate nohighlight">\(\boxed{O(n^6)}\)</span>.`</p></li>
+</ul>
+<p>On va construire une matrice <code class="docutils literal notranslate"><span class="pre">c</span></code> telle que <code class="docutils literal notranslate"><span class="pre">c[x][y]</span></code> est la taille maximum d’un carré de 1 dans <code class="docutils literal notranslate"><span class="pre">m</span></code> dont la case en bas à droite est <code class="docutils literal notranslate"><span class="pre">m[x][y]</span></code> (c’est à dire un carré de 1 qui contient <code class="docutils literal notranslate"><span class="pre">m[x][y]</span></code> mais aucun <code class="docutils literal notranslate"><span class="pre">m[i][j]</span></code> si <span class="math notranslate nohighlight">\(i &gt; x\)</span> ou <span class="math notranslate nohighlight">\(j &gt; y\)</span>).<br />
+Par exemple, <code class="docutils literal notranslate"><span class="pre">c[1][2]</span> <span class="pre">=</span> <span class="pre">1</span></code> et <code class="docutils literal notranslate"><span class="pre">c[2][3]</span> <span class="pre">=</span> <span class="pre">2</span></code> pour la matrice <span class="math notranslate nohighlight">\(M\)</span> ci-dessus.</p>
+<p><strong>Question</strong> : Que vaut <code class="docutils literal notranslate"><span class="pre">c[0][y]</span></code> et <code class="docutils literal notranslate"><span class="pre">c[x][0]</span></code> ?</p>
+<p><code class="docutils literal notranslate"><span class="pre">c[0][y]</span> <span class="pre">=</span> <span class="pre">0</span></code> si <code class="docutils literal notranslate"><span class="pre">m[0][y]</span> <span class="pre">=</span> <span class="pre">0</span></code> et <code class="docutils literal notranslate"><span class="pre">c[0][y]</span> <span class="pre">=</span> <span class="pre">1</span></code> sinon.<br />
+De même pour <code class="docutils literal notranslate"><span class="pre">c[x][0]</span></code>.<br />
+Remarque : <code class="docutils literal notranslate"><span class="pre">c[0][y]</span></code> et <code class="docutils literal notranslate"><span class="pre">c[x][0]</span></code> sont donc les mêmes valeurs que <code class="docutils literal notranslate"><span class="pre">m[0][y]</span></code> et <code class="docutils literal notranslate"><span class="pre">m[x][0]</span></code>, on peut donc initialiser <code class="docutils literal notranslate"><span class="pre">c</span></code> comme une copie de <code class="docutils literal notranslate"><span class="pre">m</span></code>.</p>
+<p><strong>Question</strong> : Que vaut <code class="docutils literal notranslate"><span class="pre">c[x][y]</span></code> si <code class="docutils literal notranslate"><span class="pre">m[x][y]</span> <span class="pre">=</span> <span class="pre">0</span></code> ?</p>
+<p><code class="docutils literal notranslate"><span class="pre">c[x][y]</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<p><strong>Question</strong> : Montrer que, si <code class="docutils literal notranslate"><span class="pre">m[x][y]</span> <span class="pre">=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">c[x][y]</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">+</span> <span class="pre">min(c[x-1][y],</span> <span class="pre">c[x][y-1],</span> <span class="pre">c[x-1][y-1])</span></code>.</p>
+<p><strong>Question</strong> : En déduire une fonction <code class="docutils literal notranslate"><span class="pre">max_carre2</span></code> telle que <code class="docutils literal notranslate"><span class="pre">max_carre2(m)</span></code> renvoie la taille maximum d’un carré de 1 contenu dans <code class="docutils literal notranslate"><span class="pre">m</span></code>, ainsi que les coordonnées de la case en haut à gauche d’un tel carré.</p>
+<div class="cell tag_cor docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max_carre2</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">min</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_carre2</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question</strong> : Quelle est la complexité de <code class="docutils literal notranslate"><span class="pre">max_carre2(m)</span></code>, en fonction des dimensions de <code class="docutils literal notranslate"><span class="pre">m</span></code>? Comparer avec <code class="docutils literal notranslate"><span class="pre">max_carre1(m)</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_carre2(m)</span></code> est en <span class="math notranslate nohighlight">\(\boxed{O(n^2)}\)</span> à cause des deux boucles <code class="docutils literal notranslate"><span class="pre">for</span></code> imbriquées.<br />
+C’est donc beaucoup mieux que <code class="docutils literal notranslate"><span class="pre">max_carre1(m)</span></code> qui est en <span class="math notranslate nohighlight">\(O(n^6)\)</span>.</p>
+</section>
+<section id="pour-ceux-qui-ont-fini">
+<h2>Pour ceux qui ont fini<a class="headerlink" href="#pour-ceux-qui-ont-fini" title="Link to this heading">#</a></h2>
+<p>Cette partie n’est pas à rendre, sauf si vous en avez le temps.</p>
+<p><strong>Question</strong> : S’inscrire sur <a class="reference external" href="https://projecteuler.net/">https://projecteuler.net/</a> et résoudre <a class="reference external" href="https://projecteuler.net/problem=67">ce problème</a>.<br />
+On pourra télécharger le fichier triangle.txt demandé avec :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s2">&quot;https://projecteuler.net/project/resources/p067_triangle.txt&quot;</span><span class="p">)</span>
+<span class="n">lignes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">())),</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()))</span> <span class="c1"># renvoie la liste des lignes du fichier</span>
+</pre></div>
+</div>
+<p><strong>Question</strong> : <a class="reference external" href="https://leetcode.com/problems/longest-increasing-subsequence">Résoudre ce problème (en s’inscrivant préalablement)</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tp/prog_dyn/doc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coefficient-binomial">Coefficient binomial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rendu-de-monnaie">Rendu de monnaie</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plus-grand-carre-dans-une-matrice">Plus grand carré dans une matrice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methode-naive">Méthode naïve</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pour-ceux-qui-ont-fini">Pour ceux qui ont fini</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thibaut Cantaluppi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
