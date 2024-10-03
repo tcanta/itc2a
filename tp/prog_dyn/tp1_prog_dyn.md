@@ -12,7 +12,7 @@ kernelspec:
 ---
 # TP 1 - Programmation Dynamique
 
-Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp1_prog_dyn-eleves.ipynb).
+Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp1_prog_dyn-eleve.ipynb).
 
 Commandes Basthon :
 
@@ -81,433 +81,369 @@ binom_rec(20, 4)
 
 :::{admonition} Exercice 3
 :class: note
-Écrire une fonction `majoritaire2(L)` renvoyant l'élément apparaissant le plus souvent dans la liste `L`, en utilisant un dictionnaire pour avoir une meilleure complexité que la fonction précédente.
+Écrire une fonction `binom_dp(n, k)` renvoyant $\binom{n}{k}$ en utilisant la même formule, mais par programmation dynamique.  
+Pour cela, on pourra stocker $\binom{n}{k}$ dans une matrice (ou : un dictionnaire) et la remplir par $n$ croissant et par $k$ croissant.
 :::
+
+```python
+def binom_dp(n, k):
+    # définir une matrice M de taille (n+1)x(k+1)
+    # M[i][j] contiendra j parmi i
+    for i in range(0, n + 1):
+        M[i][0] = ... # cas de base
+        for j in range(1, k + 1):
+            M[i][j] = ... # récurrence
+    return ...
+```
 
 **Solution**
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-# Fonction écrite en cours. La complexité est O(n), où n est la longueur de la liste L.
 
-def majoritaire2(L):
-    d = {}
-    for e in L:
-        if e in d:
-            d[e] += 1
-        else:
-            d[e] = 1
-    m = L[0]
-    for e in d:
-        if d[e] > d[m]:
-            m = e
-    return m
+def binom_dp(n, k):
+    M = [[0]*(k + 1) for _ in range(n + 1)]
+    for i in range(0, n + 1):
+        M[i][0] = 1 # cas de base
+
+    for i in range(1, n + 1):
+        for j in range(1, k + 1):
+            M[i][j] = M[i - 1][j - 1] + M[i - 1][j]
+    return M[n][k]
 ```
 
 ```{code-cell} ipython3
-majoritaire2([9, 1, 9, 0, 1, 1, 0])
+binom_dp(20, 4)
 ```
-
 ---
-
-+++
-
-## Anagramme
-
-+++
-
-On rappelle qu'on peut parcourir les lettres d'une chaîne de caractères avec une boucle  for   :
-```{code-cell} ipython3
-s = "lamartin"
-for c in s: # en parcourant directement les caractères
-    print(c)
-for i in range(len(s)): # en parcourant les indices
-    print(s[i])
-```
 
 :::{admonition} Exercice 4
 :class: note
-Écrire une fonction `anagramme(m1, m2)` qui teste si deux mots (des chaînes de caractères) sont des anagrammes, c'est-à-dire s'ils contiennent les mêmes lettres (avec le même nombre d'occurence de chaque lettre).  
-Cette fonction doit être en O($n_1 + n_2$), où $n_1$, $n_2$ sont les tailles de `m1`, `m2`.
+Écrire une fonction `binom_memo(n, k)` renvoyant $\binom{n}{k}$ en utilisant le même principe, mais avec mémoïsation plutôt que programmation dynamique.
 :::
 
+```python
+def binom_memo(n, k):
+    d = {} # d[(i, j)] contiendra j parmi i
+    def aux(i, j): # renvoie j parmi i
+        ... # cas de base
+        ... # dans le cas général, regarder si (i, j) est dans d : si oui, renvoyer la valeur associée, sinon la calculer et l'ajouter à d
+    return aux(n, k)
+```
+
+**Solution**
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-def anagramme(m1, m2):
-    d1, d2 = {}, {}
-    for c in m1: # O(n1)
-        if c in d1:
-            d1[c] += 1
-        else:
-            d1[c] = 1
-    for c in m2: # O(n1)
-        if c in d2:
-            d2[c] += 1
-        else:
-            d2[c] = 1
-    return d1 == d2 # O(n1)
+def binom(n, k):
+    d = {}
+    def aux(i, j):
+        if j == 0: return 1
+        if i == 0: return 0
+        if (i, j) not in d:
+            d[(i, j)] = aux(i - 1, j - 1) + aux(i - 1, j)
+        return d[(i, j)]
+    return aux(n, k)
 ```
-
-```{code-cell} ipython3
-print(anagramme("ordre", "dorer"))
-print(anagramme("ordre", "oreo"))
-```
-
 ---
 
 +++
-## Trie (arbre préfixe)
+
+## Rendu de monnaie
+
 +++
-### Arbres enracinés
 
-Un **arbre** est un graphe ayant deux propriétés supplémentaires :  
-- **Connexe** : il existe un chemin entre deux sommets quelconques  
-- **Acyclique** : il ne contient pas de cycle
+Étant donnée une liste `L` d'entiers $a_1,\ldots,a_k$ (des pièces), on veut calculer le nombre minimum $r(n, k)$ de pièces parmi $a_1, ..., a_k$ dont la somme vaut $n$.
 
-On considère souvent des **arbres enracinés**, c'est-à-dire ayant un sommet particulier appelé la **racine**, qu'on représente en haut de l'arbre :
+Par exemple, si $k = 3$ et $a_1 = 1, a_2 = 2, a_3 = 5$ alors $r(7, 3) = 2$ (car $7 = 2 + 5$ et c'est la façon de rendre $7$€ qui utilise le moins de pièces).  
 
-<center><img src=https://raw.githubusercontent.com/fortierq/tikz-pdf/main/tree/ntree/ntree.png width=70%><br>
-Exemple d'arbre, ayant pour racine 0</center>
+Remarques :  
+- On peut utiliser plusieurs fois la même pièce.  
+- $r(0, k)$ revient à rendre $0$€, ce qu'on peut faire avec $0$ pièce : $r(0, k) = 0$
+- $r(n, 0)$ revient à n'utiliser aucune pièce, ce qui est impossible si $n \neq 0$ : on posera $r(n, 0)$ = $\infty$ (`float("inf")` en Python).
 
-Chaque sommet différent de la racine possède un **père**, qui est le sommet juste au dessus. Sur l'exemple, 0 est le père de 1, 1 est le père de 7...
-
-Si p est le père de v, on dit aussi que v est un **fils** de p. Chaque sommet a au plus un père, mais peut avoir un nombre quelconque de fils.
-
----
-
-### Trie
-
-Un **trie** sert à stocker un ensemble de mots sous forme d'arbre. Chaque arête est etiquetée par une lettre et les mots appartenant au trie sont ceux obtenus le long d'un chemin de la racine à une arête étiquetée par $.  
-Par exemple, l'arbre suivant contient les mots cap, copie, copier, copies, cor, corde, corne, correct, correcte :
-
-<center><img src=https://github.com/fortierq/cours/blob/main/python/dict/tp/trie.png?raw=true width=60%></center>
-
-**Remarque** : les tries sont utilisés pour la complétion automatique (proposition de complétion d'un mot en cours d'écriture, par exemple sur téléphone), pour la correction orthographique...
-
-Pour stocker un trie, on utilisera un dictionnaire où chaque clé est l'étiquette d'une arête sortant de la racine et la valeur est le dictionnaire correspondant au fils. Une feuille (sommet sans fils) est représentée par le dictionnaire vide.  
-
-Par exemple, le trie contenant l'ensemble de mots $\{$ car, cat, cd, ok $\}$ est représenté par :
-
-```{code-cell} ipython3
-trie_ex = {
-    "c" : {
-        "a" : {
-            "r" : { "$" : {} },
-            "t" : { "$" : {} }
-        },
-        "d" : { "$" : {} }
-    },
-    "o" : {
-        "k" : { "$" : {} }
-    }
-}
-trie_ex
-```
 :::{admonition} Exercice 5
 :class: note
-1. Dessiner le trie contenant les mots art, axe, set.  
-2. Définir ce trie sous forme d'un dictionnaire.
+Écrire une relation de récurrence sur $r(n, k)$. On pourra distinguer deux cas pour rendre $n$ euros avec les picèes $a_1$, ..., $a_k$ :  
+- soit $a_k$ n'est pas utilisée (et on a donc $r(n, k) = r(n, k - 1)$)  
+- soit $a_k$ est utilisée (et on a $r(n, k) = ...$).  
+
+Comme on ne sait pas si $a_k$ est utilisée ou non, on a dans le cas général : $r(n, k) = \min(..., ...)$.
+
 :::
 
-```{code-cell} ipython3
-:tags: ["hide-cell"]
-trie = {
-    "a": {
-        "r": {
-            "t": { "$" : {} },
-        },
-        "x": {
-            "e": { "$" : {} },
-        },
-    },
-    "s": {
-        "e": {
-            "t": { "$" : {} },
-        },
-    },
-}
-```
+:::{dropdown} Solution
+:animate: fade-in
+Si $a_k$ est utilisée : il faut encore rendre $n - a_k$ euros avec les pièces $a_1$, ..., $a_k$ (on a le droit d'utiliser plusieurs fois $a_k$), d'où $r(n, k) = r(n - a_k, k) + 1$.
+
+Dans le cas général, on considère les deux possibilités et on conserve le minimum :
+$$
+    r(n, k) = min(r(n, k - 1), r(n - a_k, k) + 1)
+$$
+
+Remarque : on ne peut utiliser $a_k$ pour rendre $n$ euros que si $n \geq a_k$. Si $n < a_k$, on a donc $r(n, k) = r(n, k - 1)$.
+:::
+
 ---
+
 :::{admonition} Exercice 6
 :class: note
-Écrire une fonction `trie_size(trie)` pour afficher le nombre de mots appartenant à un trie. Pour cela, on parcourt récursivement le trie en comptant le nombre de $.
+En déduire une fonction `rendu(L, n)` par programmation dynamique renvoyant le nombre minimum de pièces requises pour rendre `n` euros, où `L` est la liste des pièces.  
+On remplira une matrice `M` pour que `M[i][j]` contienne le nombre minimum de pièces pour rendre `i` euros en utilisant les `j` premières pièces de `L`.
 :::
 
-```python
-def trie_size(trie):
-    n = 0 # compte le nombre de $
-    for k in trie:
-        ...
-    return n
-```
+**Solution**
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-def trie_size(trie):
-    n = 0
-    for k in trie:
-        if k == '$':
-            return 1
-        else:
-            n += trie_size(trie[k])
-    return n
+
+def rendu(L, n):
+    k = len(L) # nombre de pièces
+    M = [[0]*(k + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        M[i][0] = float("inf")
+        for j in range(1, k + 1):
+            if i - L[j - 1] >= 0:
+                M[i][j] = min(M[i][j - 1], 1 + M[i - L[j - 1]][j])
+            else:
+                M[i][j] = M[i][j - 1]
+    return M[-1][-1]
 ```
 
 ```{code-cell} ipython3
-trie_size(trie_ex)
+rendu([1, 2, 5], 7)
 ```
 
 ---
+
 :::{admonition} Exercice 7
 :class: note
-Écrire une fonction `trie_add(trie, m)` pour ajouter un mot `m` dans un trie. On pourra compléter le code ci-dessous.
+Réécrire la fonction précédente par mémoïsation plutôt que par programmation dynamique.
 :::
-
-```python
-def trie_add(trie, m):
-    for c in m: # parcours des lettres c de m
-        if ...: # s'il n'y a pas d'arête sortante de trie étiquetée par c
-            ... # créer une nouvelle association (c, dictionnaire vide)
-        trie = trie[c] # descendre dans l'arbre suivant la lettre c
-    ... # ajouter un '$' à la fin
-```
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-def trie_add(trie, m):
-    for c in m:
-        if c not in trie:
-            trie[c] = dict()
-        trie = trie[c]
-    trie['$'] = dict()
+def rendu_memo(L, n):
+    k = len(L)
+    d = {}
+    def aux(i, j):
+        if (i, j) in d:
+            return d[(i, j)]
+        if i == 0:
+            return 0
+        if j == 0:
+            return float("inf")
+        if i - L[j - 1] >= 0:
+            d[(i, j)] = min(aux(i, j - 1), 1 + aux(i - L[j - 1], j))
+        else:
+            d[(i, j)] = aux(i, j - 1)
+        return d[(i, j)]
+    return aux(n, k)
 ```
 
 ```{code-cell} ipython3
-trie = {}
-trie_add(trie, "arbre")
-trie_add(trie, "arete")
-trie
+rendu_memo([1, 2, 5], 7)
 ```
+
+---
+
++++
+## Plus grand carré dans une matrice
++++
+
+Étant donnée une matrice carrée remplie de 0 ou 1, on souhaite connaître la taille du plus gros carré de 1 dans cette matrice.  
+Par exemple, ce nombre est 2 pour la matrice $M$ suivante (correspondant au carré en pointillé) :
+
+<center><img src=https://raw.githubusercontent.com/fortierq/tikz-pdf/master/dyn_prog/matrix_square/matrix_square.png width=200></center>
+
+La case de coordonnés $(x, y)$ est celle sur la ligne $x$, colonne $y$. La case de coordonnées (0, 0) est celle en haut à gauche.  
+On supposera que les indices en arguments des fonctions ne dépassent pas des tableaux ou matrices correspondants.
 
 ---
 
 :::{admonition} Exercice 8
 :class: note
-Écrire une fonction `trie_print(trie)` pour afficher les mots `m` appartenant à un trie. Vérifier avec l'exemple précédent.  
-On pourra utiliser une fonction auxiliaire récursive `aux(t, m)` qui s'appelle récursivement sur chaque noeud `t` du trie, en conservant les lettres déjà parcourues dans la chaîne de caractères `m`.
+Définir `M` en Python.
 :::
-
-```python
-def trie_print(trie):
-    def aux(t, m):
-        ...
-    aux(trie, "")
-```
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-
-def trie_print(trie):
-    def aux(t, m):
-        for k in t:
-            if k == '$':
-                print(m)
-            else:
-                aux(t[k], m + k)
-    aux(trie, "")
-```
-
-```{code-cell} ipython3
-trie_print(trie_ex)
+M = [[1, 0, 0, 0], [0, 0, 1, 1], [0, 1, 1, 1], [0, 1, 0, 1]]
 ```
 ---
+
+### Méthode naïve
 
 :::{admonition} Exercice 9
 :class: note
-Écrire une fonction `trie_has(trie, m)` pour tester si `m` appartient à un trie.
+Écrire une fonction `est_carre` telle que `est_carre(m, x, y, k)` détermine si la sous-matrice de `m` de taille $k \times k$ et dont la case en haut à gauche a pour coordonnées (`x`, `y`) ne possède que des 1.
 :::
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-def trie_has(trie, mot):
-    def aux(t, m, i): # t est le sous-arbre, m est le mot recherché, i est l'indice de la lettre courante
-        if i == len(m):
-            return '$' in t
-        if m[i] not in t:
-            return False
-        return aux(t[m[i]], m, i + 1)
-    return aux(trie, mot, 0)
+def est_carre(M, x, y, k):
+    for i in range(x, x + k):
+        for j in range(y, y + k):
+            if M[i][j] != 1:
+                return False
+    return True
 ```
-
 ```{code-cell} ipython3
-print(trie_has(trie_ex, "carte"))
-print(trie_has(trie_ex, "car"))
+assert(est_carre(M, 1, 2, 2) and not est_carre(M, 1, 1, 2))
 ```
+
 ---
-
-**Compléments :**
-## Fonctions de hachage
-
-De manière informelle, on dit qu'une fonction $h : X \longrightarrow Y$ est une **fonction de hachage** si $X$ est un ensemble de grande taille (généralement infini) et $Y$ est un ensemble fini (souvent un ensemble d'entiers).  
-L'intérêt d'une fonction de hachage est de transformer un élément "complexe" $x \in X$ (par exemple, une image, un film...) en une empreinte $h(x)$ qui soit plus simple à manipuler et qui utilise moins d'espace mémoire.
-
-Quelques propriétés souhaitables, selon le contexte, sur une fonction de hachage :  
-- Facilement calculable : pouvoir calculer $h(x)$ en O(1), par exemple.  
-- Difficile à inverser : étant donné un $y$, il doit être impossible en pratique (c'est-à-dire prendre un temps extrêment long - typiquement une complexité exponentielle) de trouver un $x$ tel que $h(x) = y$.  
-- Résistance aux collisions : il doit être impossible en pratique de trouver $x, x' \in X$ tels que $h(x) = h(x')$.
-
-Voici quelques applications possibles des fonctions de hachage :  
-- Table de hachage : c'est une implémentation possible de dictionnaire (voir cours).  
-- Stockage de mot de passe : au lieu de mémoriser un mot de passe en clair sur un ordinateur ou une base de donnée (qui peut être compromis), on conserve son empreinte par une fonction de hachage.  
-- Signature numérique : ajout d'une empreinte à un email permettant de garantir l'identité de son expéditeur.  
-- Checksum : vérifier qu'un fichier a été téléchargé sans erreur, en comparant son empreinte à l'empreinte originale.
-
-
-### Checksum
-
-Une des applications des fonctions de hachage consiste à vérifier l'intégrité d'un fichier après l'avoir téléchargé (pour détecter d'éventuelles erreurs de transmission). Pour cela, on calcule une empreinte (*checksum*) du fichier téléchargé que l'on compare avec l'empreinte du fichier original.
-
-Dans la suite, nous implémentons un algorithme de checksum très simple (mot de parité) sur une chaîne de caractères.
-
-Dans la suite, on utilisera `ord(c)` qui renvoie le code Unicode d'un caractère `c`.
 
 :::{admonition} Exercice 10
 :class: note
-Quel est le code Unicode de `a` ? de `z` ?
+Écrire une fonction `contient_carre` telle que `contient_carre(m, k)` renvoie `true` si `m` contient un carré de 1 de taille $k$, `false` sinon.
 :::
+
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-ord('a') # 97
-ord('z') # 122
+def contient_carre(M, k):
+    n = len(M)
+    for i in range(n - k + 1):
+        for j in range(n - k + 1):
+            if est_carre(M, i, j, k):
+                return True
+    return False
+```
+
+```{code-cell} ipython3
+assert(contient_carre(M, 2) and not contient_carre(M, 3))
 ```
 
 ---
 
 :::{admonition} Exercice 11
 :class: note
-Écrire une fonction `code(s)` renvoyant une liste `L` telle que `L[i]` soit le code Unicode de `s[i]`.
+Écrire une fonction `max_carre1` telle que `max_carre1(m)` renvoie la taille maximum d'un carré de 1 contenu dans `m`.
 :::
+
 
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
-def code(s):
-    L = []
-    for c in s:
-        L.append(ord(c))
-    return L
-```
-```{code-cell} ipython3
-code("lamartin")
+
+def max_carre1(M):
+    n = len(M)
+    for k in range(n, 0, -1):
+        if contient_carre(M, k):
+            return k
+    return 0
 ```
 
-Si $a$ est un entier, on note $a_i$ le $i$ème bit de $a$ en base $2$. Le XOR de deux entiers $x$ et $y$ est un entier $z$ tel que $z_i = 1$ si et seulement si $x_i = 1$ ou $y_i = 1$, mais pas les deux. Par exemple, le XOR de $9 = 1001_2$ et $5 = 0101_2$ est $12 = 1100_2$.  
-En Python, le XOR est obtenu par `x^y`.
+```{code-cell} ipython3
+max_carre1(M)
+```
+
+---
 
 :::{admonition} Exercice 12
 :class: note
-Sans ordinateur, convertir $11$ et $6$ en base $2$ puis calculer leur XOR. Vérifier ensuite avec Python.
+Quelle est la complexité de `max_carre1(m)` dans le pire cas ?
 :::
 
-```{code-cell} ipython3
-:tags: ["hide-cell"]
-def checksum(s):
-    from functools import reduce
-    return reduce(lambda x, y: x^y, map(ord, s))
+:::{dropdown} Solution
+:animate: fade-in
+- `est_carre(M, x, y, k)` est en $O(k^2)$.  
+- `contient_carre(M, k)` appelle O($n$) fois `est_carre`, donc est en $O(n^2 k^2)$.  
+- `max_carre1(M)` appelle `contient_carre` pour $k = 1, 2, ..., n$, donc est de complexité $\sum_{k=1}^n O(n^2 k^2) = O(n^3 \sum_{k=1}^n k^2)$. Comme $\sum_{k=1}^n k^2 = \frac{n(n+1)(2n+1)}{6} = O(n^3)$, la complexité totale est $\boxed{O(n^6)}$.`
+:::
 
-# Est-ce le code le plus clair ? Pas quand on utilise pas les lambda expressions régulièrement...
-```
-```{code-cell} ipython3
-checksum("martin")
-```
+On va construire une matrice `c` telle que `c[x][y]` est la taille maximum d'un carré de 1 dans `m` dont la case en bas à droite est `m[x][y]` (c'est à dire un carré de 1 qui contient `m[x][y]` mais aucun `m[i][j]` si $i > x$ ou $j > y$).  
+Par exemple, `c[1][2] = 1` et `c[2][3] = 2` pour la matrice $M$ ci-dessus.
+
 ---
-### Recherche de collisions
-
-Une des propriétés désirable sur une fonction de hachage est d'être résistante aux collisions : il doit être très difficile en pratique de trouver $x, x' \in X$ tels que $h(x) = h(x')$. Sinon, il serait possible pour un attaquant d'envoyer un message en lui attribuant une signature d'une autre personne, par exemple.  
-MD5 est une fonction de hachage célèbre qui n'est plus considérée comme sûre : des collisions MD5 ont notamment été utilisées [par un malware qui a touché l'Iran](https://en.wikipedia.org/wiki/Flame_(malware)).  
-Dans la suite, nous cherchons des collisions partielles pour MD5.
-
-Voici un exemple d'utilisation de MD5 :
-
-```{code-cell} ipython3
-import hashlib
-
-def md5(s):
-    return hashlib.md5(s.encode("utf-8")).hexdigest()
-
-md5("lamartin")
-```
-La valeur renvoyée par `md5` est ici une chaîne de caractères qui doit être interprétée en base 16 (hexadécimal) : par exemple, $a$ correspond à $10$, $b$ à $11$...
-
-MD5 est une **fonction de hachage cryptographique**, ce qui signifie que le nombre de bits d'une empreinte est une constante, indépendant de l'entrée (la taille de $h(x)$ est constante, indépendante de $x$).
-
-**Question** : Combien y a t-il de bits dans un caractère en hexadécimal ?
-
-Sur $k$ bits on peut stocker $2^k$ valeurs différentes. Donc il faut $4$ bits pour avoir $2^4 = 16$ valeurs différentes.
 
 :::{admonition} Exercice 13
 :class: note
-Combien de bits sont utilisés pour une empreinte MD5 ?
+Que vaut `c[0][y]` et `c[x][0]` ?
 :::
 
-```{code-cell} ipython3
-:tags: ["hide-cell"]
-len(md5("lamartin"))*4 # on trouve 128 bits
-```
+:::{dropdown} Solution
+:animate: fade-in
+`c[0][y] = 0` si `m[0][y] = 0` et `c[0][y] = 1` sinon.  
+De même pour `c[x][0]`.  
+Remarque : `c[0][y]` et `c[x][0]` sont donc les mêmes valeurs que `m[0][y]` et `m[x][0]`, on peut donc initialiser `c` comme une copie de `m`.
+:::
+
 ---
 
-Pour trouver une collision, on pourra générer des chaînes de caractères aléatoires `s` en stockant dans un dictionnaire la clé `md5(s)` avec la valeur `s`. Si l'empreinte existe déjà dans le dictionnaire, c'est qu'on a trouvé une collision.
-
-On utilisera la fonction suivante génère une chaîne de caractères aléatoire de longueur `n`.
-
-```{code-cell} ipython3
-def rdm_str(n):
-    import string
-    import random
-    return ''.join(random.choice(string.ascii_lowercase) for i in range(n))
-
-rdm_str(10) # exemple
-```
 :::{admonition} Exercice 14
 :class: note
-Écrire une fonction `find_collision(n, p, k)` qui cherche une collision en générant `n` chaînes de caractères aléatoires de tailles `p`. Pour que la recherche ne prenne pas trop de temps, seuls les `k` premiers caractères de `md5(s)` seront considérés (avec `md5(s)[:k]`). On pourra prendre `k = 9`, `n = 100000`, `p = 10`.
+Que vaut `c[x][y]` si `m[x][y] = 0` ?
 :::
 
-```{code-cell} ipython3
-:tags: ["hide-cell"]
+:::{dropdown} Solution
+:animate: fade-in
+`c[x][y] = 0`.
+:::
 
-def find_collision(n, p, k):
-    seen = {}
-    for n in range(n):
-        s = rdm_str(p)
-        h = md5(s)[:k]
-        if h in seen and s != seen[h]:
-            print(f"{seen[h]} {s} ont le hash " + h)
-        seen[h] = s
-
-find_collision(1000000, 10, 9)
-```
 ---
-### Verification de l'intégrité d'un fichier
-
-Un ami vous propose d'installer la toute dernière version de python qu'il héberge gentillement sur son serveur. Malheureusement vous n'êtes pas certain que cette version soit bien celle d'origine...
-Il vous propose deux archives censées contenir toutes les deux la même version de python.
-
-https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload1/Python-3.13.0rc2.tgz
-https://raw.githubusercontent.com/tcanta/itc2a/master/payloads/payload2/Python-3.13.0rc2.tgz
-
 
 :::{admonition} Exercice 15
 :class: note
-Vérifiez l'intégrité de ces fichiers en calculant leurs hashs MD5 respectifs et en les comparant au hash original.
+Montrer que, si `m[x][y] = 1`, `c[x][y] = 1 + min(c[x-1][y], c[x][y-1], c[x-1][y-1])`.
+:::
+
+---
+
+:::{admonition} Exercice 16
+:class: note
+
+En déduire une fonction `max_carre2` telle que `max_carre2(m)` renvoie la taille maximum d'un carré de 1 contenu dans `m`, ainsi que les coordonnées de la case en haut à gauche d'un tel carré.
+:::
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
+def max_carre2(m):
+    c = m.copy()
+    for i in range(len(m)):
+        for j in range(len(m[0])):
+            if m[i][j] == 1:
+                c[i][j] = 1 + min(c[i - 1][j], c[i][j - 1], c[i - 1][j - 1])
+    return max(max(l) for l in c)
 ```
-ad7f44153649e27ec385e7633e853e03
+
+```{code-cell} ipython3
+max_carre2(M)
+```
+---
+
+:::{admonition} Exercice 17
+:class: note
+
+Quelle est la complexité de `max_carre2(m)`, en fonction des dimensions de `m`? Comparer avec `max_carre1(m)`.
+:::
+
+:::{dropdown} Solution
+:animate: fade-in
+`max_carre2(m)` est en $\boxed{O(n^2)}$ à cause des deux boucles `for` imbriquées.  
+C'est donc beaucoup mieux que `max_carre1(m)` qui est en $O(n^6)$.
+:::
+
++++
+## Pour ceux qui ont fini
++++
+Cette partie n'est pas à traiter, sauf si vous en avez le temps.
+
+:::{admonition} Exercice 18
+:class: note
+S'inscrire sur [https://projecteuler.net/](https://projecteuler.net/) et résoudre [ce problème](https://projecteuler.net/problem=67).  
+On pourra télécharger le fichier triangle.txt demandé avec :  
+```python
+import urllib.request
+f = urllib.request.urlopen("https://projecteuler.net/project/resources/p067_triangle.txt")
+lignes = list(map(lambda x : list(map(int, x.split())), f.readlines())) # renvoie la liste des lignes du fichier
 ```
 :::
 
-Cette vérification est aujourd'hui insuffisante pour garantir l'intégrité du fichier à cause des problèmes de collision vus plus haut !
+---
 
-Lien vers la page de la release python utilisée:
-https://www.python.org/downloads/release/python-3130rc2/
+:::{admonition} Exercice 19
+[Résoudre ce problème (en s'inscrivant préalablement)](https://leetcode.com/problems/longest-increasing-subsequence)
+:::
