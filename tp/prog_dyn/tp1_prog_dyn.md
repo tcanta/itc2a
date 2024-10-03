@@ -134,7 +134,7 @@ def binom_memo(n, k):
 ```{code-cell} ipython3
 :tags: ["hide-cell"]
 
-def binom(n, k):
+def binom_memo(n, k):
     d = {}
     def aux(i, j):
         if j == 0: return 1
@@ -144,6 +144,10 @@ def binom(n, k):
         return d[(i, j)]
     return aux(n, k)
 ```
+```{code-cell} ipython3
+binom_memo(20, 4)
+```
+
 ---
 
 +++
