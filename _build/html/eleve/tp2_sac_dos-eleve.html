@@ -619,12 +619,11 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 </ul>
 <p>Soit <span class="math notranslate nohighlight">\(dp[i][j]\)</span> la valeur maximum que l’on peut mettre dans un sac de capacité <span class="math notranslate nohighlight">\(i\)</span>, en ne considérant que les <span class="math notranslate nohighlight">\(j\)</span> premiers objets. On suppose que les poids sont strictement positifs.</p>
 <p><strong>Question</strong> : Que vaut <span class="math notranslate nohighlight">\(dp[i][0]\)</span> ?</p>
-<p><span class="math notranslate nohighlight">\(dp[i][0] = 0\)</span> : on ne peut pas mettre d’objet dans un sac de capacité <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>to do</p>
 <p><strong>Question</strong> : Exprimer <span class="math notranslate nohighlight">\(dp[i][j]\)</span> en fonction de <span class="math notranslate nohighlight">\(dp[i][j-1]\)</span> dans le cas où <span class="math notranslate nohighlight">\(w_j &gt; i\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(dp[i][j] = dp[i][j-1]\)</span> : on ne peut pas mettre l’objet <span class="math notranslate nohighlight">\(j\)</span> dans le sac de capacité <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>to do</p>
 <p><strong>Question</strong> : Supposons <span class="math notranslate nohighlight">\(w_j \leq i\)</span>. Donner une formule de récurrence sur <span class="math notranslate nohighlight">\(dp[i][j]\)</span>, en distinguant le cas où l’objet <span class="math notranslate nohighlight">\(j\)</span> est choisi et le cas où il ne l’est pas.</p>
-<div class="math notranslate nohighlight">
-\[dp[i][j] = \max(\underbrace{dp[i][j - 1]}_{\text{sans prendre } o_j}, \underbrace{dp[i - w_j][j - 1] + v_j}_{\substack{\text{en prenant } o_j}, \text{si }i - w_j \geq 0})\]</div>
+<p>to do</p>
 <p><strong>Question</strong> : En déduire une fonction <code class="docutils literal notranslate"><span class="pre">prog_dyn(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> qui renvoie la valeur maximum que l’on peut mettre dans un sac de capacité <span class="math notranslate nohighlight">\(c\)</span>, en ne considérant que les <span class="math notranslate nohighlight">\(j\)</span> premiers objets, en remplissant une matrice <code class="docutils literal notranslate"><span class="pre">dp</span></code> de taille <span class="math notranslate nohighlight">\((c+1) \times (n+1)\)</span>.</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
