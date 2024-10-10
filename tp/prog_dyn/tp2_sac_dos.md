@@ -221,7 +221,7 @@ Que vaut $dp[i][0]$ ?
 
 :::{dropdown} Solution
 :animate: fade-in
-$dp[i][0] = 0$ : on ne peut pas mettre d'objet dans un sac quand on en a pas...
+$dp[i][0] = 0$ : on ne peut pas mettre d'objet dans un sac quand on a pas d'objets...
 :::
 
 :::{admonition} Question

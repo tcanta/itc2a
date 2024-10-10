@@ -18,20 +18,27 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-longestIncreasingPath(m1)
+gp, gv, gr = 0, 0, 0
+for i in range(100):
+    c, w, v = genere_instance()
+    sol = prog_dyn(c, w, v)
+    gp += glouton_poids(c, w, v)/sol
+    gv += glouton_valeur(c, w, v)/sol
+    gr += glouton_ratio(c, w, v)/sol
+print(f"Glouton poids : {gp/100}")
+print(f"Glouton valeur : {gv/100}")
+print(f"Glouton ratio : {gr/100}")
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[24], line 1[0m
-[0;32m----> 1[0m [43mlongestIncreasingPath[49m[43m([49m[43mm1[49m[43m)[49m
+[0;31mZeroDivisionError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[19], line 5[0m
+[1;32m      3[0m c, w, v [38;5;241m=[39m genere_instance()
+[1;32m      4[0m sol [38;5;241m=[39m prog_dyn(c, w, v)
+[0;32m----> 5[0m gp [38;5;241m+[39m[38;5;241m=[39m [43mglouton_poids[49m[43m([49m[43mc[49m[43m,[49m[43m [49m[43mw[49m[43m,[49m[43m [49m[43mv[49m[43m)[49m[38;5;241;43m/[39;49m[43msol[49m
+[1;32m      6[0m gv [38;5;241m+[39m[38;5;241m=[39m glouton_valeur(c, w, v)[38;5;241m/[39msol
+[1;32m      7[0m gr [38;5;241m+[39m[38;5;241m=[39m glouton_ratio(c, w, v)[38;5;241m/[39msol
 
-Cell [0;32mIn[23], line 45[0m, in [0;36mlongestIncreasingPath[0;34m(mat)[0m
-[1;32m     44[0m [38;5;28;01mdef[39;00m [38;5;21mlongestIncreasingPath[39m(mat):
-[0;32m---> 45[0m     d [38;5;241m=[39m [[[38;5;241m0[39m][38;5;241m*[39m[38;5;28mlen[39m(matrix[[38;5;241m0[39m]) [38;5;28;01mfor[39;00m _ [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;28mlen[39m([43mmatrix[49m))]
-[1;32m     46[0m     max_coords[38;5;241m=[39m([38;5;241m0[39m,[38;5;241m0[39m)
-[1;32m     47[0m     maxi [38;5;241m=[39m [38;5;241m0[39m
-
-[0;31mNameError[0m: name 'matrix' is not defined
+[0;31mZeroDivisionError[0m: division by zero
 

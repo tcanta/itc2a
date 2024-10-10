@@ -738,7 +738,7 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text"><span class="math notranslate nohighlight">\(dp[i][0] = 0\)</span> : on ne peut pas mettre d’objet dans un sac quand on en a pas…</p>
+<p class="sd-card-text"><span class="math notranslate nohighlight">\(dp[i][0] = 0\)</span> : on ne peut pas mettre d’objet dans un sac quand on a pas d’objets…</p>
 </div>
 </details><div class="note admonition">
 <p class="admonition-title">Question</p>
@@ -854,9 +854,16 @@ Quelle stratégie gloutonne est la plus efficace ?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.8470687977916376
-Glouton valeur : 0.629340587073973
-Glouton ratio : 0.9934692965280475
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ZeroDivisionError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">c</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">genere_instance</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">sol</span> <span class="o">=</span> <span class="n">prog_dyn</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">gp</span> <span class="o">+=</span> <span class="n">glouton_poids</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="n">sol</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">gv</span> <span class="o">+=</span> <span class="n">glouton_valeur</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="n">sol</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">gr</span> <span class="o">+=</span> <span class="n">glouton_ratio</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span><span class="o">/</span><span class="n">sol</span>
+
+<span class="ne">ZeroDivisionError</span>: division by zero
 </pre></div>
 </div>
 </div>
@@ -887,12 +894,6 @@ Glouton ratio : 0.9934692965280475
     <span class="n">t2</span> <span class="o">+=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Glouton poids : </span><span class="si">{</span><span class="n">t1</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Programmation dynamique : </span><span class="si">{</span><span class="n">t2</span><span class="si">}</span><span class="s2"> s&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.0054204463958740234 s
-Programmation dynamique : 2.1221137046813965 s
 </pre></div>
 </div>
 </div>
@@ -949,11 +950,6 @@ On peut donc construire la liste des objets choisis en remontant la matrice <cod
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prog_dyn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
 <span class="c1"># la solution optimale consiste à choisir les objets 1 et 0</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 0]
 </pre></div>
 </div>
 </div>
@@ -1061,20 +1057,10 @@ On peut donc construire la liste des objets choisis en remontant la matrice <cod
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, (2, 1), [[1, 1, 2], [2, 2, 1], [3, 4, 2]])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longestIncreasingPath</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, (0, 0), [[4, 3, 2], [1, 4, 1], [2, 1, 2]])
 </pre></div>
 </div>
 </div>
