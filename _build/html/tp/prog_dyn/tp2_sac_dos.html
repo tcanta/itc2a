@@ -396,11 +396,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-gloutons">Algorithmes gloutons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tri-des-objets">Tri des objets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies-gloutonnes">Stratégies gloutonnes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-dynamique">Programmation dynamique</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaison">Comparaison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenir-la-liste-des-objets-choisis">Obtenir la liste des objets choisis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-dynamique">Programmation dynamique</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaison">Comparaison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenir-la-liste-des-objets-choisis">Obtenir la liste des objets choisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plus-long-chemin-croissant-dans-une-matrice">Plus long chemin croissant dans une matrice</a></li>
 </ul>
             </nav>
         </div>
@@ -492,6 +493,7 @@ Tester avec l’exemple ci-dessous. Le résultat est-il optimal ?</p>
 <p class="admonition-title">Question</p>
 <p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">combine(L1,</span> <span class="pre">L2)</span></code> qui renvoie la liste des couples <code class="docutils literal notranslate"><span class="pre">(L1[i],</span> <span class="pre">L2[i])</span></code>. On suppose que <code class="docutils literal notranslate"><span class="pre">L1</span></code> et <code class="docutils literal notranslate"><span class="pre">L2</span></code> ont la même longueur.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -525,6 +527,7 @@ Tester avec l’exemple ci-dessous. Le résultat est-il optimal ?</p>
 <p class="admonition-title">Question</p>
 <p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">split(L)</span></code> telle que si <code class="docutils literal notranslate"><span class="pre">L</span></code> est une liste de couples, <code class="docutils literal notranslate"><span class="pre">split(L)</span></code> renvoie deux listes <code class="docutils literal notranslate"><span class="pre">L1</span></code> et <code class="docutils literal notranslate"><span class="pre">L2</span></code> où <code class="docutils literal notranslate"><span class="pre">L1</span></code> contient les premiers éléments des couples de <code class="docutils literal notranslate"><span class="pre">L</span></code> et <code class="docutils literal notranslate"><span class="pre">L2</span></code> les seconds éléments des couples de <code class="docutils literal notranslate"><span class="pre">L</span></code>.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -576,6 +579,7 @@ Exemple :</p>
 <p class="admonition-title">Question</p>
 <p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">tri_poids(w,</span> <span class="pre">v)</span></code> qui renvoie les listes <code class="docutils literal notranslate"><span class="pre">w2</span></code> et <code class="docutils literal notranslate"><span class="pre">v2</span></code> obtenues à partir de <code class="docutils literal notranslate"><span class="pre">w</span></code> et <code class="docutils literal notranslate"><span class="pre">v</span></code> en triant les poids par ordre croissant. On pourra utiliser <code class="docutils literal notranslate"><span class="pre">L.sort</span></code>, <code class="docutils literal notranslate"><span class="pre">combine</span></code> et <code class="docutils literal notranslate"><span class="pre">split</span></code>.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -613,6 +617,7 @@ Exemple :</p>
 <p>En déduire une fonction <code class="docutils literal notranslate"><span class="pre">glouton_poids(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> qui renvoie la valeur totale des objets choisis par l’algorithme glouton, en considérant les objets dans l’ordre de poids croissant. On pourra réutiliser <code class="docutils literal notranslate"><span class="pre">glouton</span></code>.<br />
 Est-ce que cet algorithme est toujours optimal ?</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -644,6 +649,7 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 <p class="admonition-title">Question</p>
 <p>Écrire de même des fonctions <code class="docutils literal notranslate"><span class="pre">tri_valeur(w,</span> <span class="pre">v)</span></code> et <code class="docutils literal notranslate"><span class="pre">glouton_valeur(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> qui renvoie la valeur totale des objets choisis par l’algorithme glouton, en considérant les objets dans l’ordre de valeur décroissante (en utilisant <code class="docutils literal notranslate"><span class="pre">L.sort(reverse=True)</span></code>). Est-ce que cet algorithme est toujours optimal ?</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -681,6 +687,7 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 <p class="admonition-title">Question</p>
 <p>De même, écrire une fonction <code class="docutils literal notranslate"><span class="pre">glouton_ratio(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> qui renvoie la valeur totale des objets choisis par l’algorithme glouton, en considérant les objets dans l’ordre de ratio valeur/poids décroissant. On pourra utiliser deux fois <code class="docutils literal notranslate"><span class="pre">combine</span></code>.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -716,9 +723,8 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 </div>
 </div>
 </section>
-</section>
 <section id="programmation-dynamique">
-<h2>Programmation dynamique<a class="headerlink" href="#programmation-dynamique" title="Link to this heading">#</a></h2>
+<h3>Programmation dynamique<a class="headerlink" href="#programmation-dynamique" title="Link to this heading">#</a></h3>
 <p>On rappelle le problème du sac à dos :</p>
 <ul class="simple">
 <li><p><strong>Entrée</strong> : une capacité <span class="math notranslate nohighlight">\(c\)</span> et des objets de poids <span class="math notranslate nohighlight">\(w_1, ..., w_n\)</span> et valeurs <span class="math notranslate nohighlight">\(v_1\)</span>, …, <span class="math notranslate nohighlight">\(v_n\)</span>.</p></li>
@@ -757,6 +763,7 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 <p class="admonition-title">Question</p>
 <p>En déduire une fonction <code class="docutils literal notranslate"><span class="pre">prog_dyn(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> qui renvoie la valeur maximum que l’on peut mettre dans un sac de capacité <span class="math notranslate nohighlight">\(c\)</span>, en ne considérant que les <span class="math notranslate nohighlight">\(j\)</span> premiers objets, en remplissant une matrice <code class="docutils literal notranslate"><span class="pre">dp</span></code> de taille <span class="math notranslate nohighlight">\((c+1) \times (n+1)\)</span>.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -794,12 +801,13 @@ Est-ce que cet algorithme est toujours optimal ?</p>
 </section>
 <hr class="docutils" />
 <section id="comparaison">
-<h2>Comparaison<a class="headerlink" href="#comparaison" title="Link to this heading">#</a></h2>
+<h3>Comparaison<a class="headerlink" href="#comparaison" title="Link to this heading">#</a></h3>
 <div class="note admonition">
 <p class="admonition-title">Question</p>
 <p>Écrire une fonction <code class="docutils literal notranslate"><span class="pre">genere_instance()</span></code> qui renvoie un triplet <span class="math notranslate nohighlight">\((c, w, v)\)</span>, où <span class="math notranslate nohighlight">\(c\)</span> est un entier aléatoire entre 1 et 1000 et <span class="math notranslate nohighlight">\(w\)</span>, <span class="math notranslate nohighlight">\(v\)</span> sont des listes de 100 entiers aléatoires entre 1 et 100.<br />
 On importera <code class="docutils literal notranslate"><span class="pre">random</span></code> pour utiliser <code class="docutils literal notranslate"><span class="pre">random.randint(a,</span> <span class="pre">b)</span></code> qui génère un entier aléatoire entre <span class="math notranslate nohighlight">\(a\)</span> et <span class="math notranslate nohighlight">\(b\)</span> inclus.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -824,6 +832,7 @@ On importera <code class="docutils literal notranslate"><span class="pre">random
 <p>Afficher, pour chaque stratégie gloutonne (ordre de poids, ordre de valeur, ordre de ratio), l’erreur commise par rapport à la solution optimale, en moyennant sur 100 instances générées par <code class="docutils literal notranslate"><span class="pre">genere_instance()</span></code>.<br />
 Quelle stratégie gloutonne est la plus efficace ?</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -845,9 +854,9 @@ Quelle stratégie gloutonne est la plus efficace ?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.8486582865943006
-Glouton valeur : 0.6309671024917409
-Glouton ratio : 0.9963960559290668
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.84757109893479
+Glouton valeur : 0.6181431227694243
+Glouton ratio : 0.9950243790115694
 </pre></div>
 </div>
 </div>
@@ -857,6 +866,7 @@ Glouton ratio : 0.9963960559290668
 <p class="admonition-title">Question</p>
 <p>Comparer le temps total d’exécution de la stratégie gloutonne par ratio et de la programmation dynamique, sur 100 instances générées par <code class="docutils literal notranslate"><span class="pre">genere_instance()</span></code>. On pourra importer <code class="docutils literal notranslate"><span class="pre">time</span></code> et utiliser <code class="docutils literal notranslate"><span class="pre">time.time()</span></code> pour obtenir le temps actuel en secondes.</p>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -881,8 +891,8 @@ Glouton ratio : 0.9963960559290668
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.004529714584350586 s
-Programmation dynamique : 2.044468402862549 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.0026383399963378906 s
+Programmation dynamique : 1.0102643966674805 s
 </pre></div>
 </div>
 </div>
@@ -891,7 +901,7 @@ Programmation dynamique : 2.044468402862549 s
 </section>
 <hr class="docutils" />
 <section id="obtenir-la-liste-des-objets-choisis">
-<h2>Obtenir la liste des objets choisis<a class="headerlink" href="#obtenir-la-liste-des-objets-choisis" title="Link to this heading">#</a></h2>
+<h3>Obtenir la liste des objets choisis<a class="headerlink" href="#obtenir-la-liste-des-objets-choisis" title="Link to this heading">#</a></h3>
 <div class="note admonition">
 <p class="admonition-title">Question</p>
 <p>Réécrire la fonction <code class="docutils literal notranslate"><span class="pre">prog_dyn(c,</span> <span class="pre">w,</span> <span class="pre">v)</span></code> pour qu’elle renvoie la liste des objets choisis. Pour cela, on peut construire la matrice <code class="docutils literal notranslate"><span class="pre">dp</span></code> et remarquer que :</p>
@@ -901,6 +911,7 @@ Programmation dynamique : 2.044468402862549 s
 On peut donc construire la liste des objets choisis en remontant la matrice <code class="docutils literal notranslate"><span class="pre">dp</span></code> à partir de la case <span class="math notranslate nohighlight">\((c, n)\)</span>.</p></li>
 </ul>
 </div>
+<p><strong>Solution</strong></p>
 <div class="cell tag_hide-cell docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -946,6 +957,128 @@ On peut donc construire la liste des objets choisis en remontant la matrice <cod
 </pre></div>
 </div>
 </div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="plus-long-chemin-croissant-dans-une-matrice">
+<h2>Plus long chemin croissant dans une matrice<a class="headerlink" href="#plus-long-chemin-croissant-dans-une-matrice" title="Link to this heading">#</a></h2>
+<p>Etant donnée une matrice d’entiers de taille <code class="docutils literal notranslate"><span class="pre">m</span></code> x <code class="docutils literal notranslate"><span class="pre">n</span></code>, quelle est la longueur du plus long chemin croissant dans cette matrice ?</p>
+<p>Pour chaque élément dans la matrice, on peut bouger dans les quatre directions (haut, bas, droite et gauche) mais pas en diagonale ou en dehors de la matrice.</p>
+<p>Exemples :</p>
+<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
+<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
+<div class="note admonition">
+<p class="admonition-title">Question</p>
+<p>Proposez une fonction renvoyant la longueur du plus long chemin croissant dans une matrice. Votre solution devra utiliser de la programmation dynamique.</p>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Indice 1</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Posez les cas limites qui vont vous embeter et pensez à votre structure de données.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Indice 2</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Utilisez une fonction auxiliaire qui vous résoud un sous-problème…</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Indice 3</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">… c’est à dire une fonction qui résoud le plus grand chemin croissant en partant d’une cellule donnée dans la matrice.</p>
+</div>
+</details><p><strong>Solution</strong></p>
+<p>Vous êtes vraiment sur de vouloir abandonner si proche du but ?</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+
+
+<span class="k">def</span> <span class="nf">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="n">bn</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#better neighbours</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="n">top</span> <span class="o">=</span> <span class="n">bottom</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">top</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="n">bn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">bottom</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="n">bn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">left</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="n">bn</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="n">bn</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">bn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="n">bn</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bn</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bn</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">bn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span><span class="n">bn</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bn</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bn</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">longestIncreasingPath</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">))]</span>
+    <span class="n">max_coords</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">maxi</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxi</span><span class="p">:</span>
+                <span class="n">max_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+                <span class="n">maxi</span> <span class="o">=</span> <span class="n">lip</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">maxi</span><span class="p">,</span> <span class="n">max_coords</span><span class="p">,</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longestIncreasingPath</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, (2, 1), [[1, 1, 2], [2, 2, 1], [3, 4, 2]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longestIncreasingPath</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, (0, 0), [[4, 3, 2], [1, 4, 1], [2, 1, 2]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="docutils">
 </div>
 </section>
 </section>
@@ -1009,11 +1142,12 @@ On peut donc construire la liste des objets choisis en remontant la matrice <cod
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-gloutons">Algorithmes gloutons</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tri-des-objets">Tri des objets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strategies-gloutonnes">Stratégies gloutonnes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-dynamique">Programmation dynamique</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaison">Comparaison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenir-la-liste-des-objets-choisis">Obtenir la liste des objets choisis</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programmation-dynamique">Programmation dynamique</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparaison">Comparaison</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtenir-la-liste-des-objets-choisis">Obtenir la liste des objets choisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plus-long-chemin-croissant-dans-une-matrice">Plus long chemin croissant dans une matrice</a></li>
 </ul>
   </nav></div>
 
