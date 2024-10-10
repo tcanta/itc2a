@@ -854,9 +854,9 @@ Quelle stratégie gloutonne est la plus efficace ?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.84757109893479
-Glouton valeur : 0.6181431227694243
-Glouton ratio : 0.9950243790115694
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.8496516474350386
+Glouton valeur : 0.6352261094181304
+Glouton ratio : 0.9952929479756949
 </pre></div>
 </div>
 </div>
@@ -891,8 +891,8 @@ Glouton ratio : 0.9950243790115694
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.0026383399963378906 s
-Programmation dynamique : 1.0102643966674805 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Glouton poids : 0.002674102783203125 s
+Programmation dynamique : 1.0203001499176025 s
 </pre></div>
 </div>
 </div>
@@ -965,9 +965,10 @@ On peut donc construire la liste des objets choisis en remontant la matrice <cod
 <h2>Plus long chemin croissant dans une matrice<a class="headerlink" href="#plus-long-chemin-croissant-dans-une-matrice" title="Link to this heading">#</a></h2>
 <p>Etant donnée une matrice d’entiers de taille <code class="docutils literal notranslate"><span class="pre">m</span></code> x <code class="docutils literal notranslate"><span class="pre">n</span></code>, quelle est la longueur du plus long chemin croissant dans cette matrice ?</p>
 <p>Pour chaque élément dans la matrice, on peut bouger dans les quatre directions (haut, bas, droite et gauche) mais pas en diagonale ou en dehors de la matrice.</p>
-<p>Exemples :</p>
-<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
-<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
+<p>Exemple 1 :</p>
+<center><img src=https://raw.githubusercontent.com/tcanta/itc2a/master/img/grid1.jpg width=250></center>
+<p>Exemple 2 :</p>
+<center><img src=https://raw.githubusercontent.com/tcanta/itc2a/master/img/grid2.jpg width=260></center>
 <div class="note admonition">
 <p class="admonition-title">Question</p>
 <p>Proposez une fonction renvoyant la longueur du plus long chemin croissant dans une matrice. Votre solution devra utiliser de la programmation dynamique.</p>

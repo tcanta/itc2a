@@ -386,11 +386,13 @@ Etant donnée une matrice d'entiers de taille `m` x `n`, quelle est la longueur 
 
 Pour chaque élément dans la matrice, on peut bouger dans les quatre directions (haut, bas, droite et gauche) mais pas en diagonale ou en dehors de la matrice.
 
-Exemples :
+Exemple 1 :
 
-<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
+<center><img src=https://raw.githubusercontent.com/tcanta/itc2a/master/img/grid1.jpg width=250></center>
 
-<center><img src=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Knapsack.svg/486px-Knapsack.svg.png width=250></center>
+Exemple 2 :
+
+<center><img src=https://raw.githubusercontent.com/tcanta/itc2a/master/img/grid2.jpg width=260></center>
 
 :::{admonition} Question
 :class: note
