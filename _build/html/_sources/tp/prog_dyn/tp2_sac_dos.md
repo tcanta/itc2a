@@ -221,7 +221,7 @@ Que vaut $dp[i][0]$ ?
 
 :::{dropdown} Solution
 :animate: fade-in
-$dp[i][0] = 0$ : on ne peut pas mettre d'objet dans un sac de capacité $0$.
+$dp[i][0] = 0$ : on ne peut pas mettre d'objet dans un sac quand on en a pas...
 :::
 
 :::{admonition} Question
