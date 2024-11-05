@@ -47,8 +47,9 @@ Que peut-on prendre comme cas de base ?
 :::{dropdown} Solution
 :animate: fade-in
 
-$$\binom{0}{k} = 0$$
-$$\binom{n}{0} = 1, \text{si } n \neq 0$$
+$$\binom{n}{0} = 1, $$
+$$\binom{0}{k} = 0 \text{ si } k \neq 0$$
+
 :::
 
 ---

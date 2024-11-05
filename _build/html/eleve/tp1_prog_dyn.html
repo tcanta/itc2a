@@ -419,9 +419,9 @@ document.write(`
 \[\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}\]</div>
 <p><strong>Question</strong> : Que peut-on prendre comme cas de base ?</p>
 <div class="math notranslate nohighlight">
-\[\binom{0}{k} = 0\]</div>
+\[\binom{n}{0} = 1\]</div>
 <div class="math notranslate nohighlight">
-\[\binom{n}{0} = 1, \text{si } n \neq 0\]</div>
+\[\binom{0}{k} = 0 \text{ si } k \neq 0\]</div>
 <p><strong>Question</strong> : Écrire une fonction récursive <code class="docutils literal notranslate"><span class="pre">binom_rec(n,</span> <span class="pre">k)</span></code> renvoyant <span class="math notranslate nohighlight">\(\binom{n}{k}\)</span> à partir de la formule ci-dessus. Expliquer pourquoi la complexité de cette fonction est très mauvaise.</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
