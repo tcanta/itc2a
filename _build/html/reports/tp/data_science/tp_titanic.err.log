@@ -18,19 +18,28 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
+def plot_precision(kmax):
+    import matplotlib.pyplot as plt
+    R = range(1, kmax)
+    plt.plot(R, [precision(k) for k in R])
+    plt.show()
 
-df = pd.read_csv('titanic.csv') # df est un DataFrame
-df.head() # pour afficher les 5 premières lignes
+plot_precision(5)
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
-[1;32m      3[0m df [38;5;241m=[39m pd[38;5;241m.[39mread_csv([38;5;124m'[39m[38;5;124mtitanic.csv[39m[38;5;124m'[39m) [38;5;66;03m# df est un DataFrame[39;00m
-[1;32m      4[0m df[38;5;241m.[39mhead() [38;5;66;03m# pour afficher les 5 premières lignes[39;00m
+Cell [0;32mIn[21], line 7[0m
+[1;32m      4[0m     plt[38;5;241m.[39mplot(R, [precision(k) [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m R])
+[1;32m      5[0m     plt[38;5;241m.[39mshow()
+[0;32m----> 7[0m [43mplot_precision[49m[43m([49m[38;5;241;43m5[39;49m[43m)[49m
 
-[0;31mModuleNotFoundError[0m: No module named 'pandas'
+Cell [0;32mIn[21], line 2[0m, in [0;36mplot_precision[0;34m(kmax)[0m
+[1;32m      1[0m [38;5;28;01mdef[39;00m [38;5;21mplot_precision[39m(kmax):
+[0;32m----> 2[0m     [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[1;32m      3[0m     R [38;5;241m=[39m [38;5;28mrange[39m([38;5;241m1[39m, kmax)
+[1;32m      4[0m     plt[38;5;241m.[39mplot(R, [precision(k) [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m R])
+
+[0;31mModuleNotFoundError[0m: No module named 'matplotlib'
 

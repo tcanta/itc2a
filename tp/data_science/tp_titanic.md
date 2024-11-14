@@ -39,6 +39,7 @@ import pandas as pd
 
 df = pd.read_csv('titanic.csv') # df est un DataFrame
 df.head() # pour afficher les 5 premières lignes
+
 ```
 
 Ainsi `df` est un tableau contient 5 colonnes (`Survived`, `Pclass`, `Sex`, `Age`, `Fare`) et chaque ligne correspondant à un passager du Titanic. On peut obtenir le nombres de lignes avec `len(df)` :
@@ -255,7 +256,7 @@ def plus_frequent(L): # renvoie la classe qui apparaît le plus souvent dans L
     compte = {}
     for e in L:
         compte[e] = compte.get(e, 0) + 1
-    return max(compte, key=compte.get
+    return max(compte, key=compte.get)
 
 plus_frequent([2, 1, 5, 1, 2, 5, 5])
 ```
@@ -311,3 +312,10 @@ def plot_precision(kmax):
 
 plot_precision(5)
 ```
+
+## Kaggle
+
+Kaggle est un site proposant des compétitions de sciences des données.
+Ce TP provient d'une compétition Kaggle : [Titanic: Machine Learning from Disaster](www.kaggle.com/c/titanic).  
+
+Avec KNN, j'obtiens un score de $\approx 0.763$... Ce qui n'est pas terrible car l'exemple de submission basée uniquement sur le genre donne un score de $\approx 0.765$.

@@ -407,6 +407,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-des-donnees">Séparation des données</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-des-plus-proches-voisins">Algorithmes des plus proches voisins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-resultats">Analyse des résultats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaggle">Kaggle</a></li>
 </ul>
             </nav>
         </div>
@@ -451,17 +452,75 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;titanic.csv&#39;</span><span class="p">)</span> <span class="c1"># df est un DataFrame</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># pour afficher les 5 premières lignes</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
-</pre></div>
-</div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>Fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>7.2500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>71.2833</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>7.9250</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>53.1000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>8.0500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>Ainsi <code class="docutils literal notranslate"><span class="pre">df</span></code> est un tableau contient 5 colonnes (<code class="docutils literal notranslate"><span class="pre">Survived</span></code>, <code class="docutils literal notranslate"><span class="pre">Pclass</span></code>, <code class="docutils literal notranslate"><span class="pre">Sex</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Fare</span></code>) et chaque ligne correspondant à un passager du Titanic. On peut obtenir le nombres de lignes avec <code class="docutils literal notranslate"><span class="pre">len(df)</span></code> :</p>
 <div class="cell docutils container">
@@ -470,11 +529,26 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>891
+</pre></div>
+</div>
+</div>
 </div>
 <p>Chaque ligne est identifiée par un index (= nom de la ligne), ici <span class="math notranslate nohighlight">\(0, 1, 2, ...\)</span>. On peut accéder à la ligne d’indice <span class="math notranslate nohighlight">\(i\)</span> avec <code class="docutils literal notranslate"><span class="pre">df.loc[i]</span></code> :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Survived       0
+Pclass         3
+Sex         male
+Age         22.0
+Fare        7.25
+Name: 0, dtype: object
 </pre></div>
 </div>
 </div>
@@ -487,11 +561,32 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      22.0
+1      38.0
+2      26.0
+3      35.0
+4      35.0
+       ... 
+886    27.0
+887    19.0
+888    28.0
+889    26.0
+890    32.0
+Name: Age, Length: 891, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>On peut combiner ces deux méthodes pour récupérer une valeur précise, par exemple l’âge du 3ème passager :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(26.0)
 </pre></div>
 </div>
 </div>
@@ -505,6 +600,11 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
     <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxi_age</span><span class="p">:</span>
         <span class="n">maxi_age</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">]</span>
 <span class="n">maxi_age</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(80.0)
 </pre></div>
 </div>
 </div>
@@ -542,6 +642,12 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Âge moyen : 29.36158249158249
+Prix moyen du billet : 32.2042079685746
+</pre></div>
+</div>
+</div>
 </div>
 <div class="note admonition">
 <p class="admonition-title">Question</p>
@@ -573,6 +679,11 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ecart_type</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(13.01238827279366)
 </pre></div>
 </div>
 </div>
@@ -609,6 +720,14 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Taux de survie pour Sex = male : 0.18890814558058924
+Taux de survie pour Sex = female : 0.7420382165605095
+Taux de survie pour Pclass = 1 : 0.6296296296296297
+Taux de survie pour Pclass = 3 : 0.24236252545824846
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 </section>
@@ -622,6 +741,76 @@ Aujourd’hui, nous nous mettons dans les conditions les plus rudimentaires que 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>Fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>22.0</td>
+      <td>7.2500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>38.0</td>
+      <td>71.2833</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>26.0</td>
+      <td>7.9250</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>35.0</td>
+      <td>53.1000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>35.0</td>
+      <td>8.0500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="standardisation">
@@ -656,6 +845,82 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_24500/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;0.8273772438659676&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  df.loc[i, col] = (df.loc[i, col] - m) / s
+/tmp/ipykernel_24500/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-0.7376951317802897&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+  df.loc[i, col] = (df.loc[i, col] - m) / s
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>Fare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.827377</td>
+      <td>-0.737695</td>
+      <td>-0.565736</td>
+      <td>-0.502445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>-1.566107</td>
+      <td>1.355574</td>
+      <td>0.663861</td>
+      <td>0.786845</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0.827377</td>
+      <td>1.355574</td>
+      <td>-0.258337</td>
+      <td>-0.488854</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>-1.566107</td>
+      <td>1.355574</td>
+      <td>0.433312</td>
+      <td>0.420730</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0.827377</td>
+      <td>-0.737695</td>
+      <td>0.433312</td>
+      <td>-0.486337</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </details>
 </div>
 </section>
@@ -666,6 +931,14 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 1er passager</span>
 <span class="n">p</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;Fare&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="c1"># attributs de p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(-0.565736461074875),
+ np.float64(-0.5024451714361915),
+ np.float64(0.8273772438659676),
+ np.float64(-0.7376951317802897))
 </pre></div>
 </div>
 </div>
@@ -692,6 +965,11 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.644820996221396)
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 </section>
@@ -704,6 +982,12 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 <span class="n">test</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nombre de données dans train :&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nombre de données dans test :&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nombre de données dans train : 802
+nombre de données dans test : 89
 </pre></div>
 </div>
 </div>
@@ -731,6 +1015,11 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[446, 651, 546, 427, 389]
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 <div class="note admonition">
@@ -749,9 +1038,14 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
     <span class="n">compte</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
         <span class="n">compte</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">compte</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">compte</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">compte</span><span class="o">.</span><span class="n">get</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">compte</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">compte</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
 
 <span class="n">plus_frequent</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
 </pre></div>
 </div>
 </div>
@@ -773,6 +1067,11 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
     <span class="k">return</span> <span class="n">plus_frequent</span><span class="p">([</span><span class="n">train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;Survived&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">voisins</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">)])</span>
 
 <span class="n">knn</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
 </pre></div>
 </div>
 </div>
@@ -805,6 +1104,11 @@ Remarque : cela peut prendre quelques secondes.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8314606741573034
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 <div class="note admonition">
@@ -829,8 +1133,17 @@ Remarque : cela peut prendre quelques secondes.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f1e9945c6336ecfb3ea751b3fe862ea9382efc08eba7e404aab459bde2b2d0d4.png" src="../../_images/f1e9945c6336ecfb3ea751b3fe862ea9382efc08eba7e404aab459bde2b2d0d4.png" />
+</div>
 </details>
 </div>
+</section>
+<section id="kaggle">
+<h2>Kaggle<a class="headerlink" href="#kaggle" title="Link to this heading">#</a></h2>
+<p>Kaggle est un site proposant des compétitions de sciences des données.
+Ce TP provient d’une compétition Kaggle : <a class="reference internal" href="#www.kaggle.com/c/titanic"><span class="xref myst">Titanic: Machine Learning from Disaster</span></a>.</p>
+<p>Avec KNN, j’obtiens un score de <span class="math notranslate nohighlight">\(\approx 0.763\)</span>… Ce qui n’est pas terrible car l’exemple de submission basée uniquement sur le genre donne un score de <span class="math notranslate nohighlight">\(\approx 0.765\)</span>.</p>
 </section>
 </section>
 
@@ -897,6 +1210,7 @@ Remarque : cela peut prendre quelques secondes.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#separation-des-donnees">Séparation des données</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-des-plus-proches-voisins">Algorithmes des plus proches voisins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-resultats">Analyse des résultats</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kaggle">Kaggle</a></li>
 </ul>
   </nav></div>
 
