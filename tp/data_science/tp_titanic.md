@@ -318,4 +318,4 @@ plot_precision(5)
 Kaggle est un site proposant des compétitions de sciences des données.
 Ce TP provient d'une compétition Kaggle : [Titanic: Machine Learning from Disaster](www.kaggle.com/c/titanic).  
 
-Avec KNN, j'obtiens un score de $\approx 0.763$... Ce qui n'est pas terrible car l'exemple de submission basée uniquement sur le genre donne un score de $\approx 0.765$.
+Avec KNN, j'obtiens un score de $\approx 0.763$... Ce qui n'est pas terrible car l'exemple de submission basée uniquement sur le sexe des passagers donne un score de $\approx 0.765$.
