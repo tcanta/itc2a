@@ -21,3 +21,8 @@ parts:
       - file: tp/prog_dyn/tp1_prog_dyn
       - file: tp/prog_dyn/tp2_sac_dos
       - file: dm/dm1_psi-pc_LIS
+
+  - caption: Science des Données
+    chapters:
+      - file: cours/data_science/cours_data_science
+      - file: cours/data_science/cours_knn
