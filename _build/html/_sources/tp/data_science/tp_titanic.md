@@ -214,3 +214,100 @@ def distance(p1, p2):
 
 distance(df.loc[0], df.loc[1]) # distance entre les deux premiers passagers
 ```
+
+## Séparation des données
+
+On sépare les données en deux : une partie `train` utilisée pour la prédiction, et une partie `test` utilisée pour évaluer la qualité de la prédiction :
+
+```{code-cell} ipython3
+train = df.sample(frac=0.9,random_state=0)
+test = df.drop(train.index)
+print("nombre de données dans train :", len(train))
+print("nombre de données dans test :", len(test))
+```
+
+## Algorithmes des plus proches voisins
+
+:::{admonition} Question
+:class: note
+Écrire une fonction `voisins(x, k)` qui renvoie les indices des $k$ plus proches voisins de `x` dans `train`.
+:::
+
+**Solution**
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def voisins(x, k):
+    indices = sorted(train.index, key=lambda i: distance(x, train.loc[i]))
+    return indices[:k]
+
+voisins(test.iloc[0], 5)
+```
+
+:::{admonition} Question
+:class: note
+Écrire une fonction `plus_frequent(L)` qui renvoie l'élément le plus fréquent d'une liste `L`.
+:::
+
+**Solution**
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def plus_frequent(L): # renvoie la classe qui apparaît le plus souvent dans L
+    compte = {}
+    for e in L:
+        compte[e] = compte.get(e, 0) + 1
+    return max(compte, key=compte.get
+
+plus_frequent([2, 1, 5, 1, 2, 5, 5])
+```
+
+:::{admonition} Question
+:class: note
+Écrire une fonction `knn(x, k)` qui renvoie la prédiction de survie de `x` en utilisant l'algorithme des $k$ plus proches voisins.
+:::
+
+**Solution**
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def knn(x, k):
+    return plus_frequent([train.loc[i, "Survived"] for i in voisins(x, k)])
+
+knn(test.iloc[0], 5)
+```
+
+## Analyse des résultats
+
+:::{admonition} Question
+:class: note
+Écrire une fonction `precision(k)` qui renvoie la précision de l'algorithme des $k$ plus proches voisins en utilisant `k` voisins.  
+Remarque : cela peut prendre quelques secondes.
+:::
+
+**Solution**
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def precision(k):
+    n = 0
+    for i in test.index:
+        if knn(test.loc[i], k) == test.loc[i, "Survived"]:
+            n += 1
+    return n / len(test)
+
+precision(3)
+```
+
+:::{admonition} Question
+:class: note
+Écrire une fonction `plot_precision(kmax)` qui trace la précision pour $k$ variant de $1$ à `kmax`. Quelle est la meilleure précision obtenue pour k entre 1 et 5 (cela prend environ 1 minute) ? Quelle est le nombre de voisins optimal ?
+:::
+
+**Solution**
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+def plot_precision(kmax):
+    import matplotlib.pyplot as plt
+    R = range(1, kmax)
+    plt.plot(R, [precision(k) for k in R])
+    plt.show()
+
+plot_precision(5)
+```
