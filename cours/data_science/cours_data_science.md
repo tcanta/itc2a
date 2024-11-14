@@ -14,7 +14,6 @@ kernelspec:
 # Cours: Science des Données
 
 
-
 <iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/prod/cours/data_science/science_donnees.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
 
 <!---
