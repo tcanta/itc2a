@@ -63,7 +63,8 @@
     <link rel="icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Cours: K plus proches voisins" href="../../cours/data_science/cours_knn.html" />
+    <link rel="next" title="TP : Classification de voitures" href="tp_voitures.html" />
+    <link rel="prev" title="Cours: Algorithme des k-moyennes" href="../../cours/data_science/cours_kmeans.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -203,7 +204,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../cours/data_science/cours_data_science.html">Cours: Science des Données</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cours/data_science/cours_knn.html">Cours: K plus proches voisins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cours/data_science/cours_kmeans.html">Cours: Algorithme des k-moyennes</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">TP KNN : Classification des survivants du Titanic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tp_voitures.html">TP : Classification de voitures</a></li>
 </ul>
 
     </div>
@@ -846,9 +849,9 @@ Pour éviter cela, on va standardiser les données, c’est-à-dire les transfor
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_24741/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;0.8273772438659676&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_18574/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;0.8273772438659676&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
   df.loc[i, col] = (df.loc[i, col] - m) / s
-/tmp/ipykernel_24741/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-0.7376951317802897&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
+/tmp/ipykernel_18574/583169686.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-0.7376951317802897&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
   df.loc[i, col] = (df.loc[i, col] - m) / s
 </pre></div>
 </div>
@@ -1178,13 +1181,22 @@ Ce TP provient d’une compétition Kaggle : <a class="reference internal" href=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../cours/data_science/cours_knn.html"
+       href="../../cours/data_science/cours_kmeans.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Cours: K plus proches voisins</p>
+        <p class="prev-next-title">Cours: Algorithme des k-moyennes</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="tp_voitures.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TP : Classification de voitures</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

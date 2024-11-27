@@ -26,4 +26,6 @@ parts:
     chapters:
       - file: cours/data_science/cours_data_science
       - file: cours/data_science/cours_knn
+      - file: cours/data_science/cours_kmeans
       - file: tp/data_science/tp_titanic
+      - file: tp/data_science/tp_voitures
