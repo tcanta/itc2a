@@ -33,3 +33,4 @@ html:
   favicon: favicon.png
 
 exclude_patterns: ["payloads"]
+only_build_toc_files: true

@@ -12,12 +12,31 @@ kernelspec:
 ---
 # TP : Classification de voitures
 
+Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_voitures-eleves.ipynb).
+
+Commandes Basthon :
+
+- Ctrl + Entrée : exécuter la cellule
+- Shift + Entrée : exécuter la cellule puis passer à la suivante
+- Entrée : passer en mode édition
+- Échap : sortir du mode édition
+
+Les commandes suivantes sont valables uniquement hors du mode édition :
+
+- A : créer une nouvelle cellule (en haut)
+- B : créer une nouvelle cellule (en bas)
+- D D : supprimer la cellule
+
++++
+
 ## Chargement des données
 Dans ce TP, nous voulons classifier des voitures, selon leur type (sportive, citadine, familiale...). Commençons par charger les données dans Basthon :
 
-1. Télécharger <a href="https://raw.githubusercontent.com/cpge-itc/itc2/main/files/voitures.csv" download>les données (clic droit ici puis enregistrer la cible du lien sous)</a>.  
+1. Télécharger <a href="https://raw.githubusercontent.com/tcanta/itc2a/master/tp/data_science/voitures.csv" download>les données (clic droit ici puis enregistrer la cible du lien sous)</a>.  
 2. Dans Basthon, cliquer sur Fichier puis Ouvrir et sélectionner le fichier téléchargé.
 3. Exécuter le code ci-dessous, en modifiant titanic.csv si vous avez utilisé un autre nom de fichier.
+
+
 
 ```{code-cell} ipython3
 import numpy as np
@@ -298,8 +317,6 @@ for i in range(len(centres)):
     for j in classes[i]:
         print(" ", noms[j])
     print()
-
-plot_precision(5)
 ```
 
 :::{admonition} Question

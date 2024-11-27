@@ -421,11 +421,25 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tp-classification-de-voitures">
 <h1>TP : Classification de voitures<a class="headerlink" href="#tp-classification-de-voitures" title="Link to this heading">#</a></h1>
+<p>Pour programmer, vous pouvez soit utiliser Pyzo, soit <a class="reference external" href="https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_voitures-eleves.ipynb">Basthon</a>.</p>
+<p>Commandes Basthon :</p>
+<ul class="simple">
+<li><p>Ctrl + Entrée : exécuter la cellule</p></li>
+<li><p>Shift + Entrée : exécuter la cellule puis passer à la suivante</p></li>
+<li><p>Entrée : passer en mode édition</p></li>
+<li><p>Échap : sortir du mode édition</p></li>
+</ul>
+<p>Les commandes suivantes sont valables uniquement hors du mode édition :</p>
+<ul class="simple">
+<li><p>A : créer une nouvelle cellule (en haut)</p></li>
+<li><p>B : créer une nouvelle cellule (en bas)</p></li>
+<li><p>D D : supprimer la cellule</p></li>
+</ul>
 <section id="chargement-des-donnees">
 <h2>Chargement des données<a class="headerlink" href="#chargement-des-donnees" title="Link to this heading">#</a></h2>
 <p>Dans ce TP, nous voulons classifier des voitures, selon leur type (sportive, citadine, familiale…). Commençons par charger les données dans Basthon :</p>
 <ol class="arabic simple">
-<li><p>Télécharger <a href="https://raw.githubusercontent.com/cpge-itc/itc2/main/files/voitures.csv" download>les données (clic droit ici puis enregistrer la cible du lien sous)</a>.</p></li>
+<li><p>Télécharger <a href="https://raw.githubusercontent.com/tcanta/itc2a/master/tp/data_science/voitures.csv" download>les données (clic droit ici puis enregistrer la cible du lien sous)</a>.</p></li>
 <li><p>Dans Basthon, cliquer sur Fichier puis Ouvrir et sélectionner le fichier téléchargé.</p></li>
 <li><p>Exécuter le code ci-dessous, en modifiant titanic.csv si vous avez utilisé un autre nom de fichier.</p></li>
 </ol>
@@ -1222,8 +1236,6 @@ obtenue à la question précédente. Pour chaque classe, afficher les voitures d
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">noms</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">()</span>
-
-<span class="n">plot_precision</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1250,16 +1262,6 @@ Centre 3 : [1563.6666666666667, 99.0, 442.0, 179.66666666666666, 172.33333333333
   [&#39;scénic&#39;, &#39;renault&#39;]
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">noms</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="nb">print</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">plot_precision</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;plot_precision&#39; is not defined
-</pre></div>
-</div>
 </div>
 </details>
 </div>
@@ -1279,6 +1281,19 @@ Centre 3 : [1563.6666666666667, 99.0, 442.0, 179.66666666666666, 172.33333333333
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;cylindrée&#39;,
+ &#39;chevaux&#39;,
+ &#39;longueur&#39;,
+ &#39;largeur&#39;,
+ &#39;hauteur&#39;,
+ &#39;poids&#39;,
+ &#39;vitesse_max&#39;,
+ &#39;0_100&#39;,
+ &#39;consommation&#39;]
+</pre></div>
+</div>
+</div>
 </details>
 </div>
 <div class="cell tag_hide-cell docutils container">
@@ -1289,6 +1304,12 @@ Centre 3 : [1563.6666666666667, 99.0, 442.0, 179.66666666666666, 172.33333333333
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">centres</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">centres</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.31896446, -0.1361693 , -1.88526004, -1.02047793, -1.22359991,
+       -2.32875335, -0.11255414,  0.15027082, -0.75037631])
 </pre></div>
 </div>
 </div>
