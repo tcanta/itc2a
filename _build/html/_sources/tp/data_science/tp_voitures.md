@@ -34,7 +34,7 @@ Dans ce TP, nous voulons classifier des voitures, selon leur type (sportive, cit
 
 1. Télécharger <a href="https://raw.githubusercontent.com/tcanta/itc2a/master/tp/data_science/voitures.csv" download>les données (clic droit ici puis enregistrer la cible du lien sous)</a>.  
 2. Dans Basthon, cliquer sur Fichier puis Ouvrir et sélectionner le fichier téléchargé.
-3. Exécuter le code ci-dessous, en modifiant titanic.csv si vous avez utilisé un autre nom de fichier.
+3. Exécuter le code ci-dessous, en modifiant voitures.csv si vous avez utilisé un autre nom de fichier.
 
 
 
