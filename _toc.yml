@@ -7,6 +7,7 @@ parts:
   - caption: Résumés de Cours
     chapters:
       - file: resume/resume.md
+      
   - caption: Révisions
     chapters:
       - file: tp/tp_revisions
