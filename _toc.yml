@@ -30,3 +30,4 @@ parts:
       - file: tp/data_science/tp_titanic
       - file: tp/data_science/tp_voitures
       - file: tp/data_science/monet_jpg/tp-kmeans-monet
+      - file: td/data_science/quantification-kmeans
