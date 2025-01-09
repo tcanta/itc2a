@@ -37,12 +37,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-k = 5
-centres, classes = kmeans(X[:20], centres_aléatoires(X, k), k) # ceci prend quelques secondes
-fig, axes = plt.subplots(5, figsize=(20, 20))
-for ax, center in zip(axes.ravel(), centres):
-    ax.matshow(np.array(to_matrix(center)))
-    ax.axis('off')
-plt.show()
+classes = calculer_classes(X[:20], centres_aléatoires(X[:20], 5))
+#assert len(classes) == len(X) and max(classes) < 10 and min(classes) >= 0
 -------------------
 

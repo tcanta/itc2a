@@ -7,7 +7,7 @@ parts:
   - caption: Résumés de Cours
     chapters:
       - file: resume/resume.md
-      
+
   - caption: Révisions
     chapters:
       - file: tp/tp_revisions
@@ -35,3 +35,10 @@ parts:
       - file: tp/data_science/tp_voitures
       - file: tp/data_science/monet_jpg/tp-kmeans-monet
       - file: td/data_science/quantification-kmeans
+
+  - caption: SQL
+    chapters:
+      - file: cours/sql/cours_select
+      - file: cours/sql/cours_join
+      - file: cours/sql/cours_groupby
+      - file: tp/sql/tp_select-join
