@@ -220,6 +220,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_join.html">Cours: Requètes à plusieurs tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_groupby.html">Cours: Fonctions d’agrégation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql/tp_select-join.html">TP SQL 1 - Requêtes simples à une et plusieurs tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sql/tp_groupby.html">TP SQL 2 - Requêtes avec fonctions d’agrégation et autojointures</a></li>
 </ul>
 
     </div>
@@ -661,7 +662,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(68997.31031030507)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>68997.31031030507
 </pre></div>
 </div>
 </div>
@@ -726,37 +727,6 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="n">calculer_classes</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="mi">5</span><span class="p">))</span>
 <span class="c1">#assert len(classes) == len(X) and max(classes) &lt; 10 and min(classes) &gt;= 0</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">calculer_classes</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="mi">5</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1">#assert len(classes) == len(X) and max(classes) &lt; 10 and min(classes) &gt;= 0</span>
-
-<span class="nn">Cell In[16], line 4,</span> in <span class="ni">calculer_classes</span><span class="nt">(X, centres)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">classes</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">classes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plus_proche</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">return</span> <span class="n">classes</span>
-
-<span class="nn">Cell In[14], line 2,</span> in <span class="ni">plus_proche</span><span class="nt">(x, centres)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">plus_proche</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centres</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-
-<span class="nn">Cell In[14], line 2,</span> in <span class="ni">plus_proche.&lt;locals&gt;.&lt;lambda&gt;</span><span class="nt">(i)</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">plus_proche</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centres</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-
-<span class="nn">Cell In[10], line 8,</span> in <span class="ni">d</span><span class="nt">(u, v)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">r</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">g</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">b</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">return</span> <span class="n">r</span><span class="o">**</span><span class="mf">.5</span> <span class="o">+</span> <span class="n">g</span><span class="o">**</span><span class="mf">.5</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mf">.5</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

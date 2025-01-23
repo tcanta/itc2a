@@ -37,7 +37,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-classes = calculer_classes(X[:20], centres_aléatoires(X[:20], 5))
-#assert len(classes) == len(X) and max(classes) < 10 and min(classes) >= 0
+X = []
+for i in range(0, len(digits_matrix)):
+    X.append(to_vector(digits_matrix[i]))
 -------------------
 
