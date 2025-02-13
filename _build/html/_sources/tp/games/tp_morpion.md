@@ -230,21 +230,21 @@ print(gagnant(g2))
     1
 
 
-**Question** : Écrire une fonction `successeurs(g)` renvoyant la liste `L` des grilles que l'on peut obtenir à partir de `g` en jouant un coup.  
-Pour chaque coup possible, plutôt que modifier `g`, on en fera une copie (`m = copy.deepcopy(g)` après avoir importé avec `import copy`) que l'on modifiera pour jouer un coup et que l'on ajoutera à la liste `L`.
+**Question** : Écrire une fonction `successeurs(g)` renvoyant la liste `next_l` des grilles que l'on peut obtenir à partir de `g` en jouant un coup.  
+Pour chaque coup possible, plutôt que modifier `g`, on en fera une copie (`m = copy.deepcopy(g)` après avoir importé avec `import copy`) que l'on modifiera pour jouer un coup et que l'on ajoutera à la liste `next_l`.
 
 
 ```python
 import copy
 
 def successeurs(g):
-    L = []
+    next_l = []
     joueur_actuel = joueur(g)
     for i, j in cases_libres(g):
         m = copy.deepcopy(g)
         m[i][j] = joueur_actuel
-        L.append(m)
-    return L
+        next_l.append(m)
+    return next_l
 ```
 
 

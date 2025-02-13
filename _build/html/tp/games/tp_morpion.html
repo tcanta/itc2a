@@ -603,18 +603,18 @@ X|O|O
 1
 </pre></div>
 </div>
-<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">successeurs(g)</span></code> renvoyant la liste <code class="docutils literal notranslate"><span class="pre">L</span></code> des grilles que l’on peut obtenir à partir de <code class="docutils literal notranslate"><span class="pre">g</span></code> en jouant un coup.<br />
-Pour chaque coup possible, plutôt que modifier <code class="docutils literal notranslate"><span class="pre">g</span></code>, on en fera une copie (<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(g)</span></code> après avoir importé avec <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">copy</span></code>) que l’on modifiera pour jouer un coup et que l’on ajoutera à la liste <code class="docutils literal notranslate"><span class="pre">L</span></code>.</p>
+<p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">successeurs(g)</span></code> renvoyant la liste <code class="docutils literal notranslate"><span class="pre">next_l</span></code> des grilles que l’on peut obtenir à partir de <code class="docutils literal notranslate"><span class="pre">g</span></code> en jouant un coup.<br />
+Pour chaque coup possible, plutôt que modifier <code class="docutils literal notranslate"><span class="pre">g</span></code>, on en fera une copie (<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(g)</span></code> après avoir importé avec <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">copy</span></code>) que l’on modifiera pour jouer un coup et que l’on ajoutera à la liste <code class="docutils literal notranslate"><span class="pre">next_l</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="k">def</span> <span class="nf">successeurs</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">next_l</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">joueur_actuel</span> <span class="o">=</span> <span class="n">joueur</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">cases_libres</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
         <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">joueur_actuel</span>
-        <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">L</span>
+        <span class="n">next_l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">next_l</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">afficher</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
