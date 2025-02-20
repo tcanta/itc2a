@@ -48,4 +48,6 @@ parts:
   - caption: Jeux à deux joueurs
     chapters:
       - file: cours/games/cours_strat
+      - file: cours/games/cours_minmax
       - file: tp/games/tp_morpion
+      - file: tp/games/tp_domineering
