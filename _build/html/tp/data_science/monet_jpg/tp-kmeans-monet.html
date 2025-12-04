@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TP : Classification de tableaux &#8212; Informatique de Tonc Commun 2A La Martin</title>
+    <title>TP : Classification de tableaux &#8212; Informatique de Tronc Commun 2A La Martin</title>
   
   
   
@@ -156,8 +156,8 @@
       
     
     
-    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tonc Commun 2A La Martin - Home"/>
-    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tonc Commun 2A La Martin - Home"/>`);</script>
+    <img src="../../../_static/logo.png" class="logo__image only-light" alt="Informatique de Tronc Commun 2A La Martin - Home"/>
+    <script>document.write(`<img src="../../../_static/logo.png" class="logo__image only-dark" alt="Informatique de Tronc Commun 2A La Martin - Home"/>`);</script>
   
   
 </a></div>
@@ -472,71 +472,71 @@ Commençons par télécharger les données <a href="https://github.com/tcanta/it
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 45,  98, 148],
-        [ 24,  77, 127],
-        [ 69, 120, 173],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[  0, 110, 124],
+        [ 18, 134, 147],
+        [ 29, 135, 148],
         ...,
-        [ 44,  62,  50],
-        [110, 114,  87],
-        [ 77,  77,  41]],
+        [  9, 115, 157],
+        [  8, 113, 158],
+        [ 26, 131, 176]],
 
-       [[ 63, 116, 170],
-        [ 25,  78, 132],
-        [ 39,  90, 147],
+       [[ 25, 137, 149],
+        [ 31, 139, 151],
+        [ 22, 123, 133],
         ...,
-        [128, 142, 142],
-        [169, 173, 156],
-        [128, 126, 101]],
+        [  4, 110, 152],
+        [ 12, 117, 162],
+        [  8, 113, 158]],
 
-       [[ 59, 113, 173],
-        [ 38,  92, 152],
-        [ 41,  92, 155],
+       [[ 52, 151, 157],
+        [ 51, 146, 152],
+        [ 41, 130, 134],
         ...,
-        [103, 114, 132],
-        [137, 138, 143],
-        [125, 121, 118]],
+        [  8, 114, 156],
+        [ 23, 130, 174],
+        [  2, 109, 153]],
 
        ...,
 
-       [[124, 142, 142],
-        [147, 165, 165],
-        [162, 181, 179],
+       [[183, 164,  98],
+        [191, 173, 111],
+        [183, 166, 114],
         ...,
-        [160, 150, 123],
-        [179, 170, 141],
-        [ 98,  89,  58]],
+        [179, 161, 137],
+        [121, 124, 115],
+        [152, 166, 166]],
 
-       [[162, 168, 130],
-        [170, 176, 142],
-        [179, 183, 158],
+       [[173, 161,  75],
+        [184, 171,  92],
+        [150, 136,  71],
         ...,
-        [144, 134, 107],
-        [157, 148, 119],
-        [ 90,  81,  50]],
+        [183, 145, 124],
+        [147, 131, 132],
+        [165, 159, 173]],
 
-       [[113, 112,  55],
-        [125, 123,  72],
-        [103, 101,  63],
+       [[175, 166,  71],
+        [227, 217, 128],
+        [211, 201, 129],
         ...,
-        [119, 109,  82],
-        [157, 148, 119],
-        [ 64,  55,  24]]], dtype=uint8)
+        [201, 153, 133],
+        [215, 188, 195],
+        [186, 171, 192]]], dtype=uint8)
 </pre></div>
 </div>
 </div>
 </div>
 <p>Chacune de ces matrices est en fait une image au format .jpg contenant chaque pixel d’un tableau de Monet.<br />
 Chaque élément de la matrice représente un pixel coloré représenté par trois valeurs entières entre 0 et 255 : le niveau de rouge, vert et bleu.
-Par exemple, affichons l’image correspondant à la matrice 160 :</p>
+Par exemple, affichons l’image correspondant à la matrice d’indice 0 :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits_matrix</span><span class="p">[</span><span class="mi">161</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/7468a5d7ba04acb1a82036e9ea450d437927c6fadc8552d3d198d4e439ff6dd4.png" src="../../../_images/7468a5d7ba04acb1a82036e9ea450d437927c6fadc8552d3d198d4e439ff6dd4.png" />
+<img alt="../../../_images/64006224c4ab1a72a535666265523ccd8b77c51d54eea0cdb654c0053e34dcff.png" src="../../../_images/64006224c4ab1a72a535666265523ccd8b77c51d54eea0cdb654c0053e34dcff.png" />
 </div>
 </div>
 <section id="redimensionner-les-images">
@@ -550,12 +550,15 @@ Une manière simple de s’y prendre consiste à couper nos images, de sorte que
     <span class="c1">#recherche de minimums</span>
     <span class="n">h_min</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">l_min</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="c1">#Pas utile à la fonction mais permet de detecter quelles images sont &quot;trop grandes&quot;</span>
+        <span class="k">if</span> <span class="n">h_min</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="ow">or</span> <span class="n">l_min</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trop grande:&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">h_min</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
-            <span class="n">h_min</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+            <span class="n">h_min</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>       
         <span class="k">if</span> <span class="n">l_min</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">l_min</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">h_min</span><span class="p">,</span> <span class="n">l_min</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Taille min:&quot;</span><span class="p">,</span><span class="n">h_min</span><span class="p">,</span> <span class="n">l_min</span><span class="p">)</span>
     <span class="c1">#Découpage des images</span>
     <span class="n">l</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
@@ -563,15 +566,19 @@ Une manière simple de s’y prendre consiste à couper nos images, de sorte que
     <span class="k">return</span> <span class="n">l</span>
 
 <span class="n">digits_matrix</span> <span class="o">=</span> <span class="n">crop_to_min</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits_matrix</span><span class="p">[</span><span class="mi">161</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">296</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits_matrix</span><span class="p">[</span><span class="mi">296</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>256 256
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Trop grande: 296
+Taille min: 256 256
 </pre></div>
 </div>
+<img alt="../../../_images/7468a5d7ba04acb1a82036e9ea450d437927c6fadc8552d3d198d4e439ff6dd4.png" src="../../../_images/7468a5d7ba04acb1a82036e9ea450d437927c6fadc8552d3d198d4e439ff6dd4.png" />
 <img alt="../../../_images/509760bf4d7e153dc19ab45244ec4805c57ec4652843f7ce0e4095a4aa466616.png" src="../../../_images/509760bf4d7e153dc19ab45244ec4805c57ec4652843f7ce0e4095a4aa466616.png" />
 </div>
 </div>
@@ -648,17 +655,19 @@ $<span class="math notranslate nohighlight">\(
 <section id="algorithmes-des-k-moyennes">
 <h2>Algorithmes des <span class="math notranslate nohighlight">\(k\)</span>-moyennes<a class="headerlink" href="#algorithmes-des-k-moyennes" title="Link to this heading">#</a></h2>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">d(u,</span> <span class="pre">v)</span></code> qui prend en argument deux images <code class="docutils literal notranslate"><span class="pre">u</span></code> et <code class="docutils literal notranslate"><span class="pre">v</span></code> et renvoie la distance euclidienne entre ces deux vecteurs. On considerera ici que la distance entre deux images est la somme des distances entre les composantes rouges, vertes et bleues de ces images.</p>
+<p>On risque d’obtenir un warning lors du calcul de soustraction <code class="docutils literal notranslate"><span class="pre">(overflow</span> <span class="pre">encountered</span> <span class="pre">in</span> <span class="pre">scalar</span> <span class="pre">subtract)</span></code>, dans ce cas vérifier le type des données avec <code class="docutils literal notranslate"><span class="pre">type(ma_donnée)</span></code>. Que remarque-t-on ? Proposer une modification de la fonction pour éviter ce problème.</p>
 <div class="cell tag_cor docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#print(type(u[0][0]))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)):</span>
         <span class="n">r</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">g</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
         <span class="n">b</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-    <span class="k">return</span> <span class="n">r</span><span class="o">**</span><span class="mf">.5</span> <span class="o">+</span> <span class="n">g</span><span class="o">**</span><span class="mf">.5</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mf">.5</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">g</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mf">.5</span>
 </pre></div>
 </div>
 </div>
@@ -670,7 +679,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(68997.31031030507)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(28317.940320581227)
 </pre></div>
 </div>
 </div>
@@ -713,7 +722,7 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
 </pre></div>
 </div>
 </div>
@@ -746,7 +755,7 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 4, 4, 0, 0, 0, 0, 0, 0, 2, 0, 4, 1, 0, 0, 0, 2, 0, 0, 3]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 4, 1, 2, 4, 0, 2, 4, 2, 3]
 </pre></div>
 </div>
 </div>
@@ -782,7 +791,7 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/c1f49e3392d77ab879fd73f5cfa3e1df7d111d759cc3e43af3f8e2e1d6483b11.png" src="../../../_images/c1f49e3392d77ab879fd73f5cfa3e1df7d111d759cc3e43af3f8e2e1d6483b11.png" />
+<img alt="../../../_images/d81dac494395f23968b39d461f8f15796f74b8be7a68d5c911e3585a39382664.png" src="../../../_images/d81dac494395f23968b39d461f8f15796f74b8be7a68d5c911e3585a39382664.png" />
 </div>
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">calculer_centres(X,</span> <span class="pre">classes,</span> <span class="pre">k)</span></code> qui renvoie la liste <code class="docutils literal notranslate"><span class="pre">centres</span></code> correspondant à <code class="docutils literal notranslate"><span class="pre">X</span></code> et à <code class="docutils literal notranslate"><span class="pre">classes</span></code>.</p>
@@ -816,11 +825,11 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/0fb832395372852a9aa305add8da82fb19d9dd53d339a05dc1d71abe617b9ef6.png" src="../../../_images/0fb832395372852a9aa305add8da82fb19d9dd53d339a05dc1d71abe617b9ef6.png" />
-<img alt="../../../_images/aeebb2caec3e21dfd2061e951b56c69fdb9d7dff74cd4aa8061eb57cfd6c434a.png" src="../../../_images/aeebb2caec3e21dfd2061e951b56c69fdb9d7dff74cd4aa8061eb57cfd6c434a.png" />
-<img alt="../../../_images/c1f49e3392d77ab879fd73f5cfa3e1df7d111d759cc3e43af3f8e2e1d6483b11.png" src="../../../_images/c1f49e3392d77ab879fd73f5cfa3e1df7d111d759cc3e43af3f8e2e1d6483b11.png" />
-<img alt="../../../_images/0b07e353aaa828038c2075f581c995550af2b715fd38e84544e0c9bc2be24387.png" src="../../../_images/0b07e353aaa828038c2075f581c995550af2b715fd38e84544e0c9bc2be24387.png" />
-<img alt="../../../_images/e367b3a80f02f7a679ef68e9afb64fabc99cb56bf79556a43faae9dca639c653.png" src="../../../_images/e367b3a80f02f7a679ef68e9afb64fabc99cb56bf79556a43faae9dca639c653.png" />
+<img alt="../../../_images/aeb1711d38d710d05c52451d95d0849a5882c1fa460466752dd28ab63570a2aa.png" src="../../../_images/aeb1711d38d710d05c52451d95d0849a5882c1fa460466752dd28ab63570a2aa.png" />
+<img alt="../../../_images/1e021fd5cb559b7279aafa0de06d3aefb1be289547599baec06ac0d93782ca89.png" src="../../../_images/1e021fd5cb559b7279aafa0de06d3aefb1be289547599baec06ac0d93782ca89.png" />
+<img alt="../../../_images/d81dac494395f23968b39d461f8f15796f74b8be7a68d5c911e3585a39382664.png" src="../../../_images/d81dac494395f23968b39d461f8f15796f74b8be7a68d5c911e3585a39382664.png" />
+<img alt="../../../_images/d59df6da08df0e0a2ed0b317a8fbfaf762c29bde9ee04a55ff05726fdbe373ab.png" src="../../../_images/d59df6da08df0e0a2ed0b317a8fbfaf762c29bde9ee04a55ff05726fdbe373ab.png" />
+<img alt="../../../_images/b6a230cb73eb687458564ca249c7e9d3a8b418a6456d421bc582d0f5aa007020.png" src="../../../_images/b6a230cb73eb687458564ca249c7e9d3a8b418a6456d421bc582d0f5aa007020.png" />
 </div>
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">kmeans(X,</span> <span class="pre">centres,</span> <span class="pre">k)</span></code> qui, à partir de centres initiaux donnés en argument, applique l’algorithme des <span class="math notranslate nohighlight">\(k\)</span>-moyennes et renvoie un couple correspondant à la liste <code class="docutils literal notranslate"><span class="pre">(centres,</span> <span class="pre">classes)</span></code> obtenue à la fin de l’algorithme.</p>
@@ -878,12 +887,12 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">def</span> <span class="nf">plus_proche</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centres</span><span class="p">)),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centres</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
 
-<span class="nn">Cell In[10], line 6,</span> in <span class="ni">d</span><span class="nt">(u, v)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)):</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">r</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">g</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">b</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
+<span class="nn">Cell In[10], line 7,</span> in <span class="ni">d</span><span class="nt">(u, v)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1">#print(type(u[0][0]))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">)):</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">r</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">g</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">b</span> <span class="o">+=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -913,7 +922,7 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22258872150.370857
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(7978840232.0)
 </pre></div>
 </div>
 </div>
@@ -938,15 +947,27 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">5</span>
-<span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">inerties</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">inerties</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inerties</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/b55a427d40e4d2abafe0836c8b901145a71011e9e3a694169763213fa3eb535d.png" src="../../../_images/b55a427d40e4d2abafe0836c8b901145a71011e9e3a694169763213fa3eb535d.png" />
+<img alt="../../../_images/91668d446cf90616b6cf9a36c2c0bc0c2bbec33aac517ce7cd60ac766d90d07b.png" src="../../../_images/91668d446cf90616b6cf9a36c2c0bc0c2bbec33aac517ce7cd60ac766d90d07b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inerties</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(2640858780.0), np.float64(2640858780.0)]
+</pre></div>
+</div>
 </div>
 </div>
 </section>
