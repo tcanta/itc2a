@@ -13,9 +13,9 @@ Concours | Durée | Coefficient (% écrit) | Autres
 [CCINP PC/PSI](https://www.concours-commun-inp.fr/fr/epreuves/annales/annales-pc.html) | 3h | 10% | modélisation
 [CCINP MP](https://www.concours-commun-inp.fr/fr/epreuves/annales/annales-mp.html) | | $\approx$ 10% | épreuve d'option + math 1
 [Mines-Ponts](https://www.concoursminesponts.fr) | 2h | 7% |
-[Centrale-Supélec PC/PSI (à confirmer)](https://www.concours-centrale-supelec.fr) | 2h QCM | 8% |
-[Centrale-Supélec MP (à confirmer)](https://www.concours-centrale-supelec.fr) | 0 | 0% |
-[X-ENS](https://banques-ecoles.fr/cms/wp-content/uploads/2023/01/Version-complete-combinee.pdf) | 2h | $\approx$ 13% |
+[Centrale-Supélec PC/PSI](https://www.concours-centrale-supelec.fr) | Pas d'épreuve écrite | 0% | Oraux Maths 2 et Physique 2 |
+[Centrale-Supélec MP](https://www.concours-centrale-supelec.fr) | Pas d'épreuve écrite | 0% | Oraux Maths 2 et Physique 2 |
+[X-ENS](https://banques-ecoles.fr/cms/wp-content/uploads/2023/01/Version-complete-combinee.pdf) | 2h | $\approx$ 13% | Informatique B |
 </details>
 
 - [Programme officiel](https://prepas.org/index.php?document=72)

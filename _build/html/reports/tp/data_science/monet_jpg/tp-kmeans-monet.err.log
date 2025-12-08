@@ -33,16 +33,15 @@ Traceback (most recent call last):
                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/aquathi/.local/share/pipx/venvs/jupyter-book/lib/python3.12/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
     raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 300 seconds.
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-k = 5
-centres, classes = kmeans(X[:20], centres_aléatoires(X, k), k) # ceci prend quelques secondes
-fig, axes = plt.subplots(5, figsize=(20, 20))
-for ax, center in zip(axes.ravel(), centres):
-    ax.matshow(np.array(to_matrix(center)))
-    ax.axis('off')
-plt.show()
+k=5
+inerties=[]
+for k in range(2,8):
+    centres, classes, i = kmeans(X[:20], centres_aléatoires(X, k), k) # ceci prend quelques minutes
+    inerties.append(i[-1])
+    print(k)
 -------------------
 

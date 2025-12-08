@@ -14,6 +14,12 @@ kernelspec:
 # Résumés de Cours
 
 ````{tab-set}
+```{tab-item} Rappels de Python
+
+<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/resume/python/1-python_resume.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
+
+```
+
 ```{tab-item} Structures de données
 
 <iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/resume/dict/dict_resume.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
@@ -29,6 +35,18 @@ kernelspec:
 ```{tab-item} Science des données
 
 <iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/resume/data_science/ml_resume.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
+
+```
+
+```{tab-item} SQL
+
+<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/resume/sql/sql_resume.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
+
+```
+
+```{tab-item} Jeux à deux joueurs
+
+<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/resume/jeux/jeux_resume.pdf#zoom=page-width&pagemode=none height=600 width=100% allowfullscreen></iframe>
 
 ```
 ````
