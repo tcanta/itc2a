@@ -1,7 +1,7 @@
 # TP SQL 1 - Requêtes simples à une et plusieurs tables
 
 Pour ce TP, seuls votre navigateur web favori et votre cours de SQL sont nécéssaires !
-Je vous invite à consacrer une heure par partie.
+Je vous invite à consacrer une heure à chacune des parties.
 
 ## Requêtes à une table
 
