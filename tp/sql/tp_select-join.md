@@ -1,10 +1,11 @@
 # TP SQL 1 - Requêtes simples à une et plusieurs tables
 
 Pour ce TP, seuls votre navigateur web favori et votre cours de SQL sont nécéssaires !
+Je vous invite à consacrer une heure par partie.
 
 ## Requêtes à une table
 
-Faire les deux exercices dans “Requêtes sur une table” : https://sql-exercices.github.io
+Faire les deux premiers exercices dans “Requêtes sur une table” : https://sql-exercices.github.io
 
 SQLZoo : [World](https://sqlzoo.net/wiki/SELECT_from_WORLD_Tutorial) jusqu’à Q7 inclus, [Quiz](https://sqlzoo.net/wiki/BBC_QUIZ), [Nobel](https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial) jusqu’à Q10 inclus
 
