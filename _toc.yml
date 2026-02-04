@@ -41,6 +41,7 @@ parts:
       - file: cours/sql/cours_join
       - file: cours/sql/cours_groupby
       - file: cours/sql/cours_imbrique
+      - file: cours/sql/cours_er
       - file: td/sql/td_sql
       - file: tp/sql/tp_select-join
       - file: tp/sql/tp_groupby

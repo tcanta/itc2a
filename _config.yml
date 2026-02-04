@@ -32,5 +32,8 @@ html:
   use_repository_button: true
   favicon: favicon.png
 
-exclude_patterns: ["payloads","tp/data_science/monet_jpg/tp-kmeans-monet.ipynb"]
+execute:
+  exclude_patterns:
+    - tp/data_science/monet_jpg/tp-kmeans-monet.ipynb
+exclude_patterns: ["payloads"]
 only_build_toc_files: true
