@@ -185,8 +185,8 @@ cases_libres(g1)
 
 def joueur(grille):
     nb_cases_libres = len(cases_libres(grille))
-    nb_cases_vides = 9 - nb_cases_libres
-    if nb_cases_vides % 2 == 0:
+    nb_cases_prises = 9 - nb_cases_libres
+    if nb_cases_prises % 2 == 0:
         return 1
     else:
         return 2
