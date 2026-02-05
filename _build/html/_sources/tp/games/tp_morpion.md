@@ -510,7 +510,7 @@ jeu(g1)
     X| |
 ```
 
-**Question** : Améliorez la fonction jeu au regard de la question précédente. Un exemple de comportement vous est proposé ci-dessous.
+**Question** : Améliorez la fonction `jeu` au regard de la question précédente. Un exemple de comportement vous est proposé ci-dessous.
 
 
 **Solution**
