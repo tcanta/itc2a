@@ -10,7 +10,7 @@ kernelspec:
   language: python
   name: python3
 ---
-# TP : Jeu du tic-tac-toe
+# TP : Jeu du morpion
 
 
 Pour programmer, vous pouvez soit utiliser Pyzo, soit [Basthon](https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_morpion-eleves.ipynb).
@@ -32,7 +32,7 @@ Les commandes suivantes sont valables uniquement hors du mode édition :
 
 ## Présentation
 
-Dans le jeu du tic-tac-toe (ou morpion), deux joueurs doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : X (joueur 1) ou O (joueur 2). Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale. Le joueur 1 commence.
+Dans le jeu du tic-tac-toe, ou morpion dans la langue de Molière, deux joueurs doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : X (joueur 1) ou O (joueur 2). Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale. Le joueur 1 commence.
 
 <center><img src=https://upload.wikimedia.org/wikipedia/commons/3/33/Tictactoe1.gif width=100></center>
 
@@ -43,7 +43,7 @@ On représente une grille de morpion par une matrice (liste de listes) $3\times 
 
 ## Dictionnaire et fonction de hachage
 
-Nous aurons besoin d'utiliser un dictionnaire dont les clés sont des matrices (grilles de morpion). Cependant, nous avons vu dans le cours sur les dictionnaires que, étant représenté par table de hachage, un dictionnaire doit avoir des clés hachables. Un type mutable (modifiable) comme une liste (ou un tableau numpy) n'étant pas hachable, il n'est donc pas possible d'en utiliser comme clé d'un dictionnaire :
+Nous aurons besoin d'utiliser un dictionnaire dont les clés sont des matrices (grilles de morpion). Cependant, nous avons vu dans le cours sur les dictionnaires que, étant représenté par table de hachage, un dictionnaire doit avoir des clés hachables. Un type mutable, les listes par exemple, n'étant pas hachable, il n'est donc pas possible d'en utiliser comme clé d'un dictionnaire :
 
 
 ```python
@@ -62,7 +62,7 @@ d = { [1, 2, 3] : 4 } # on ne peut pas utiliser une liste comme clé d'un dictio
     TypeError: unhashable type: 'list'
 
 
-À la place, nous allons utiliser le type `L` suivant qui possède les mêmes opérations que les listes mais qui définit une fonction de hachage (en convertissant en tuple, qui est immutable). Le code ci-dessous utilise des notions de programmation objet largement hors-programme et n'est donc pas à comprendre.
+À la place, nous allons utiliser le type `L` suivant qui possède les mêmes opérations que les listes mais qui définit une fonction de hachage (en convertissant en tuple, qui est immutable). Le code ci-dessous utilise des notions de programmation objet largement hors-programme et n'est donc pas à lire (et encore moins à comprendre).
 
 
 ```python
@@ -82,7 +82,7 @@ class L(list):
         return hash(self.to_tuple())
 ```
 
-En pratique, on définira donc une grille de morpion avec `L(...)` :
+En pratique, on définira donc une grille de morpion avec `L(...)`:
 
 
 ```python
@@ -97,7 +97,7 @@ g_vide
 
 
 
-On peut ensuite utiliser toutes les opérations sur des listes/matrices, comme d'habitude.
+On peut ensuite utiliser toutes les opérations sur des listes, comme d'habitude.
 
 **Question** : Définir une variable `g1` représentant le morpion ci-dessous.  
 
@@ -108,7 +108,11 @@ X|O|
 ```
 
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 g1 = L([[1, 2, 0], [0, 0, 0], [0, 0, 0]])
 ```
 
@@ -143,7 +147,12 @@ afficher(g1)
 **Question** : Écrire une fonction `cases_libres(g)` renvoyant la liste des positions `(i, j)` des cases vides de `g` (c'est-à-dire telles que `g[i][j]` vaut $0$).
 
 
-```python
+
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 def cases_libres(g):
     cases = []
     for i in range(3):
@@ -168,7 +177,12 @@ cases_libres(g1)
 **Question** : Écrire une fonction `joueur(g)` renvoyant le numéro du joueur qui doit jouer le prochain coup sur la grille `g`. On pourra compter le nombre de cases libres, par exemple. On rappelle que le joueur 1 commence.
 
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
+
 def joueur(grille):
     nb_cases_libres = len(cases_libres(grille))
     nb_cases_vides = 9 - nb_cases_libres
@@ -194,7 +208,11 @@ joueur(g1)
 On pourra utiliser `if ... == ... == ...:` pour tester si trois valeurs sont égales.
 
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 def gagnant(g):
     #test des lignes et colonnes
     for i in range(3):
@@ -234,7 +252,11 @@ print(gagnant(g2))
 Pour chaque coup possible, plutôt que modifier `g`, on en fera une copie (`m = copy.deepcopy(g)` après avoir importé avec `import copy`) que l'on modifiera pour jouer un coup et que l'on ajoutera à la liste `next_l`.
 
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 import copy
 
 def successeurs(g):
@@ -256,10 +278,6 @@ successeurs(g1)
     X|O|
      | |
      | |
-
-
-
-
 
     [[[1, 2, 1], [0, 0, 0], [0, 0, 0]],
      [[1, 2, 0], [1, 0, 0], [0, 0, 0]],
@@ -293,7 +311,11 @@ def attracteurs(g):
 ```
 
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 def attracteurs(g):
     d = {}
     def aux(v):
@@ -316,25 +338,33 @@ def attracteurs(g):
 
 ```python
 afficher(g1) # grille initiale
+print() #Saute une ligne
+
 for v in attracteurs(g1)[:5]: # affiche quelques attracteurs
     afficher(v)
+    print() #Saute une ligne entre chaque grille
 ```
 
     X|O|
      | |
      | |
+
     X|O|X
     O|X|O
     X|O|X
+
     X|O|X
     O|X|O
     X|O|
+
     X|O|X
     O|X|O
     X|X|O
+
     X|O|X
     O|X|O
     X| |O
+
     X|O|X
     O|X|O
     X| |
@@ -342,13 +372,46 @@ for v in attracteurs(g1)[:5]: # affiche quelques attracteurs
 
 **Question** : Le joueur 1 a t-il une stratégie gagnante à partir de la grille `g1` ?
 
-**Question** : Modifier `attracteurs(g)` en une fonction `strategie(g)` renvoyant un dictionnaire `d` contenant une stratégie gagnante pour le joueur 1 à partir de la grille `g`. Si `v` est une grille accessible depuis `g` :
+:::{dropdown} Solution
+:animate: fade-in
+
+Oui, on pourra la récupérer grâce à la question suivante !
+
+:::
+
+**Question** : Completer la fonction `strategie(g)` qui renvoie un dictionnaire `d` contenant une stratégie gagnante pour le joueur 1 à partir de la grille `g`. Si `v` est une grille accessible depuis `g` :
 - Si le joueur 1 a gagné sur la grille `v`, `d[v]` vaudra `True`.
 - S'il n'y a pas de stratégie gagnante depuis `v`, `d[v]` vaudra `False`.
 - Sinon, `d[v]` correspond à un coup possible pour le joueur 1 à partir de `v` correspondant à une stratégie gagnante.  
 
+```
+def strategie(g):
+    d = {}
+    def aux(v):
+        if v not in d:
+            succ = ...
+            if gagnant(v) == 1:
+                d[v] = ...
+            elif gagnant(v) == 2 or len(succ) == 0:
+                d[v] = ...
+            elif joueur(v) == 1:
+                d[v] = ...
+                for ...:
+                    if ...:
+                        ...
+            else:
+                d[v] = ...
+        return d[v]
+    aux(g)
+    return d
+```
 
-```python
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
+
 def strategie(g):
     d = {}
     def aux(v):
@@ -385,7 +448,7 @@ afficher(d[g1])
     X| |
 
 
-**Question** : Trouver une séquence permettant de gagner contre l'ordinateur avec la fonction suivante (vous êtes le joueur 2).
+**Question** : On vous fournit une fonction `jeu(g)` qui implémente le jeu du morpion à partir de la grille initiale `g` Trouver une séquence permettant de gagner contre l'ordinateur avec la fonction suivante (vous êtes le joueur 2).
 
 
 ```python
@@ -403,9 +466,16 @@ def jeu(g):
             g = d[g]
     print("Le joueur", gagnant(g), "a gagné !")
     afficher(g)
+```
 
+```python
 jeu(g1)
 ```
+
+**Solution**
+
+```{code-cell} ipython3
+:tags: ["hide-cell"]
 
     X|O|
      | |
@@ -434,16 +504,20 @@ jeu(g1)
     Entrez les coordonnées de votre coup :  0 2
 
 
-    Le joueur 2 a gagné !
+    Le joueur 2 a gagné \!
     O|O|O
      | |
     X| |
+```
+
+**Question** : Améliorez la fonction jeu au regard de la question précédente. Un exemple de comportement vous est proposé ci-dessous.
 
 
-**Question** : Améliorez la fonction jeu au regard de la question précédente
+**Solution**
 
+```{code-cell} ipython3
+:tags: ["hide-cell"]
 
-```python
 def jeu(g):
     d = strategie(g)
     while gagnant(g) == 0:
@@ -509,10 +583,13 @@ jeu(g1)
     X|X|X
 
 
-**Question** : Implémentez la fonction jeu2() vous permettant de jouer à 2
+**Question Bonus** : Implémentez la fonction `jeu2()` vous permettant de jouer à deux à partir d'une grille vide
 
+**Solution**
 
-```python
+```{code-cell} ipython3
+:tags: ["hide-cell"]
+
 def jeu2():
     g = L([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
     while gagnant(g) == 0:
@@ -577,9 +654,3 @@ jeu2()
     X|X|X
     O|O|
      | |
-
-
-
-```python
-
-```

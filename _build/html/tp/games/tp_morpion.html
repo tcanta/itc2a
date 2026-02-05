@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>TP : Jeu du tic-tac-toe &#8212; Informatique de Tronc Commun 2A La Martin</title>
+    <title>TP : Jeu du morpion &#8212; Informatique de Tronc Commun 2A La Martin</title>
   
   
   
@@ -228,7 +228,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../cours/games/cours_strat.html">Cours: Stratégie et Attracteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cours/games/cours_minmax.html">Cours: Algorithme min-max et heuristiques</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">TP : Jeu du tic-tac-toe</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TP : Jeu du morpion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tp_domineering.html">TP : Jeu du domineering</a></li>
 </ul>
 
@@ -415,7 +415,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>TP : Jeu du tic-tac-toe</h1>
+    <h1>TP : Jeu du morpion</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -438,8 +438,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tp-jeu-du-tic-tac-toe">
-<h1>TP : Jeu du tic-tac-toe<a class="headerlink" href="#tp-jeu-du-tic-tac-toe" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tp-jeu-du-morpion">
+<h1>TP : Jeu du morpion<a class="headerlink" href="#tp-jeu-du-morpion" title="Link to this heading">#</a></h1>
 <p>Pour programmer, vous pouvez soit utiliser Pyzo, soit <a class="reference external" href="https://notebook.basthon.fr/?from=https://raw.githubusercontent.com/tcanta/itc2a/master/eleve/tp_morpion-eleves.ipynb">Basthon</a>.</p>
 <p>Commandes Basthon :</p>
 <ul class="simple">
@@ -456,7 +456,7 @@ document.write(`
 </ul>
 <section id="presentation">
 <h2>Présentation<a class="headerlink" href="#presentation" title="Link to this heading">#</a></h2>
-<p>Dans le jeu du tic-tac-toe (ou morpion), deux joueurs doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : X (joueur 1) ou O (joueur 2). Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale. Le joueur 1 commence.</p>
+<p>Dans le jeu du tic-tac-toe, ou morpion dans la langue de Molière, deux joueurs doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : X (joueur 1) ou O (joueur 2). Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale. Le joueur 1 commence.</p>
 <center><img src=https://upload.wikimedia.org/wikipedia/commons/3/33/Tictactoe1.gif width=100></center>
 <p>On représente une grille de morpion par une matrice (liste de listes) <span class="math notranslate nohighlight">\(3\times 3\)</span> contenant uniquement 0, 1, 2 :</p>
 <ul class="simple">
@@ -467,7 +467,7 @@ document.write(`
 </section>
 <section id="dictionnaire-et-fonction-de-hachage">
 <h2>Dictionnaire et fonction de hachage<a class="headerlink" href="#dictionnaire-et-fonction-de-hachage" title="Link to this heading">#</a></h2>
-<p>Nous aurons besoin d’utiliser un dictionnaire dont les clés sont des matrices (grilles de morpion). Cependant, nous avons vu dans le cours sur les dictionnaires que, étant représenté par table de hachage, un dictionnaire doit avoir des clés hachables. Un type mutable (modifiable) comme une liste (ou un tableau numpy) n’étant pas hachable, il n’est donc pas possible d’en utiliser comme clé d’un dictionnaire :</p>
+<p>Nous aurons besoin d’utiliser un dictionnaire dont les clés sont des matrices (grilles de morpion). Cependant, nous avons vu dans le cours sur les dictionnaires que, étant représenté par table de hachage, un dictionnaire doit avoir des clés hachables. Un type mutable, les listes par exemple, n’étant pas hachable, il n’est donc pas possible d’en utiliser comme clé d’un dictionnaire :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">:</span> <span class="mi">4</span> <span class="p">}</span> <span class="c1"># on ne peut pas utiliser une liste comme clé d&#39;un dictionnaire</span>
 </pre></div>
 </div>
@@ -482,7 +482,7 @@ Cell In[1], line 1
 TypeError: unhashable type: &#39;list&#39;
 </pre></div>
 </div>
-<p>À la place, nous allons utiliser le type <code class="docutils literal notranslate"><span class="pre">L</span></code> suivant qui possède les mêmes opérations que les listes mais qui définit une fonction de hachage (en convertissant en tuple, qui est immutable). Le code ci-dessous utilise des notions de programmation objet largement hors-programme et n’est donc pas à comprendre.</p>
+<p>À la place, nous allons utiliser le type <code class="docutils literal notranslate"><span class="pre">L</span></code> suivant qui possède les mêmes opérations que les listes mais qui définit une fonction de hachage (en convertissant en tuple, qui est immutable). Le code ci-dessous utilise des notions de programmation objet largement hors-programme et n’est donc pas à lire (et encore moins à comprendre).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">L</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
     <span class="c1"># Methode de classe permettant de renvoyer un tuple représentant l&#39;instance courante</span>
     <span class="k">def</span> <span class="nf">to_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -499,7 +499,7 @@ TypeError: unhashable type: &#39;list&#39;
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>En pratique, on définira donc une grille de morpion avec <code class="docutils literal notranslate"><span class="pre">L(...)</span></code> :</p>
+<p>En pratique, on définira donc une grille de morpion avec <code class="docutils literal notranslate"><span class="pre">L(...)</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g_vide</span> <span class="o">=</span> <span class="n">L</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span> <span class="c1"># grille initialement vide</span>
 <span class="n">g_vide</span>
 </pre></div>
@@ -507,15 +507,36 @@ TypeError: unhashable type: &#39;list&#39;
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 </pre></div>
 </div>
-<p>On peut ensuite utiliser toutes les opérations sur des listes/matrices, comme d’habitude.</p>
+<p>On peut ensuite utiliser toutes les opérations sur des listes, comme d’habitude.</p>
 <p><strong>Question</strong> : Définir une variable <code class="docutils literal notranslate"><span class="pre">g1</span></code> représentant le morpion ci-dessous.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">|</span><span class="n">O</span><span class="o">|</span>
  <span class="o">|</span> <span class="o">|</span>
  <span class="o">|</span> <span class="o">|</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g1</span> <span class="o">=</span> <span class="n">L</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g1</span> <span class="o">=</span> <span class="n">L</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">g1</span> <span class="o">=</span> <span class="n">L</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="ne">NameError</span>: name &#39;L&#39; is not defined
+</pre></div>
+</div>
+</div>
+</details>
 </div>
 <p>Pour afficher une grille, on pourra utiliser la fonction suivante.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">afficher</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
@@ -541,7 +562,15 @@ TypeError: unhashable type: &#39;list&#39;
 </pre></div>
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">cases_libres(g)</span></code> renvoyant la liste des positions <code class="docutils literal notranslate"><span class="pre">(i,</span> <span class="pre">j)</span></code> des cases vides de <code class="docutils literal notranslate"><span class="pre">g</span></code> (c’est-à-dire telles que <code class="docutils literal notranslate"><span class="pre">g[i][j]</span></code> vaut <span class="math notranslate nohighlight">\(0\)</span>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cases_libres</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cases_libres</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">cases</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -550,6 +579,9 @@ TypeError: unhashable type: &#39;list&#39;
     <span class="k">return</span> <span class="n">cases</span>
 </pre></div>
 </div>
+</div>
+</details>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cases_libres</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -557,7 +589,15 @@ TypeError: unhashable type: &#39;list&#39;
 </pre></div>
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">joueur(g)</span></code> renvoyant le numéro du joueur qui doit jouer le prochain coup sur la grille <code class="docutils literal notranslate"><span class="pre">g</span></code>. On pourra compter le nombre de cases libres, par exemple. On rappelle que le joueur 1 commence.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">joueur</span><span class="p">(</span><span class="n">grille</span><span class="p">):</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">joueur</span><span class="p">(</span><span class="n">grille</span><span class="p">):</span>
     <span class="n">nb_cases_libres</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cases_libres</span><span class="p">(</span><span class="n">grille</span><span class="p">))</span>
     <span class="n">nb_cases_vides</span> <span class="o">=</span> <span class="mi">9</span> <span class="o">-</span> <span class="n">nb_cases_libres</span>
     <span class="k">if</span> <span class="n">nb_cases_vides</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -565,6 +605,9 @@ TypeError: unhashable type: &#39;list&#39;
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">2</span>
 </pre></div>
+</div>
+</div>
+</details>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">joueur</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
@@ -574,7 +617,15 @@ TypeError: unhashable type: &#39;list&#39;
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">gagnant(g)</span></code> renvoyant 1 si le joueur 1 est gagnant sur la grille <code class="docutils literal notranslate"><span class="pre">g</span></code> (c’est-à-dire si trois 1 sont alignés sur la grille), 2 si le joueur 2 est gagnant et 0 s’il n’y a pas encore de gagnant.<br />
 On pourra utiliser <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">...</span> <span class="pre">==</span> <span class="pre">...</span> <span class="pre">==</span> <span class="pre">...:</span></code> pour tester si trois valeurs sont égales.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="c1">#test des lignes et colonnes</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="ow">and</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -588,6 +639,9 @@ On pourra utiliser <code class="docutils literal notranslate"><span class="pre">
         <span class="k">return</span> <span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
+</div>
+</div>
+</details>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">afficher</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gagnant</span><span class="p">(</span><span class="n">g1</span><span class="p">))</span>
@@ -609,7 +663,15 @@ X|O|O
 </div>
 <p><strong>Question</strong> : Écrire une fonction <code class="docutils literal notranslate"><span class="pre">successeurs(g)</span></code> renvoyant la liste <code class="docutils literal notranslate"><span class="pre">next_l</span></code> des grilles que l’on peut obtenir à partir de <code class="docutils literal notranslate"><span class="pre">g</span></code> en jouant un coup.<br />
 Pour chaque coup possible, plutôt que modifier <code class="docutils literal notranslate"><span class="pre">g</span></code>, on en fera une copie (<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">copy.deepcopy(g)</span></code> après avoir importé avec <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">copy</span></code>) que l’on modifiera pour jouer un coup et que l’on ajoutera à la liste <code class="docutils literal notranslate"><span class="pre">next_l</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="k">def</span> <span class="nf">successeurs</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">next_l</span> <span class="o">=</span> <span class="p">[]</span>
@@ -621,6 +683,9 @@ Pour chaque coup possible, plutôt que modifier <code class="docutils literal no
     <span class="k">return</span> <span class="n">next_l</span>
 </pre></div>
 </div>
+</div>
+</details>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">afficher</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 <span class="n">successeurs</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
@@ -628,10 +693,6 @@ Pour chaque coup possible, plutôt que modifier <code class="docutils literal no
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X|O|
  | |
  | |
-
-
-
-
 
 [[[1, 2, 1], [0, 0, 0], [0, 0, 0]],
  [[1, 2, 0], [1, 0, 0], [0, 0, 0]],
@@ -660,7 +721,15 @@ Pour chaque coup possible, plutôt que modifier <code class="docutils literal no
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span> <span class="c1"># grilles v telles que d[v] == True</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attracteurs</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">attracteurs</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
@@ -679,39 +748,84 @@ Pour chaque coup possible, plutôt que modifier <code class="docutils literal no
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">d</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span>
 </pre></div>
 </div>
+</div>
+</details>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">afficher</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span> <span class="c1"># grille initiale</span>
+<span class="nb">print</span><span class="p">()</span> <span class="c1">#Saute une ligne</span>
+
 <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">attracteurs</span><span class="p">(</span><span class="n">g1</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]:</span> <span class="c1"># affiche quelques attracteurs</span>
     <span class="n">afficher</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span> <span class="c1">#Saute une ligne entre chaque grille</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X|O|
  | |
  | |
+
 X|O|X
 O|X|O
 X|O|X
+
 X|O|X
 O|X|O
 X|O|
+
 X|O|X
 O|X|O
 X|X|O
+
 X|O|X
 O|X|O
 X| |O
+
 X|O|X
 O|X|O
 X| |
 </pre></div>
 </div>
 <p><strong>Question</strong> : Le joueur 1 a t-il une stratégie gagnante à partir de la grille <code class="docutils literal notranslate"><span class="pre">g1</span></code> ?</p>
-<p><strong>Question</strong> : Modifier <code class="docutils literal notranslate"><span class="pre">attracteurs(g)</span></code> en une fonction <code class="docutils literal notranslate"><span class="pre">strategie(g)</span></code> renvoyant un dictionnaire <code class="docutils literal notranslate"><span class="pre">d</span></code> contenant une stratégie gagnante pour le joueur 1 à partir de la grille <code class="docutils literal notranslate"><span class="pre">g</span></code>. Si <code class="docutils literal notranslate"><span class="pre">v</span></code> est une grille accessible depuis <code class="docutils literal notranslate"><span class="pre">g</span></code> :</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Solution</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Oui, on pourra la récupérer grâce à la question suivante !</p>
+</div>
+</details><p><strong>Question</strong> : Completer la fonction <code class="docutils literal notranslate"><span class="pre">strategie(g)</span></code> qui renvoie un dictionnaire <code class="docutils literal notranslate"><span class="pre">d</span></code> contenant une stratégie gagnante pour le joueur 1 à partir de la grille <code class="docutils literal notranslate"><span class="pre">g</span></code>. Si <code class="docutils literal notranslate"><span class="pre">v</span></code> est une grille accessible depuis <code class="docutils literal notranslate"><span class="pre">g</span></code> :</p>
 <ul class="simple">
 <li><p>Si le joueur 1 a gagné sur la grille <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">d[v]</span></code> vaudra <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 <li><p>S’il n’y a pas de stratégie gagnante depuis <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">d[v]</span></code> vaudra <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p>Sinon, <code class="docutils literal notranslate"><span class="pre">d[v]</span></code> correspond à un coup possible pour le joueur 1 à partir de <code class="docutils literal notranslate"><span class="pre">v</span></code> correspondant à une stratégie gagnante.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategie</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategie</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+            <span class="n">succ</span> <span class="o">=</span> <span class="o">...</span>
+            <span class="k">if</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+            <span class="k">elif</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">succ</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+            <span class="k">elif</span> <span class="n">joueur</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+                <span class="k">for</span> <span class="o">...</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="o">...</span><span class="p">:</span>
+                        <span class="o">...</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span>
+        <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+    <span class="n">aux</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">strategie</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">def</span> <span class="nf">aux</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
@@ -732,6 +846,9 @@ X| |
     <span class="k">return</span> <span class="n">d</span>
 </pre></div>
 </div>
+</div>
+</details>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">strategie</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 <span class="n">afficher</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 <span class="n">afficher</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">g1</span><span class="p">])</span>
@@ -745,7 +862,7 @@ X|O|
 X| |
 </pre></div>
 </div>
-<p><strong>Question</strong> : Trouver une séquence permettant de gagner contre l’ordinateur avec la fonction suivante (vous êtes le joueur 2).</p>
+<p><strong>Question</strong> : On vous fournit une fonction <code class="docutils literal notranslate"><span class="pre">jeu(g)</span></code> qui implémente le jeu du morpion à partir de la grille initiale <code class="docutils literal notranslate"><span class="pre">g</span></code> Trouver une séquence permettant de gagner contre l’ordinateur avec la fonction suivante (vous êtes le joueur 2).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jeu</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">strategie</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -760,45 +877,65 @@ X| |
             <span class="n">g</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">g</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Le joueur&quot;</span><span class="p">,</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="s2">&quot;a gagné !&quot;</span><span class="p">)</span>
     <span class="n">afficher</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-
-<span class="n">jeu</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X|O|
- | |
-X| |
-
-
-[[1, 2, 0], [0, 0, 0], [1, 0, 0]]
-Entrez les coordonnées de votre coup :  0 1
-
-
-X|O|
- | |
-X| |
-
-
-[[1, 2, 0], [0, 0, 0], [1, 0, 0]]
-Entrez les coordonnées de votre coup :  0 0
-
-
-O|O|
- | |
-X| |
-
-
-[[2, 2, 0], [0, 0, 0], [1, 0, 0]]
-Entrez les coordonnées de votre coup :  0 2
-
-
-Le joueur 2 a gagné !
-O|O|O
- | |
-X| |
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jeu</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Question</strong> : Améliorez la fonction jeu au regard de la question précédente</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jeu</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>    <span class="n">X</span><span class="o">|</span><span class="n">O</span><span class="o">|</span>
+     <span class="o">|</span> <span class="o">|</span>
+    <span class="n">X</span><span class="o">|</span> <span class="o">|</span>
+
+
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="n">Entrez</span> <span class="n">les</span> <span class="n">coordonnées</span> <span class="n">de</span> <span class="n">votre</span> <span class="n">coup</span> <span class="p">:</span>  <span class="mi">0</span> <span class="mi">1</span>
+
+
+    <span class="n">X</span><span class="o">|</span><span class="n">O</span><span class="o">|</span>
+     <span class="o">|</span> <span class="o">|</span>
+    <span class="n">X</span><span class="o">|</span> <span class="o">|</span>
+
+
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="n">Entrez</span> <span class="n">les</span> <span class="n">coordonnées</span> <span class="n">de</span> <span class="n">votre</span> <span class="n">coup</span> <span class="p">:</span>  <span class="mi">0</span> <span class="mi">0</span>
+
+
+    <span class="n">O</span><span class="o">|</span><span class="n">O</span><span class="o">|</span>
+     <span class="o">|</span> <span class="o">|</span>
+    <span class="n">X</span><span class="o">|</span> <span class="o">|</span>
+
+
+    <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="n">Entrez</span> <span class="n">les</span> <span class="n">coordonnées</span> <span class="n">de</span> <span class="n">votre</span> <span class="n">coup</span> <span class="p">:</span>  <span class="mi">0</span> <span class="mi">2</span>
+
+
+    <span class="n">Le</span> <span class="n">joueur</span> <span class="mi">2</span> <span class="n">a</span> <span class="n">gagné</span> \<span class="err">!</span>
+    <span class="n">O</span><span class="o">|</span><span class="n">O</span><span class="o">|</span><span class="n">O</span>
+     <span class="o">|</span> <span class="o">|</span>
+    <span class="n">X</span><span class="o">|</span> <span class="o">|</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p><strong>Question</strong> : Améliorez la fonction jeu au regard de la question précédente. Un exemple de comportement vous est proposé ci-dessous.</p>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jeu</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">strategie</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">joueur</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -818,6 +955,9 @@ X| |
 
 <span class="n">jeu</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</details>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X|O|
  | |
@@ -863,8 +1003,16 @@ O|O|
 X|X|X
 </pre></div>
 </div>
-<p><strong>Question</strong> : Implémentez la fonction jeu2() vous permettant de jouer à 2</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jeu2</span><span class="p">():</span>
+<p><strong>Question Bonus</strong> : Implémentez la fonction <code class="docutils literal notranslate"><span class="pre">jeu2()</span></code> vous permettant de jouer à deux à partir d’une grille vide</p>
+<p><strong>Solution</strong></p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">jeu2</span><span class="p">():</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">L</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
     <span class="k">while</span> <span class="n">gagnant</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">afficher</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
@@ -878,6 +1026,9 @@ X|X|X
 
 <span class="n">jeu2</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</details>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> | |
  | |
@@ -928,9 +1079,6 @@ Le joueur 1 a gagné !
 X|X|X
 O|O|
  | |
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </section>
