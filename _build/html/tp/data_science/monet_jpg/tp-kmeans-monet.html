@@ -63,7 +63,7 @@
     <link rel="icon" href="../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Cours: Introduction au SQL" href="../../../cours/sql/cours_select.html" />
+    <link rel="next" title="TD: Quantification et k-moyennes" href="../../../td/data_science/quantification-kmeans.html" />
     <link rel="prev" title="TP : Classification de voitures" href="../tp_voitures.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,7 +202,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../td/prog_dyn/chemin.html">TD: Chemin dans matrice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../prog_dyn/tp1_prog_dyn.html">TP 1 - Programmation Dynamique</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../prog_dyn/tp2_sac_dos.html">TP 2 - Knapsack</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../dm/dm1_psi-pc_LIS.html">Exercice facultatif: LIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dm/dm1_psi-pc_LIS.html">DM 1 PSI*/PC*: LIS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Science des Données</span></p>
 <ul class="current nav bd-sidenav">
@@ -212,6 +212,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tp_titanic.html">TP KNN : Classification des survivants du Titanic</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tp_voitures.html">TP : Classification de voitures</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">TP : Classification de tableaux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../td/data_science/quantification-kmeans.html">TD: Quantification et k-moyennes</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">SQL</span></p>
 <ul class="nav bd-sidenav">
@@ -219,8 +220,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_join.html">Cours: Requètes à plusieurs tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_groupby.html">Cours: Fonctions d’agrégation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_imbrique.html">Cours: Requêtes Imbriquées</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../cours/sql/cours_er.html">Cours: Modèle Entité-Association</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../td/sql/td_sql.html">TD: Requêtes à plusieurs tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql/tp_select-join.html">TP SQL 1 - Requêtes simples à une et plusieurs tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../sql/tp_groupby.html">TP SQL 2 - Requêtes avec fonctions d’agrégation et autojointures</a></li>
 </ul>
@@ -228,7 +227,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/games/cours_strat.html">Cours: Stratégie et Attracteurs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../cours/games/cours_minmax.html">Cours: Algorithme min-max et heuristiques</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../games/tp_morpion.html">TP : Jeu du morpion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../games/tp_morpion.html">TP : Jeu du tic-tac-toe</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../games/tp_domineering.html">TP : Jeu du domineering</a></li>
 </ul>
 
@@ -429,7 +428,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-des-k-moyennes">Algorithmes des <span class="math notranslate nohighlight">\(k\)</span>-moyennes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calcul-de-l-inertie">Calcul de l’inertie</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choix-de-la-valeur-de-k">Choix de la valeur de k</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amelioration-de-la-fonction-de-distance">Amélioration de la fonction de distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amelioration-de-la-fonction-crop">Amélioration de la fonction crop</a></li>
 </ul>
             </nav>
@@ -674,18 +672,6 @@ $<span class="math notranslate nohighlight">\(
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-    <span class="n">diff</span> <span class="o">=</span> <span class="n">u</span> <span class="o">-</span> <span class="n">v</span>                       <span class="c1"># vectorized int64 subtraction</span>
-    <span class="n">sq</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">*</span> <span class="n">diff</span>                   <span class="c1"># elementwise square</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sq</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>           <span class="c1"># final Euclidean distance</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -921,15 +907,15 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">4</span>
-<span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">inerties</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">k</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">inerties</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">15</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inerties</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/d3702be22b1c1f8208a332351b856d3cfa681157be6a5db9b7d7d187745e3b29.png" src="../../../_images/d3702be22b1c1f8208a332351b856d3cfa681157be6a5db9b7d7d187745e3b29.png" />
+<img alt="../../../_images/6c9972d1abd23f3f4facf1e4bd5b2e68f4afe3fb02ebec4ef1cd74e6fbbde398.png" src="../../../_images/6c9972d1abd23f3f4facf1e4bd5b2e68f4afe3fb02ebec4ef1cd74e6fbbde398.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -939,10 +925,7 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(8431736040.0),
- np.float64(7941687198.0),
- np.float64(7790241383.0),
- np.float64(7790241383.0)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(6803887858.0), np.float64(6243427788.0), np.float64(6243427788.0)]
 </pre></div>
 </div>
 </div>
@@ -950,140 +933,52 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 </section>
 <section id="choix-de-la-valeur-de-k">
 <h2>Choix de la valeur de k<a class="headerlink" href="#choix-de-la-valeur-de-k" title="Link to this heading">#</a></h2>
-<p><strong>Question</strong> : Proposer une méthode permettant de déterminer la valeur de k à choisir et la mettre en oeuvre</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inerties</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">max_k</span><span class="o">=</span><span class="mi">20</span>
-<span class="n">c</span><span class="o">=</span><span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">max_k</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">c</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">inerties</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
     <span class="n">inerties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">inerties</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7a4361066240&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
 </pre></div>
 </div>
-<img alt="../../../_images/192585afa8c84a75e21b7415e8d01fa3abdf8ca88b7b9b6d3c639b9aad43cd35.png" src="../../../_images/192585afa8c84a75e21b7415e8d01fa3abdf8ca88b7b9b6d3c639b9aad43cd35.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">inerties</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x73eee57d5520&gt;]
+</pre></div>
+</div>
+<img alt="../../../_images/19a1fca1a99f7b45dbc87e39d7976b9e46979c7b153994102b2f9653e242b2d3.png" src="../../../_images/19a1fca1a99f7b45dbc87e39d7976b9e46979c7b153994102b2f9653e242b2d3.png" />
 </div>
 </div>
 <p><strong>Question</strong> : Quelle valeur de k à l’air pertinente pour notre echantillon de tableaux ?</p>
-</section>
-<section id="amelioration-de-la-fonction-de-distance">
-<h2>Amélioration de la fonction de distance<a class="headerlink" href="#amelioration-de-la-fonction-de-distance" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
-
-<span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">window_sigma</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SSIM-based distance for RGB data (last dimension = 3).</span>
-<span class="sd">    Returns a distance in [0, 1].</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Convert to float, keep shape (H,W,3) or (N,3)</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-
-    <span class="c1"># dynamic range of values</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">u</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">v</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">v</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-    <span class="n">K1</span><span class="p">,</span> <span class="n">K2</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span>
-    <span class="n">C1</span> <span class="o">=</span> <span class="p">(</span><span class="n">K1</span> <span class="o">*</span> <span class="n">L</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-    <span class="n">C2</span> <span class="o">=</span> <span class="p">(</span><span class="n">K2</span> <span class="o">*</span> <span class="n">L</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-
-    <span class="c1"># Compute SSIM for each channel separately</span>
-    <span class="n">ssim_channels</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">U</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
-        <span class="n">V</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
-
-        <span class="n">mu_u</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">window_sigma</span><span class="p">)</span>
-        <span class="n">mu_v</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">window_sigma</span><span class="p">)</span>
-
-        <span class="n">mu_u2</span> <span class="o">=</span> <span class="n">mu_u</span> <span class="o">*</span> <span class="n">mu_u</span>
-        <span class="n">mu_v2</span> <span class="o">=</span> <span class="n">mu_v</span> <span class="o">*</span> <span class="n">mu_v</span>
-        <span class="n">mu_uv</span> <span class="o">=</span> <span class="n">mu_u</span> <span class="o">*</span> <span class="n">mu_v</span>
-
-        <span class="n">sigma_u2</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">U</span><span class="p">,</span> <span class="n">window_sigma</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_u2</span>
-        <span class="n">sigma_v2</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">V</span> <span class="o">*</span> <span class="n">V</span><span class="p">,</span> <span class="n">window_sigma</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_v2</span>
-        <span class="n">sigma_uv</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">V</span><span class="p">,</span> <span class="n">window_sigma</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_uv</span>
-
-        <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mu_uv</span> <span class="o">+</span> <span class="n">C1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma_uv</span> <span class="o">+</span> <span class="n">C2</span><span class="p">)</span>
-        <span class="n">den</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu_u2</span> <span class="o">+</span> <span class="n">mu_v2</span> <span class="o">+</span> <span class="n">C1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">sigma_u2</span> <span class="o">+</span> <span class="n">sigma_v2</span> <span class="o">+</span> <span class="n">C2</span><span class="p">)</span>
-
-        <span class="n">ssim_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">num</span> <span class="o">/</span> <span class="n">den</span><span class="p">)</span>
-        <span class="n">ssim_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ssim_value</span><span class="p">)</span>
-
-    <span class="c1"># mean across R,G,B</span>
-    <span class="n">ssim_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ssim_channels</span><span class="p">)</span>
-
-    <span class="c1"># similarity → distance</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">ssim_value</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inerties</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">max_k</span><span class="o">=</span><span class="mi">8</span>
-<span class="n">c</span><span class="o">=</span><span class="n">centres_aléatoires</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">max_k</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">centres</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">kmeans</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">c</span><span class="p">[:</span><span class="n">k</span><span class="p">],</span> <span class="n">k</span><span class="p">)</span> <span class="c1"># ceci prend quelques minutes</span>
-    <span class="n">inerties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">inerties</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7a435c93eb40&gt;]
-</pre></div>
-</div>
-<img alt="../../../_images/b5909a86235d1e5ef7314fa1efa7f871efb6319c8a5dfd363c7cae5e65e10b45.png" src="../../../_images/b5909a86235d1e5ef7314fa1efa7f871efb6319c8a5dfd363c7cae5e65e10b45.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">center</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">centres</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">to_matrix</span><span class="p">(</span><span class="n">center</span><span class="p">)))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/4f97e0014a8eb07a353cae15ad3b9ac420919f7267abd3c94d152c9cd3440917.png" src="../../../_images/4f97e0014a8eb07a353cae15ad3b9ac420919f7267abd3c94d152c9cd3440917.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[5, 5, 5, 5, 6, 5, 5, 5, 2, 5, 5, 7, 5, 1, 3, 4, 6, 7, 0, 5]
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="amelioration-de-la-fonction-crop">
 <h2>Amélioration de la fonction crop<a class="headerlink" href="#amelioration-de-la-fonction-crop" title="Link to this heading">#</a></h2>
@@ -1132,11 +1027,11 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
       </div>
     </a>
     <a class="right-next"
-       href="../../../cours/sql/cours_select.html"
+       href="../../../td/data_science/quantification-kmeans.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cours: Introduction au SQL</p>
+        <p class="prev-next-title">TD: Quantification et k-moyennes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1160,7 +1055,6 @@ On utilisera <code class="docutils literal notranslate"><span class="pre">random
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmes-des-k-moyennes">Algorithmes des <span class="math notranslate nohighlight">\(k\)</span>-moyennes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calcul-de-l-inertie">Calcul de l’inertie</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choix-de-la-valeur-de-k">Choix de la valeur de k</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amelioration-de-la-fonction-de-distance">Amélioration de la fonction de distance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amelioration-de-la-fonction-crop">Amélioration de la fonction crop</a></li>
 </ul>
   </nav></div>
