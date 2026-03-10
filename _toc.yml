@@ -11,6 +11,7 @@ parts:
   - caption: Révisions
     chapters:
       - file: tp/tp_revisions
+      - file: cours/graph/cours_dijkstra
 
   - caption: Structures de Données
     chapters:
