@@ -11,12 +11,17 @@ kernelspec:
   name: python3
 ---
 
-# Cours: Algorithme de Dijkstra
+# Cours: Algorithme de Dijkstra et A*
 
 ````{tab-set}
-```{tab-item} Cours
+```{tab-item} Cours Dijkstra
 
 <iframe src=https://mozilla.github.io/pdf.js/legacy/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/graph/dijkstra.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
+
+```
+```{tab-item} Cours A*
+
+<iframe src=https://mozilla.github.io/pdf.js/legacy/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/graph/astar.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
 
 ```
 
