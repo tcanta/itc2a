@@ -14,4 +14,4 @@ kernelspec:
 # Cours: Requêtes Imbriquées
 
 
-<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/sql/imbrique.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
+<iframe src="https://mozilla.github.io/pdf.js/legacy/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/sql/imbrique.pdf#zoom=page-fit&pagemode=none" height=500 width=100% allowfullscreen></iframe>

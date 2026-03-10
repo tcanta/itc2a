@@ -14,4 +14,4 @@ kernelspec:
 # Cours: Fonctions d'agrégation
 
 
-<iframe src=https://mozilla.github.io/pdf.js/web/viewer.html?file=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/sql/groupby.pdf#zoom=page-fit&pagemode=none height=500 width=100% allowfullscreen></iframe>
+<iframe src=https://raw.githubusercontent.com/tcanta/itc2a/master/cours/sql/groupby.pdf height=500 width=100% allowfullscreen></iframe>
